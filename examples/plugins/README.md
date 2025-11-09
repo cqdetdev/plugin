@@ -2,35 +2,6 @@
 
 This directory contains example plugins demonstrating how to create Dragonfly plugins in different languages.
 
-## Why Dragonfly's Plugin System?
-
-| Benefit | Description | Use Case |
-|---------|-------------|----------|
-| 🌍 **Any Language** | Write plugins in JavaScript, TypeScript, PHP, Python, Rust, C++, or any language with gRPC support | Use the language your team knows best |
-| 💰 **Sell Plugins** | Compile to binary (Rust, Go, C++) and distribute without source code | Create commercial plugins |
-| 🔥 **Hot Reload** | Edit JS/TS/PHP plugins and see changes instantly - no server restart needed | Develop and debug plugins in real-time |
-| 📱 **Remote Control** | Plugins connect over gRPC - run them anywhere (phone app, cloud service, another server) | Build mobile admin apps |
-| 📦 **Use Any Library** | Import npm packages on a Go server, use Python ML libraries, etc. | Leverage entire ecosystems |
-| ⚡ **Zero Performance Impact** | Plugins run in separate processes - slow/heavy plugin code doesn't affect server TPS | Run intensive tasks without lag |
-| 🚀 **High Performance** | Optimized protobuf protocol with optional batching for low latency | Handle 100+ players with movement events |
-| 🔒 **Sandboxing** | Control what plugins can access via gRPC permissions | Host untrusted plugins safely |
-
-### Real-World Examples
-
-```bash
-# Hot reload: Edit plugin code while server is running
-vim plugins/my-plugin.js   # Make changes
-# Changes apply immediately - no restart!
-
-# Remote plugin: Control server from your phone
-# Plugin runs on your phone, connects to server over internet
-phone-app → [gRPC] → Dragonfly Server
-
-# Binary plugin: Sell without source code
-rustc plugin.rs --release   # Compile to binary
-# Distribute the binary - customers can't see your code
-```
-
 ## Available Examples
 
 ### 1. Node.js Plugin (`node/`)
