@@ -6,8 +6,15 @@ plugins:
     address: "127.0.0.1:50051"
     env:
       NODE_ENV: development
-  - id: example-php
-    name: Example PHP Plugin
-    command: "php"
-    args: ["examples/plugins/php/HelloPlugin.php"]
+  - id: example-typescript
+    name: Example TypeScript Plugin
+    command: "node"
+    args: ["examples/plugins/typescript/dist/index.js"]
     address: "127.0.0.1:50052"
+    env:
+      NODE_ENV: production
+  # - id: example-php
+  #   name: Example PHP Plugin
+  #   command: "php"
+  #   args: ["examples/plugins/php/HelloPlugin.php"]
+  #   address: "127.0.0.1:50053"

@@ -1,0 +1,300 @@
+// Example Dragonfly plugin implemented in TypeScript with generated protobuf types.
+// Run: npm install && npm run generate && npm run dev
+
+import * as grpc from '@grpc/grpc-js';
+import {
+    HostToPlugin,
+    PluginToHost,
+    PluginHello,
+    ActionBatch,
+    Action,
+    EventResult,
+    EventSubscribe,
+} from './generated/plugin/proto/plugin.js';
+
+const pluginId = process.env.DF_PLUGIN_ID || 'typescript-plugin';
+const address = process.env.DF_PLUGIN_GRPC_ADDRESS || '127.0.0.1:50052';
+
+// Type-safe bidirectional stream handler
+function streamHandler(call: grpc.ServerDuplexStream<HostToPlugin, PluginToHost>) {
+    console.log('[ts] host connected');
+
+    call.on('data', (message: HostToPlugin) => {
+        console.log('[ts] received message:', JSON.stringify(message, null, 2));
+
+        // Handle hello handshake
+        if (message.hello) {
+            console.log('[ts] host hello', message.hello);
+
+            // Send plugin hello with type safety
+            const helloResponse: PluginToHost = {
+                pluginId,
+                hello: {
+                    name: 'example-typescript',
+                    version: '0.1.0',
+                    apiVersion: message.hello.apiVersion,
+                    commands: [
+                        { name: '/greet', description: 'Send a greeting from the TypeScript plugin' },
+                        { name: '/tp', description: 'Teleport to spawn' },
+                    ],
+                },
+            };
+            call.write(helloResponse);
+
+            // Subscribe to events
+            const subscribeMsg: PluginToHost = {
+                pluginId,
+                subscribe: {
+                    events: ['PLAYER_JOIN', 'PLAYER_QUIT', 'COMMAND', 'CHAT', 'BLOCK_BREAK'],
+                },
+            };
+            call.write(subscribeMsg);
+            return;
+        }
+
+        // Handle events
+        if (message.event) {
+            handleEvent(call, message.event);
+        }
+
+        // Handle shutdown
+        if (message.shutdown) {
+            console.log('[ts] host shutdown:', message.shutdown.reason);
+            call.end();
+        }
+    });
+
+    call.on('end', () => {
+        console.log('[ts] stream ended');
+        call.end();
+    });
+
+    call.on('error', (err) => {
+        console.error('[ts] stream error:', err);
+    });
+}
+
+function handleEvent(
+    call: grpc.ServerDuplexStream<HostToPlugin, PluginToHost>,
+    event: NonNullable<HostToPlugin['event']>
+) {
+    switch (event.type) {
+        case 'PLAYER_JOIN': {
+            const player = event.playerJoin;
+            if (!player) break;
+
+            console.log(`[ts] player joined ${player.name} (${player.playerUuid})`);
+
+            // Type-safe action batch
+            const response: PluginToHost = {
+                pluginId,
+                actions: {
+                    actions: [
+                        {
+                            correlationId: `join-${player.playerUuid}`,
+                            sendChat: {
+                                targetUuid: player.playerUuid,
+                                message: `§aWelcome to the server, §e${player.name}§a! (from TypeScript)`,
+                            },
+                        },
+                    ],
+                },
+            };
+            call.write(response);
+            break;
+        }
+
+        case 'PLAYER_QUIT': {
+            const player = event.playerQuit;
+            if (!player) break;
+            console.log(`[ts] player left ${player.name}`);
+            break;
+        }
+
+        case 'COMMAND': {
+            const command = event.command;
+            if (!command) break;
+
+            if (command.raw.startsWith('/greet')) {
+                const response: PluginToHost = {
+                    pluginId,
+                    actions: {
+                        actions: [
+                            {
+                                correlationId: `greet-${Date.now()}`,
+                                sendChat: {
+                                    targetUuid: command.playerUuid,
+                                    message: `§6Hello §b${command.name}§6! This is a TypeScript plugin with full type safety! 🚀`,
+                                },
+                            },
+                        ],
+                    },
+                };
+                call.write(response);
+            }
+
+            if (command.raw.startsWith('/tp')) {
+                const response: PluginToHost = {
+                    pluginId,
+                    actions: {
+                        actions: [
+                            {
+                                correlationId: `tp-${Date.now()}`,
+                                teleport: {
+                                    playerUuid: command.playerUuid,
+                                    x: 0,
+                                    y: 100,
+                                    z: 0,
+                                    yaw: 0,
+                                    pitch: 0,
+                                },
+                            },
+                            {
+                                sendChat: {
+                                    targetUuid: command.playerUuid,
+                                    message: '§aTeleported to spawn!',
+                                },
+                            },
+                        ],
+                    },
+                };
+                call.write(response);
+            }
+            break;
+        }
+
+        case 'CHAT': {
+            const chat = event.chat;
+            if (!chat) break;
+
+            // Profanity filter with event cancellation
+            const badWords = ['badword', 'spam', 'hack'];
+            if (badWords.some(word => chat.message.toLowerCase().includes(word))) {
+                const cancelResponse: PluginToHost = {
+                    pluginId,
+                    eventResult: {
+                        eventId: event.eventId,
+                        cancel: true,
+                    },
+                };
+                call.write(cancelResponse);
+
+                const warningResponse: PluginToHost = {
+                    pluginId,
+                    actions: {
+                        actions: [
+                            {
+                                sendChat: {
+                                    targetUuid: chat.playerUuid,
+                                    message: '§cPlease keep the chat friendly!',
+                                },
+                            },
+                        ],
+                    },
+                };
+                call.write(warningResponse);
+                break;
+            }
+
+            // Chat mutation example
+            if (chat.message.startsWith('!shout ')) {
+                const updated = chat.message.substring(7).toUpperCase() + '!!!';
+                const mutateResponse: PluginToHost = {
+                    pluginId,
+                    eventResult: {
+                        eventId: event.eventId,
+                        cancel: false,
+                        chat: { message: updated },
+                    },
+                };
+                call.write(mutateResponse);
+            }
+
+            // Rainbow text easter egg
+            if (chat.message.startsWith('!rainbow ')) {
+                const text = chat.message.substring(9);
+                const colors = ['§c', '§6', '§e', '§a', '§b', '§d'];
+                const rainbow = text.split('').map((char, i) => colors[i % colors.length] + char).join('');
+
+                const mutateResponse: PluginToHost = {
+                    pluginId,
+                    eventResult: {
+                        eventId: event.eventId,
+                        chat: { message: rainbow },
+                    },
+                };
+                call.write(mutateResponse);
+            }
+            break;
+        }
+
+        case 'BLOCK_BREAK': {
+            const blockBreak = event.blockBreak;
+            if (!blockBreak) break;
+
+            console.log(`[ts] ${blockBreak.name} broke block at ${blockBreak.x},${blockBreak.y},${blockBreak.z}`);
+
+            // Example: Double drops for diamond ore
+            if (blockBreak.x % 10 === 0) { // Just as an example
+                const response: PluginToHost = {
+                    pluginId,
+                    eventResult: {
+                        eventId: event.eventId,
+                        blockBreak: {
+                            drops: [
+                                { name: 'minecraft:diamond', count: 2, meta: 0 },
+                            ],
+                            xp: 10,
+                        },
+                    },
+                };
+                call.write(response);
+            }
+            break;
+        }
+
+        default:
+            console.log('[ts] unhandled event type:', event.type);
+    }
+}
+
+// Create gRPC server
+const server = new grpc.Server();
+
+// Add service with type-safe handler
+server.addService(
+    {
+        EventStream: {
+            path: '/df.plugin.Plugin/EventStream',
+            requestStream: true,
+            responseStream: true,
+            requestSerialize: (msg: PluginToHost) => Buffer.from(JSON.stringify(msg)),
+            requestDeserialize: (buf: Buffer) => JSON.parse(buf.toString()),
+            responseSerialize: (msg: HostToPlugin) => Buffer.from(JSON.stringify(msg)),
+            responseDeserialize: (buf: Buffer) => JSON.parse(buf.toString()),
+        },
+    },
+    { EventStream: streamHandler }
+);
+
+server.bindAsync(
+    address,
+    grpc.ServerCredentials.createInsecure(),
+    (err, port) => {
+        if (err) {
+            console.error('[ts] Failed to bind gRPC server:', err);
+            process.exit(1);
+        }
+        console.log(`[ts] plugin listening on ${address}`);
+    }
+);
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+    console.log('[ts] shutting down...');
+    server.tryShutdown(() => {
+        console.log('[ts] shutdown complete');
+        process.exit(0);
+    });
+});
+

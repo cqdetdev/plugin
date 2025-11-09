@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log/slog"
+	"os"
+
 	"github.com/df-mc/dragonfly/plugin"
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/pelletier/go-toml"
-	"log/slog"
-	"os"
 )
 
 func main() {

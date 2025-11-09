@@ -187,13 +187,13 @@ func (m *WorldCloseEvent) Marshal() ([]byte, error) { return nil, nil }
 
 // PluginToHost and nested messages are decoded from bytes.
 type PluginToHost struct {
-        PluginID string
+	PluginID string
 
-        Hello     *PluginHello
-        Subscribe *EventSubscribe
-        Actions   *ActionBatch
-        Log       *LogMessage
-        Result    *EventResult
+	Hello     *PluginHello
+	Subscribe *EventSubscribe
+	Actions   *ActionBatch
+	Log       *LogMessage
+	Result    *EventResult
 }
 
 func UnmarshalPluginToHost(data []byte) (*PluginToHost, error) {
@@ -249,29 +249,29 @@ func (m *PluginToHost) Unmarshal(data []byte) error {
 				return err
 			}
 			data = data[consumed:]
-                case 30:
-                        if m.Log == nil {
-                                m.Log = &LogMessage{}
-                        }
-                        consumed, err := readMessage(data, m.Log)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                case 40:
-                        if m.Result == nil {
-                                m.Result = &EventResult{}
-                        }
-                        consumed, err := readMessage(data, m.Result)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
+		case 30:
+			if m.Log == nil {
+				m.Log = &LogMessage{}
+			}
+			consumed, err := readMessage(data, m.Log)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		case 40:
+			if m.Result == nil {
+				m.Result = &EventResult{}
+			}
+			consumed, err := readMessage(data, m.Result)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
 			data = data[consumed:]
 		}
 	}
@@ -465,7 +465,7 @@ func (m *ActionBatch) Unmarshal(data []byte) error {
 }
 
 type Action struct {
-	CorrelationID string
+	CorrelationID *string
 
 	SendChat *SendChatAction
 	Teleport *TeleportAction
@@ -488,7 +488,7 @@ func (m *Action) Unmarshal(data []byte) error {
 			if err != nil {
 				return err
 			}
-			m.CorrelationID = s
+			m.CorrelationID = &s
 			data = data[consumed:]
 		case 10:
 			if m.SendChat == nil {
@@ -708,241 +708,241 @@ func (m *KickAction) Unmarshal(data []byte) error {
 }
 
 type LogMessage struct {
-        Level   string
-        Message string
+	Level   string
+	Message string
 }
 
 func (m *LogMessage) Unmarshal(data []byte) error {
-        for len(data) > 0 {
-                field, wire, n, err := readTag(data)
-                if err != nil {
-                        return err
-                }
-                data = data[n:]
-                switch field {
-                case 1:
-                        if wire != wireLength {
-                                return fmt.Errorf("log: invalid wire type for level")
-                        }
-                        s, consumed, err := readString(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Level = s
-                        data = data[consumed:]
-                case 2:
-                        if wire != wireLength {
-                                return fmt.Errorf("log: invalid wire type for message")
-                        }
-                        s, consumed, err := readString(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Message = s
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                }
-        }
-        return nil
+	for len(data) > 0 {
+		field, wire, n, err := readTag(data)
+		if err != nil {
+			return err
+		}
+		data = data[n:]
+		switch field {
+		case 1:
+			if wire != wireLength {
+				return fmt.Errorf("log: invalid wire type for level")
+			}
+			s, consumed, err := readString(data)
+			if err != nil {
+				return err
+			}
+			m.Level = s
+			data = data[consumed:]
+		case 2:
+			if wire != wireLength {
+				return fmt.Errorf("log: invalid wire type for message")
+			}
+			s, consumed, err := readString(data)
+			if err != nil {
+				return err
+			}
+			m.Message = s
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		}
+	}
+	return nil
 }
 
 type EventResult struct {
-        EventID string
-        Cancel  bool
+	EventID string
+	Cancel  *bool
 
-        Chat       *ChatMutation
-        BlockBreak *BlockBreakMutation
+	Chat       *ChatMutation
+	BlockBreak *BlockBreakMutation
 }
 
 func (m *EventResult) Unmarshal(data []byte) error {
-        for len(data) > 0 {
-                field, wire, n, err := readTag(data)
-                if err != nil {
-                        return err
-                }
-                data = data[n:]
-                switch field {
-                case 1:
-                        if wire != wireLength {
-                                return fmt.Errorf("event_result: invalid wire type for event_id")
-                        }
-                        s, consumed, err := readString(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.EventID = s
-                        data = data[consumed:]
-                case 2:
-                        if wire != wireVarint {
-                                return fmt.Errorf("event_result: invalid wire type for cancel")
-                        }
-                        b, consumed, err := readBool(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Cancel = b
-                        data = data[consumed:]
-                case 10:
-                        if m.Chat == nil {
-                                m.Chat = &ChatMutation{}
-                        }
-                        consumed, err := readMessage(data, m.Chat)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                case 11:
-                        if m.BlockBreak == nil {
-                                m.BlockBreak = &BlockBreakMutation{}
-                        }
-                        consumed, err := readMessage(data, m.BlockBreak)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                }
-        }
-        return nil
+	for len(data) > 0 {
+		field, wire, n, err := readTag(data)
+		if err != nil {
+			return err
+		}
+		data = data[n:]
+		switch field {
+		case 1:
+			if wire != wireLength {
+				return fmt.Errorf("event_result: invalid wire type for event_id")
+			}
+			s, consumed, err := readString(data)
+			if err != nil {
+				return err
+			}
+			m.EventID = s
+			data = data[consumed:]
+		case 2:
+			if wire != wireVarint {
+				return fmt.Errorf("event_result: invalid wire type for cancel")
+			}
+			b, consumed, err := readBool(data)
+			if err != nil {
+				return err
+			}
+			m.Cancel = &b
+			data = data[consumed:]
+		case 10:
+			if m.Chat == nil {
+				m.Chat = &ChatMutation{}
+			}
+			consumed, err := readMessage(data, m.Chat)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		case 11:
+			if m.BlockBreak == nil {
+				m.BlockBreak = &BlockBreakMutation{}
+			}
+			consumed, err := readMessage(data, m.BlockBreak)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		}
+	}
+	return nil
 }
 
 type ChatMutation struct {
-        Message string
+	Message string
 }
 
 func (m *ChatMutation) Unmarshal(data []byte) error {
-        for len(data) > 0 {
-                field, wire, n, err := readTag(data)
-                if err != nil {
-                        return err
-                }
-                data = data[n:]
-                switch field {
-                case 1:
-                        if wire != wireLength {
-                                return fmt.Errorf("chat_mutation: invalid wire type for message")
-                        }
-                        s, consumed, err := readString(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Message = s
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                }
-        }
-        return nil
+	for len(data) > 0 {
+		field, wire, n, err := readTag(data)
+		if err != nil {
+			return err
+		}
+		data = data[n:]
+		switch field {
+		case 1:
+			if wire != wireLength {
+				return fmt.Errorf("chat_mutation: invalid wire type for message")
+			}
+			s, consumed, err := readString(data)
+			if err != nil {
+				return err
+			}
+			m.Message = s
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		}
+	}
+	return nil
 }
 
 type BlockBreakMutation struct {
-        Drops []*ItemStack
-        XP    *int32
+	Drops []*ItemStack
+	XP    *int32
 }
 
 func (m *BlockBreakMutation) Unmarshal(data []byte) error {
-        for len(data) > 0 {
-                field, wire, n, err := readTag(data)
-                if err != nil {
-                        return err
-                }
-                data = data[n:]
-                switch field {
-                case 1:
-                        item := &ItemStack{}
-                        consumed, err := readMessage(data, item)
-                        if err != nil {
-                                return err
-                        }
-                        m.Drops = append(m.Drops, item)
-                        data = data[consumed:]
-                case 2:
-                        if wire != wireVarint {
-                                return fmt.Errorf("block_break_mutation: invalid wire type for xp")
-                        }
-                        v, consumed, err := decodeVarint(data)
-                        if err != nil {
-                                return err
-                        }
-                        value := int32(v)
-                        m.XP = &value
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                }
-        }
-        return nil
+	for len(data) > 0 {
+		field, wire, n, err := readTag(data)
+		if err != nil {
+			return err
+		}
+		data = data[n:]
+		switch field {
+		case 1:
+			item := &ItemStack{}
+			consumed, err := readMessage(data, item)
+			if err != nil {
+				return err
+			}
+			m.Drops = append(m.Drops, item)
+			data = data[consumed:]
+		case 2:
+			if wire != wireVarint {
+				return fmt.Errorf("block_break_mutation: invalid wire type for xp")
+			}
+			v, consumed, err := decodeVarint(data)
+			if err != nil {
+				return err
+			}
+			value := int32(v)
+			m.XP = &value
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		}
+	}
+	return nil
 }
 
 type ItemStack struct {
-        Name  string
-        Meta  int32
-        Count int32
+	Name  string
+	Meta  int32
+	Count int32
 }
 
 func (m *ItemStack) Unmarshal(data []byte) error {
-        for len(data) > 0 {
-                field, wire, n, err := readTag(data)
-                if err != nil {
-                        return err
-                }
-                data = data[n:]
-                switch field {
-                case 1:
-                        if wire != wireLength {
-                                return fmt.Errorf("item_stack: invalid wire type for name")
-                        }
-                        s, consumed, err := readString(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Name = s
-                        data = data[consumed:]
-                case 2:
-                        if wire != wireVarint {
-                                return fmt.Errorf("item_stack: invalid wire type for meta")
-                        }
-                        v, consumed, err := decodeVarint(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Meta = int32(v)
-                        data = data[consumed:]
-                case 3:
-                        if wire != wireVarint {
-                                return fmt.Errorf("item_stack: invalid wire type for count")
-                        }
-                        v, consumed, err := decodeVarint(data)
-                        if err != nil {
-                                return err
-                        }
-                        m.Count = int32(v)
-                        data = data[consumed:]
-                default:
-                        consumed, err := skipField(data, wire)
-                        if err != nil {
-                                return err
-                        }
-                        data = data[consumed:]
-                }
-        }
-        return nil
+	for len(data) > 0 {
+		field, wire, n, err := readTag(data)
+		if err != nil {
+			return err
+		}
+		data = data[n:]
+		switch field {
+		case 1:
+			if wire != wireLength {
+				return fmt.Errorf("item_stack: invalid wire type for name")
+			}
+			s, consumed, err := readString(data)
+			if err != nil {
+				return err
+			}
+			m.Name = s
+			data = data[consumed:]
+		case 2:
+			if wire != wireVarint {
+				return fmt.Errorf("item_stack: invalid wire type for meta")
+			}
+			v, consumed, err := decodeVarint(data)
+			if err != nil {
+				return err
+			}
+			m.Meta = int32(v)
+			data = data[consumed:]
+		case 3:
+			if wire != wireVarint {
+				return fmt.Errorf("item_stack: invalid wire type for count")
+			}
+			v, consumed, err := decodeVarint(data)
+			if err != nil {
+				return err
+			}
+			m.Count = int32(v)
+			data = data[consumed:]
+		default:
+			consumed, err := skipField(data, wire)
+			if err != nil {
+				return err
+			}
+			data = data[consumed:]
+		}
+	}
+	return nil
 }
