@@ -19,5 +19,5 @@ func (h *WorldHandler) HandleClose(tx *world.Tx) {
 		Type:       "WORLD_CLOSE",
 		WorldClose: &proto.WorldCloseEvent{},
 	}
-	h.mgr.broadcastEvent(evt.Type, evt)
+	h.mgr.broadcastEvent(evt)
 }

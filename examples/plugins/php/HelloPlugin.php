@@ -34,7 +34,7 @@ $service->setEventStreamHandler(function ($stream) use ($pluginId) {
             $sub = new \DF\Plugin\PluginToHost();
             $sub->setPluginId($pluginId);
             $subscribe = new \DF\Plugin\EventSubscribe();
-            $subscribe->setEvents(['PLAYER_JOIN', 'COMMAND']);
+            $subscribe->setEvents(['PLAYER_JOIN', 'COMMAND', 'CHAT']);
             $sub->setSubscribe($subscribe);
             $stream->write($sub);
             continue;
@@ -42,6 +42,32 @@ $service->setEventStreamHandler(function ($stream) use ($pluginId) {
 
         if ($message->hasEvent()) {
             $event = $message->getEvent();
+            if ($event->getType() === 'CHAT' && $event->hasChat()) {
+                $chat = $event->getChat();
+                if (stripos($chat->getMessage(), 'spoiler') !== false) {
+                    $result = new \DF\Plugin\EventResult();
+                    $result->setEventId($event->getEventId());
+                    $result->setCancel(true);
+                    $resp = new \DF\Plugin\PluginToHost();
+                    $resp->setPluginId($pluginId);
+                    $resp->setEventResult($result);
+                    $stream->write($resp);
+                    continue;
+                }
+
+                if (str_starts_with($chat->getMessage(), '!cheer ')) {
+                    $mutation = new \DF\Plugin\ChatMutation();
+                    $mutation->setMessage('🥂 ' . substr($chat->getMessage(), 7));
+                    $result = new \DF\Plugin\EventResult();
+                    $result->setEventId($event->getEventId());
+                    $result->setChat($mutation);
+                    $resp = new \DF\Plugin\PluginToHost();
+                    $resp->setPluginId($pluginId);
+                    $resp->setEventResult($result);
+                    $stream->write($resp);
+                    continue;
+                }
+            }
             if ($event->getType() === 'COMMAND' && $event->getCommand()->getRaw() === '/cheers') {
                 $action = new \DF\Plugin\Action();
                 $send = new \DF\Plugin\SendChatAction();

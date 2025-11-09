@@ -114,6 +114,46 @@ function handleEvent(call, event) {
       }
       break;
     }
+    case 'CHAT': {
+      const chat = event.chat;
+      if (!chat) {
+        break;
+      }
+      if (chat.message.toLowerCase().includes('badword')) {
+        call.write({
+          plugin_id: pluginId,
+          event_result: {
+            event_id: event.event_id,
+            cancel: true,
+          },
+        });
+        call.write({
+          plugin_id: pluginId,
+          actions: {
+            actions: [
+              {
+                send_chat: {
+                  target_uuid: chat.player_uuid,
+                  message: "Please keep the chat friendly!",
+                },
+              },
+            ],
+          },
+        });
+        break;
+      }
+      if (chat.message.startsWith('!shout ')) {
+        const updated = chat.message.substring(7).toUpperCase();
+        call.write({
+          plugin_id: pluginId,
+          event_result: {
+            event_id: event.event_id,
+            chat: { message: updated },
+          },
+        });
+      }
+      break;
+    }
     default:
       console.log('[node] event', event.type);
   }

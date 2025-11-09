@@ -40,6 +40,9 @@ type pluginProcess struct {
 	hello   *proto.PluginHello
 
 	closed atomic.Bool
+
+	pendingMu sync.Mutex
+	pending   map[string]chan *proto.EventResult
 }
 
 func newPluginProcess(m *Manager, cfg PluginConfig) *pluginProcess {
@@ -254,6 +257,12 @@ func (p *pluginProcess) Stop() {
 			_ = p.stream.Close()
 		}
 		close(p.sendCh)
+		p.pendingMu.Lock()
+		for id, ch := range p.pending {
+			delete(p.pending, id)
+			close(ch)
+		}
+		p.pendingMu.Unlock()
 		p.stopProcess()
 	}
 }
@@ -274,6 +283,59 @@ func (p *pluginProcess) helloInfo() *proto.PluginHello {
 	p.helloMu.RLock()
 	defer p.helloMu.RUnlock()
 	return p.hello
+}
+
+func (p *pluginProcess) expectEventResult(eventID string) chan *proto.EventResult {
+	ch := make(chan *proto.EventResult, 1)
+	p.pendingMu.Lock()
+	if p.pending == nil {
+		p.pending = make(map[string]chan *proto.EventResult)
+	}
+	p.pending[eventID] = ch
+	p.pendingMu.Unlock()
+	return ch
+}
+
+func (p *pluginProcess) waitEventResult(ch chan *proto.EventResult, timeout time.Duration) (*proto.EventResult, error) {
+	select {
+	case res, ok := <-ch:
+		if !ok {
+			return nil, context.Canceled
+		}
+		return res, nil
+	case <-time.After(timeout):
+		return nil, context.DeadlineExceeded
+	}
+}
+
+func (p *pluginProcess) discardEventResult(eventID string) {
+	p.pendingMu.Lock()
+	if ch, ok := p.pending[eventID]; ok {
+		delete(p.pending, eventID)
+		close(ch)
+	}
+	p.pendingMu.Unlock()
+}
+
+func (p *pluginProcess) deliverEventResult(res *proto.EventResult) {
+	if res == nil {
+		return
+	}
+	p.pendingMu.Lock()
+	ch, ok := p.pending[res.EventID]
+	if ok {
+		delete(p.pending, res.EventID)
+	}
+	p.pendingMu.Unlock()
+	if !ok {
+		p.log.Warn("unexpected event result", "event_id", res.EventID)
+		return
+	}
+	select {
+	case ch <- res:
+	default:
+	}
+	close(ch)
 }
 
 func generateEventID() string {

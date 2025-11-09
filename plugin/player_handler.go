@@ -19,7 +19,7 @@ func (h *PlayerHandler) HandleChat(ctx *player.Context, message *string) {
 	if h.mgr == nil || h.Player == nil {
 		return
 	}
-	h.mgr.emitChat(h.Player, *message)
+	h.mgr.emitChat(ctx, h.Player, message)
 }
 
 func (h *PlayerHandler) HandleCommandExecution(ctx *player.Context, command cmd.Command, args []string) {
@@ -30,14 +30,14 @@ func (h *PlayerHandler) HandleCommandExecution(ctx *player.Context, command cmd.
 	if len(args) > 0 {
 		raw += " " + strings.Join(args, " ")
 	}
-	h.mgr.emitCommand(h.Player, raw)
+	h.mgr.emitCommand(ctx, h.Player, raw)
 }
 
 func (h *PlayerHandler) HandleBlockBreak(ctx *player.Context, pos cube.Pos, drops *[]item.Stack, xp *int) {
 	if h.mgr == nil || h.Player == nil {
 		return
 	}
-	h.mgr.emitBlockBreak(h.Player, pos)
+	h.mgr.emitBlockBreak(ctx, h.Player, pos, drops, xp)
 }
 
 func (h *PlayerHandler) HandleQuit(p *player.Player) {

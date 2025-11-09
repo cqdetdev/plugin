@@ -36,6 +36,8 @@ service Plugin {
 * `EventSubscribe` — declares the event types the plugin wants to receive.
 * `ActionBatch` — one or more actions for the server to execute (send chat, teleport, kick).
 * `LogMessage` — plugin side logging surfaced in the server logs.
+* `EventResult` — optional response to an event that can cancel execution or mutate pointer-backed values such as
+  chat messages, block break drops, or experience rewards.
 
 Events and actions are wrapped in envelopes so that the protocol can evolve without breaking compatibility.
 Unknown fields are ignored.
@@ -102,6 +104,20 @@ The manager sends events to plugins based on their subscriptions. Current events
 Events carry minimal data required for action correlation (player UUID, name, coordinates). Plugins can correlate
 responses with `EventEnvelope.event_id` if desired.
 
+### Event cancellation and mutation
+
+Some Dragonfly callbacks expose a `Context` (for cancellation) and pointer arguments (for mutation) — for example,
+chat messages (`*string`), block break drops (`*[]item.Stack`), and XP values (`*int`). When such an event is routed
+through the manager, the server waits for subscribed plugins to reply with `EventResult` messages. The host applies
+each result in order:
+
+* `cancel = true` triggers `ctx.Cancel()` on the Dragonfly handler, preventing the default behaviour.
+* `chat` mutations replace the in-flight chat message so that later plugins and the base server see the updated value.
+* `block_break` mutations may override the drop list (item name/meta/count pairs) and/or the XP reward.
+
+Results are optional; plugins that do not need to influence the outcome can simply skip sending an `EventResult` for
+that event.
+
 ## 5. Actions
 
 Plugins can request server side changes by sending an `ActionBatch`:
@@ -138,9 +154,9 @@ dropped and a warning is logged. Connection failures trigger retries until the m
 Reference implementations are provided under `examples/plugins`:
 
 * [`examples/plugins/node/hello.js`](../examples/plugins/node/hello.js) — Node.js plugin using `@grpc/grpc-js` and
-  `protobufjs`.
+  `protobufjs`, demonstrating chat cancellation and mutation.
 * [`examples/plugins/php/HelloPlugin.php`](../examples/plugins/php/HelloPlugin.php) — PHP plugin built with the
-  official gRPC extension.
+  official gRPC extension, including chat moderation and message rewriting via `EventResult`.
 
 Each example reads `DF_PLUGIN_GRPC_ADDRESS` and `DF_PLUGIN_ID` from the environment, starts a gRPC server, registers
 commands, subscribes to events, and echoes actions back to Dragonfly.

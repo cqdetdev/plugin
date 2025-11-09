@@ -8,11 +8,13 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/df-mc/dragonfly/plugin/proto"
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/block/cube"
 	"github.com/df-mc/dragonfly/server/cmd"
+	"github.com/df-mc/dragonfly/server/item"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/df-mc/dragonfly/server/world"
@@ -38,6 +40,8 @@ type commandBinding struct {
 	command    string
 	descriptor *proto.CommandSpec
 }
+
+const eventResponseTimeout = 250 * time.Millisecond
 
 func NewManager(srv *server.Server, log *slog.Logger) *Manager {
 	if log == nil {
@@ -127,7 +131,7 @@ func (m *Manager) emitPlayerJoin(p *player.Player) {
 			Name:       p.Name(),
 		},
 	}
-	m.broadcastEvent(evt.Type, evt)
+	m.broadcastEvent(evt)
 }
 
 func (m *Manager) emitPlayerQuit(p *player.Player) {
@@ -139,23 +143,41 @@ func (m *Manager) emitPlayerQuit(p *player.Player) {
 			Name:       p.Name(),
 		},
 	}
-	m.broadcastEvent(evt.Type, evt)
+	m.broadcastEvent(evt)
 }
 
-func (m *Manager) emitChat(p *player.Player, msg string) {
+func (m *Manager) emitChat(ctx *player.Context, p *player.Player, msg *string) {
+	if msg == nil {
+		return
+	}
 	evt := &proto.EventEnvelope{
 		EventID: generateEventID(),
 		Type:    "CHAT",
 		Chat: &proto.ChatEvent{
 			PlayerUUID: p.UUID().String(),
 			Name:       p.Name(),
-			Message:    msg,
+			Message:    *msg,
 		},
 	}
-	m.broadcastEvent(evt.Type, evt)
+	results := m.dispatchEvent(evt, true)
+	var cancelled bool
+	for _, res := range results {
+		if res == nil {
+			continue
+		}
+		if res.Cancel {
+			cancelled = true
+		}
+		if res.Chat != nil {
+			*msg = res.Chat.Message
+		}
+	}
+	if cancelled && ctx != nil {
+		ctx.Cancel()
+	}
 }
 
-func (m *Manager) emitCommand(p *player.Player, raw string) {
+func (m *Manager) emitCommand(ctx *player.Context, p *player.Player, raw string) {
 	evt := &proto.EventEnvelope{
 		EventID: generateEventID(),
 		Type:    "COMMAND",
@@ -165,10 +187,16 @@ func (m *Manager) emitCommand(p *player.Player, raw string) {
 			Raw:        raw,
 		},
 	}
-	m.broadcastEvent(evt.Type, evt)
+	results := m.dispatchEvent(evt, true)
+	for _, res := range results {
+		if res != nil && res.Cancel && ctx != nil {
+			ctx.Cancel()
+			break
+		}
+	}
 }
 
-func (m *Manager) emitBlockBreak(p *player.Player, pos cube.Pos) {
+func (m *Manager) emitBlockBreak(ctx *player.Context, p *player.Player, pos cube.Pos, drops *[]item.Stack, xp *int) {
 	evt := &proto.EventEnvelope{
 		EventID: generateEventID(),
 		Type:    "BLOCK_BREAK",
@@ -181,24 +209,107 @@ func (m *Manager) emitBlockBreak(p *player.Player, pos cube.Pos) {
 			Z:          int32(pos.Z()),
 		},
 	}
-	m.broadcastEvent(evt.Type, evt)
-}
-
-func (m *Manager) broadcastEvent(eventType string, envelope *proto.EventEnvelope) {
-	msg := &proto.HostToPlugin{Event: envelope}
-	m.mu.RLock()
-	defer m.mu.RUnlock()
-	for id, proc := range m.plugins {
-		if !proc.HasSubscription(eventType) {
+	results := m.dispatchEvent(evt, true)
+	var cancelled bool
+	for _, res := range results {
+		if res == nil {
 			continue
 		}
-		payload := *msg
-		payload.PluginID = id
-		proc.queue(&payload)
+		if res.Cancel {
+			cancelled = true
+		}
+		if res.BlockBreak != nil {
+			if drops != nil {
+				*drops = convertProtoDrops(res.BlockBreak.Drops)
+			}
+			if res.BlockBreak.XP != nil && xp != nil {
+				*xp = int(*res.BlockBreak.XP)
+			}
+		}
+	}
+	if cancelled && ctx != nil {
+		ctx.Cancel()
 	}
 }
 
+func (m *Manager) broadcastEvent(envelope *proto.EventEnvelope) {
+	_ = m.dispatchEvent(envelope, false)
+}
+
+func (m *Manager) dispatchEvent(envelope *proto.EventEnvelope, expectResult bool) []*proto.EventResult {
+	if envelope == nil {
+		return nil
+	}
+	eventType := strings.ToUpper(envelope.Type)
+	m.mu.RLock()
+	procs := make([]*pluginProcess, 0, len(m.plugins))
+	for _, proc := range m.plugins {
+		if !proc.HasSubscription(eventType) {
+			continue
+		}
+		procs = append(procs, proc)
+	}
+	m.mu.RUnlock()
+
+	if len(procs) == 0 {
+		return nil
+	}
+
+	results := make([]*proto.EventResult, 0, len(procs))
+	for _, proc := range procs {
+		var waitCh chan *proto.EventResult
+		if expectResult {
+			waitCh = proc.expectEventResult(envelope.EventID)
+		}
+		msg := &proto.HostToPlugin{PluginID: proc.id, Event: envelope}
+		proc.queue(msg)
+		if !expectResult {
+			continue
+		}
+		res, err := proc.waitEventResult(waitCh, eventResponseTimeout)
+		if err != nil {
+			if errors.Is(err, context.DeadlineExceeded) {
+				proc.log.Warn("plugin did not respond to event", "event_id", envelope.EventID, "type", envelope.Type)
+			}
+			proc.discardEventResult(envelope.EventID)
+			continue
+		}
+		if res != nil {
+			results = append(results, res)
+			if envelope.Type == "CHAT" && envelope.Chat != nil && res.Chat != nil {
+				envelope.Chat.Message = res.Chat.Message
+			}
+		}
+	}
+	return results
+}
+
+func convertProtoDrops(drops []*proto.ItemStack) []item.Stack {
+	if len(drops) == 0 {
+		return nil
+	}
+	converted := make([]item.Stack, 0, len(drops))
+	for _, drop := range drops {
+		if drop == nil || drop.Name == "" {
+			continue
+		}
+		material, ok := world.ItemByName(drop.Name, int16(drop.Meta))
+		if !ok {
+			continue
+		}
+		count := int(drop.Count)
+		if count <= 0 {
+			continue
+		}
+		converted = append(converted, item.NewStack(material, count))
+	}
+	return converted
+}
+
 func (m *Manager) handlePluginMessage(p *pluginProcess, msg *proto.PluginToHost) {
+	if msg.Result != nil {
+		p.deliverEventResult(msg.Result)
+	}
 	if msg.Hello != nil {
 		p.setHello(msg.Hello)
 		m.registerCommands(p, msg.Hello.Commands)
@@ -249,7 +360,7 @@ func (c pluginCommand) Run(src cmd.Source, output *cmd.Output, tx *world.Tx) {
 		return
 	}
 	raw := "/" + c.name
-	c.mgr.emitCommand(p, raw)
+	c.mgr.emitCommand(nil, p, raw)
 	output.Printf("command forwarded to plugin")
 }
 

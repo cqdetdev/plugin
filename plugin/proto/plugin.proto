@@ -78,6 +78,7 @@ message PluginToHost {
     EventSubscribe subscribe = 11;
     ActionBatch actions = 20;
     LogMessage log = 30;
+    EventResult event_result = 40;
   }
 }
 
@@ -132,4 +133,28 @@ message KickAction {
 message LogMessage {
   string level = 1;
   string message = 2;
+}
+
+message EventResult {
+  string event_id = 1;
+  bool cancel = 2;
+  oneof update {
+    ChatMutation chat = 10;
+    BlockBreakMutation block_break = 11;
+  }
+}
+
+message ChatMutation {
+  string message = 1;
+}
+
+message BlockBreakMutation {
+  repeated ItemStack drops = 1;
+  optional int32 xp = 2;
+}
+
+message ItemStack {
+  string name = 1;
+  int32 meta = 2;
+  int32 count = 3;
 }
