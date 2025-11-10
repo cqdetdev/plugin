@@ -13,7 +13,8 @@ import (
 const ConfigFile = "plugins/plugins.yaml"
 
 type Config struct {
-	Plugins []PluginConfig `yaml:"plugins"`
+	ServerPort int            `yaml:"server_port"`
+	Plugins    []PluginConfig `yaml:"plugins"`
 }
 
 type PluginConfig struct {
@@ -41,12 +42,12 @@ func LoadConfig(path string) (Config, error) {
 	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return Config{}, fmt.Errorf("decode plugin config: %w", err)
 	}
+	if cfg.ServerPort == 0 {
+		cfg.ServerPort = 50050 // Default plugin server port
+	}
 	for i := range cfg.Plugins {
 		if cfg.Plugins[i].ID == "" {
 			cfg.Plugins[i].ID = fmt.Sprintf("plugin-%d", i+1)
-		}
-		if cfg.Plugins[i].Address == "" {
-			cfg.Plugins[i].Address = "127.0.0.1:0"
 		}
 		if cfg.Plugins[i].Command != "" && cfg.Plugins[i].WorkDir != "" {
 			if !filepath.IsAbs(cfg.Plugins[i].WorkDir) {

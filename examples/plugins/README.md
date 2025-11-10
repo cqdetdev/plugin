@@ -62,13 +62,14 @@ php src/HelloPlugin.php
 Edit `plugins/plugins.yaml` to enable/configure plugins:
 
 ```yaml
+server_port: 50050
+
 plugins:
   # Node.js example
   - id: example-node
     name: Example Node Plugin
     command: "node"
     args: ["examples/plugins/node/hello.js"]
-    address: "127.0.0.1:50051"
     env:
       NODE_ENV: development
 
@@ -77,14 +78,12 @@ plugins:
     name: Example TypeScript Plugin
     command: "node"
     args: ["examples/plugins/typescript/dist/index.js"]
-    address: "127.0.0.1:50052"
 
   # PHP example
   - id: example-php
     name: Example PHP Plugin
     command: "php"
     args: ["examples/plugins/php/src/HelloPlugin.php"]
-    address: "127.0.0.1:50053"
 ```
 
 ## Protocol Documentation
@@ -117,9 +116,9 @@ Host ←→ Plugin (EventStream)
 ### 3. Event Flow
 
 ```
-1. Host sends HostHello
-2. Plugin responds with PluginHello
-3. Plugin sends EventSubscribe (which events to receive)
+1. Plugin connects and sends PluginHello (includes plugin ID & commands)
+2. Plugin sends EventSubscribe (which events to receive)
+3. Host responds with HostHello (API version handshake)
 4. Host sends events as they occur
 5. Plugin can respond with:
    - Actions (do something)

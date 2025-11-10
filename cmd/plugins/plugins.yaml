@@ -1,23 +1,33 @@
+# Plugin Server Configuration
+# Dragonfly runs a gRPC server that plugins connect to
+server_port: 50050
+
 plugins:
   # - id: example-node
   #   name: Example Node Plugin
   #   command: "node"
   #   args: ["../examples/plugins/node/hello.js"]
-  #   address: "127.0.0.1:50051"
   #   env:
   #     NODE_ENV: development
   - id: example-typescript
     name: Example TypeScript Plugin
     command: "node"
     args: ["../examples/plugins/typescript/dist/index.js"]
-    address: "127.0.0.1:50052"
     env:
       NODE_ENV: production
   - id: example-php
     name: Example PHP Plugin
-    # Linux/macOS: bin/php7/bin/php | Windows: bin/php/php.exe
-    command: "../examples/plugins/php/bin/php7/bin/php"
-    args: ["../examples/plugins/php/src/HelloPlugin.php"]
-    address: "127.0.0.1:50053"
+    # command: "../examples/plugins/php/bin/php7/bin/php"
+    # args: ["../examples/plugins/php/src/HelloPlugin.php"]
+    command: "docker"
+    args:
+      - "run"
+      - "--rm"
+      - "--platform=linux/amd64"
+      - "-e"
+      - "DF_PLUGIN_ID=example-php"
+      - "-e"
+      - "DF_PLUGIN_SERVER_ADDRESS=host.docker.internal:50050"
+      - "php-plugin-test"
     env:
       PHP_ENV: production

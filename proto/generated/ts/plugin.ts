@@ -2584,9 +2584,9 @@ export const PluginDefinition = {
   methods: {
     eventStream: {
       name: "EventStream",
-      requestType: HostToPlugin,
+      requestType: PluginToHost,
       requestStream: true,
-      responseType: PluginToHost,
+      responseType: HostToPlugin,
       responseStream: true,
       options: {},
     },

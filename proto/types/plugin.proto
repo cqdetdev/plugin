@@ -5,7 +5,7 @@ package df.plugin;
 option go_package = "github.com/secmc/plugin/proto/generated";
 
 service Plugin {
-  rpc EventStream(stream HostToPlugin) returns (stream PluginToHost);
+  rpc EventStream(stream PluginToHost) returns (stream HostToPlugin);
 }
 
 message HostToPlugin {

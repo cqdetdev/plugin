@@ -23,7 +23,7 @@ class PluginClient extends \Grpc\BaseStub {
      */
     public function EventStream($metadata = [], $options = []) {
         return $this->_bidiRequest('/df.plugin.Plugin/EventStream',
-        ['\Df\Plugin\PluginToHost','decode'],
+        ['\Df\Plugin\HostToPlugin','decode'],
         $metadata, $options);
     }
 

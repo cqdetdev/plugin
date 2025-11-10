@@ -1,23 +1,32 @@
 package grpc
 
 import (
-	"context"
 	"errors"
 	"fmt"
+	"io"
+	"net"
 	"sync"
-	"time"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/connectivity"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+// GrpcStream wraps a bidirectional stream for a connected plugin
 type GrpcStream struct {
-	conn   *grpc.ClientConn
-	stream grpc.ClientStream
-	cancel context.CancelFunc
+	stream grpc.ServerStream
 	mu     sync.Mutex
 }
+
+// GrpcServer manages the gRPC server that plugins connect to
+type GrpcServer struct {
+	server   *grpc.Server
+	listener net.Listener
+	handler  StreamHandler
+	mu       sync.Mutex
+}
+
+// StreamHandler is called when a new plugin connects
+type StreamHandler func(stream *GrpcStream) error
 
 type rawProtoCodec struct{}
 
@@ -44,50 +53,69 @@ func (rawProtoCodec) Unmarshal(data []byte, v any) error {
 	}
 }
 
-func DialEventStream(parent context.Context, address string, connectTimeout time.Duration) (*GrpcStream, error) {
-	conn, err := grpc.NewClient(address,
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-	)
+// pluginService implements the gRPC service
+type pluginService struct {
+	handler StreamHandler
+}
+
+// EventStream handles the bidirectional stream from plugins
+func (s *pluginService) EventStream(stream grpc.ServerStream) error {
+	if s.handler == nil {
+		return errors.New("no handler registered")
+	}
+	return s.handler(&GrpcStream{stream: stream})
+}
+
+// NewServer creates a new gRPC server that plugins will connect to
+func NewServer(address string, handler StreamHandler) (*GrpcServer, error) {
+	listener, err := net.Listen("tcp", address)
 	if err != nil {
-		return nil, fmt.Errorf("dial failed: %w", err)
+		return nil, fmt.Errorf("listen failed: %w", err)
 	}
 
-	conn.Connect()
-	if connectTimeout > 0 {
-		waitCtx, cancel := context.WithTimeout(parent, connectTimeout)
-		defer cancel()
-		for {
-			state := conn.GetState()
-			if state == connectivity.Ready {
-				break
-			}
-			if !conn.WaitForStateChange(waitCtx, state) {
-				_ = conn.Close()
-				return nil, fmt.Errorf("connect timeout: %w", waitCtx.Err())
-			}
-		}
-	}
+	server := grpc.NewServer(
+		grpc.ForceServerCodec(rawProtoCodec{}),
+		grpc.Creds(insecure.NewCredentials()),
+	)
 
-	ctx, cancel := context.WithCancel(parent)
+	service := &pluginService{handler: handler}
 
-	streamDesc := &grpc.StreamDesc{
-		StreamName:    "EventStream",
+	// Register the service manually
+	streamDesc := grpc.StreamDesc{
+		StreamName: "EventStream",
+		Handler: func(srv any, stream grpc.ServerStream) error {
+			return service.EventStream(stream)
+		},
 		ServerStreams: true,
 		ClientStreams: true,
 	}
 
-	stream, err := conn.NewStream(ctx, streamDesc, "/df.plugin.Plugin/EventStream", grpc.ForceCodec(rawProtoCodec{}))
-	if err != nil {
-		cancel()
-		conn.Close()
-		return nil, fmt.Errorf("create stream failed: %w", err)
-	}
+	server.RegisterService(&grpc.ServiceDesc{
+		ServiceName: "df.plugin.Plugin",
+		HandlerType: (*any)(nil),
+		Streams:     []grpc.StreamDesc{streamDesc},
+	}, service)
 
-	return &GrpcStream{
-		conn:   conn,
-		stream: stream,
-		cancel: cancel,
+	return &GrpcServer{
+		server:   server,
+		listener: listener,
+		handler:  handler,
 	}, nil
+}
+
+// Serve starts accepting plugin connections
+func (s *GrpcServer) Serve() error {
+	return s.server.Serve(s.listener)
+}
+
+// Stop gracefully stops the server
+func (s *GrpcServer) Stop() {
+	s.server.GracefulStop()
+}
+
+// Address returns the address the server is listening on
+func (s *GrpcServer) Address() string {
+	return s.listener.Addr().String()
 }
 
 func (s *GrpcStream) Send(data []byte) error {
@@ -106,25 +134,17 @@ func (s *GrpcStream) Send(data []byte) error {
 func (s *GrpcStream) Recv() ([]byte, error) {
 	var data []byte
 	if err := s.stream.RecvMsg(&data); err != nil {
+		if errors.Is(err, io.EOF) {
+			return nil, err
+		}
 		return nil, err
 	}
 	return data, nil
 }
 
-func (s *GrpcStream) CloseSend() error {
+func (s *GrpcStream) Close() error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	if s.stream == nil {
-		return nil
-	}
-	return s.stream.CloseSend()
-}
-
-func (s *GrpcStream) Close() error {
-	s.cancel()
-	s.CloseSend()
-	if s.conn != nil {
-		return s.conn.Close()
-	}
+	s.stream = nil
 	return nil
 }

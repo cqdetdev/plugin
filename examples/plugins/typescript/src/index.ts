@@ -9,11 +9,12 @@ import {
 } from '@dragonfly/proto';
 
 const pluginId = process.env.DF_PLUGIN_ID || 'typescript-plugin';
-const address = process.env.DF_PLUGIN_GRPC_ADDRESS || '127.0.0.1:50052';
+const serverAddress = process.env.DF_PLUGIN_SERVER_ADDRESS || '127.0.0.1:50050';
+const API_VERSION = 'v1';
 
 // Helper function to send a message to a player
 function sendMessage(
-    call: grpc.ServerDuplexStream<HostToPlugin, PluginToHost>,
+    call: grpc.ClientDuplexStream<PluginToHost, HostToPlugin>,
     targetUuid: string,
     message: string,
     correlationId?: string
@@ -40,68 +41,8 @@ function sendMessage(
  * Even if your plugin doesn't modify or cancel an event, send an acknowledgment with cancel: false.
  */
 
-// Type-safe bidirectional stream handler
-function streamHandler(call: grpc.ServerDuplexStream<HostToPlugin, PluginToHost>) {
-    console.log('[ts] host connected');
-
-    call.on('data', (message: HostToPlugin) => {
-        console.log('[ts] received message:', JSON.stringify(message, null, 2));
-
-        // Handle hello handshake
-        if (message.hello) {
-            console.log('[ts] host hello', message.hello);
-
-            // Send plugin hello with type safety
-            const helloResponse: PluginToHost = {
-                pluginId,
-                hello: {
-                    name: 'example-typescript',
-                    version: '0.1.0',
-                    apiVersion: message.hello.apiVersion,
-                    commands: [
-                        { name: '/greet', description: 'Send a greeting from the TypeScript plugin', aliases: [] },
-                        { name: '/tp', description: 'Teleport to spawn', aliases: [] },
-                        { name: '/gamemode', description: 'Change game mode (survival, creative, adventure, spectator)', aliases: ['gm'] },
-                    ],
-                },
-            };
-            call.write(helloResponse);
-
-            // Subscribe to events
-            const subscribeMsg: PluginToHost = {
-                pluginId,
-                subscribe: {
-                    events: ['PLAYER_JOIN', 'PLAYER_QUIT', 'COMMAND', 'CHAT', 'BLOCK_BREAK'],
-                },
-            };
-            call.write(subscribeMsg);
-            return;
-        }
-
-        // Handle events
-        if (message.event) {
-            handleEvent(call, message.event);
-        }
-
-        // Handle shutdown
-        if (message.shutdown) {
-            console.log('[ts] host shutdown:', message.shutdown.reason);
-            call.end();
-        }
-    });
-
-    call.on('end', () => {
-        console.log('[ts] stream ended');
-        call.end();
-    });
-
-    call.on('error', (err) => {
-        console.error('[ts] stream error:', err);
-    });
-}
-
 function handleEvent(
-    call: grpc.ServerDuplexStream<HostToPlugin, PluginToHost>,
+    call: grpc.ClientDuplexStream<PluginToHost, HostToPlugin>,
     event: NonNullable<HostToPlugin['event']>
 ) {
     switch (event.type) {
@@ -391,53 +332,88 @@ function handleEvent(
     }
 }
 
-// Create gRPC server
-const server = new grpc.Server();
+// Connect to Dragonfly as a gRPC client
+const client = new grpc.Client(
+    serverAddress,
+    grpc.credentials.createInsecure()
+);
 
-// Add service with type-safe handler using protobuf binary encoding
-server.addService(
-    {
-        EventStream: {
-            path: '/df.plugin.Plugin/EventStream',
-            requestStream: true,
-            responseStream: true,
-            requestSerialize: (msg: HostToPlugin) => {
-                const writer = HostToPlugin.encode(msg);
-                return Buffer.from(writer.finish());
-            },
-            requestDeserialize: (buf: Buffer) => {
-                return HostToPlugin.decode(new Uint8Array(buf));
-            },
-            responseSerialize: (msg: PluginToHost) => {
-                const writer = PluginToHost.encode(msg);
-                return Buffer.from(writer.finish());
-            },
-            responseDeserialize: (buf: Buffer) => {
-                return PluginToHost.decode(new Uint8Array(buf));
-            },
-        },
+// Create bidirectional stream
+const call = client.makeBidiStreamRequest<PluginToHost, HostToPlugin>(
+    '/df.plugin.Plugin/EventStream',
+    (msg: PluginToHost) => {
+        const writer = PluginToHost.encode(msg);
+        return Buffer.from(writer.finish());
     },
-    { EventStream: streamHandler }
-);
-
-server.bindAsync(
-    address,
-    grpc.ServerCredentials.createInsecure(),
-    (err, port) => {
-        if (err) {
-            console.error('[ts] Failed to bind gRPC server:', err);
-            process.exit(1);
-        }
-        console.log(`[ts] plugin listening on ${address}`);
+    (buf: Buffer) => {
+        return HostToPlugin.decode(new Uint8Array(buf));
     }
-);
+) as grpc.ClientDuplexStream<PluginToHost, HostToPlugin>;
+
+console.log(`[ts] connecting to ${serverAddress}...`);
+
+// Send initial handshake
+const helloMessage: PluginToHost = {
+    pluginId,
+    hello: {
+        name: 'example-typescript',
+        version: '0.1.0',
+        apiVersion: API_VERSION,
+        commands: [
+            { name: '/greet', description: 'Send a greeting from the TypeScript plugin', aliases: [] },
+            { name: '/tp', description: 'Teleport to spawn', aliases: [] },
+            { name: '/gamemode', description: 'Change game mode (survival, creative, adventure, spectator)', aliases: ['gm'] },
+        ],
+    },
+};
+call.write(helloMessage);
+
+const initialSubscribe: PluginToHost = {
+    pluginId,
+    subscribe: {
+        events: ['PLAYER_JOIN', 'PLAYER_QUIT', 'COMMAND', 'CHAT', 'BLOCK_BREAK'],
+    },
+};
+call.write(initialSubscribe);
+
+// Handle incoming messages from server
+call.on('data', (message: HostToPlugin) => {
+    console.log('[ts] received message:', JSON.stringify(message, null, 2));
+
+    // Handle hello handshake
+    if (message.hello) {
+        console.log('[ts] host hello', message.hello);
+        if (message.hello.apiVersion !== API_VERSION) {
+            console.warn(`[ts] API version mismatch: host=${message.hello.apiVersion}, plugin=${API_VERSION}`);
+        }
+        return;
+    }
+
+    // Handle events
+    if (message.event) {
+        handleEvent(call, message.event);
+    }
+
+    // Handle shutdown
+    if (message.shutdown) {
+        console.log('[ts] host shutdown:', message.shutdown.reason);
+        call.end();
+    }
+});
+
+call.on('end', () => {
+    console.log('[ts] stream ended');
+    process.exit(0);
+});
+
+call.on('error', (err) => {
+    console.error('[ts] stream error:', err);
+    process.exit(1);
+});
 
 // Graceful shutdown
 process.on('SIGINT', () => {
     console.log('[ts] shutting down...');
-    server.tryShutdown(() => {
-        console.log('[ts] shutdown complete');
-        process.exit(0);
-    });
+    call.end();
 });
 

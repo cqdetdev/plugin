@@ -2,8 +2,8 @@
 
 This document describes the external plugin architecture implemented in Dragonfly. Plugins run as separate
 processes (PHP, Node, Go, Rust, …) and interact with the server over a **single bidirectional gRPC stream** that
-carries events (host → plugin) and actions (plugin → host). The transport is negotiated by the Dragonfly process,
-which connects to each plugin over HTTP/2 and exchanges length-prefixed protobuf messages.
+carries events (host → plugin) and actions (plugin → host). The Dragonfly server runs a gRPC server that plugins
+connect to as clients, exchanging length-prefixed protobuf messages over HTTP/2.
 
 ## 1. Goals
 
@@ -49,17 +49,18 @@ The host side implementation resides in the [`plugin`](../plugin) package and re
 ### Manager responsibilities
 
 * Load plugin definitions from `plugins/plugins.yaml`.
+* Start a gRPC server on a configurable port (default: 50050).
 * Launch plugin processes (optional) and set standard environment variables:
   * `DF_PLUGIN_ID`
-  * `DF_PLUGIN_GRPC_ADDRESS`
-* Dial each plugin’s gRPC endpoint (using HTTP/2 prior knowledge) and open the bidirectional `EventStream`.
+  * `DF_PLUGIN_SERVER_ADDRESS`
+* Accept incoming connections from plugins and match them to configurations by plugin ID.
 * Perform the initial handshake:
-  1. Send `HostHello`.
-  2. Wait for `PluginHello` and register declared commands.
+  1. Send `HostHello` after plugin connects.
+  2. Wait for `PluginHello` (sent as first message by plugin) and register declared commands.
   3. Wait for `EventSubscribe` to activate event routing.
 * Bridge Dragonfly events to plugins through `PluginPlayerHandler` / `PluginWorldHandler` wrappers.
 * Consume `PluginToHost` messages, applying actions and logging output.
-* Gracefully close plugins on shutdown by sending `HostShutdown` and cancelling the stream context.
+* Gracefully close plugins on shutdown by sending `HostShutdown` and stopping the gRPC server.
 
 The `Manager` is constructed in `main.go` immediately after the server is created and attaches world and player
 handlers. Player handlers surface join/quit/chat/command/block-break events. World handlers currently surface
@@ -70,26 +71,29 @@ handlers. Player handlers surface join/quit/chat/command/block-break events. Wor
 Example configuration:
 
 ```yaml
+server_port: 50050  # Port for Dragonfly's plugin gRPC server
+
 plugins:
   - id: example-node
     name: Example Node Plugin
     command: "node"
     args: ["examples/plugins/node/hello.js"]
     work_dir: ""
-    address: "127.0.0.1:50051"
     env:
       NODE_ENV: development
+  - id: example-php
+    name: Example PHP Plugin
+    command: "php"
+    args: ["examples/plugins/php/src/HelloPlugin.php"]
 ```
 
+* `server_port`: Port where Dragonfly's gRPC server listens for plugin connections (default: 50050).
 * `id`: Unique identifier; defaults to a generated slug if omitted.
 * `name`: Friendly display name (logged only).
-* `command`: Optional executable to launch. If omitted, Dragonfly assumes the plugin is already running and just
-  attempts to connect to `address`.
+* `command`: Optional executable to launch. If omitted, Dragonfly assumes the plugin is already running.
 * `args`: Arguments passed to `command`.
 * `work_dir`: Optional working directory.
 * `env`: Extra environment variables.
-* `address`: gRPC endpoint that the plugin listens on. Using `:0` instructs Dragonfly to pick a free port and
-  communicate it via `DF_PLUGIN_GRPC_ADDRESS`.
 
 ## 4. Event Routing
 
@@ -136,13 +140,15 @@ respect Dragonfly’s threading model.
 
 ## 7. Handshake Flow (Plugin Side)
 
-1. Dragonfly connects and sends `HostHello(api_version="v1")`.
-2. Plugin responds with `PluginHello` containing:
+1. Plugin connects to Dragonfly's gRPC server (`DF_PLUGIN_SERVER_ADDRESS`).
+2. Plugin sends `PluginHello` as the first message containing:
+   * `plugin_id` (from `DF_PLUGIN_ID` environment variable)
    * `name`, `version`
    * `api_version`
    * Optional command registrations (shown in `/help`).
-3. Plugin sends `EventSubscribe` listing uppercase event names (`["PLAYER_JOIN", "COMMAND"]`).
-4. Stream enters steady state: host pushes events; plugin sends actions/logs as needed.
+3. Dragonfly identifies the plugin by `plugin_id` and sends `HostHello(api_version="v1")`.
+4. Plugin sends `EventSubscribe` listing uppercase event names (`["PLAYER_JOIN", "COMMAND"]`).
+5. Stream enters steady state: host pushes events; plugin sends actions/logs as needed.
 
 ## 8. Backpressure & Fault Handling
 
@@ -154,12 +160,14 @@ dropped and a warning is logged. Connection failures trigger retries until the m
 Reference implementations are provided under `examples/plugins`:
 
 * [`examples/plugins/node/hello.js`](../examples/plugins/node/hello.js) — Node.js plugin using `@grpc/grpc-js` and
-  `protobufjs`, demonstrating chat cancellation and mutation.
-* [`examples/plugins/php/src/HelloPlugin.php`](../examples/plugins/php/src/HelloPlugin.php) — PHP plugin built with the
-  official gRPC extension, including chat moderation and message rewriting via `EventResult`.
+  `proto-loader`, demonstrating chat cancellation and mutation.
+* [`examples/plugins/typescript/src/index.ts`](../examples/plugins/typescript/src/index.ts) — TypeScript plugin with
+  full type safety using generated protobuf types.
+* [`examples/plugins/php/src/HelloPlugin.php`](../examples/plugins/php/src/HelloPlugin.php) — PHP plugin using the
+  standard PECL gRPC extension (client mode), including chat moderation and message rewriting via `EventResult`.
 
-Each example reads `DF_PLUGIN_GRPC_ADDRESS` and `DF_PLUGIN_ID` from the environment, starts a gRPC server, registers
-commands, subscribes to events, and echoes actions back to Dragonfly.
+Each example reads `DF_PLUGIN_SERVER_ADDRESS` and `DF_PLUGIN_ID` from the environment, connects to the Dragonfly server
+as a gRPC client, sends plugin hello, subscribes to events, and sends actions back to Dragonfly.
 
 ## 10. Versioning
 

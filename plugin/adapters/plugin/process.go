@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
-	"net"
 	"os"
 	"os/exec"
 	"strings"
@@ -25,11 +24,8 @@ import (
 const (
 	apiVersion = "v1"
 
-	sendChannelBuffer    = 64
-	connectTimeout       = 5 * time.Second
-	connectRetryInterval = 300 * time.Millisecond
-	shutdownTimeout      = 5 * time.Second
-	defaultPluginAddress = "127.0.0.1:50051"
+	sendChannelBuffer = 64
+	shutdownTimeout   = 5 * time.Second
 )
 
 type pluginProcess struct {
@@ -38,14 +34,16 @@ type pluginProcess struct {
 	emitter *Emitter
 	log     *slog.Logger
 
-	cmd    *exec.Cmd
-	stream *grpc.GrpcStream
+	cmd      *exec.Cmd
+	stream   *grpc.GrpcStream
+	streamMu sync.RWMutex
 
 	sendCh chan *pb.HostToPlugin
 	done   chan struct{}
 	wg     sync.WaitGroup
 
 	subscriptions sync.Map
+	connected     atomic.Bool
 	ready         atomic.Bool
 
 	helloMu sync.RWMutex
@@ -73,59 +71,41 @@ func newPluginProcess(e *Emitter, cfg config.PluginConfig) *pluginProcess {
 	}
 }
 
-func (p *pluginProcess) start(ctx context.Context) {
-	address, err := p.prepareAddress()
-	if err != nil {
-		p.log.Error("prepare address", "error", err)
-		return
-	}
-
+func (p *pluginProcess) start(ctx context.Context, serverAddress string) {
 	if p.cfg.Command != "" {
-		if err := p.launchProcess(ctx, address); err != nil {
+		if err := p.launchProcess(ctx, serverAddress); err != nil {
 			p.log.Error("launch plugin", "error", err)
 			return
 		}
 	}
+}
 
-	stream, err := p.connectLoop(ctx, address)
-	if err != nil {
-		if !errors.Is(err, context.Canceled) {
-			p.log.Error("connect", "error", err)
-		}
-		p.stopProcess()
-		return
+// attachStream attaches an incoming stream to this plugin process
+func (p *pluginProcess) attachStream(stream *grpc.GrpcStream) error {
+	p.streamMu.Lock()
+	if p.stream != nil {
+		p.streamMu.Unlock()
+		return errors.New("stream already attached")
 	}
 	p.stream = stream
+	p.streamMu.Unlock()
+
+	p.connected.Store(true)
+	p.log.Info("plugin connected")
 
 	if err := p.sendHello(); err != nil {
 		p.log.Error("send hello", "error", err)
 		p.Stop()
-		return
+		return err
 	}
 
 	p.wg.Add(2)
 	go p.sendLoop()
 	go p.recvLoop()
+	return nil
 }
 
-func (p *pluginProcess) prepareAddress() (string, error) {
-	addr := p.cfg.Address
-	if addr == "" {
-		addr = defaultPluginAddress
-	}
-	if strings.HasSuffix(addr, ":0") {
-		l, err := net.Listen("tcp", addr)
-		if err != nil {
-			return "", err
-		}
-		actual := l.Addr().String()
-		_ = l.Close()
-		return actual, nil
-	}
-	return addr, nil
-}
-
-func (p *pluginProcess) launchProcess(ctx context.Context, address string) error {
+func (p *pluginProcess) launchProcess(ctx context.Context, serverAddress string) error {
 	if ctx.Err() != nil {
 		return ctx.Err()
 	}
@@ -136,7 +116,7 @@ func (p *pluginProcess) launchProcess(ctx context.Context, address string) error
 	}
 	env := os.Environ()
 	env = append(env, fmt.Sprintf("DF_PLUGIN_ID=%s", p.id))
-	env = append(env, fmt.Sprintf("DF_PLUGIN_GRPC_ADDRESS=%s", address))
+	env = append(env, fmt.Sprintf("DF_PLUGIN_SERVER_ADDRESS=%s", serverAddress))
 	for k, v := range p.cfg.Env {
 		env = append(env, fmt.Sprintf("%s=%s", k, v))
 	}
@@ -182,23 +162,6 @@ func (p *pluginProcess) consumeOutput(r io.Reader) {
 	}
 	if err := scanner.Err(); err != nil && !p.closed.Load() {
 		p.log.Error("output scanner error", "error", err)
-	}
-}
-
-func (p *pluginProcess) connectLoop(ctx context.Context, address string) (*grpc.GrpcStream, error) {
-	for {
-		stream, err := grpc.DialEventStream(ctx, address, connectTimeout)
-		if err == nil {
-			return stream, nil
-		}
-		if ctx.Err() != nil {
-			return nil, ctx.Err()
-		}
-		select {
-		case <-time.After(connectRetryInterval):
-		case <-ctx.Done():
-			return nil, ctx.Err()
-		}
 	}
 }
 
@@ -248,7 +211,7 @@ func (p *pluginProcess) recvLoop() {
 	for {
 		data, err := p.stream.Recv()
 		if err != nil {
-			if !errors.Is(err, io.EOF) {
+			if !errors.Is(err, io.EOF) && !errors.Is(err, context.Canceled) {
 				p.log.Error("receive message", "error", err)
 			}
 			p.Stop()
@@ -290,7 +253,7 @@ func (p *pluginProcess) updateSubscriptions(events []string) {
 }
 
 func (p *pluginProcess) queue(msg *pb.HostToPlugin) {
-	if p.closed.Load() {
+	if p.closed.Load() || !p.connected.Load() {
 		return
 	}
 	select {
@@ -298,6 +261,10 @@ func (p *pluginProcess) queue(msg *pb.HostToPlugin) {
 	default:
 		p.log.Warn("dropping message", "reason", "queue full")
 	}
+}
+
+func (p *pluginProcess) isConnected() bool {
+	return p.connected.Load()
 }
 
 func (p *pluginProcess) Stop() {

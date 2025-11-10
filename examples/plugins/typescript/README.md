@@ -45,4 +45,4 @@ This example plugin demonstrates:
 ## Environment Variables
 
 - `DF_PLUGIN_ID` - Plugin identifier (default: `typescript-plugin`)
-- `DF_PLUGIN_GRPC_ADDRESS` - gRPC server address (default: `127.0.0.1:50052`)
+- `DF_PLUGIN_SERVER_ADDRESS` - Dragonfly gRPC server address (default: `127.0.0.1:50050`)
