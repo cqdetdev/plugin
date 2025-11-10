@@ -20,7 +20,15 @@ import (
 	pb "github.com/secmc/plugin/plugin/proto/generated"
 )
 
-const apiVersion = "v1"
+const (
+	apiVersion = "v1"
+
+	sendChannelBuffer    = 64
+	connectTimeout       = 5 * time.Second
+	connectRetryInterval = 300 * time.Millisecond
+	shutdownTimeout      = 5 * time.Second
+	defaultPluginAddress = "127.0.0.1:50051"
+)
 
 type pluginProcess struct {
 	id  string
@@ -33,6 +41,7 @@ type pluginProcess struct {
 
 	sendCh chan *pb.HostToPlugin
 	done   chan struct{}
+	wg     sync.WaitGroup
 
 	subscriptions sync.Map
 	ready         atomic.Bool
@@ -52,12 +61,13 @@ func newPluginProcess(m *Manager, cfg PluginConfig) *pluginProcess {
 		logger = logger.With("name", cfg.Name)
 	}
 	return &pluginProcess{
-		id:     cfg.ID,
-		cfg:    cfg,
-		mgr:    m,
-		log:    logger,
-		sendCh: make(chan *pb.HostToPlugin, 64),
-		done:   make(chan struct{}),
+		id:      cfg.ID,
+		cfg:     cfg,
+		mgr:     m,
+		log:     logger,
+		sendCh:  make(chan *pb.HostToPlugin, sendChannelBuffer),
+		done:    make(chan struct{}),
+		pending: make(map[string]chan *pb.EventResult),
 	}
 }
 
@@ -91,6 +101,7 @@ func (p *pluginProcess) start(ctx context.Context) {
 		return
 	}
 
+	p.wg.Add(2)
 	go p.sendLoop()
 	go p.recvLoop()
 }
@@ -98,7 +109,7 @@ func (p *pluginProcess) start(ctx context.Context) {
 func (p *pluginProcess) prepareAddress() (string, error) {
 	addr := p.cfg.Address
 	if addr == "" {
-		addr = "127.0.0.1:50051"
+		addr = defaultPluginAddress
 	}
 	if strings.HasSuffix(addr, ":0") {
 		l, err := net.Listen("tcp", addr)
@@ -113,6 +124,10 @@ func (p *pluginProcess) prepareAddress() (string, error) {
 }
 
 func (p *pluginProcess) launchProcess(ctx context.Context, address string) error {
+	if ctx.Err() != nil {
+		return ctx.Err()
+	}
+
 	cmd := exec.CommandContext(ctx, p.cfg.Command, p.cfg.Args...)
 	if p.cfg.WorkDir != "" {
 		cmd.Dir = p.cfg.WorkDir
@@ -124,20 +139,26 @@ func (p *pluginProcess) launchProcess(ctx context.Context, address string) error
 		env = append(env, fmt.Sprintf("%s=%s", k, v))
 	}
 	cmd.Env = env
+
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		return err
 	}
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
+		_ = stdout.Close()
 		return err
 	}
-	go p.consumeOutput(stdout)
-	go p.consumeOutput(stderr)
+
 	if err := cmd.Start(); err != nil {
 		return err
 	}
 	p.cmd = cmd
+
+	p.wg.Add(2)
+	go p.consumeOutput(stdout)
+	go p.consumeOutput(stderr)
+
 	go func() {
 		if err := cmd.Wait(); err != nil && !p.closed.Load() {
 			p.log.Warn("process exited", "error", err)
@@ -147,15 +168,24 @@ func (p *pluginProcess) launchProcess(ctx context.Context, address string) error
 }
 
 func (p *pluginProcess) consumeOutput(r io.Reader) {
+	defer p.wg.Done()
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		p.log.Info(scanner.Text())
+		select {
+		case <-p.done:
+			return
+		default:
+			p.log.Info(scanner.Text())
+		}
+	}
+	if err := scanner.Err(); err != nil && !p.closed.Load() {
+		p.log.Error("output scanner error", "error", err)
 	}
 }
 
 func (p *pluginProcess) connectLoop(ctx context.Context, address string) (*grpcStream, error) {
 	for {
-		stream, err := dialEventStream(ctx, address, 5*time.Second)
+		stream, err := dialEventStream(ctx, address, connectTimeout)
 		if err == nil {
 			return stream, nil
 		}
@@ -163,7 +193,7 @@ func (p *pluginProcess) connectLoop(ctx context.Context, address string) (*grpcS
 			return nil, ctx.Err()
 		}
 		select {
-		case <-time.After(300 * time.Millisecond):
+		case <-time.After(connectRetryInterval):
 		case <-ctx.Done():
 			return nil, ctx.Err()
 		}
@@ -185,6 +215,7 @@ func (p *pluginProcess) sendHello() error {
 }
 
 func (p *pluginProcess) sendLoop() {
+	defer p.wg.Done()
 	for {
 		select {
 		case <-p.done:
@@ -211,6 +242,7 @@ func (p *pluginProcess) sendLoop() {
 }
 
 func (p *pluginProcess) recvLoop() {
+	defer p.wg.Done()
 	for {
 		data, err := p.stream.Recv()
 		if err != nil {
@@ -279,6 +311,19 @@ func (p *pluginProcess) Stop() {
 		}
 		p.pendingMu.Unlock()
 		p.stopProcess()
+
+		// Wait for goroutines to finish with timeout
+		done := make(chan struct{})
+		go func() {
+			p.wg.Wait()
+			close(done)
+		}()
+		select {
+		case <-done:
+			// all go routines finished cleanly
+		case <-time.After(shutdownTimeout):
+			p.log.Warn("timeout waiting for goroutines to finish")
+		}
 	}
 }
 
@@ -303,9 +348,6 @@ func (p *pluginProcess) helloInfo() *pb.PluginHello {
 func (p *pluginProcess) expectEventResult(eventID string) chan *pb.EventResult {
 	ch := make(chan *pb.EventResult, 1)
 	p.pendingMu.Lock()
-	if p.pending == nil {
-		p.pending = make(map[string]chan *pb.EventResult)
-	}
 	p.pending[eventID] = ch
 	p.pendingMu.Unlock()
 	return ch
