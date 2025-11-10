@@ -15,6 +15,21 @@ if [[ "$OS" == MINGW* ]] || [[ "$OS" == MSYS* ]] || [[ "$OS" == CYGWIN* ]]; then
     OS="Windows"
 fi
 
+# OVERRIDE: Force x86_64 builds on unsupported platforms (macOS, Linux ARM64)
+# Set to false to restore original behavior
+FORCE_X86_64_OVERRIDE=true
+
+if [ "$FORCE_X86_64_OVERRIDE" = true ]; then
+    if [ "$OS" = "Darwin" ]; then
+        echo "⚠️  Using x86_64 build on macOS (will use Rosetta 2 on ARM Macs)"
+        OS="Linux"
+        ARCH="x86_64"
+    elif [ "$OS" = "Linux" ] && ([ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]); then
+        echo "⚠️  Using x86_64 build on Linux ARM64 (requires emulation support)"
+        ARCH="x86_64"
+    fi
+fi
+
 # PHP build URL (PocketMine PHP 8.4 with gRPC built-in)
 # Note: Only Linux x86_64 and Windows x64 pre-built binaries are available
 if [ "$OS" = "Darwin" ]; then

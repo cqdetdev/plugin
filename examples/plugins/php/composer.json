@@ -4,12 +4,15 @@
   "type": "project",
   "require": {
     "php": ">=8.1",
-    "grpc/grpc": "^1.57",
+    "grpc/grpc": "1.57.0",
     "google/protobuf": "^3.25"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.10"
   },
   "autoload": {
     "psr-4": {
-      "Df\\Plugin\\": "generated/"
+      "Df\\": "../../../proto/generated/php/Df/"
     }
   },
   "config": {

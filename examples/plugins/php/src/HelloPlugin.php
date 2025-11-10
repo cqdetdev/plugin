@@ -5,7 +5,7 @@
 use Grpc\ChannelCredentials;
 
 define('PROTO_PATH', __DIR__ . '/../../../plugin/proto/types/plugin.proto');
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $pluginId = getenv('DF_PLUGIN_ID') ?: 'php-plugin';
 $address = getenv('DF_PLUGIN_GRPC_ADDRESS') ?: '127.0.0.1:50052';
