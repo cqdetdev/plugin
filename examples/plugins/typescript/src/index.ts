@@ -296,21 +296,24 @@ function handleEvent(
         case EventType.PLAYER_BLOCK_BREAK: {
             const blockBreak = event.blockBreak;
             if (!blockBreak) break;
+            const pos = blockBreak.position;
+            if (!pos) return;
 
-            console.log(`[ts] ${blockBreak.name} broke block at ${blockBreak.x},${blockBreak.y},${blockBreak.z}`);
+            console.log(`[ts] ${blockBreak.name} broke block at ${pos.x},${pos.y},${pos.z}`);
 
-            // Example: Double drops for diamond ore
-            if (blockBreak.x % 10 === 0) { // Just as an example
+            if (pos.x % 10 === 0) {
                 const response: PluginToHost = {
                     pluginId,
                     eventResult: {
                         eventId: event.eventId,
                         blockBreak: {
-                            drops: [
-                                { name: 'minecraft:diamond', count: 2, meta: 0 },
-                            ],
+                            drops: {
+                                items: [
+                                    { name: 'minecraft:diamond', count: 2, meta: 0 },
+                                ],
+                            },
                             xp: 10,
-                        },
+                        }
                     },
                 };
                 call.write(response);
