@@ -29,7 +29,7 @@ type Stream interface {
 	Close() error
 }
 
-type EventEmitter interface {
+type EventManager interface {
 	EmitPlayerJoin(p *player.Player)
 	EmitPlayerQuit(p *player.Player)
 	EmitChat(ctx *player.Context, p *player.Player, msg *string)
@@ -39,13 +39,13 @@ type EventEmitter interface {
 	GenerateEventID() string
 }
 
-type PlayerHandlerFactory func(emitter EventEmitter) player.Handler
+type PlayerHandlerFactory func(manager EventManager) player.Handler
 
-type WorldHandlerFactory func(emitter EventEmitter) world.Handler
+type WorldHandlerFactory func(manager EventManager) world.Handler
 
 type PluginService interface {
 	PluginManager
-	EventEmitter
+	EventManager
 	AttachWorld(w *world.World)
 	AttachPlayer(p *player.Player)
 }

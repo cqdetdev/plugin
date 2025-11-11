@@ -29,7 +29,7 @@ import (
 	pb "github.com/secmc/plugin/proto/generated"
 )
 
-type Emitter struct {
+type Manager struct {
 	srv *server.Server
 	log *slog.Logger
 
@@ -57,12 +57,12 @@ type commandBinding struct {
 
 const eventResponseTimeout = 250 * time.Millisecond
 
-func NewEmitter(srv *server.Server, log *slog.Logger, playerHandlerFactory ports.PlayerHandlerFactory, worldHandlerFactory ports.WorldHandlerFactory) *Emitter {
+func NewManager(srv *server.Server, log *slog.Logger, playerHandlerFactory ports.PlayerHandlerFactory, worldHandlerFactory ports.WorldHandlerFactory) *Manager {
 	if log == nil {
 		log = slog.Default()
 	}
 	ctx, cancel := context.WithCancel(context.Background())
-	return &Emitter{
+	return &Manager{
 		srv:                  srv,
 		log:                  log.With("component", "plugin-manager"),
 		ctx:                  ctx,
@@ -75,7 +75,7 @@ func NewEmitter(srv *server.Server, log *slog.Logger, playerHandlerFactory ports
 	}
 }
 
-func (m *Emitter) Start(configPath string) error {
+func (m *Manager) Start(configPath string) error {
 	cfg, err := config.LoadConfig(configPath)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
@@ -119,7 +119,7 @@ func (m *Emitter) Start(configPath string) error {
 }
 
 // handlePluginConnection is called when a plugin connects to the gRPC server
-func (m *Emitter) handlePluginConnection(stream *grpc.GrpcStream) error {
+func (m *Manager) handlePluginConnection(stream *grpc.GrpcStream) error {
 	m.log.Info("new plugin connection")
 
 	// Read the first message to identify the plugin
@@ -164,7 +164,7 @@ func (m *Emitter) handlePluginConnection(stream *grpc.GrpcStream) error {
 	}
 }
 
-func (m *Emitter) Close() {
+func (m *Manager) Close() {
 	m.cancel()
 
 	// Stop gRPC server
@@ -187,7 +187,7 @@ func (m *Emitter) Close() {
 	m.plugins = make(map[string]*pluginProcess)
 }
 
-func (m *Emitter) AttachWorld(w *world.World) {
+func (m *Manager) AttachWorld(w *world.World) {
 	if w == nil {
 		return
 	}
@@ -197,7 +197,7 @@ func (m *Emitter) AttachWorld(w *world.World) {
 	}
 }
 
-func (m *Emitter) AttachPlayer(p *player.Player) {
+func (m *Manager) AttachPlayer(p *player.Player) {
 	if p == nil {
 		return
 	}
@@ -211,13 +211,13 @@ func (m *Emitter) AttachPlayer(p *player.Player) {
 	m.EmitPlayerJoin(p)
 }
 
-func (m *Emitter) detachPlayer(p *player.Player) {
+func (m *Manager) detachPlayer(p *player.Player) {
 	m.mu.Lock()
 	delete(m.players, p.UUID())
 	m.mu.Unlock()
 }
 
-func (m *Emitter) EmitPlayerJoin(p *player.Player) {
+func (m *Manager) EmitPlayerJoin(p *player.Player) {
 	evt := &pb.EventEnvelope{
 		EventId: m.generateEventID(),
 		Type:    pb.EventType_PLAYER_JOIN,
@@ -231,7 +231,7 @@ func (m *Emitter) EmitPlayerJoin(p *player.Player) {
 	m.broadcastEvent(evt)
 }
 
-func (m *Emitter) EmitPlayerQuit(p *player.Player) {
+func (m *Manager) EmitPlayerQuit(p *player.Player) {
 	evt := &pb.EventEnvelope{
 		EventId: m.generateEventID(),
 		Type:    pb.EventType_PLAYER_QUIT,
@@ -245,7 +245,7 @@ func (m *Emitter) EmitPlayerQuit(p *player.Player) {
 	m.broadcastEvent(evt)
 }
 
-func (m *Emitter) EmitChat(ctx *player.Context, p *player.Player, msg *string) {
+func (m *Manager) EmitChat(ctx *player.Context, p *player.Player, msg *string) {
 	if msg == nil {
 		return
 	}
@@ -278,7 +278,7 @@ func (m *Emitter) EmitChat(ctx *player.Context, p *player.Player, msg *string) {
 	}
 }
 
-func (m *Emitter) EmitCommand(ctx *player.Context, p *player.Player, cmdName string, args []string) {
+func (m *Manager) EmitCommand(ctx *player.Context, p *player.Player, cmdName string, args []string) {
 	raw := "/" + cmdName
 	if len(args) > 0 {
 		raw += " " + strings.Join(args, " ")
@@ -305,7 +305,7 @@ func (m *Emitter) EmitCommand(ctx *player.Context, p *player.Player, cmdName str
 	}
 }
 
-func (m *Emitter) EmitBlockBreak(ctx *player.Context, p *player.Player, pos cube.Pos, drops *[]item.Stack, xp *int, worldDim string) {
+func (m *Manager) EmitBlockBreak(ctx *player.Context, p *player.Player, pos cube.Pos, drops *[]item.Stack, xp *int, worldDim string) {
 	evt := &pb.EventEnvelope{
 		EventId: m.generateEventID(),
 		Type:    pb.EventType_PLAYER_BLOCK_BREAK,
@@ -343,11 +343,11 @@ func (m *Emitter) EmitBlockBreak(ctx *player.Context, p *player.Player, pos cube
 	}
 }
 
-func (m *Emitter) broadcastEvent(envelope *pb.EventEnvelope) {
+func (m *Manager) broadcastEvent(envelope *pb.EventEnvelope) {
 	_ = m.dispatchEvent(envelope, false)
 }
 
-func (m *Emitter) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
+func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
 	if envelope == nil {
 		return nil
 	}
@@ -404,11 +404,11 @@ func (m *Emitter) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) [
 	return results
 }
 
-func (m *Emitter) BroadcastEvent(evt *pb.EventEnvelope) {
+func (m *Manager) BroadcastEvent(evt *pb.EventEnvelope) {
 	m.broadcastEvent(evt)
 }
 
-func (m *Emitter) GenerateEventID() string {
+func (m *Manager) GenerateEventID() string {
 	return m.generateEventID()
 }
 
@@ -434,7 +434,7 @@ func convertProtoDrops(drops []*pb.ItemStack) []item.Stack {
 	return converted
 }
 
-func (m *Emitter) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
+func (m *Manager) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
 	if result := msg.GetEventResult(); result != nil {
 		p.deliverEventResult(result)
 	}
@@ -461,7 +461,7 @@ func (m *Emitter) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
 	}
 }
 
-func (m *Emitter) registerCommands(p *pluginProcess, specs []*pb.CommandSpec) {
+func (m *Manager) registerCommands(p *pluginProcess, specs []*pb.CommandSpec) {
 	for _, spec := range specs {
 		if spec == nil || spec.Name == "" {
 			continue
@@ -490,7 +490,7 @@ func (m *Emitter) registerCommands(p *pluginProcess, specs []*pb.CommandSpec) {
 }
 
 type pluginCommand struct {
-	mgr      *Emitter
+	mgr      *Manager
 	pluginID string
 	name     string
 }
@@ -504,7 +504,7 @@ func (c pluginCommand) Run(src cmd.Source, output *cmd.Output, tx *world.Tx) {
 	// No-op: PlayerHandler.HandleCommandExecution emits command events
 }
 
-func (m *Emitter) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
+func (m *Manager) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
 	if batch == nil {
 		return
 	}
@@ -525,7 +525,7 @@ func (m *Emitter) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
 	}
 }
 
-func (m *Emitter) handleSendChat(act *pb.SendChatAction) {
+func (m *Manager) handleSendChat(act *pb.SendChatAction) {
 	if act.TargetUuid == "" {
 		for p := range m.srv.Players(nil) {
 			p.Message(act.Message)
@@ -543,7 +543,7 @@ func (m *Emitter) handleSendChat(act *pb.SendChatAction) {
 	})
 }
 
-func (m *Emitter) handleTeleport(act *pb.TeleportAction) {
+func (m *Manager) handleTeleport(act *pb.TeleportAction) {
 	id, err := uuid.Parse(act.PlayerUuid)
 	if err != nil {
 		return
@@ -558,7 +558,7 @@ func (m *Emitter) handleTeleport(act *pb.TeleportAction) {
 	})
 }
 
-func (m *Emitter) handleKick(act *pb.KickAction) {
+func (m *Manager) handleKick(act *pb.KickAction) {
 	id, err := uuid.Parse(act.PlayerUuid)
 	if err != nil {
 		return
@@ -568,7 +568,7 @@ func (m *Emitter) handleKick(act *pb.KickAction) {
 	})
 }
 
-func (m *Emitter) handleSetGameMode(act *pb.SetGameModeAction) {
+func (m *Manager) handleSetGameMode(act *pb.SetGameModeAction) {
 	id, err := uuid.Parse(act.PlayerUuid)
 	if err != nil {
 		return
@@ -582,7 +582,7 @@ func (m *Emitter) handleSetGameMode(act *pb.SetGameModeAction) {
 	})
 }
 
-func (m *Emitter) execMethod(id uuid.UUID, method func(pl *player.Player)) {
+func (m *Manager) execMethod(id uuid.UUID, method func(pl *player.Player)) {
 	if handle, ok := m.srv.Player(id); ok {
 		handle.ExecWorld(func(tx *world.Tx, e world.Entity) {
 			if pl, ok := e.(*player.Player); ok {
@@ -592,7 +592,7 @@ func (m *Emitter) execMethod(id uuid.UUID, method func(pl *player.Player)) {
 	}
 }
 
-func (m *Emitter) generateEventID() string {
+func (m *Manager) generateEventID() string {
 	id := m.eventCounter.Add(1)
 	return strconv.FormatUint(id, 10)
 }

@@ -30,7 +30,7 @@ const (
 type pluginProcess struct {
 	id      string
 	cfg     config.PluginConfig
-	emitter *Emitter
+	manager *Manager
 	log     *slog.Logger
 
 	cmd      *exec.Cmd
@@ -54,7 +54,7 @@ type pluginProcess struct {
 	pending   map[string]chan *pb.EventResult
 }
 
-func newPluginProcess(e *Emitter, cfg config.PluginConfig) *pluginProcess {
+func newPluginProcess(e *Manager, cfg config.PluginConfig) *pluginProcess {
 	logger := e.log.With("plugin", cfg.ID)
 	if cfg.Name != "" {
 		logger = logger.With("name", cfg.Name)
@@ -62,7 +62,7 @@ func newPluginProcess(e *Emitter, cfg config.PluginConfig) *pluginProcess {
 	return &pluginProcess{
 		id:      cfg.ID,
 		cfg:     cfg,
-		emitter: e,
+		manager: e,
 		log:     logger,
 		sendCh:  make(chan *pb.HostToPlugin, sendChannelBuffer),
 		done:    make(chan struct{}),
@@ -221,7 +221,7 @@ func (p *pluginProcess) recvLoop() {
 			p.log.Error("decode message", "error", err)
 			continue
 		}
-		p.emitter.handlePluginMessage(p, msg)
+		p.manager.handlePluginMessage(p, msg)
 	}
 }
 

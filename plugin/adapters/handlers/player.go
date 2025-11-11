@@ -12,39 +12,39 @@ import (
 
 type PlayerHandler struct {
 	player.NopHandler
-	emitter ports.EventEmitter
+	manager ports.EventManager
 }
 
-func NewPlayerHandler(emitter ports.EventEmitter) player.Handler {
-	return &PlayerHandler{emitter: emitter}
+func NewPlayerHandler(manager ports.EventManager) player.Handler {
+	return &PlayerHandler{manager: manager}
 }
 
 func (h *PlayerHandler) HandleChat(ctx *player.Context, message *string) {
-	if h.emitter == nil {
+	if h.manager == nil {
 		return
 	}
-	h.emitter.EmitChat(ctx, ctx.Val(), message)
+	h.manager.EmitChat(ctx, ctx.Val(), message)
 }
 
 func (h *PlayerHandler) HandleCommandExecution(ctx *player.Context, command cmd.Command, args []string) {
-	if h.emitter == nil {
+	if h.manager == nil {
 		return
 	}
-	h.emitter.EmitCommand(ctx, ctx.Val(), command.Name(), args)
+	h.manager.EmitCommand(ctx, ctx.Val(), command.Name(), args)
 }
 
 func (h *PlayerHandler) HandleBlockBreak(ctx *player.Context, pos cube.Pos, drops *[]item.Stack, xp *int) {
-	if h.emitter == nil {
+	if h.manager == nil {
 		return
 	}
 	p := ctx.Val()
 	worldDim := fmt.Sprint(p.Tx().World().Dimension())
-	h.emitter.EmitBlockBreak(ctx, p, pos, drops, xp, worldDim)
+	h.manager.EmitBlockBreak(ctx, p, pos, drops, xp, worldDim)
 }
 
 func (h *PlayerHandler) HandleQuit(p *player.Player) {
-	if h.emitter == nil {
+	if h.manager == nil {
 		return
 	}
-	h.emitter.EmitPlayerQuit(p)
+	h.manager.EmitPlayerQuit(p)
 }
