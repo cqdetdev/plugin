@@ -90,7 +90,6 @@ func (p *pluginProcess) attachStream(stream *grpc.GrpcStream) error {
 	p.streamMu.Unlock()
 
 	p.connected.Store(true)
-	p.log.Info("plugin connected")
 
 	if err := p.sendHello(); err != nil {
 		p.log.Error("send hello", "error", err)
@@ -158,7 +157,7 @@ func (p *pluginProcess) consumeOutput(r io.Reader) {
 		case <-p.done:
 			return
 		default:
-			p.log.Info(scanner.Text())
+			p.manager.log.Info(scanner.Text())
 		}
 	}
 	if err := scanner.Err(); err != nil && !p.closed.Load() {

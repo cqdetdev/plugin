@@ -388,8 +388,6 @@ call.write(initialSubscribe);
 
 // Handle incoming messages from server
 call.on('data', (message: HostToPlugin) => {
-    console.log('[ts] received message:', JSON.stringify(message, null, 2));
-
     // Handle hello handshake
     if (message.hello) {
         console.log('[ts] host hello', message.hello);

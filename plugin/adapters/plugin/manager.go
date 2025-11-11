@@ -120,7 +120,6 @@ func (m *Manager) Start(configPath string) error {
 
 // handlePluginConnection is called when a plugin connects to the gRPC server
 func (m *Manager) handlePluginConnection(stream *grpc.GrpcStream) error {
-	m.log.Info("new plugin connection")
 
 	// Read the first message to identify the plugin
 	data, err := stream.Recv()
@@ -417,10 +416,25 @@ func (m *Manager) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
 		p.deliverEventResult(result)
 	}
 	if hello := msg.GetHello(); hello != nil {
+		cmdNames := mapSlice(hello.Commands, func(cmd *pb.CommandSpec) string {
+			if len(cmd.Aliases) > 0 {
+				return fmt.Sprintf("%s (aliases: %v)", cmd.Name, cmd.Aliases)
+			}
+			return cmd.Name
+		})
+		m.log.Info(fmt.Sprintf("✓ %s v%s connected [%s]", hello.Name, hello.Version, hello.ApiVersion), "commands", cmdNames)
 		p.setHello(hello)
 		m.registerCommands(p, hello.Commands)
 	}
 	if subscribe := msg.GetSubscribe(); subscribe != nil {
+		eventNames := mapSlice(subscribe.Events, func(evt pb.EventType) string {
+			return evt.String()
+		})
+		pluginName := p.id
+		if hello := p.helloInfo(); hello != nil && hello.Name != "" {
+			pluginName = hello.Name
+		}
+		m.log.Info(fmt.Sprintf("  %s subscribed to %d events", pluginName, len(eventNames)), "events", eventNames)
 		p.updateSubscriptions(subscribe.Events)
 	}
 	if actions := msg.GetActions(); actions != nil {
@@ -437,6 +451,15 @@ func (m *Manager) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
 			p.log.Info(logMsg.Message)
 		}
 	}
+}
+
+// mapSlice transforms a slice using the provided function
+func mapSlice[T any, R any](slice []T, fn func(T) R) []R {
+	result := make([]R, len(slice))
+	for i, v := range slice {
+		result[i] = fn(v)
+	}
+	return result
 }
 
 func (m *Manager) generateEventID() string {
