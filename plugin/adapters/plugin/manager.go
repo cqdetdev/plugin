@@ -297,6 +297,48 @@ func (m *Manager) emitCancellable(ctx cancelContext, envelope *pb.EventEnvelope)
 	return results
 }
 
+type PtrTo[T any] interface{ ~*T }
+
+// applyMutations iterates results and applies mutations using the provided getter and applier functions.
+// The getter returns the mutation pointer; nil mutations are skipped.
+func applyMutations[T any, P PtrTo[T]](
+	results []*pb.EventResult,
+	getter func(*pb.EventResult) P,
+	applier func(P),
+) {
+	for _, res := range results {
+		if res == nil {
+			continue
+		}
+		mut := getter(res)
+		if mut == nil {
+			continue
+		}
+		applier(mut)
+	}
+}
+
+// mutateField applies a single field mutation if both pointers are non-nil.
+func mutateField[T any](dest *T, src *T) {
+	if dest != nil && src != nil {
+		*dest = *src
+	}
+}
+
+// mutateInt32 applies int32 to int conversion mutation.
+func mutateInt32(dest *int, src *int32) {
+	if dest != nil && src != nil {
+		*dest = int(*src)
+	}
+}
+
+// mutateInt64Ms applies int64 milliseconds to time.Duration conversion mutation.
+func mutateInt64Ms(dest *time.Duration, src *int64) {
+	if dest != nil && src != nil {
+		*dest = time.Duration(*src) * time.Millisecond
+	}
+}
+
 func convertProtoDrops(drops []*pb.ItemStack) []item.Stack {
 	if len(drops) == 0 {
 		return nil

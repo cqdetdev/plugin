@@ -170,32 +170,23 @@ func (m *Manager) EmitWorldExplosion(ctx *world.Context, position mgl64.Vec3, en
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetWorldExplosion()
-		if mut == nil {
-			continue
-		}
-		if entities != nil && mut.EntityUuids != nil {
-			*entities = filterEntitiesByUUIDs(*entities, mut.EntityUuids.Values)
-		}
-		if blocks != nil && mut.Blocks != nil {
-			converted := convertProtoBlockPositionsToCube(mut.Blocks.Positions)
-			if converted == nil {
-				*blocks = nil
-			} else {
-				*blocks = converted
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.WorldExplosionMutation { return r.GetWorldExplosion() },
+		func(mut *pb.WorldExplosionMutation) {
+			if entities != nil && mut.EntityUuids != nil {
+				*entities = filterEntitiesByUUIDs(*entities, mut.EntityUuids.Values)
 			}
-		}
-		if itemDropChance != nil && mut.ItemDropChance != nil {
-			*itemDropChance = *mut.ItemDropChance
-		}
-		if spawnFire != nil && mut.SpawnFire != nil {
-			*spawnFire = *mut.SpawnFire
-		}
-	}
+			if blocks != nil && mut.Blocks != nil {
+				if converted := convertProtoBlockPositionsToCube(mut.Blocks.Positions); converted == nil {
+					*blocks = nil
+				} else {
+					*blocks = converted
+				}
+			}
+			mutateField(itemDropChance, mut.ItemDropChance)
+			mutateField(spawnFire, mut.SpawnFire)
+		},
+	)
 }
 
 func (m *Manager) EmitWorldClose(tx *world.Tx) {

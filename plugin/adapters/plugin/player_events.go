@@ -60,14 +60,10 @@ func (m *Manager) EmitChat(ctx *player.Context, p *player.Player, msg *string) {
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if chatMut := res.GetChat(); chatMut != nil && chatMut.Message != nil {
-			*msg = *chatMut.Message
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.ChatMutation { return r.GetChat() },
+		func(mut *pb.ChatMutation) { mutateField(msg, mut.Message) },
+	)
 }
 
 func (m *Manager) EmitCommand(ctx *player.Context, p *player.Player, cmdName string, args []string) {
@@ -107,19 +103,15 @@ func (m *Manager) EmitBlockBreak(ctx *player.Context, p *player.Player, pos cube
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if bbMut := res.GetBlockBreak(); bbMut != nil {
-			if drops != nil && bbMut.Drops != nil {
-				*drops = convertProtoDrops(bbMut.Drops.Items)
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.BlockBreakMutation { return r.GetBlockBreak() },
+		func(mut *pb.BlockBreakMutation) {
+			if drops != nil && mut.Drops != nil {
+				*drops = convertProtoDrops(mut.Drops.Items)
 			}
-			if bbMut.Xp != nil && xp != nil {
-				*xp = int(*bbMut.Xp)
-			}
-		}
-	}
+			mutateInt32(xp, mut.Xp)
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerMove(ctx *player.Context, p *player.Player, newPos mgl64.Vec3, newRot cube.Rotation) {
@@ -242,14 +234,10 @@ func (m *Manager) EmitPlayerFoodLoss(ctx *player.Context, p *player.Player, from
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if mut := res.GetPlayerFoodLoss(); mut != nil && mut.To != nil && to != nil {
-			*to = int(*mut.To)
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerFoodLossMutation { return r.GetPlayerFoodLoss() },
+		func(mut *pb.PlayerFoodLossMutation) { mutateInt32(to, mut.To) },
+	)
 }
 
 func (m *Manager) EmitPlayerHeal(ctx *player.Context, p *player.Player, health *float64, src world.HealingSource) {
@@ -271,14 +259,10 @@ func (m *Manager) EmitPlayerHeal(ctx *player.Context, p *player.Player, health *
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if mut := res.GetPlayerHeal(); mut != nil && mut.Amount != nil && health != nil {
-			*health = *mut.Amount
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerHealMutation { return r.GetPlayerHeal() },
+		func(mut *pb.PlayerHealMutation) { mutateField(health, mut.Amount) },
+	)
 }
 
 func (m *Manager) EmitPlayerHurt(ctx *player.Context, p *player.Player, damage *float64, immune bool, attackImmunity *time.Duration, src world.DamageSource) {
@@ -306,21 +290,13 @@ func (m *Manager) EmitPlayerHurt(ctx *player.Context, p *player.Player, damage *
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetPlayerHurt()
-		if mut == nil {
-			continue
-		}
-		if damage != nil && mut.Damage != nil {
-			*damage = *mut.Damage
-		}
-		if attackImmunity != nil && mut.AttackImmunityMs != nil {
-			*attackImmunity = time.Duration(*mut.AttackImmunityMs) * time.Millisecond
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerHurtMutation { return r.GetPlayerHurt() },
+		func(mut *pb.PlayerHurtMutation) {
+			mutateField(damage, mut.Damage)
+			mutateInt64Ms(attackImmunity, mut.AttackImmunityMs)
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerDeath(p *player.Player, src world.DamageSource, keepInv *bool) {
@@ -342,14 +318,10 @@ func (m *Manager) EmitPlayerDeath(p *player.Player, src world.DamageSource, keep
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if mut := res.GetPlayerDeath(); mut != nil && mut.KeepInventory != nil && keepInv != nil {
-			*keepInv = *mut.KeepInventory
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerDeathMutation { return r.GetPlayerDeath() },
+		func(mut *pb.PlayerDeathMutation) { mutateField(keepInv, mut.KeepInventory) },
+	)
 }
 
 func (m *Manager) EmitPlayerRespawn(p *player.Player, pos *mgl64.Vec3, w **world.World) {
@@ -376,29 +348,23 @@ func (m *Manager) EmitPlayerRespawn(p *player.Player, pos *mgl64.Vec3, w **world
 		},
 	}
 	results := m.dispatchEvent(envelope, true)
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetPlayerRespawn()
-		if mut == nil {
-			continue
-		}
-		if pos != nil {
-			if newPos, ok := vec3FromProto(mut.Position); ok {
-				*pos = newPos
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerRespawnMutation { return r.GetPlayerRespawn() },
+		func(mut *pb.PlayerRespawnMutation) {
+			if pos != nil {
+				if newPos, ok := vec3FromProto(mut.Position); ok {
+					*pos = newPos
+				}
 			}
-		}
-		if w != nil {
-			if mut.World == nil {
-				*w = nil
-				continue
+			if w != nil {
+				if mut.World == nil {
+					*w = nil
+				} else if newWorld := m.worldFromRef(mut.World); newWorld != nil {
+					*w = newWorld
+				}
 			}
-			if newWorld := m.worldFromRef(mut.World); newWorld != nil {
-				*w = newWorld
-			}
-		}
-	}
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerSkinChange(ctx *player.Context, p *player.Player, sk *skin.Skin) {
@@ -620,24 +586,14 @@ func (m *Manager) EmitPlayerAttackEntity(ctx *player.Context, p *player.Player, 
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetPlayerAttackEntity()
-		if mut == nil {
-			continue
-		}
-		if force != nil && mut.Force != nil {
-			*force = *mut.Force
-		}
-		if height != nil && mut.Height != nil {
-			*height = *mut.Height
-		}
-		if critical != nil && mut.Critical != nil {
-			*critical = *mut.Critical
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerAttackEntityMutation { return r.GetPlayerAttackEntity() },
+		func(mut *pb.PlayerAttackEntityMutation) {
+			mutateField(force, mut.Force)
+			mutateField(height, mut.Height)
+			mutateField(critical, mut.Critical)
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerExperienceGain(ctx *player.Context, p *player.Player, amount *int) {
@@ -659,14 +615,10 @@ func (m *Manager) EmitPlayerExperienceGain(ctx *player.Context, p *player.Player
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if mut := res.GetPlayerExperienceGain(); mut != nil && mut.Amount != nil && amount != nil {
-			*amount = int(*mut.Amount)
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerExperienceGainMutation { return r.GetPlayerExperienceGain() },
+		func(mut *pb.PlayerExperienceGainMutation) { mutateInt32(amount, mut.Amount) },
+	)
 }
 
 func (m *Manager) EmitPlayerPunchAir(ctx *player.Context, p *player.Player) {
@@ -726,14 +678,10 @@ func (m *Manager) EmitPlayerLecternPageTurn(ctx *player.Context, p *player.Playe
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		if mut := res.GetPlayerLecternPageTurn(); mut != nil && mut.NewPage != nil && newPage != nil {
-			*newPage = int(*mut.NewPage)
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerLecternPageTurnMutation { return r.GetPlayerLecternPageTurn() },
+		func(mut *pb.PlayerLecternPageTurnMutation) { mutateInt32(newPage, mut.NewPage) },
+	)
 }
 
 func (m *Manager) EmitPlayerItemDamage(ctx *player.Context, p *player.Player, it item.Stack, damage int) {
@@ -769,22 +717,21 @@ func (m *Manager) EmitPlayerItemPickup(ctx *player.Context, p *player.Player, it
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetPlayerItemPickup()
-		if mut == nil || it == nil {
-			continue
-		}
-		if mut.Item == nil {
-			*it = item.Stack{}
-			continue
-		}
-		if stack, ok := convertProtoItemStackValue(mut.Item); ok {
-			*it = stack
-		}
-	}
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerItemPickupMutation { return r.GetPlayerItemPickup() },
+		func(mut *pb.PlayerItemPickupMutation) {
+			if it == nil {
+				return
+			}
+			if mut.Item == nil {
+				*it = item.Stack{}
+				return
+			}
+			if stack, ok := convertProtoItemStackValue(mut.Item); ok {
+				*it = stack
+			}
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerHeldSlotChange(ctx *player.Context, p *player.Player, from, to int) {
@@ -836,22 +783,19 @@ func (m *Manager) EmitPlayerTransfer(ctx *player.Context, p *player.Player, addr
 			},
 		},
 	})
-	for _, res := range results {
-		if res == nil {
-			continue
-		}
-		mut := res.GetPlayerTransfer()
-		if mut == nil || addr == nil {
-			continue
-		}
-		if mut.Address != nil {
+	applyMutations(results,
+		func(r *pb.EventResult) *pb.PlayerTransferMutation { return r.GetPlayerTransfer() },
+		func(mut *pb.PlayerTransferMutation) {
+			if addr == nil || mut.Address == nil {
+				return
+			}
 			if newAddr := parseProtoAddress(mut.Address); newAddr != nil {
 				*addr = *newAddr
 			} else {
 				*addr = net.UDPAddr{}
 			}
-		}
-	}
+		},
+	)
 }
 
 func (m *Manager) EmitPlayerDiagnostics(p *player.Player, d session.Diagnostics) {
