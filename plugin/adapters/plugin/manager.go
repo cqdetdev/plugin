@@ -387,30 +387,28 @@ func (m *Manager) worldFromRef(ref *pb.WorldRef) *world.World {
 	if ref == nil {
 		return nil
 	}
-	name := strings.ToLower(ref.Name)
+
 	m.worldMu.RLock()
-	if name != "" {
+	defer m.worldMu.RUnlock()
+
+	// Try by name first
+	if ref.Name != "" {
+		name := strings.ToLower(ref.Name)
 		if w := m.worlds[name]; w != nil {
-			m.worldMu.RUnlock()
 			return w
 		}
-		for _, candidate := range m.worlds {
-			if strings.EqualFold(candidate.Name(), ref.Name) {
-				m.worldMu.RUnlock()
-				return candidate
-			}
-		}
 	}
+
+	// Fallback to dimension lookup
 	if ref.Dimension != "" {
 		dim := strings.ToLower(ref.Dimension)
 		for _, candidate := range m.worlds {
 			if worldDimension(candidate) == dim {
-				m.worldMu.RUnlock()
 				return candidate
 			}
 		}
 	}
-	m.worldMu.RUnlock()
+
 	return nil
 }
 
