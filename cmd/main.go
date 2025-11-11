@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
@@ -9,6 +10,7 @@ import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/df-mc/dragonfly/server/world"
+	"github.com/didntpot/pregdk"
 	"github.com/pelletier/go-toml"
 	"github.com/secmc/plugin/plugin/adapters/handlers"
 	"github.com/secmc/plugin/plugin/adapters/plugin"
@@ -55,22 +57,27 @@ func main() {
 func readConfig(log *slog.Logger) (server.Config, error) {
 	c := server.DefaultConfig()
 	var zero server.Config
-	if _, err := os.Stat("config.toml"); os.IsNotExist(err) {
+	if _, err := os.Stat("config.toml"); err != nil {
+		if !errors.Is(err, os.ErrNotExist) {
+			return zero, fmt.Errorf("stat config: %w", err)
+		}
 		data, err := toml.Marshal(c)
 		if err != nil {
-			return zero, fmt.Errorf("encode default config: %v", err)
+			return zero, fmt.Errorf("encode default config: %w", err)
 		}
-		if err := os.WriteFile("config.toml", data, 0644); err != nil {
-			return zero, fmt.Errorf("create default config: %v", err)
+		if err := os.WriteFile("config.toml", data, 0o644); err != nil {
+			return zero, fmt.Errorf("create default config: %w", err)
 		}
-		return c.Config(log)
+	} else {
+		data, err := os.ReadFile("config.toml")
+		if err != nil {
+			return zero, fmt.Errorf("read config: %w", err)
+		}
+		if err := toml.Unmarshal(data, &c); err != nil {
+			return zero, fmt.Errorf("decode config: %w", err)
+		}
 	}
-	data, err := os.ReadFile("config.toml")
-	if err != nil {
-		return zero, fmt.Errorf("read config: %v", err)
-	}
-	if err := toml.Unmarshal(data, &c); err != nil {
-		return zero, fmt.Errorf("decode config: %v", err)
-	}
-	return c.Config(log)
+	cfg, _ := c.Config(log)
+	listenerFunc(&cfg, c.Network.Address, single(pregdk.Protocol(false)))
+	return cfg, nil
 }
