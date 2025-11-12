@@ -133,3 +133,22 @@ message Address {
     string host = 1;
     int32 port = 2;
 }
+
+// Category for creative inventory
+enum ItemCategory {
+    ITEM_CATEGORY_CONSTRUCTION = 0;
+    ITEM_CATEGORY_NATURE = 1;
+    ITEM_CATEGORY_EQUIPMENT = 2;
+    ITEM_CATEGORY_ITEMS = 3;
+}
+
+// CustomItemDefinition defines a custom (non-vanilla) item that requires
+// a resource pack and client-side registration
+message CustomItemDefinition {
+    string id = 1; // Unique identifier for the custom item (e.g., "my_plugin:custom_sword")
+    string display_name = 2; // Display name shown to players
+    bytes texture_data = 3; // Texture data encoded as PNG bytes
+    ItemCategory category = 4; // Creative inventory category
+    optional string group = 5; // Optional subgroup within the category (e.g., "sword", "pickaxe", "food")
+    int32 meta = 6; // Metadata value for this item (defaults to 0)
+}

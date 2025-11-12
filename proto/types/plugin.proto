@@ -104,6 +104,7 @@ message PluginHello {
   string version = 2;
   string api_version = 3;
   repeated CommandSpec commands = 4;
+  repeated CustomItemDefinition custom_items = 5;
 }
 
 message CommandSpec {

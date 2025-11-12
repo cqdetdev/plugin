@@ -429,6 +429,7 @@ func (m *Manager) handlePluginMessage(p *pluginProcess, msg *pb.PluginToHost) {
 		m.log.Info(fmt.Sprintf("✓ %s v%s connected [%s]", hello.Name, hello.Version, hello.ApiVersion), "commands", cmdNames)
 		p.setHello(hello)
 		m.registerCommands(p, hello.Commands)
+		m.registerCustomItems(p, hello.CustomItems)
 	}
 	if subscribe := msg.GetSubscribe(); subscribe != nil {
 		eventNames := mapSlice(subscribe.Events, func(evt pb.EventType) string {
