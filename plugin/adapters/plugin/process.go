@@ -9,6 +9,7 @@ import (
 	"log/slog"
 	"os"
 	"os/exec"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -114,7 +115,12 @@ func (p *pluginProcess) launchProcess(ctx context.Context, serverAddress string)
 	}
 	env := os.Environ()
 	env = append(env, fmt.Sprintf("DF_PLUGIN_ID=%s", p.id))
-	env = append(env, fmt.Sprintf("DF_PLUGIN_SERVER_ADDRESS=%s", serverAddress))
+	// Normalize Unix socket address for plugin clients: bare paths -> unix:/path
+	passAddress := serverAddress
+	if strings.HasPrefix(serverAddress, "/") {
+		passAddress = "unix:" + serverAddress
+	}
+	env = append(env, fmt.Sprintf("DF_PLUGIN_SERVER_ADDRESS=%s", passAddress))
 	for k, v := range p.cfg.Env {
 		env = append(env, fmt.Sprintf("%s=%s", k, v))
 	}

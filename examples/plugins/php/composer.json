@@ -4,15 +4,16 @@
   "type": "project",
   "require": {
     "php": ">=8.1",
-    "google/protobuf": "^3.25",
-    "grpc/grpc": "1.74"
+    "grpc/grpc": "1.74.0",
+    "google/protobuf": "^3.25"
   },
   "require-dev": {
     "phpstan/phpstan": "^1.10"
   },
   "autoload": {
     "psr-4": {
-      "Df\\": "../../../proto/generated/php/Df/"
+      "Df\\": "../../../proto/generated/php/Df/",
+      "Dragonfly\\PluginLib\\": "lib/"
     }
   },
   "config": {

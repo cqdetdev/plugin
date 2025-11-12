@@ -19,14 +19,14 @@ plugins:
       NODE_ENV: production
   - id: example-php
     name: Example PHP Plugin
-    # command: "../examples/plugins/php/bin/php7/bin/php"
-    # args: ["../examples/plugins/php/src/HelloPlugin.php"]
-    command: "docker"
-    args:
-      - "compose"
-      - "-f"
-      - "../examples/plugins/php/docker-compose.yml"
-      - "up"
-      - "--abort-on-container-exit"
+    command: "../examples/plugins/php/bin/php7/bin/php"
+    args: ["../examples/plugins/php/src/HelloPlugin.php"]
+    # command: "docker"
+    # args:
+    #   - "compose"
+    #   - "-f"
+    #   - "../examples/plugins/php/docker-compose.yml"
+    #   - "up"
+    #   - "--abort-on-container-exit"
     env:
       PHP_ENV: production

@@ -8,176 +8,48 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Df\Plugin\Action;
-use Df\Plugin\ActionBatch;
-use Df\Plugin\ChatMutation;
-use Df\Plugin\CommandSpec;
-use Df\Plugin\EventResult;
-use Df\Plugin\EventSubscribe;
+use Df\Plugin\Event;
 use Df\Plugin\EventType;
-use Df\Plugin\PluginClient;
-use Df\Plugin\PluginHello;
-use Df\Plugin\PluginToHost;
-use Df\Plugin\SendChatAction;
-use Grpc\ChannelCredentials;
+use Df\Plugin\PlayerJoinEvent;
+use Df\Plugin\ChatEvent;
+use Df\Plugin\CommandEvent;
+use Dragonfly\PluginLib\PluginBase;
+use Dragonfly\PluginLib\Events\EventContext;
+use Dragonfly\PluginLib\Events\Listener;
 
-define('DF_PLUGIN_API_VERSION', 'v1');
+class HelloPlugin extends PluginBase implements Listener {
 
-$pluginId = getenv('DF_PLUGIN_ID') ?: 'php-plugin';
-$serverAddress = getenv('DF_PLUGIN_SERVER_ADDRESS') ?: '127.0.0.1:50050';
+    protected string $name = 'example-php';
+    protected string $version = '0.1.0';
 
-fwrite(STDOUT, "[php] connecting to {$serverAddress}...\n");
+    public function onEnable(): void {
+        $this->registerCommand('/cheers', 'Send a toast from PHP');
+        $this->registerListener($this);
+    }
 
-$client = new PluginClient($serverAddress, [
-    'credentials' => ChannelCredentials::createInsecure(),
-]);
+    public function onPlayerJoin(PlayerJoinEvent $e, EventContext $ctx): void {
+    }
 
-$call = $client->EventStream();
+    public function onChat(ChatEvent $chat, EventContext $ctx): void {
+        $text = $chat->getMessage();
 
-fwrite(STDOUT, "[php] connected, sending handshake\n");
-
-$hello = new PluginToHost();
-$hello->setPluginId($pluginId);
-$pluginHello = new PluginHello();
-$pluginHello->setName('example-php');
-$pluginHello->setVersion('0.1.0');
-$pluginHello->setApiVersion(DF_PLUGIN_API_VERSION);
-$command = new CommandSpec();
-$command->setName('/cheers');
-$command->setDescription('Send a toast from PHP');
-$pluginHello->setCommands([$command]);
-$hello->setHello($pluginHello);
-$call->write($hello);
-
-$subscribeMsg = new PluginToHost();
-$subscribeMsg->setPluginId($pluginId);
-$subscribe = new EventSubscribe();
-$subscribe->setEvents([
-    EventType::PLAYER_JOIN,
-    EventType::COMMAND,
-    EventType::CHAT,
-]);
-$subscribeMsg->setSubscribe($subscribe);
-$call->write($subscribeMsg);
-
-try {
-    while (true) {
-        $message = $call->read();
-        if ($message === null) {
-            fwrite(STDOUT, "[php] stream ended by host\n");
-            break;
+        if (stripos($text, 'spoiler') !== false) {
+            $ctx->cancel();
+            return;
         }
 
-        if ($message->hasHello()) {
-            $hostHello = $message->getHello();
-            fwrite(STDOUT, "[php] host hello api=" . $hostHello->getApiVersion() . "\n");
-            if ($hostHello->getApiVersion() !== DF_PLUGIN_API_VERSION) {
-                fwrite(STDOUT, "[php] WARNING: API version mismatch (host={$hostHello->getApiVersion()}, plugin=" . DF_PLUGIN_API_VERSION . ")\n");
-            }
-            continue;
-        }
-
-        if ($message->hasEvent()) {
-            $event = $message->getEvent();
-            $eventId = $event->getEventId();
-
-            if ($event->getType() === EventType::PLAYER_JOIN && $event->hasPlayerJoin()) {
-                acknowledgeEvent($call, $pluginId, $eventId);
-                continue;
-            }
-
-            if ($event->getType() === EventType::CHAT && $event->hasChat()) {
-                $chat = $event->getChat();
-                $text = $chat->getMessage();
-
-                if (stripos($text, 'spoiler') !== false) {
-                    cancelEvent($call, $pluginId, $eventId);
-                    continue;
-                }
-
-                if (str_starts_with($text, '!cheer ')) {
-                    $mutation = new ChatMutation();
-                    $mutation->setMessage('🥂 ' . substr($text, 7));
-                    mutateChat($call, $pluginId, $eventId, $mutation);
-                    continue;
-                }
-
-                acknowledgeEvent($call, $pluginId, $eventId);
-                continue;
-            }
-
-            if ($event->getType() === EventType::COMMAND && $event->hasCommand()) {
-                $commandEvent = $event->getCommand();
-                if ($commandEvent->getRaw() === '/cheers') {
-                    $action = new Action();
-                    $send = new SendChatAction();
-                    $send->setTargetUuid($commandEvent->getPlayerUuid());
-                    $send->setMessage('🍻 Cheers from the PHP plugin!');
-                    $action->setSendChat($send);
-
-                    $batch = new ActionBatch();
-                    $batch->setActions([$action]);
-
-                    $resp = new PluginToHost();
-                    $resp->setPluginId($pluginId);
-                    $resp->setActions($batch);
-                    $call->write($resp);
-                }
-
-                acknowledgeEvent($call, $pluginId, $eventId);
-                continue;
-            }
-
-            acknowledgeEvent($call, $pluginId, $eventId);
-            continue;
-        }
-
-        if ($message->hasShutdown()) {
-            fwrite(STDOUT, "[php] shutdown received\n");
-            break;
+        if (str_starts_with($text, '!cheer ')) {
+            $ctx->chat('🥂 ' . substr($text, 7));
+            return;
         }
     }
-} catch (\Throwable $e) {
-    fwrite(STDERR, "[php] error: {$e->getMessage()}\n");
-    fwrite(STDERR, $e->getTraceAsString() . "\n");
-    exit(1);
-} finally {
-    $call->writesDone();
-    fwrite(STDOUT, "[php] connection closed\n");
+
+    public function onCommand(CommandEvent $command, EventContext $ctx): void {
+        if ($command->getRaw() === '/cheers') {
+            $ctx->chatToUuid($command->getPlayerUuid(), '🍻 Cheers from the PHP plugin!');
+        }
+    }
 }
 
-function acknowledgeEvent($call, string $pluginId, string $eventId): void
-{
-    $result = new EventResult();
-    $result->setEventId($eventId);
-    $result->setCancel(false);
-
-    $resp = new PluginToHost();
-    $resp->setPluginId($pluginId);
-    $resp->setEventResult($result);
-    $call->write($resp);
-}
-
-function cancelEvent($call, string $pluginId, string $eventId): void
-{
-    $result = new EventResult();
-    $result->setEventId($eventId);
-    $result->setCancel(true);
-
-    $resp = new PluginToHost();
-    $resp->setPluginId($pluginId);
-    $resp->setEventResult($result);
-    $call->write($resp);
-}
-
-function mutateChat($call, string $pluginId, string $eventId, ChatMutation $mutation): void
-{
-    $result = new EventResult();
-    $result->setEventId($eventId);
-    $result->setChat($mutation);
-
-    $resp = new PluginToHost();
-    $resp->setPluginId($pluginId);
-    $resp->setEventResult($result);
-    $call->write($resp);
-}
+$plugin = new HelloPlugin();
+$plugin->run();
