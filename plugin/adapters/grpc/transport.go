@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"os"
+	"runtime"
+	"strings"
 	"sync"
 
 	"google.golang.org/grpc"
@@ -68,9 +71,22 @@ func (s *pluginService) EventStream(stream grpc.ServerStream) error {
 
 // NewServer creates a new gRPC server that plugins will connect to
 func NewServer(address string, handler StreamHandler) (*GrpcServer, error) {
-	listener, err := net.Listen("tcp", address)
+	// Auto-detect Unix socket vs TCP based on address format
+	network := "tcp"
+	if strings.HasPrefix(address, "/") || strings.HasPrefix(address, "unix://") {
+		network = "unix"
+		address = strings.TrimPrefix(address, "unix://")
+		os.Remove(address) // Clean up old socket file
+	}
+
+	listener, err := net.Listen(network, address)
 	if err != nil {
 		return nil, fmt.Errorf("listen failed: %w", err)
+	}
+
+	// Set permissions on unix for sockets
+	if network == "unix" && runtime.GOOS != "windows" {
+		os.Chmod(address, 0666)
 	}
 
 	server := grpc.NewServer(
@@ -111,6 +127,11 @@ func (s *GrpcServer) Serve() error {
 // Stop gracefully stops the server
 func (s *GrpcServer) Stop() {
 	s.server.GracefulStop()
+
+	// Remove Unix socket file if it was used
+	if addr := s.listener.Addr(); addr.Network() == "unix" {
+		os.Remove(addr.String())
+	}
 }
 
 // Address returns the address the server is listening on

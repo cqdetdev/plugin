@@ -86,7 +86,7 @@ func (m *Manager) Start(configPath string) error {
 	}
 
 	// Start gRPC server to accept plugin connections
-	address := fmt.Sprintf("127.0.0.1:%d", cfg.ServerPort)
+	address := cfg.ServerPort
 	grpcServer, err := grpc.NewServer(address, m.handlePluginConnection)
 	if err != nil {
 		return fmt.Errorf("start plugin server: %w", err)

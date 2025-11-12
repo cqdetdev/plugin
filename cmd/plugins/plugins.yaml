@@ -1,6 +1,8 @@
 # Plugin Server Configuration
 # Dragonfly runs a gRPC server that plugins connect to
-server_port: 50050
+# Use Unix socket for best performance
+server_port: "unix:///tmp/dragonfly_plugin.sock"
+# Or use TCP for remote: "127.0.0.1:50050"
 
 plugins:
   # - id: example-node
