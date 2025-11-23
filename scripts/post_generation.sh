@@ -4,5 +4,5 @@ cd ts
 npm install
 npm run build
 
-cd ..
+cd ../go
 go mod tidy
