@@ -285,6 +285,10 @@ abstract class PluginBase {
 
     // Runner
     public function run(): void {
+        if (!\extension_loaded('grpc')) {
+            fwrite(STDERR, "[php] gRPC extension (ext-grpc) not loaded. Install via 'pecl install grpc' or run with the bundled PHP binary that includes gRPC.\n");
+            throw new \RuntimeException('Missing required PHP extension: ext-grpc');
+        }
         fwrite(STDOUT, "[php] connecting to {$this->serverAddress}...\n");
 
         $this->client = new PluginClient($this->serverAddress, [
