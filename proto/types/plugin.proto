@@ -22,6 +22,7 @@ message HostToPlugin {
     HostShutdown shutdown = 11;
     ServerInformationResponse server_info = 12;
     EventEnvelope event = 20;
+    ActionResult action_result = 21;
   }
 }
 
