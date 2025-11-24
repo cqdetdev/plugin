@@ -1,5 +1,5 @@
 {
-  "name": "dragonfly/plugin-sdk",
+  "name": "dragonfly-plugins/plugin-sdk",
   "description": "Official PHP SDK for creating Dragonfly Minecraft Bedrock server plugins.",
   "type": "library",
   "license": "MIT",
