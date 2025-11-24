@@ -3,8 +3,9 @@
 namespace ExamplePhp;
 
 use Dragonfly\PluginLib\Commands\Command;
-use Dragonfly\PluginLib\Commands\Optional;
 use Dragonfly\PluginLib\Commands\CommandSender;
+use Dragonfly\PluginLib\Commands\Optional;
+use Dragonfly\PluginLib\Entity\Player;
 use Dragonfly\PluginLib\Events\EventContext;
 use Df\Plugin\EffectType;
 use Dragonfly\PluginLib\Util\EnumResolver;
@@ -22,6 +23,11 @@ class EffectCommand extends Command {
     public Optional $showParticles;
 
     public function execute(CommandSender $sender, EventContext $ctx): void {
+        if (!$sender instanceof Player) {
+            $sender->sendMessage("§cThis command can only be run by a player.");
+            return;
+        }
+
         $effectId = $this->resolveEffectId($this->effect);
         if ($effectId === null) {
             $sender->sendMessage("§cUnknown effect: {$this->effect}");
