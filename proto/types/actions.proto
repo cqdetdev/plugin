@@ -12,61 +12,68 @@ message ActionBatch {
 message Action {
     optional string correlation_id = 1;
     oneof kind {
+        // Player: Basic Actions
         SendChatAction send_chat = 10;
         TeleportAction teleport = 11;
         KickAction kick = 12;
         SetGameModeAction set_game_mode = 13;
-        // Inventory & Items
+        // Player: Inventory & Items
         GiveItemAction give_item = 14;
         ClearInventoryAction clear_inventory = 15;
         SetHeldItemAction set_held_item = 16;
-        // Player State
+        // Player: State & Attributes
         SetHealthAction set_health = 20;
         SetFoodAction set_food = 21;
         SetExperienceAction set_experience = 22;
         SetVelocityAction set_velocity = 23;
-        // Effects & Status
+        // Player: Effects & Status
         AddEffectAction add_effect = 30;
         RemoveEffectAction remove_effect = 31;
-        // UI & Communication
+        // Player: UI & Communication
         SendTitleAction send_title = 40;
         SendPopupAction send_popup = 41;
         SendTipAction send_tip = 42;
         PlaySoundAction play_sound = 43;
         // Commands
         ExecuteCommandAction execute_command = 50;
-        // World configuration and effects
+        // World: Configuration & Settings
         WorldSetDefaultGameModeAction world_set_default_game_mode = 60;
         WorldSetDifficultyAction world_set_difficulty = 61;
         WorldSetTickRangeAction world_set_tick_range = 62;
-        WorldSetBlockAction world_set_block = 63;
-        WorldPlaySoundAction world_play_sound = 64;
-        WorldAddParticleAction world_add_particle = 65;
-        WorldSetTimeAction world_set_time = 66;
-        WorldStopTimeAction world_stop_time = 67;
-        WorldStartTimeAction world_start_time = 68;
         WorldSetSpawnAction world_set_spawn = 69;
-        // World queries
-        WorldQueryEntitiesAction world_query_entities = 70;
-        WorldQueryPlayersAction world_query_players = 71;
-        WorldQueryEntitiesWithinAction world_query_entities_within = 72;
-        WorldQueryDefaultGameModeAction world_query_default_game_mode = 73;
-        WorldQueryPlayerSpawnAction world_query_player_spawn = 74;
-        WorldQueryBlockAction world_query_block = 75;
-        WorldQueryBiomeAction world_query_biome = 76;
-        WorldQueryLightAction world_query_light = 77;
-        WorldQuerySkyLightAction world_query_sky_light = 78;
-        WorldQueryTemperatureAction world_query_temperature = 79;
-        WorldQueryHighestBlockAction world_query_highest_block = 80;
-        WorldQueryRainingAtAction world_query_raining_at = 81;
-        WorldQuerySnowingAtAction world_query_snowing_at = 82;
-        WorldQueryThunderingAtAction world_query_thundering_at = 83;
-        WorldQueryLiquidAction world_query_liquid = 84;
-        // World mutations (additional)
+        // World: Actions - Blocks & Terrain
+        WorldSetBlockAction world_set_block = 63;
         WorldSetBiomeAction world_set_biome = 90;
         WorldSetLiquidAction world_set_liquid = 91;
         WorldScheduleBlockUpdateAction world_schedule_block_update = 92;
         WorldBuildStructureAction world_build_structure = 93;
+        // World: Actions -  Time
+        WorldSetTimeAction world_set_time = 66;
+        WorldStopTimeAction world_stop_time = 67;
+        WorldStartTimeAction world_start_time = 68;
+        // World: Actions - Effects & Audio
+        WorldPlaySoundAction world_play_sound = 64;
+        WorldAddParticleAction world_add_particle = 65;
+        // World: Queries - Entities & Players
+        WorldQueryEntitiesAction world_query_entities = 70;
+        WorldQueryPlayersAction world_query_players = 71;
+        WorldQueryEntitiesWithinAction world_query_entities_within = 72;
+        WorldQueryPlayerSpawnAction world_query_player_spawn = 74;
+        // World: Queries - Blocks & Terrain
+        WorldQueryBlockAction world_query_block = 75;
+        WorldQueryBiomeAction world_query_biome = 76;
+        WorldQueryLiquidAction world_query_liquid = 84;
+        WorldQueryHighestBlockAction world_query_highest_block = 80;
+        // World: Queries - Lighting
+        WorldQueryLightAction world_query_light = 77;
+        WorldQuerySkyLightAction world_query_sky_light = 78;
+        // World: Queries - Weather & Environment
+        WorldQueryTemperatureAction world_query_temperature = 79;
+        WorldQueryRainingAtAction world_query_raining_at = 81;
+        WorldQuerySnowingAtAction world_query_snowing_at = 82;
+        WorldQueryThunderingAtAction world_query_thundering_at = 83;
+        // World: Queries - Settings
+        WorldQueryDefaultGameModeAction world_query_default_game_mode = 73;
     }
 }
 
