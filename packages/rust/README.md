@@ -46,25 +46,26 @@ tokio = { version = "1", features = ["full"] }
 
 This is the complete code for a simple plugin that greets players on join and adds a prefix to their chat messages.
 
-```rust
+```rust,no_run
 // --- Import all the necessary items ---
 use dragonfly_plugin::{
-    event::{EventContext, PluginEventHandler},
+    event::{EventContext, EventHandler},
     types, // Contains all event data structs
-    Handler, // The derive macro
-    Plugin,  // The main plugin runner
+    Plugin, // The derive macro
+    event_handler,
+    PluginRunner,  // The runner struct.
     Server,
 };
 
-// --- 1. Define Your Plugin Struct ---
-//
-// `#[derive(Handler)]` is the "trigger" that runs the macro.
-// `#[derive(Default)]` is common for simple, stateless plugins.
-#[derive(Handler, Default)]
-//
-// `#[subscriptions(...)]` is the "helper attribute" that lists
-// all the events this plugin needs to listen for.
-#[subscriptions(PlayerJoin, Chat)]
+// make sure to derive Plugin, (Default isn't required but is used in this example code only.)
+// when deriving Plugin you must include plugin attribute:
+#[derive(Plugin, Default)]
+#[plugin(
+    id = "example-rust",        // A unique ID for your plugin (matches plugins.yaml)
+    name = "Example Rust Plugin", // A human-readable name
+    version = "1.0.0",               // Your plugin's version
+    api = "1.0.0",               // The API version you're built against
+)]
 struct MyPlugin;
 
 // --- 2. Implement the Event Handlers ---
@@ -72,7 +73,14 @@ struct MyPlugin;
 // This is where all your plugin's logic lives.
 // You only need to implement the `async fn` handlers
 // for the events you subscribed to.
-impl PluginEventHandler for MyPlugin {
+// note your LSP will probably fill them in as fn on_xx() -> Future<()>
+// just delete the Future<()> + ... and put the keyword async before fn.
+//
+// #[event_handler] is a proc macro that detects which ever events you
+// are overriding and thus setups a list of events to compile to
+// as soon as your plugin is ran then it subscribes to them.
+#[event_handler]
+impl EventHandler for MyPlugin {
     /// This handler runs when a player joins the server.
     async fn on_player_join(
         &self,
@@ -111,12 +119,11 @@ impl PluginEventHandler for MyPlugin {
 async fn main() {
     println!("Starting my-plugin...");
 
-    // Create an instance of your plugin
-    let plugin = MyPlugin::default();
-
-    // Run the plugin. This will connect to the server
-    // and block forever, processing events.
-    Plugin::run(plugin, "127.0.0.1:50051")
+    // Here we default construct our Plugin.
+    // note you can use it almost like a Context variable as long
+    // as its Send / Sync.
+    // so you can not impl default and have it hold like a PgPool or etc.
+    PluginRunner::run(MyPlugin, "127.0.0.1:50051")
         .await
         .expect("Plugin failed to run");
 }

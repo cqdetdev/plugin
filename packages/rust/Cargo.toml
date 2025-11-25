@@ -1,13 +1,13 @@
 [workspace]
 resolver = "3"
-members = [".", "rust-plugin-macro", "rust-plugin-test", "xtask"]
+members = [".", "macro", "example", "xtask"]
 
 [workspace.dependencies]
-rust-plugin-macro = { path = "rust-plugin-macro", version = "0.1" }
+dragonfly-plugin-macro = { path = "macro", version = "0.1" }
 
 [package]
 name = "dragonfly-plugin"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/secmc/dragonfly-plugins"
@@ -27,4 +27,11 @@ tokio-stream = "0.1.17"
 tonic = { version = "0.12", features = ["transport"] }
 tower = "0.5"
 hyper-util = { version = "0.1", features = ["tokio"] }
-rust-plugin-macro = { workspace = true, version = "0.1" }
+dragonfly-plugin-macro = { workspace = true, version = "0.1", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+
+[features]
+default = ["macros"]
+macros = ["dep:dragonfly-plugin-macro"]

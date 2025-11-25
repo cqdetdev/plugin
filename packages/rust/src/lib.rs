@@ -21,10 +21,10 @@ use std::error::Error;
 pub use server::*;
 
 // main usage stuff for plugin devs:
+pub use dragonfly_plugin_macro::{Plugin, event_handler};
 pub use event::EventHandler;
-pub use rust_plugin_macro::Plugin;
 use tokio::sync::mpsc;
-use tokio_stream::{wrappers::ReceiverStream, StreamExt};
+use tokio_stream::{StreamExt, wrappers::ReceiverStream};
 
 #[cfg(unix)]
 use hyper_util::rt::TokioIo;
@@ -155,10 +155,10 @@ pub struct PluginInfo<'a> {
 /// `#[derive(Plugin)` like so:
 /// ```rust
 /// use dragonfly_plugin::{
-///    Dragonfly,      // Our runtime, clearly named
-///    EventHandler,   // The logic trait
+///    PluginRunner,      // Our runtime, clearly named
 ///    Plugin,         // The derive macro
-///    event_context::EventContext,
+///    event::{EventContext, EventHandler},
+///    event_handler,
 ///    types,
 ///    Server,
 /// };
@@ -170,16 +170,16 @@ pub struct PluginInfo<'a> {
 ///    version = "1.0.0",
 ///    api = "1.0.0"
 /// )]
-///#[events(PlayerJoin, Chat)]
 ///struct MyPlugin {}
 ///
+///#[event_handler]
 ///impl EventHandler for MyPlugin {
 ///    async fn on_player_join(
 ///        &self,
 ///        server: &Server,
 ///        event: &mut EventContext<'_, types::PlayerJoinEvent>,
-///    ) {
-///    }
+///    ) { }
+/// }
 /// ```
 pub trait Plugin: EventHandler + EventSubscriptions {
     fn get_info(&self) -> PluginInfo<'_>;

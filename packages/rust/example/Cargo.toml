@@ -1,6 +1,6 @@
 [package]
-name = "rust-plugin-test"
-version = "0.1.0"
+name = "dragon-plugin-example"
+version = "1.0.0"
 edition = "2024"
 
 [dependencies]

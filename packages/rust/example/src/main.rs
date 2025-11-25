@@ -3,6 +3,7 @@ use dragonfly_plugin::{
     PluginRunner,
     Server,
     event::{EventContext, EventHandler},
+    event_handler,
     types, // All the raw prost/tonic types
 };
 
@@ -20,10 +21,15 @@ use dragonfly_plugin::{
     version = "1.0.0",               // Your plugin's version
     api = "1.0.0",               // The API version you're built against
 )]
-#[events(PlayerJoin, Chat)] // A list of the events that you want to handle.
 struct MyExamplePlugin;
 
 // --- 3. Implement the event handlers ---
+// #[event_handler] is our magic proc macro that
+// detects which handlers you are implementing and
+// automatically gathers which events to subscribe to.
+// This replaces the prior #[events()] and impl EventSubscriptions
+// and manually writing the list in the function definition.
+#[event_handler]
 impl EventHandler for MyExamplePlugin {
     /// This handler runs when a player joins the server.
     /// We'll use it to send our "hello world" message.
