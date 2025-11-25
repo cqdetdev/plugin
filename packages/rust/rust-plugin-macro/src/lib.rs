@@ -1,65 +1,73 @@
-use heck::ToPascalCase;
 use proc_macro::TokenStream;
-use quote::{format_ident, quote};
-use syn::{ImplItem, ItemImpl, Type, parse_macro_input};
+use quote::quote;
+use syn::{
+    Data, DeriveInput, Ident, Token,
+    parse::{Parse, ParseStream},
+    parse_macro_input,
+    punctuated::Punctuated,
+};
 
-#[proc_macro_attribute]
-pub fn bedrock_plugin(_attr: TokenStream, item: TokenStream) -> TokenStream {
-    let input = parse_macro_input!(item as ItemImpl);
-    let original_impl = input.clone();
+#[proc_macro_derive(Handler, attributes(subscriptions))]
+pub fn handler_derive(input: TokenStream) -> TokenStream {
+    let ast = parse_macro_input!(input as DeriveInput);
+    if !matches!(&ast.data, Data::Struct(_)) {
+        let msg = "The #[derive(Handler)] macro can only be used on a `struct`.";
+        return syn::Error::new_spanned(&ast.ident, msg)
+            .to_compile_error()
+            .into();
+    };
 
-    let self_ty: &Type = &input.self_ty;
-
-    let trait_path = match &input.trait_ {
-        Some((_, path, _)) => path,
+    let attr = match ast
+        .attrs
+        .iter()
+        .find(|a| a.path().is_ident("subscriptions"))
+    {
+        Some(attr) => attr,
         None => {
-            let msg = "The #[bedrock_plugin] attribute can only be used on an `impl PluginEventHandler for ...` block.";
-            return syn::Error::new_spanned(&input.self_ty, msg)
+            let msg = "Missing #[subscriptions(...)] attribute. Please list the events to subscribe to, e.g., #[subscriptions(Chat, PlayerJoin)]";
+            return syn::Error::new_spanned(&ast.ident, msg)
                 .to_compile_error()
                 .into();
         }
     };
 
-    if trait_path
-        .segments
-        .last()
-        .is_some_and(|s| s.ident != "PluginEventHandler")
-    {
-        let msg = "The #[bedrock_plugin] attribute must be on an `impl PluginEventHandler for ...` block.";
-        return syn::Error::new_spanned(trait_path, msg)
-            .to_compile_error()
-            .into();
-    }
-
-    let mut subscriptions = Vec::new();
-    for item in &input.items {
-        if let ImplItem::Fn(method) = item {
-            let fn_name_str = method.sig.ident.to_string();
-
-            if let Some(event_name_snake) = fn_name_str.strip_prefix("on_") {
-                let event_name_pascal = event_name_snake.to_pascal_case();
-
-                let event_type_ident = format_ident!("{}", event_name_pascal);
-
-                subscriptions.push(quote! { types::EventType::#event_type_ident });
-            }
+    let subscriptions = match attr.parse_args::<SubscriptionsListParser>() {
+        Ok(list) => list.events,
+        Err(e) => {
+            return e.to_compile_error().into();
         }
-    }
+    };
 
-    let subscription_impl = quote! {
-        impl PluginSubscriptions for #self_ty {
+    let subscription_variants = subscriptions.iter().map(|ident| {
+        quote! { types::EventType::#ident }
+    });
+
+    let struct_name = &ast.ident;
+
+    let output = quote! {
+        impl dragonfly_plugin::PluginSubscriptions for #struct_name {
             fn get_subscriptions(&self) -> Vec<types::EventType> {
                 vec![
-                    #( #subscriptions ),*
+                    #( #subscription_variants ),*
                 ]
             }
         }
     };
 
-    let output = quote! {
-        #original_impl
-        #subscription_impl
-    };
-
     output.into()
+}
+
+struct SubscriptionsListParser {
+    events: Vec<Ident>,
+}
+
+impl Parse for SubscriptionsListParser {
+    fn parse(input: ParseStream) -> syn::Result<Self> {
+        let punctuated_list: Punctuated<syn::Ident, Token![,]> =
+            Punctuated::parse_terminated(input)?;
+
+        let events = punctuated_list.into_iter().collect();
+
+        Ok(Self { events })
+    }
 }

@@ -1,35 +1,29 @@
 use dragonfly_plugin::{
     Plugin,
-    PluginSubscriptions,
     Server,
-    async_trait,
     event::{EventContext, PluginEventHandler},
     types, // All the raw prost/tonic types
 };
-use rust_plugin_macro::bedrock_plugin;
+use rust_plugin_macro::Handler;
 
 // --- 2. Define a struct for your plugin's state ---
 // It can be empty, or it can hold databases, configs, etc.
+// Note `Handler` is what enables the auto regisration feature
+// `subscriptions(xx)` is the events that your handle will sub
+// to from the server.
 // We add `Default` so it's easy to create.
-#[derive(Default)]
+#[derive(Handler, Default)]
+#[subscriptions(PlayerJoin, Chat)]
 struct MyExamplePlugin;
 
 // --- 3. Implement the event handlers ---
-//
-// * We add `#[bedrock_plugin]` to this block.
-//   This macro will scan for every `on_...` function we implement
-//   and automatically generate the `impl PluginSubscriptions` for us.
-//
-
-#[async_trait]
-#[bedrock_plugin]
 impl PluginEventHandler for MyExamplePlugin {
     /// This handler runs when a player joins the server.
     /// We'll use it to send our "hello world" message.
     async fn on_player_join(
         &self,
         server: &Server,
-        event: &mut EventContext<types::PlayerJoinEvent>,
+        event: &mut EventContext<'_, types::PlayerJoinEvent>,
     ) {
         // Log to the plugin's console
         println!("Player '{}' has joined the server.", event.data.name);
@@ -54,7 +48,7 @@ impl PluginEventHandler for MyExamplePlugin {
     async fn on_chat(
         &self,
         _server: &Server, // We don't need the server handle for this
-        event: &mut EventContext<types::ChatEvent>,
+        event: &mut EventContext<'_, types::ChatEvent>,
     ) {
         // Get the original message from the event's data
         let original_message = &event.data.message;

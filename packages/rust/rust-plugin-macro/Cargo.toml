@@ -9,4 +9,3 @@ proc-macro = true
 [dependencies]
 quote = "1.0"
 syn = { version = "2.0", features = ["full", "parsing", "visit"] }
-heck = "0.5"
