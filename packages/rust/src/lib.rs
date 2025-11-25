@@ -25,7 +25,7 @@ pub use server::*;
 pub use async_trait::async_trait;
 pub use event::PluginEventHandler;
 use tokio::sync::mpsc;
-use tokio_stream::{wrappers::ReceiverStream, StreamExt};
+use tokio_stream::{StreamExt, wrappers::ReceiverStream};
 // TODO: pub use rust_plugin_macro::bedrock_plugin;
 
 #[cfg(unix)]
