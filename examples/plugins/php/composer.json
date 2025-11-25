@@ -2,9 +2,18 @@
   "name": "dragonfly/php-plugin-example",
   "description": "Example PHP plugin for Dragonfly using gRPC",
   "type": "project",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../../packages/php",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
   "require": {
     "php": ">=8.1",
-    "dragonfly-plugins/plugin-sdk": "^0.0.5",
+    "dragonfly-plugins/plugin-sdk": "dev-main",
     "grpc/grpc": "1.74.0",
     "google/protobuf": "^3.25"
   },
