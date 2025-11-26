@@ -124,6 +124,82 @@ func (m *Manager) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
 			m.handleWorldScheduleBlockUpdate(p, correlationID, kind.WorldScheduleBlockUpdate)
 		case *pb.Action_WorldBuildStructure:
 			m.handleWorldBuildStructure(p, correlationID, kind.WorldBuildStructure)
+		case *pb.Action_PlayerStartSprinting:
+			m.handlePlayerStartSprinting(kind.PlayerStartSprinting)
+		case *pb.Action_PlayerStopSprinting:
+			m.handlePlayerStopSprinting(kind.PlayerStopSprinting)
+		case *pb.Action_PlayerStartSneaking:
+			m.handlePlayerStartSneaking(kind.PlayerStartSneaking)
+		case *pb.Action_PlayerStopSneaking:
+			m.handlePlayerStopSneaking(kind.PlayerStopSneaking)
+		case *pb.Action_PlayerStartSwimming:
+			m.handlePlayerStartSwimming(kind.PlayerStartSwimming)
+		case *pb.Action_PlayerStopSwimming:
+			m.handlePlayerStopSwimming(kind.PlayerStopSwimming)
+		case *pb.Action_PlayerStartCrawling:
+			m.handlePlayerStartCrawling(kind.PlayerStartCrawling)
+		case *pb.Action_PlayerStopCrawling:
+			m.handlePlayerStopCrawling(kind.PlayerStopCrawling)
+		case *pb.Action_PlayerStartGliding:
+			m.handlePlayerStartGliding(kind.PlayerStartGliding)
+		case *pb.Action_PlayerStopGliding:
+			m.handlePlayerStopGliding(kind.PlayerStopGliding)
+		case *pb.Action_PlayerStartFlying:
+			m.handlePlayerStartFlying(kind.PlayerStartFlying)
+		case *pb.Action_PlayerStopFlying:
+			m.handlePlayerStopFlying(kind.PlayerStopFlying)
+		case *pb.Action_PlayerSetImmobile:
+			m.handlePlayerSetImmobile(kind.PlayerSetImmobile)
+		case *pb.Action_PlayerSetMobile:
+			m.handlePlayerSetMobile(kind.PlayerSetMobile)
+		case *pb.Action_PlayerSetSpeed:
+			m.handlePlayerSetSpeed(kind.PlayerSetSpeed)
+		case *pb.Action_PlayerSetFlightSpeed:
+			m.handlePlayerSetFlightSpeed(kind.PlayerSetFlightSpeed)
+		case *pb.Action_PlayerSetVerticalFlightSpeed:
+			m.handlePlayerSetVerticalFlightSpeed(kind.PlayerSetVerticalFlightSpeed)
+		case *pb.Action_PlayerSetAbsorption:
+			m.handlePlayerSetAbsorption(kind.PlayerSetAbsorption)
+		case *pb.Action_PlayerSetOnFire:
+			m.handlePlayerSetOnFire(kind.PlayerSetOnFire)
+		case *pb.Action_PlayerExtinguish:
+			m.handlePlayerExtinguish(kind.PlayerExtinguish)
+		case *pb.Action_PlayerSetInvisible:
+			m.handlePlayerSetInvisible(kind.PlayerSetInvisible)
+		case *pb.Action_PlayerSetVisible:
+			m.handlePlayerSetVisible(kind.PlayerSetVisible)
+		case *pb.Action_PlayerSetScale:
+			m.handlePlayerSetScale(kind.PlayerSetScale)
+		case *pb.Action_PlayerSetHeldSlot:
+			m.handlePlayerSetHeldSlot(kind.PlayerSetHeldSlot)
+		case *pb.Action_PlayerSendToast:
+			m.handlePlayerSendToast(kind.PlayerSendToast)
+		case *pb.Action_PlayerSendJukeboxPopup:
+			m.handlePlayerSendJukeboxPopup(kind.PlayerSendJukeboxPopup)
+		case *pb.Action_PlayerShowCoordinates:
+			m.handlePlayerShowCoordinates(kind.PlayerShowCoordinates)
+		case *pb.Action_PlayerHideCoordinates:
+			m.handlePlayerHideCoordinates(kind.PlayerHideCoordinates)
+		case *pb.Action_PlayerEnableInstantRespawn:
+			m.handlePlayerEnableInstantRespawn(kind.PlayerEnableInstantRespawn)
+		case *pb.Action_PlayerDisableInstantRespawn:
+			m.handlePlayerDisableInstantRespawn(kind.PlayerDisableInstantRespawn)
+		case *pb.Action_PlayerSetNameTag:
+			m.handlePlayerSetNameTag(kind.PlayerSetNameTag)
+		case *pb.Action_PlayerSetScoreTag:
+			m.handlePlayerSetScoreTag(kind.PlayerSetScoreTag)
+		case *pb.Action_PlayerShowParticle:
+			m.handlePlayerShowParticle(kind.PlayerShowParticle)
+		case *pb.Action_PlayerRespawn:
+			m.handlePlayerRespawn(kind.PlayerRespawn)
+		case *pb.Action_PlayerTransfer:
+			m.handlePlayerTransferAction(kind.PlayerTransfer)
+		case *pb.Action_PlayerKnockBack:
+			m.handlePlayerKnockBack(kind.PlayerKnockBack)
+		case *pb.Action_PlayerSwingArm:
+			m.handlePlayerSwingArm(kind.PlayerSwingArm)
+		case *pb.Action_PlayerPunchAir:
+			m.handlePlayerPunchAirAction(kind.PlayerPunchAir)
 		}
 	}
 }
@@ -456,6 +532,313 @@ func (m *Manager) handleWorldSetDifficulty(p *pluginProcess, correlationID strin
 	m.sendActionOK(p, correlationID)
 }
 
+// Player movement toggles
+func (m *Manager) handlePlayerStartSprinting(act *pb.PlayerStartSprintingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartSprinting() })
+}
+func (m *Manager) handlePlayerStopSprinting(act *pb.PlayerStopSprintingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopSprinting() })
+}
+func (m *Manager) handlePlayerStartSneaking(act *pb.PlayerStartSneakingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartSneaking() })
+}
+func (m *Manager) handlePlayerStopSneaking(act *pb.PlayerStopSneakingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopSneaking() })
+}
+func (m *Manager) handlePlayerStartSwimming(act *pb.PlayerStartSwimmingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartSwimming() })
+}
+func (m *Manager) handlePlayerStopSwimming(act *pb.PlayerStopSwimmingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopSwimming() })
+}
+func (m *Manager) handlePlayerStartCrawling(act *pb.PlayerStartCrawlingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartCrawling() })
+}
+func (m *Manager) handlePlayerStopCrawling(act *pb.PlayerStopCrawlingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopCrawling() })
+}
+func (m *Manager) handlePlayerStartGliding(act *pb.PlayerStartGlidingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartGliding() })
+}
+func (m *Manager) handlePlayerStopGliding(act *pb.PlayerStopGlidingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopGliding() })
+}
+func (m *Manager) handlePlayerStartFlying(act *pb.PlayerStartFlyingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StartFlying() })
+}
+func (m *Manager) handlePlayerStopFlying(act *pb.PlayerStopFlyingAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.StopFlying() })
+}
+
+// Player mobility lock
+func (m *Manager) handlePlayerSetImmobile(act *pb.PlayerSetImmobileAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetImmobile() })
+}
+func (m *Manager) handlePlayerSetMobile(act *pb.PlayerSetMobileAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetMobile() })
+}
+
+// Player movement attributes
+func (m *Manager) handlePlayerSetSpeed(act *pb.PlayerSetSpeedAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetSpeed(act.Speed) })
+}
+func (m *Manager) handlePlayerSetFlightSpeed(act *pb.PlayerSetFlightSpeedAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetFlightSpeed(act.FlightSpeed) })
+}
+func (m *Manager) handlePlayerSetVerticalFlightSpeed(act *pb.PlayerSetVerticalFlightSpeedAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetVerticalFlightSpeed(act.VerticalFlightSpeed) })
+}
+
+// Player health/status
+func (m *Manager) handlePlayerSetAbsorption(act *pb.PlayerSetAbsorptionAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetAbsorption(act.Absorption) })
+}
+func (m *Manager) handlePlayerSetOnFire(act *pb.PlayerSetOnFireAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	d := time.Duration(act.DurationMs) * time.Millisecond
+	m.execMethod(id, func(pl *player.Player) { pl.SetOnFire(d) })
+}
+func (m *Manager) handlePlayerExtinguish(act *pb.PlayerExtinguishAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.Extinguish() })
+}
+func (m *Manager) handlePlayerSetInvisible(act *pb.PlayerSetInvisibleAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetInvisible() })
+}
+func (m *Manager) handlePlayerSetVisible(act *pb.PlayerSetVisibleAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetVisible() })
+}
+
+// Player misc attributes
+func (m *Manager) handlePlayerSetScale(act *pb.PlayerSetScaleAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SetScale(act.Scale) })
+}
+func (m *Manager) handlePlayerSetHeldSlot(act *pb.PlayerSetHeldSlotAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	slot := int(act.Slot)
+	m.execMethod(id, func(pl *player.Player) { _ = pl.SetHeldSlot(slot) })
+}
+
+// Player UI
+func (m *Manager) handlePlayerSendToast(act *pb.PlayerSendToastAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	titleText := act.Title
+	message := act.Message
+	m.execMethod(id, func(pl *player.Player) { pl.SendToast(titleText, message) })
+}
+func (m *Manager) handlePlayerSendJukeboxPopup(act *pb.PlayerSendJukeboxPopupAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	msg := act.Message
+	m.execMethod(id, func(pl *player.Player) { pl.SendJukeboxPopup(msg) })
+}
+func (m *Manager) handlePlayerShowCoordinates(act *pb.PlayerShowCoordinatesAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.ShowCoordinates() })
+}
+func (m *Manager) handlePlayerHideCoordinates(act *pb.PlayerHideCoordinatesAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.HideCoordinates() })
+}
+func (m *Manager) handlePlayerEnableInstantRespawn(act *pb.PlayerEnableInstantRespawnAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.EnableInstantRespawn() })
+}
+func (m *Manager) handlePlayerDisableInstantRespawn(act *pb.PlayerDisableInstantRespawnAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.DisableInstantRespawn() })
+}
+func (m *Manager) handlePlayerSetNameTag(act *pb.PlayerSetNameTagAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	name := act.NameTag
+	m.execMethod(id, func(pl *player.Player) { pl.SetNameTag(name) })
+}
+func (m *Manager) handlePlayerSetScoreTag(act *pb.PlayerSetScoreTagAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	text := act.ScoreTag
+	m.execMethod(id, func(pl *player.Player) { pl.SetScoreTag(text) })
+}
+
+// Player visuals
+func (m *Manager) handlePlayerShowParticle(act *pb.PlayerShowParticleAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	pos, ok := vec3FromProto(act.Position)
+	if !ok {
+		return
+	}
+	part, ok := particleFromPlayerAction(act)
+	if !ok {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.ShowParticle(pos, part) })
+}
+
+// Player lifecycle/control
+func (m *Manager) handlePlayerRespawn(act *pb.PlayerRespawnAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { _ = pl.Respawn() })
+}
+func (m *Manager) handlePlayerTransferAction(act *pb.PlayerTransferAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	addr := parseProtoAddress(act.Address)
+	if addr == nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { _ = pl.Transfer(addr.String()) })
+}
+func (m *Manager) handlePlayerKnockBack(act *pb.PlayerKnockBackAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	src, ok := vec3FromProto(act.Source)
+	if !ok {
+		return
+	}
+	force := act.Force
+	height := act.Height
+	m.execMethod(id, func(pl *player.Player) { pl.KnockBack(src, force, height) })
+}
+func (m *Manager) handlePlayerSwingArm(act *pb.PlayerSwingArmAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.SwingArm() })
+}
+func (m *Manager) handlePlayerPunchAirAction(act *pb.PlayerPunchAirAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) { pl.PunchAir() })
+}
+
 func (m *Manager) handleWorldSetTickRange(p *pluginProcess, correlationID string, act *pb.WorldSetTickRangeAction) {
 	w := m.worldFromRef(act.GetWorld())
 	if w == nil {
@@ -782,7 +1165,12 @@ func soundFromProto(s pb.Sound) world.Sound {
 }
 
 func particleFromProto(act *pb.WorldAddParticleAction) (world.Particle, bool) {
-	switch act.GetParticle() {
+	return particleFromType(act.GetParticle(), act.Block, act.Face)
+}
+
+// particleFromType maps a particle enum plus optional block/face into a world.Particle.
+func particleFromType(pt pb.ParticleType, blk *pb.BlockState, f *int32) (world.Particle, bool) {
+	switch pt {
 	case pb.ParticleType_PARTICLE_HUGE_EXPLOSION:
 		return particle.HugeExplosion{}, true
 	case pb.ParticleType_PARTICLE_ENDERMAN_TELEPORT:
@@ -816,23 +1204,23 @@ func particleFromProto(act *pb.WorldAddParticleAction) (world.Particle, bool) {
 	case pb.ParticleType_PARTICLE_DUST_PLUME:
 		return particle.DustPlume{}, true
 	case pb.ParticleType_PARTICLE_BLOCK_BREAK:
-		if act.Block != nil {
-			if blk, ok := blockFromProto(act.Block); ok {
-				return particle.BlockBreak{Block: blk}, true
-			}
+		if b, ok := blockFromProto(blk); ok {
+			return particle.BlockBreak{Block: b}, true
 		}
 	case pb.ParticleType_PARTICLE_PUNCH_BLOCK:
-		if act.Block != nil {
-			if blk, ok := blockFromProto(act.Block); ok {
-				face := cube.Face(0)
-				if act.Face != nil {
-					face = cube.Face(*act.Face)
-				}
-				return particle.PunchBlock{Block: blk, Face: face}, true
+		if b, ok := blockFromProto(blk); ok {
+			face := cube.FaceUp
+			if f != nil {
+				face = cube.Face(*f)
 			}
+			return particle.PunchBlock{Block: b, Face: face}, true
 		}
 	}
 	return nil, false
+}
+
+func particleFromPlayerAction(act *pb.PlayerShowParticleAction) (world.Particle, bool) {
+	return particleFromType(act.GetParticle(), act.Block, act.Face)
 }
 
 func playerTitleFromAction(act *pb.SendTitleAction) title.Title {

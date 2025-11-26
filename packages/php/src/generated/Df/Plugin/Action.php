@@ -89,6 +89,52 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Df\Plugin\WorldQueryThunderingAtAction $world_query_thundering_at
      *     @type \Df\Plugin\WorldQueryDefaultGameModeAction $world_query_default_game_mode
      *           World: Queries - Settings
+     *     @type \Df\Plugin\PlayerStartSprintingAction $player_start_sprinting
+     *           Player: Movement toggles
+     *     @type \Df\Plugin\PlayerStopSprintingAction $player_stop_sprinting
+     *     @type \Df\Plugin\PlayerStartSneakingAction $player_start_sneaking
+     *     @type \Df\Plugin\PlayerStopSneakingAction $player_stop_sneaking
+     *     @type \Df\Plugin\PlayerStartSwimmingAction $player_start_swimming
+     *     @type \Df\Plugin\PlayerStopSwimmingAction $player_stop_swimming
+     *     @type \Df\Plugin\PlayerStartCrawlingAction $player_start_crawling
+     *     @type \Df\Plugin\PlayerStopCrawlingAction $player_stop_crawling
+     *     @type \Df\Plugin\PlayerStartGlidingAction $player_start_gliding
+     *     @type \Df\Plugin\PlayerStopGlidingAction $player_stop_gliding
+     *     @type \Df\Plugin\PlayerStartFlyingAction $player_start_flying
+     *     @type \Df\Plugin\PlayerStopFlyingAction $player_stop_flying
+     *     @type \Df\Plugin\PlayerSetImmobileAction $player_set_immobile
+     *           Player: Mobility lock
+     *     @type \Df\Plugin\PlayerSetMobileAction $player_set_mobile
+     *     @type \Df\Plugin\PlayerSetSpeedAction $player_set_speed
+     *           Player: Movement attributes
+     *     @type \Df\Plugin\PlayerSetFlightSpeedAction $player_set_flight_speed
+     *     @type \Df\Plugin\PlayerSetVerticalFlightSpeedAction $player_set_vertical_flight_speed
+     *     @type \Df\Plugin\PlayerSetAbsorptionAction $player_set_absorption
+     *           Player: Health/Status
+     *     @type \Df\Plugin\PlayerSetOnFireAction $player_set_on_fire
+     *     @type \Df\Plugin\PlayerExtinguishAction $player_extinguish
+     *     @type \Df\Plugin\PlayerSetInvisibleAction $player_set_invisible
+     *     @type \Df\Plugin\PlayerSetVisibleAction $player_set_visible
+     *     @type \Df\Plugin\PlayerSetScaleAction $player_set_scale
+     *           Player: Misc attributes
+     *     @type \Df\Plugin\PlayerSetHeldSlotAction $player_set_held_slot
+     *     @type \Df\Plugin\PlayerSendToastAction $player_send_toast
+     *           Player: UI
+     *     @type \Df\Plugin\PlayerSendJukeboxPopupAction $player_send_jukebox_popup
+     *     @type \Df\Plugin\PlayerShowCoordinatesAction $player_show_coordinates
+     *     @type \Df\Plugin\PlayerHideCoordinatesAction $player_hide_coordinates
+     *     @type \Df\Plugin\PlayerEnableInstantRespawnAction $player_enable_instant_respawn
+     *     @type \Df\Plugin\PlayerDisableInstantRespawnAction $player_disable_instant_respawn
+     *     @type \Df\Plugin\PlayerSetNameTagAction $player_set_name_tag
+     *     @type \Df\Plugin\PlayerSetScoreTagAction $player_set_score_tag
+     *     @type \Df\Plugin\PlayerShowParticleAction $player_show_particle
+     *           Player: Visuals
+     *     @type \Df\Plugin\PlayerRespawnAction $player_respawn
+     *           Player: Lifecycle/Control
+     *     @type \Df\Plugin\PlayerTransferAction $player_transfer
+     *     @type \Df\Plugin\PlayerKnockBackAction $player_knock_back
+     *     @type \Df\Plugin\PlayerSwingArmAction $player_swing_arm
+     *     @type \Df\Plugin\PlayerPunchAirAction $player_punch_air
      * }
      */
     public function __construct($data = NULL) {
@@ -1453,6 +1499,1064 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Df\Plugin\WorldQueryDefaultGameModeAction::class);
         $this->writeOneof(73, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Movement toggles
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSprintingAction player_start_sprinting = 94 [json_name = "playerStartSprinting"];</code>
+     * @return \Df\Plugin\PlayerStartSprintingAction|null
+     */
+    public function getPlayerStartSprinting()
+    {
+        return $this->readOneof(94);
+    }
+
+    public function hasPlayerStartSprinting()
+    {
+        return $this->hasOneof(94);
+    }
+
+    /**
+     * Player: Movement toggles
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSprintingAction player_start_sprinting = 94 [json_name = "playerStartSprinting"];</code>
+     * @param \Df\Plugin\PlayerStartSprintingAction $var
+     * @return $this
+     */
+    public function setPlayerStartSprinting($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartSprintingAction::class);
+        $this->writeOneof(94, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSprintingAction player_stop_sprinting = 95 [json_name = "playerStopSprinting"];</code>
+     * @return \Df\Plugin\PlayerStopSprintingAction|null
+     */
+    public function getPlayerStopSprinting()
+    {
+        return $this->readOneof(95);
+    }
+
+    public function hasPlayerStopSprinting()
+    {
+        return $this->hasOneof(95);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSprintingAction player_stop_sprinting = 95 [json_name = "playerStopSprinting"];</code>
+     * @param \Df\Plugin\PlayerStopSprintingAction $var
+     * @return $this
+     */
+    public function setPlayerStopSprinting($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopSprintingAction::class);
+        $this->writeOneof(95, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSneakingAction player_start_sneaking = 96 [json_name = "playerStartSneaking"];</code>
+     * @return \Df\Plugin\PlayerStartSneakingAction|null
+     */
+    public function getPlayerStartSneaking()
+    {
+        return $this->readOneof(96);
+    }
+
+    public function hasPlayerStartSneaking()
+    {
+        return $this->hasOneof(96);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSneakingAction player_start_sneaking = 96 [json_name = "playerStartSneaking"];</code>
+     * @param \Df\Plugin\PlayerStartSneakingAction $var
+     * @return $this
+     */
+    public function setPlayerStartSneaking($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartSneakingAction::class);
+        $this->writeOneof(96, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSneakingAction player_stop_sneaking = 97 [json_name = "playerStopSneaking"];</code>
+     * @return \Df\Plugin\PlayerStopSneakingAction|null
+     */
+    public function getPlayerStopSneaking()
+    {
+        return $this->readOneof(97);
+    }
+
+    public function hasPlayerStopSneaking()
+    {
+        return $this->hasOneof(97);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSneakingAction player_stop_sneaking = 97 [json_name = "playerStopSneaking"];</code>
+     * @param \Df\Plugin\PlayerStopSneakingAction $var
+     * @return $this
+     */
+    public function setPlayerStopSneaking($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopSneakingAction::class);
+        $this->writeOneof(97, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSwimmingAction player_start_swimming = 98 [json_name = "playerStartSwimming"];</code>
+     * @return \Df\Plugin\PlayerStartSwimmingAction|null
+     */
+    public function getPlayerStartSwimming()
+    {
+        return $this->readOneof(98);
+    }
+
+    public function hasPlayerStartSwimming()
+    {
+        return $this->hasOneof(98);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartSwimmingAction player_start_swimming = 98 [json_name = "playerStartSwimming"];</code>
+     * @param \Df\Plugin\PlayerStartSwimmingAction $var
+     * @return $this
+     */
+    public function setPlayerStartSwimming($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartSwimmingAction::class);
+        $this->writeOneof(98, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSwimmingAction player_stop_swimming = 99 [json_name = "playerStopSwimming"];</code>
+     * @return \Df\Plugin\PlayerStopSwimmingAction|null
+     */
+    public function getPlayerStopSwimming()
+    {
+        return $this->readOneof(99);
+    }
+
+    public function hasPlayerStopSwimming()
+    {
+        return $this->hasOneof(99);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopSwimmingAction player_stop_swimming = 99 [json_name = "playerStopSwimming"];</code>
+     * @param \Df\Plugin\PlayerStopSwimmingAction $var
+     * @return $this
+     */
+    public function setPlayerStopSwimming($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopSwimmingAction::class);
+        $this->writeOneof(99, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartCrawlingAction player_start_crawling = 100 [json_name = "playerStartCrawling"];</code>
+     * @return \Df\Plugin\PlayerStartCrawlingAction|null
+     */
+    public function getPlayerStartCrawling()
+    {
+        return $this->readOneof(100);
+    }
+
+    public function hasPlayerStartCrawling()
+    {
+        return $this->hasOneof(100);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartCrawlingAction player_start_crawling = 100 [json_name = "playerStartCrawling"];</code>
+     * @param \Df\Plugin\PlayerStartCrawlingAction $var
+     * @return $this
+     */
+    public function setPlayerStartCrawling($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartCrawlingAction::class);
+        $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopCrawlingAction player_stop_crawling = 101 [json_name = "playerStopCrawling"];</code>
+     * @return \Df\Plugin\PlayerStopCrawlingAction|null
+     */
+    public function getPlayerStopCrawling()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasPlayerStopCrawling()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopCrawlingAction player_stop_crawling = 101 [json_name = "playerStopCrawling"];</code>
+     * @param \Df\Plugin\PlayerStopCrawlingAction $var
+     * @return $this
+     */
+    public function setPlayerStopCrawling($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopCrawlingAction::class);
+        $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartGlidingAction player_start_gliding = 102 [json_name = "playerStartGliding"];</code>
+     * @return \Df\Plugin\PlayerStartGlidingAction|null
+     */
+    public function getPlayerStartGliding()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasPlayerStartGliding()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartGlidingAction player_start_gliding = 102 [json_name = "playerStartGliding"];</code>
+     * @param \Df\Plugin\PlayerStartGlidingAction $var
+     * @return $this
+     */
+    public function setPlayerStartGliding($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartGlidingAction::class);
+        $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopGlidingAction player_stop_gliding = 103 [json_name = "playerStopGliding"];</code>
+     * @return \Df\Plugin\PlayerStopGlidingAction|null
+     */
+    public function getPlayerStopGliding()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasPlayerStopGliding()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopGlidingAction player_stop_gliding = 103 [json_name = "playerStopGliding"];</code>
+     * @param \Df\Plugin\PlayerStopGlidingAction $var
+     * @return $this
+     */
+    public function setPlayerStopGliding($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopGlidingAction::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartFlyingAction player_start_flying = 104 [json_name = "playerStartFlying"];</code>
+     * @return \Df\Plugin\PlayerStartFlyingAction|null
+     */
+    public function getPlayerStartFlying()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasPlayerStartFlying()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStartFlyingAction player_start_flying = 104 [json_name = "playerStartFlying"];</code>
+     * @param \Df\Plugin\PlayerStartFlyingAction $var
+     * @return $this
+     */
+    public function setPlayerStartFlying($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStartFlyingAction::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopFlyingAction player_stop_flying = 105 [json_name = "playerStopFlying"];</code>
+     * @return \Df\Plugin\PlayerStopFlyingAction|null
+     */
+    public function getPlayerStopFlying()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasPlayerStopFlying()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerStopFlyingAction player_stop_flying = 105 [json_name = "playerStopFlying"];</code>
+     * @param \Df\Plugin\PlayerStopFlyingAction $var
+     * @return $this
+     */
+    public function setPlayerStopFlying($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerStopFlyingAction::class);
+        $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Mobility lock
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetImmobileAction player_set_immobile = 106 [json_name = "playerSetImmobile"];</code>
+     * @return \Df\Plugin\PlayerSetImmobileAction|null
+     */
+    public function getPlayerSetImmobile()
+    {
+        return $this->readOneof(106);
+    }
+
+    public function hasPlayerSetImmobile()
+    {
+        return $this->hasOneof(106);
+    }
+
+    /**
+     * Player: Mobility lock
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetImmobileAction player_set_immobile = 106 [json_name = "playerSetImmobile"];</code>
+     * @param \Df\Plugin\PlayerSetImmobileAction $var
+     * @return $this
+     */
+    public function setPlayerSetImmobile($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetImmobileAction::class);
+        $this->writeOneof(106, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetMobileAction player_set_mobile = 107 [json_name = "playerSetMobile"];</code>
+     * @return \Df\Plugin\PlayerSetMobileAction|null
+     */
+    public function getPlayerSetMobile()
+    {
+        return $this->readOneof(107);
+    }
+
+    public function hasPlayerSetMobile()
+    {
+        return $this->hasOneof(107);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetMobileAction player_set_mobile = 107 [json_name = "playerSetMobile"];</code>
+     * @param \Df\Plugin\PlayerSetMobileAction $var
+     * @return $this
+     */
+    public function setPlayerSetMobile($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetMobileAction::class);
+        $this->writeOneof(107, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Movement attributes
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetSpeedAction player_set_speed = 108 [json_name = "playerSetSpeed"];</code>
+     * @return \Df\Plugin\PlayerSetSpeedAction|null
+     */
+    public function getPlayerSetSpeed()
+    {
+        return $this->readOneof(108);
+    }
+
+    public function hasPlayerSetSpeed()
+    {
+        return $this->hasOneof(108);
+    }
+
+    /**
+     * Player: Movement attributes
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetSpeedAction player_set_speed = 108 [json_name = "playerSetSpeed"];</code>
+     * @param \Df\Plugin\PlayerSetSpeedAction $var
+     * @return $this
+     */
+    public function setPlayerSetSpeed($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetSpeedAction::class);
+        $this->writeOneof(108, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetFlightSpeedAction player_set_flight_speed = 109 [json_name = "playerSetFlightSpeed"];</code>
+     * @return \Df\Plugin\PlayerSetFlightSpeedAction|null
+     */
+    public function getPlayerSetFlightSpeed()
+    {
+        return $this->readOneof(109);
+    }
+
+    public function hasPlayerSetFlightSpeed()
+    {
+        return $this->hasOneof(109);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetFlightSpeedAction player_set_flight_speed = 109 [json_name = "playerSetFlightSpeed"];</code>
+     * @param \Df\Plugin\PlayerSetFlightSpeedAction $var
+     * @return $this
+     */
+    public function setPlayerSetFlightSpeed($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetFlightSpeedAction::class);
+        $this->writeOneof(109, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetVerticalFlightSpeedAction player_set_vertical_flight_speed = 110 [json_name = "playerSetVerticalFlightSpeed"];</code>
+     * @return \Df\Plugin\PlayerSetVerticalFlightSpeedAction|null
+     */
+    public function getPlayerSetVerticalFlightSpeed()
+    {
+        return $this->readOneof(110);
+    }
+
+    public function hasPlayerSetVerticalFlightSpeed()
+    {
+        return $this->hasOneof(110);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetVerticalFlightSpeedAction player_set_vertical_flight_speed = 110 [json_name = "playerSetVerticalFlightSpeed"];</code>
+     * @param \Df\Plugin\PlayerSetVerticalFlightSpeedAction $var
+     * @return $this
+     */
+    public function setPlayerSetVerticalFlightSpeed($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetVerticalFlightSpeedAction::class);
+        $this->writeOneof(110, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Health/Status
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetAbsorptionAction player_set_absorption = 111 [json_name = "playerSetAbsorption"];</code>
+     * @return \Df\Plugin\PlayerSetAbsorptionAction|null
+     */
+    public function getPlayerSetAbsorption()
+    {
+        return $this->readOneof(111);
+    }
+
+    public function hasPlayerSetAbsorption()
+    {
+        return $this->hasOneof(111);
+    }
+
+    /**
+     * Player: Health/Status
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetAbsorptionAction player_set_absorption = 111 [json_name = "playerSetAbsorption"];</code>
+     * @param \Df\Plugin\PlayerSetAbsorptionAction $var
+     * @return $this
+     */
+    public function setPlayerSetAbsorption($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetAbsorptionAction::class);
+        $this->writeOneof(111, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetOnFireAction player_set_on_fire = 112 [json_name = "playerSetOnFire"];</code>
+     * @return \Df\Plugin\PlayerSetOnFireAction|null
+     */
+    public function getPlayerSetOnFire()
+    {
+        return $this->readOneof(112);
+    }
+
+    public function hasPlayerSetOnFire()
+    {
+        return $this->hasOneof(112);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetOnFireAction player_set_on_fire = 112 [json_name = "playerSetOnFire"];</code>
+     * @param \Df\Plugin\PlayerSetOnFireAction $var
+     * @return $this
+     */
+    public function setPlayerSetOnFire($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetOnFireAction::class);
+        $this->writeOneof(112, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerExtinguishAction player_extinguish = 113 [json_name = "playerExtinguish"];</code>
+     * @return \Df\Plugin\PlayerExtinguishAction|null
+     */
+    public function getPlayerExtinguish()
+    {
+        return $this->readOneof(113);
+    }
+
+    public function hasPlayerExtinguish()
+    {
+        return $this->hasOneof(113);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerExtinguishAction player_extinguish = 113 [json_name = "playerExtinguish"];</code>
+     * @param \Df\Plugin\PlayerExtinguishAction $var
+     * @return $this
+     */
+    public function setPlayerExtinguish($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerExtinguishAction::class);
+        $this->writeOneof(113, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetInvisibleAction player_set_invisible = 114 [json_name = "playerSetInvisible"];</code>
+     * @return \Df\Plugin\PlayerSetInvisibleAction|null
+     */
+    public function getPlayerSetInvisible()
+    {
+        return $this->readOneof(114);
+    }
+
+    public function hasPlayerSetInvisible()
+    {
+        return $this->hasOneof(114);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetInvisibleAction player_set_invisible = 114 [json_name = "playerSetInvisible"];</code>
+     * @param \Df\Plugin\PlayerSetInvisibleAction $var
+     * @return $this
+     */
+    public function setPlayerSetInvisible($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetInvisibleAction::class);
+        $this->writeOneof(114, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetVisibleAction player_set_visible = 115 [json_name = "playerSetVisible"];</code>
+     * @return \Df\Plugin\PlayerSetVisibleAction|null
+     */
+    public function getPlayerSetVisible()
+    {
+        return $this->readOneof(115);
+    }
+
+    public function hasPlayerSetVisible()
+    {
+        return $this->hasOneof(115);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetVisibleAction player_set_visible = 115 [json_name = "playerSetVisible"];</code>
+     * @param \Df\Plugin\PlayerSetVisibleAction $var
+     * @return $this
+     */
+    public function setPlayerSetVisible($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetVisibleAction::class);
+        $this->writeOneof(115, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Misc attributes
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetScaleAction player_set_scale = 116 [json_name = "playerSetScale"];</code>
+     * @return \Df\Plugin\PlayerSetScaleAction|null
+     */
+    public function getPlayerSetScale()
+    {
+        return $this->readOneof(116);
+    }
+
+    public function hasPlayerSetScale()
+    {
+        return $this->hasOneof(116);
+    }
+
+    /**
+     * Player: Misc attributes
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSetScaleAction player_set_scale = 116 [json_name = "playerSetScale"];</code>
+     * @param \Df\Plugin\PlayerSetScaleAction $var
+     * @return $this
+     */
+    public function setPlayerSetScale($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetScaleAction::class);
+        $this->writeOneof(116, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetHeldSlotAction player_set_held_slot = 117 [json_name = "playerSetHeldSlot"];</code>
+     * @return \Df\Plugin\PlayerSetHeldSlotAction|null
+     */
+    public function getPlayerSetHeldSlot()
+    {
+        return $this->readOneof(117);
+    }
+
+    public function hasPlayerSetHeldSlot()
+    {
+        return $this->hasOneof(117);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetHeldSlotAction player_set_held_slot = 117 [json_name = "playerSetHeldSlot"];</code>
+     * @param \Df\Plugin\PlayerSetHeldSlotAction $var
+     * @return $this
+     */
+    public function setPlayerSetHeldSlot($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetHeldSlotAction::class);
+        $this->writeOneof(117, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: UI
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSendToastAction player_send_toast = 118 [json_name = "playerSendToast"];</code>
+     * @return \Df\Plugin\PlayerSendToastAction|null
+     */
+    public function getPlayerSendToast()
+    {
+        return $this->readOneof(118);
+    }
+
+    public function hasPlayerSendToast()
+    {
+        return $this->hasOneof(118);
+    }
+
+    /**
+     * Player: UI
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerSendToastAction player_send_toast = 118 [json_name = "playerSendToast"];</code>
+     * @param \Df\Plugin\PlayerSendToastAction $var
+     * @return $this
+     */
+    public function setPlayerSendToast($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSendToastAction::class);
+        $this->writeOneof(118, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSendJukeboxPopupAction player_send_jukebox_popup = 119 [json_name = "playerSendJukeboxPopup"];</code>
+     * @return \Df\Plugin\PlayerSendJukeboxPopupAction|null
+     */
+    public function getPlayerSendJukeboxPopup()
+    {
+        return $this->readOneof(119);
+    }
+
+    public function hasPlayerSendJukeboxPopup()
+    {
+        return $this->hasOneof(119);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSendJukeboxPopupAction player_send_jukebox_popup = 119 [json_name = "playerSendJukeboxPopup"];</code>
+     * @param \Df\Plugin\PlayerSendJukeboxPopupAction $var
+     * @return $this
+     */
+    public function setPlayerSendJukeboxPopup($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSendJukeboxPopupAction::class);
+        $this->writeOneof(119, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerShowCoordinatesAction player_show_coordinates = 120 [json_name = "playerShowCoordinates"];</code>
+     * @return \Df\Plugin\PlayerShowCoordinatesAction|null
+     */
+    public function getPlayerShowCoordinates()
+    {
+        return $this->readOneof(120);
+    }
+
+    public function hasPlayerShowCoordinates()
+    {
+        return $this->hasOneof(120);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerShowCoordinatesAction player_show_coordinates = 120 [json_name = "playerShowCoordinates"];</code>
+     * @param \Df\Plugin\PlayerShowCoordinatesAction $var
+     * @return $this
+     */
+    public function setPlayerShowCoordinates($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerShowCoordinatesAction::class);
+        $this->writeOneof(120, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerHideCoordinatesAction player_hide_coordinates = 121 [json_name = "playerHideCoordinates"];</code>
+     * @return \Df\Plugin\PlayerHideCoordinatesAction|null
+     */
+    public function getPlayerHideCoordinates()
+    {
+        return $this->readOneof(121);
+    }
+
+    public function hasPlayerHideCoordinates()
+    {
+        return $this->hasOneof(121);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerHideCoordinatesAction player_hide_coordinates = 121 [json_name = "playerHideCoordinates"];</code>
+     * @param \Df\Plugin\PlayerHideCoordinatesAction $var
+     * @return $this
+     */
+    public function setPlayerHideCoordinates($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerHideCoordinatesAction::class);
+        $this->writeOneof(121, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerEnableInstantRespawnAction player_enable_instant_respawn = 122 [json_name = "playerEnableInstantRespawn"];</code>
+     * @return \Df\Plugin\PlayerEnableInstantRespawnAction|null
+     */
+    public function getPlayerEnableInstantRespawn()
+    {
+        return $this->readOneof(122);
+    }
+
+    public function hasPlayerEnableInstantRespawn()
+    {
+        return $this->hasOneof(122);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerEnableInstantRespawnAction player_enable_instant_respawn = 122 [json_name = "playerEnableInstantRespawn"];</code>
+     * @param \Df\Plugin\PlayerEnableInstantRespawnAction $var
+     * @return $this
+     */
+    public function setPlayerEnableInstantRespawn($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerEnableInstantRespawnAction::class);
+        $this->writeOneof(122, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerDisableInstantRespawnAction player_disable_instant_respawn = 123 [json_name = "playerDisableInstantRespawn"];</code>
+     * @return \Df\Plugin\PlayerDisableInstantRespawnAction|null
+     */
+    public function getPlayerDisableInstantRespawn()
+    {
+        return $this->readOneof(123);
+    }
+
+    public function hasPlayerDisableInstantRespawn()
+    {
+        return $this->hasOneof(123);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerDisableInstantRespawnAction player_disable_instant_respawn = 123 [json_name = "playerDisableInstantRespawn"];</code>
+     * @param \Df\Plugin\PlayerDisableInstantRespawnAction $var
+     * @return $this
+     */
+    public function setPlayerDisableInstantRespawn($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerDisableInstantRespawnAction::class);
+        $this->writeOneof(123, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetNameTagAction player_set_name_tag = 124 [json_name = "playerSetNameTag"];</code>
+     * @return \Df\Plugin\PlayerSetNameTagAction|null
+     */
+    public function getPlayerSetNameTag()
+    {
+        return $this->readOneof(124);
+    }
+
+    public function hasPlayerSetNameTag()
+    {
+        return $this->hasOneof(124);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetNameTagAction player_set_name_tag = 124 [json_name = "playerSetNameTag"];</code>
+     * @param \Df\Plugin\PlayerSetNameTagAction $var
+     * @return $this
+     */
+    public function setPlayerSetNameTag($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetNameTagAction::class);
+        $this->writeOneof(124, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetScoreTagAction player_set_score_tag = 125 [json_name = "playerSetScoreTag"];</code>
+     * @return \Df\Plugin\PlayerSetScoreTagAction|null
+     */
+    public function getPlayerSetScoreTag()
+    {
+        return $this->readOneof(125);
+    }
+
+    public function hasPlayerSetScoreTag()
+    {
+        return $this->hasOneof(125);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSetScoreTagAction player_set_score_tag = 125 [json_name = "playerSetScoreTag"];</code>
+     * @param \Df\Plugin\PlayerSetScoreTagAction $var
+     * @return $this
+     */
+    public function setPlayerSetScoreTag($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSetScoreTagAction::class);
+        $this->writeOneof(125, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Visuals
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerShowParticleAction player_show_particle = 126 [json_name = "playerShowParticle"];</code>
+     * @return \Df\Plugin\PlayerShowParticleAction|null
+     */
+    public function getPlayerShowParticle()
+    {
+        return $this->readOneof(126);
+    }
+
+    public function hasPlayerShowParticle()
+    {
+        return $this->hasOneof(126);
+    }
+
+    /**
+     * Player: Visuals
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerShowParticleAction player_show_particle = 126 [json_name = "playerShowParticle"];</code>
+     * @param \Df\Plugin\PlayerShowParticleAction $var
+     * @return $this
+     */
+    public function setPlayerShowParticle($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerShowParticleAction::class);
+        $this->writeOneof(126, $var);
+
+        return $this;
+    }
+
+    /**
+     * Player: Lifecycle/Control
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerRespawnAction player_respawn = 127 [json_name = "playerRespawn"];</code>
+     * @return \Df\Plugin\PlayerRespawnAction|null
+     */
+    public function getPlayerRespawn()
+    {
+        return $this->readOneof(127);
+    }
+
+    public function hasPlayerRespawn()
+    {
+        return $this->hasOneof(127);
+    }
+
+    /**
+     * Player: Lifecycle/Control
+     *
+     * Generated from protobuf field <code>.df.plugin.PlayerRespawnAction player_respawn = 127 [json_name = "playerRespawn"];</code>
+     * @param \Df\Plugin\PlayerRespawnAction $var
+     * @return $this
+     */
+    public function setPlayerRespawn($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerRespawnAction::class);
+        $this->writeOneof(127, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerTransferAction player_transfer = 128 [json_name = "playerTransfer"];</code>
+     * @return \Df\Plugin\PlayerTransferAction|null
+     */
+    public function getPlayerTransfer()
+    {
+        return $this->readOneof(128);
+    }
+
+    public function hasPlayerTransfer()
+    {
+        return $this->hasOneof(128);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerTransferAction player_transfer = 128 [json_name = "playerTransfer"];</code>
+     * @param \Df\Plugin\PlayerTransferAction $var
+     * @return $this
+     */
+    public function setPlayerTransfer($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerTransferAction::class);
+        $this->writeOneof(128, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerKnockBackAction player_knock_back = 129 [json_name = "playerKnockBack"];</code>
+     * @return \Df\Plugin\PlayerKnockBackAction|null
+     */
+    public function getPlayerKnockBack()
+    {
+        return $this->readOneof(129);
+    }
+
+    public function hasPlayerKnockBack()
+    {
+        return $this->hasOneof(129);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerKnockBackAction player_knock_back = 129 [json_name = "playerKnockBack"];</code>
+     * @param \Df\Plugin\PlayerKnockBackAction $var
+     * @return $this
+     */
+    public function setPlayerKnockBack($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerKnockBackAction::class);
+        $this->writeOneof(129, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSwingArmAction player_swing_arm = 130 [json_name = "playerSwingArm"];</code>
+     * @return \Df\Plugin\PlayerSwingArmAction|null
+     */
+    public function getPlayerSwingArm()
+    {
+        return $this->readOneof(130);
+    }
+
+    public function hasPlayerSwingArm()
+    {
+        return $this->hasOneof(130);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerSwingArmAction player_swing_arm = 130 [json_name = "playerSwingArm"];</code>
+     * @param \Df\Plugin\PlayerSwingArmAction $var
+     * @return $this
+     */
+    public function setPlayerSwingArm($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerSwingArmAction::class);
+        $this->writeOneof(130, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerPunchAirAction player_punch_air = 131 [json_name = "playerPunchAir"];</code>
+     * @return \Df\Plugin\PlayerPunchAirAction|null
+     */
+    public function getPlayerPunchAir()
+    {
+        return $this->readOneof(131);
+    }
+
+    public function hasPlayerPunchAir()
+    {
+        return $this->hasOneof(131);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerPunchAirAction player_punch_air = 131 [json_name = "playerPunchAir"];</code>
+     * @param \Df\Plugin\PlayerPunchAirAction $var
+     * @return $this
+     */
+    public function setPlayerPunchAir($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerPunchAirAction::class);
+        $this->writeOneof(131, $var);
 
         return $this;
     }

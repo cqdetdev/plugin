@@ -779,7 +779,7 @@ pub struct ActionBatch {
 pub struct Action {
     #[prost(string, optional, tag="1")]
     pub correlation_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(oneof="action::Kind", tags="10, 11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 30, 31, 40, 41, 42, 43, 50, 60, 61, 62, 69, 63, 90, 91, 92, 93, 66, 67, 68, 64, 65, 70, 71, 72, 74, 75, 76, 84, 80, 77, 78, 79, 81, 82, 83, 73")]
+    #[prost(oneof="action::Kind", tags="10, 11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 30, 31, 40, 41, 42, 43, 50, 60, 61, 62, 69, 63, 90, 91, 92, 93, 66, 67, 68, 64, 65, 70, 71, 72, 74, 75, 76, 84, 80, 77, 78, 79, 81, 82, 83, 73, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131")]
     pub kind: ::core::option::Option<action::Kind>,
 }
 /// Nested message and enum types in `Action`.
@@ -896,6 +896,90 @@ pub mod action {
         /// World: Queries - Settings
         #[prost(message, tag="73")]
         WorldQueryDefaultGameMode(super::WorldQueryDefaultGameModeAction),
+        /// Player: Movement toggles
+        #[prost(message, tag="94")]
+        PlayerStartSprinting(super::PlayerStartSprintingAction),
+        #[prost(message, tag="95")]
+        PlayerStopSprinting(super::PlayerStopSprintingAction),
+        #[prost(message, tag="96")]
+        PlayerStartSneaking(super::PlayerStartSneakingAction),
+        #[prost(message, tag="97")]
+        PlayerStopSneaking(super::PlayerStopSneakingAction),
+        #[prost(message, tag="98")]
+        PlayerStartSwimming(super::PlayerStartSwimmingAction),
+        #[prost(message, tag="99")]
+        PlayerStopSwimming(super::PlayerStopSwimmingAction),
+        #[prost(message, tag="100")]
+        PlayerStartCrawling(super::PlayerStartCrawlingAction),
+        #[prost(message, tag="101")]
+        PlayerStopCrawling(super::PlayerStopCrawlingAction),
+        #[prost(message, tag="102")]
+        PlayerStartGliding(super::PlayerStartGlidingAction),
+        #[prost(message, tag="103")]
+        PlayerStopGliding(super::PlayerStopGlidingAction),
+        #[prost(message, tag="104")]
+        PlayerStartFlying(super::PlayerStartFlyingAction),
+        #[prost(message, tag="105")]
+        PlayerStopFlying(super::PlayerStopFlyingAction),
+        /// Player: Mobility lock
+        #[prost(message, tag="106")]
+        PlayerSetImmobile(super::PlayerSetImmobileAction),
+        #[prost(message, tag="107")]
+        PlayerSetMobile(super::PlayerSetMobileAction),
+        /// Player: Movement attributes
+        #[prost(message, tag="108")]
+        PlayerSetSpeed(super::PlayerSetSpeedAction),
+        #[prost(message, tag="109")]
+        PlayerSetFlightSpeed(super::PlayerSetFlightSpeedAction),
+        #[prost(message, tag="110")]
+        PlayerSetVerticalFlightSpeed(super::PlayerSetVerticalFlightSpeedAction),
+        /// Player: Health/Status
+        #[prost(message, tag="111")]
+        PlayerSetAbsorption(super::PlayerSetAbsorptionAction),
+        #[prost(message, tag="112")]
+        PlayerSetOnFire(super::PlayerSetOnFireAction),
+        #[prost(message, tag="113")]
+        PlayerExtinguish(super::PlayerExtinguishAction),
+        #[prost(message, tag="114")]
+        PlayerSetInvisible(super::PlayerSetInvisibleAction),
+        #[prost(message, tag="115")]
+        PlayerSetVisible(super::PlayerSetVisibleAction),
+        /// Player: Misc attributes
+        #[prost(message, tag="116")]
+        PlayerSetScale(super::PlayerSetScaleAction),
+        #[prost(message, tag="117")]
+        PlayerSetHeldSlot(super::PlayerSetHeldSlotAction),
+        /// Player: UI
+        #[prost(message, tag="118")]
+        PlayerSendToast(super::PlayerSendToastAction),
+        #[prost(message, tag="119")]
+        PlayerSendJukeboxPopup(super::PlayerSendJukeboxPopupAction),
+        #[prost(message, tag="120")]
+        PlayerShowCoordinates(super::PlayerShowCoordinatesAction),
+        #[prost(message, tag="121")]
+        PlayerHideCoordinates(super::PlayerHideCoordinatesAction),
+        #[prost(message, tag="122")]
+        PlayerEnableInstantRespawn(super::PlayerEnableInstantRespawnAction),
+        #[prost(message, tag="123")]
+        PlayerDisableInstantRespawn(super::PlayerDisableInstantRespawnAction),
+        #[prost(message, tag="124")]
+        PlayerSetNameTag(super::PlayerSetNameTagAction),
+        #[prost(message, tag="125")]
+        PlayerSetScoreTag(super::PlayerSetScoreTagAction),
+        /// Player: Visuals
+        #[prost(message, tag="126")]
+        PlayerShowParticle(super::PlayerShowParticleAction),
+        /// Player: Lifecycle/Control
+        #[prost(message, tag="127")]
+        PlayerRespawn(super::PlayerRespawnAction),
+        #[prost(message, tag="128")]
+        PlayerTransfer(super::PlayerTransferAction),
+        #[prost(message, tag="129")]
+        PlayerKnockBack(super::PlayerKnockBackAction),
+        #[prost(message, tag="130")]
+        PlayerSwingArm(super::PlayerSwingArmAction),
+        #[prost(message, tag="131")]
+        PlayerPunchAir(super::PlayerPunchAirAction),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1370,6 +1454,285 @@ pub struct WorldBuildStructureAction {
     pub origin: ::core::option::Option<BlockPos>,
     #[prost(message, optional, tag="3")]
     pub structure: ::core::option::Option<StructureDef>,
+}
+/// Player: Movement toggles
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartSprintingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopSprintingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartSneakingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopSneakingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartSwimmingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopSwimmingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartCrawlingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopCrawlingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartGlidingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopGlidingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStartFlyingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerStopFlyingAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+/// Player: Mobility lock
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetImmobileAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetMobileAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+/// Player: Movement attributes
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetSpeedAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(double, tag="2")]
+    pub speed: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetFlightSpeedAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(double, tag="2")]
+    pub flight_speed: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetVerticalFlightSpeedAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(double, tag="2")]
+    pub vertical_flight_speed: f64,
+}
+/// Player: Health/Status
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetAbsorptionAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(double, tag="2")]
+    pub absorption: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetOnFireAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(int64, tag="2")]
+    pub duration_ms: i64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerExtinguishAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetInvisibleAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetVisibleAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+/// Player: Misc attributes
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetScaleAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(double, tag="2")]
+    pub scale: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetHeldSlotAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    /// 0-8
+    #[prost(int32, tag="2")]
+    pub slot: i32,
+}
+/// Player: UI
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSendToastAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub message: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSendJukeboxPopupAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub message: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerShowCoordinatesAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerHideCoordinatesAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerEnableInstantRespawnAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerDisableInstantRespawnAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetNameTagAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub name_tag: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetScoreTagAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub score_tag: ::prost::alloc::string::String,
+}
+/// Player: Visuals
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerShowParticleAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub position: ::core::option::Option<Vec3>,
+    #[prost(enumeration="ParticleType", tag="3")]
+    pub particle: i32,
+    /// used for block-based particles when provided
+    #[prost(message, optional, tag="4")]
+    pub block: ::core::option::Option<BlockState>,
+    /// used for punch_block when provided
+    #[prost(int32, optional, tag="5")]
+    pub face: ::core::option::Option<i32>,
+}
+/// Player: Lifecycle/Control
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerRespawnAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerTransferAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub address: ::core::option::Option<Address>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerKnockBackAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub source: ::core::option::Option<Vec3>,
+    #[prost(double, tag="3")]
+    pub force: f64,
+    #[prost(double, tag="4")]
+    pub height: f64,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSwingArmAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerPunchAirAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]

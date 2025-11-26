@@ -12,7 +12,7 @@ message ActionBatch {
 message Action {
     optional string correlation_id = 1;
     oneof kind {
-        // Player: Basic Actions
+        // Player: Basic
         SendChatAction send_chat = 10;
         TeleportAction teleport = 11;
         KickAction kick = 12;
@@ -26,34 +26,81 @@ message Action {
         SetFoodAction set_food = 21;
         SetExperienceAction set_experience = 22;
         SetVelocityAction set_velocity = 23;
-        // Player: Effects & Status
+        // Player: Effects
         AddEffectAction add_effect = 30;
         RemoveEffectAction remove_effect = 31;
         // Player: UI & Communication
         SendTitleAction send_title = 40;
         SendPopupAction send_popup = 41;
         SendTipAction send_tip = 42;
+        PlayerSendToastAction player_send_toast = 118;
+        PlayerSendJukeboxPopupAction player_send_jukebox_popup = 119;
+        PlayerShowCoordinatesAction player_show_coordinates = 120;
+        PlayerHideCoordinatesAction player_hide_coordinates = 121;
+        PlayerEnableInstantRespawnAction player_enable_instant_respawn = 122;
+        PlayerDisableInstantRespawnAction player_disable_instant_respawn = 123;
+        // Player: Appearance (overhead)
+        PlayerSetNameTagAction player_set_name_tag = 124;
+        PlayerSetScoreTagAction player_set_score_tag = 125;
+        // Player: Audio & Visuals
         PlaySoundAction play_sound = 43;
-        // Commands
+        PlayerShowParticleAction player_show_particle = 126;
+        // Player: Commands
         ExecuteCommandAction execute_command = 50;
+        // Player: Movement toggles
+        PlayerStartSprintingAction player_start_sprinting = 94;
+        PlayerStopSprintingAction player_stop_sprinting = 95;
+        PlayerStartSneakingAction player_start_sneaking = 96;
+        PlayerStopSneakingAction player_stop_sneaking = 97;
+        PlayerStartSwimmingAction player_start_swimming = 98;
+        PlayerStopSwimmingAction player_stop_swimming = 99;
+        PlayerStartCrawlingAction player_start_crawling = 100;
+        PlayerStopCrawlingAction player_stop_crawling = 101;
+        PlayerStartGlidingAction player_start_gliding = 102;
+        PlayerStopGlidingAction player_stop_gliding = 103;
+        PlayerStartFlyingAction player_start_flying = 104;
+        PlayerStopFlyingAction player_stop_flying = 105;
+        // Player: Mobility lock
+        PlayerSetImmobileAction player_set_immobile = 106;
+        PlayerSetMobileAction player_set_mobile = 107;
+        // Player: Movement attributes
+        PlayerSetSpeedAction player_set_speed = 108;
+        PlayerSetFlightSpeedAction player_set_flight_speed = 109;
+        PlayerSetVerticalFlightSpeedAction player_set_vertical_flight_speed = 110;
+        // Player: Health/Status
+        PlayerSetAbsorptionAction player_set_absorption = 111;
+        PlayerSetOnFireAction player_set_on_fire = 112;
+        PlayerExtinguishAction player_extinguish = 113;
+        PlayerSetInvisibleAction player_set_invisible = 114;
+        PlayerSetVisibleAction player_set_visible = 115;
+        // Player: Misc attributes
+        PlayerSetScaleAction player_set_scale = 116;
+        PlayerSetHeldSlotAction player_set_held_slot = 117;
+        // Player: Lifecycle/Control
+        PlayerRespawnAction player_respawn = 127;
+        PlayerTransferAction player_transfer = 128;
+        PlayerKnockBackAction player_knock_back = 129;
+        PlayerSwingArmAction player_swing_arm = 130;
+        PlayerPunchAirAction player_punch_air = 131;
+
         // World: Configuration & Settings
         WorldSetDefaultGameModeAction world_set_default_game_mode = 60;
         WorldSetDifficultyAction world_set_difficulty = 61;
         WorldSetTickRangeAction world_set_tick_range = 62;
-        WorldSetSpawnAction world_set_spawn = 69;
-        // World: Actions - Blocks & Terrain
         WorldSetBlockAction world_set_block = 63;
+        WorldPlaySoundAction world_play_sound = 64;
+        WorldAddParticleAction world_add_particle = 65;
+        // World: Time
+        WorldSetTimeAction world_set_time = 66;
+        WorldStopTimeAction world_stop_time = 67;
+        WorldStartTimeAction world_start_time = 68;
+        WorldSetSpawnAction world_set_spawn = 69;
+        // World: Mutations
         WorldSetBiomeAction world_set_biome = 90;
         WorldSetLiquidAction world_set_liquid = 91;
         WorldScheduleBlockUpdateAction world_schedule_block_update = 92;
         WorldBuildStructureAction world_build_structure = 93;
-        // World: Actions -  Time
-        WorldSetTimeAction world_set_time = 66;
-        WorldStopTimeAction world_stop_time = 67;
-        WorldStartTimeAction world_start_time = 68;
-        // World: Actions - Effects & Audio
-        WorldPlaySoundAction world_play_sound = 64;
-        WorldAddParticleAction world_add_particle = 65;
+
         // World: Queries - Entities & Players
         WorldQueryEntitiesAction world_query_entities = 70;
         WorldQueryPlayersAction world_query_players = 71;
@@ -62,17 +109,16 @@ message Action {
         // World: Queries - Blocks & Terrain
         WorldQueryBlockAction world_query_block = 75;
         WorldQueryBiomeAction world_query_biome = 76;
-        WorldQueryLiquidAction world_query_liquid = 84;
-        WorldQueryHighestBlockAction world_query_highest_block = 80;
-        // World: Queries - Lighting
         WorldQueryLightAction world_query_light = 77;
         WorldQuerySkyLightAction world_query_sky_light = 78;
-        // World: Queries - Weather & Environment
         WorldQueryTemperatureAction world_query_temperature = 79;
+        WorldQueryHighestBlockAction world_query_highest_block = 80;
+        // World: Queries - Weather & Environment
         WorldQueryRainingAtAction world_query_raining_at = 81;
         WorldQuerySnowingAtAction world_query_snowing_at = 82;
         WorldQueryThunderingAtAction world_query_thundering_at = 83;
-        // World: Queries - Settings
+        // World: Queries - Liquid & Settings
+        WorldQueryLiquidAction world_query_liquid = 84;
         WorldQueryDefaultGameModeAction world_query_default_game_mode = 73;
     }
 }
@@ -378,4 +424,154 @@ message WorldBuildStructureAction {
     WorldRef world = 1;
     BlockPos origin = 2;      // world-space base position
     StructureDef structure = 3;
+}
+
+// Player: Movement toggles
+message PlayerStartSprintingAction {
+    string player_uuid = 1;
+}
+message PlayerStopSprintingAction {
+    string player_uuid = 1;
+}
+message PlayerStartSneakingAction {
+    string player_uuid = 1;
+}
+message PlayerStopSneakingAction {
+    string player_uuid = 1;
+}
+message PlayerStartSwimmingAction {
+    string player_uuid = 1;
+}
+message PlayerStopSwimmingAction {
+    string player_uuid = 1;
+}
+message PlayerStartCrawlingAction {
+    string player_uuid = 1;
+}
+message PlayerStopCrawlingAction {
+    string player_uuid = 1;
+}
+message PlayerStartGlidingAction {
+    string player_uuid = 1;
+}
+message PlayerStopGlidingAction {
+    string player_uuid = 1;
+}
+message PlayerStartFlyingAction {
+    string player_uuid = 1;
+}
+message PlayerStopFlyingAction {
+    string player_uuid = 1;
+}
+
+// Player: Mobility lock
+message PlayerSetImmobileAction {
+    string player_uuid = 1;
+}
+message PlayerSetMobileAction {
+    string player_uuid = 1;
+}
+
+// Player: Movement attributes
+message PlayerSetSpeedAction {
+    string player_uuid = 1;
+    double speed = 2;
+}
+message PlayerSetFlightSpeedAction {
+    string player_uuid = 1;
+    double flight_speed = 2;
+}
+message PlayerSetVerticalFlightSpeedAction {
+    string player_uuid = 1;
+    double vertical_flight_speed = 2;
+}
+
+// Player: Health/Status
+message PlayerSetAbsorptionAction {
+    string player_uuid = 1;
+    double absorption = 2;
+}
+message PlayerSetOnFireAction {
+    string player_uuid = 1;
+    int64 duration_ms = 2;
+}
+message PlayerExtinguishAction {
+    string player_uuid = 1;
+}
+message PlayerSetInvisibleAction {
+    string player_uuid = 1;
+}
+message PlayerSetVisibleAction {
+    string player_uuid = 1;
+}
+
+// Player: Misc attributes
+message PlayerSetScaleAction {
+    string player_uuid = 1;
+    double scale = 2;
+}
+message PlayerSetHeldSlotAction {
+    string player_uuid = 1;
+    int32 slot = 2; // 0-8
+}
+
+// Player: UI
+message PlayerSendToastAction {
+    string player_uuid = 1;
+    string title = 2;
+    string message = 3;
+}
+message PlayerSendJukeboxPopupAction {
+    string player_uuid = 1;
+    string message = 2;
+}
+message PlayerShowCoordinatesAction {
+    string player_uuid = 1;
+}
+message PlayerHideCoordinatesAction {
+    string player_uuid = 1;
+}
+message PlayerEnableInstantRespawnAction {
+    string player_uuid = 1;
+}
+message PlayerDisableInstantRespawnAction {
+    string player_uuid = 1;
+}
+message PlayerSetNameTagAction {
+    string player_uuid = 1;
+    string name_tag = 2;
+}
+message PlayerSetScoreTagAction {
+    string player_uuid = 1;
+    string score_tag = 2;
+}
+
+// Player: Visuals
+message PlayerShowParticleAction {
+    string player_uuid = 1;
+    Vec3 position = 2;
+    ParticleType particle = 3;
+    optional BlockState block = 4; // used for block-based particles when provided
+    optional int32 face = 5; // used for punch_block when provided
+}
+
+// Player: Lifecycle/Control
+message PlayerRespawnAction {
+    string player_uuid = 1;
+}
+message PlayerTransferAction {
+    string player_uuid = 1;
+    Address address = 2;
+}
+message PlayerKnockBackAction {
+    string player_uuid = 1;
+    Vec3 source = 2;
+    double force = 3;
+    double height = 4;
+}
+message PlayerSwingArmAction {
+    string player_uuid = 1;
+}
+message PlayerPunchAirAction {
+    string player_uuid = 1;
 }

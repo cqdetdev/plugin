@@ -214,6 +214,44 @@ type Action struct {
 	//	*Action_WorldQuerySnowingAt
 	//	*Action_WorldQueryThunderingAt
 	//	*Action_WorldQueryDefaultGameMode
+	//	*Action_PlayerStartSprinting
+	//	*Action_PlayerStopSprinting
+	//	*Action_PlayerStartSneaking
+	//	*Action_PlayerStopSneaking
+	//	*Action_PlayerStartSwimming
+	//	*Action_PlayerStopSwimming
+	//	*Action_PlayerStartCrawling
+	//	*Action_PlayerStopCrawling
+	//	*Action_PlayerStartGliding
+	//	*Action_PlayerStopGliding
+	//	*Action_PlayerStartFlying
+	//	*Action_PlayerStopFlying
+	//	*Action_PlayerSetImmobile
+	//	*Action_PlayerSetMobile
+	//	*Action_PlayerSetSpeed
+	//	*Action_PlayerSetFlightSpeed
+	//	*Action_PlayerSetVerticalFlightSpeed
+	//	*Action_PlayerSetAbsorption
+	//	*Action_PlayerSetOnFire
+	//	*Action_PlayerExtinguish
+	//	*Action_PlayerSetInvisible
+	//	*Action_PlayerSetVisible
+	//	*Action_PlayerSetScale
+	//	*Action_PlayerSetHeldSlot
+	//	*Action_PlayerSendToast
+	//	*Action_PlayerSendJukeboxPopup
+	//	*Action_PlayerShowCoordinates
+	//	*Action_PlayerHideCoordinates
+	//	*Action_PlayerEnableInstantRespawn
+	//	*Action_PlayerDisableInstantRespawn
+	//	*Action_PlayerSetNameTag
+	//	*Action_PlayerSetScoreTag
+	//	*Action_PlayerShowParticle
+	//	*Action_PlayerRespawn
+	//	*Action_PlayerTransfer
+	//	*Action_PlayerKnockBack
+	//	*Action_PlayerSwingArm
+	//	*Action_PlayerPunchAir
 	Kind          isAction_Kind `protobuf_oneof:"kind"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -686,6 +724,348 @@ func (x *Action) GetWorldQueryDefaultGameMode() *WorldQueryDefaultGameModeAction
 	return nil
 }
 
+func (x *Action) GetPlayerStartSprinting() *PlayerStartSprintingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartSprinting); ok {
+			return x.PlayerStartSprinting
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopSprinting() *PlayerStopSprintingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopSprinting); ok {
+			return x.PlayerStopSprinting
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStartSneaking() *PlayerStartSneakingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartSneaking); ok {
+			return x.PlayerStartSneaking
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopSneaking() *PlayerStopSneakingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopSneaking); ok {
+			return x.PlayerStopSneaking
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStartSwimming() *PlayerStartSwimmingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartSwimming); ok {
+			return x.PlayerStartSwimming
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopSwimming() *PlayerStopSwimmingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopSwimming); ok {
+			return x.PlayerStopSwimming
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStartCrawling() *PlayerStartCrawlingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartCrawling); ok {
+			return x.PlayerStartCrawling
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopCrawling() *PlayerStopCrawlingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopCrawling); ok {
+			return x.PlayerStopCrawling
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStartGliding() *PlayerStartGlidingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartGliding); ok {
+			return x.PlayerStartGliding
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopGliding() *PlayerStopGlidingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopGliding); ok {
+			return x.PlayerStopGliding
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStartFlying() *PlayerStartFlyingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStartFlying); ok {
+			return x.PlayerStartFlying
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerStopFlying() *PlayerStopFlyingAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerStopFlying); ok {
+			return x.PlayerStopFlying
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetImmobile() *PlayerSetImmobileAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetImmobile); ok {
+			return x.PlayerSetImmobile
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetMobile() *PlayerSetMobileAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetMobile); ok {
+			return x.PlayerSetMobile
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetSpeed() *PlayerSetSpeedAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetSpeed); ok {
+			return x.PlayerSetSpeed
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetFlightSpeed() *PlayerSetFlightSpeedAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetFlightSpeed); ok {
+			return x.PlayerSetFlightSpeed
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetVerticalFlightSpeed() *PlayerSetVerticalFlightSpeedAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetVerticalFlightSpeed); ok {
+			return x.PlayerSetVerticalFlightSpeed
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetAbsorption() *PlayerSetAbsorptionAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetAbsorption); ok {
+			return x.PlayerSetAbsorption
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetOnFire() *PlayerSetOnFireAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetOnFire); ok {
+			return x.PlayerSetOnFire
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerExtinguish() *PlayerExtinguishAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerExtinguish); ok {
+			return x.PlayerExtinguish
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetInvisible() *PlayerSetInvisibleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetInvisible); ok {
+			return x.PlayerSetInvisible
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetVisible() *PlayerSetVisibleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetVisible); ok {
+			return x.PlayerSetVisible
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetScale() *PlayerSetScaleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetScale); ok {
+			return x.PlayerSetScale
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetHeldSlot() *PlayerSetHeldSlotAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetHeldSlot); ok {
+			return x.PlayerSetHeldSlot
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSendToast() *PlayerSendToastAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSendToast); ok {
+			return x.PlayerSendToast
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSendJukeboxPopup() *PlayerSendJukeboxPopupAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSendJukeboxPopup); ok {
+			return x.PlayerSendJukeboxPopup
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerShowCoordinates() *PlayerShowCoordinatesAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerShowCoordinates); ok {
+			return x.PlayerShowCoordinates
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerHideCoordinates() *PlayerHideCoordinatesAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerHideCoordinates); ok {
+			return x.PlayerHideCoordinates
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerEnableInstantRespawn() *PlayerEnableInstantRespawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerEnableInstantRespawn); ok {
+			return x.PlayerEnableInstantRespawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerDisableInstantRespawn() *PlayerDisableInstantRespawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerDisableInstantRespawn); ok {
+			return x.PlayerDisableInstantRespawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetNameTag() *PlayerSetNameTagAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetNameTag); ok {
+			return x.PlayerSetNameTag
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetScoreTag() *PlayerSetScoreTagAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetScoreTag); ok {
+			return x.PlayerSetScoreTag
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerShowParticle() *PlayerShowParticleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerShowParticle); ok {
+			return x.PlayerShowParticle
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerRespawn() *PlayerRespawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerRespawn); ok {
+			return x.PlayerRespawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerTransfer() *PlayerTransferAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerTransfer); ok {
+			return x.PlayerTransfer
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerKnockBack() *PlayerKnockBackAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerKnockBack); ok {
+			return x.PlayerKnockBack
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSwingArm() *PlayerSwingArmAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSwingArm); ok {
+			return x.PlayerSwingArm
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerPunchAir() *PlayerPunchAirAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerPunchAir); ok {
+			return x.PlayerPunchAir
+		}
+	}
+	return nil
+}
+
 type isAction_Kind interface {
 	isAction_Kind()
 }
@@ -893,6 +1273,166 @@ type Action_WorldQueryDefaultGameMode struct {
 	WorldQueryDefaultGameMode *WorldQueryDefaultGameModeAction `protobuf:"bytes,73,opt,name=world_query_default_game_mode,json=worldQueryDefaultGameMode,proto3,oneof"`
 }
 
+type Action_PlayerStartSprinting struct {
+	// Player: Movement toggles
+	PlayerStartSprinting *PlayerStartSprintingAction `protobuf:"bytes,94,opt,name=player_start_sprinting,json=playerStartSprinting,proto3,oneof"`
+}
+
+type Action_PlayerStopSprinting struct {
+	PlayerStopSprinting *PlayerStopSprintingAction `protobuf:"bytes,95,opt,name=player_stop_sprinting,json=playerStopSprinting,proto3,oneof"`
+}
+
+type Action_PlayerStartSneaking struct {
+	PlayerStartSneaking *PlayerStartSneakingAction `protobuf:"bytes,96,opt,name=player_start_sneaking,json=playerStartSneaking,proto3,oneof"`
+}
+
+type Action_PlayerStopSneaking struct {
+	PlayerStopSneaking *PlayerStopSneakingAction `protobuf:"bytes,97,opt,name=player_stop_sneaking,json=playerStopSneaking,proto3,oneof"`
+}
+
+type Action_PlayerStartSwimming struct {
+	PlayerStartSwimming *PlayerStartSwimmingAction `protobuf:"bytes,98,opt,name=player_start_swimming,json=playerStartSwimming,proto3,oneof"`
+}
+
+type Action_PlayerStopSwimming struct {
+	PlayerStopSwimming *PlayerStopSwimmingAction `protobuf:"bytes,99,opt,name=player_stop_swimming,json=playerStopSwimming,proto3,oneof"`
+}
+
+type Action_PlayerStartCrawling struct {
+	PlayerStartCrawling *PlayerStartCrawlingAction `protobuf:"bytes,100,opt,name=player_start_crawling,json=playerStartCrawling,proto3,oneof"`
+}
+
+type Action_PlayerStopCrawling struct {
+	PlayerStopCrawling *PlayerStopCrawlingAction `protobuf:"bytes,101,opt,name=player_stop_crawling,json=playerStopCrawling,proto3,oneof"`
+}
+
+type Action_PlayerStartGliding struct {
+	PlayerStartGliding *PlayerStartGlidingAction `protobuf:"bytes,102,opt,name=player_start_gliding,json=playerStartGliding,proto3,oneof"`
+}
+
+type Action_PlayerStopGliding struct {
+	PlayerStopGliding *PlayerStopGlidingAction `protobuf:"bytes,103,opt,name=player_stop_gliding,json=playerStopGliding,proto3,oneof"`
+}
+
+type Action_PlayerStartFlying struct {
+	PlayerStartFlying *PlayerStartFlyingAction `protobuf:"bytes,104,opt,name=player_start_flying,json=playerStartFlying,proto3,oneof"`
+}
+
+type Action_PlayerStopFlying struct {
+	PlayerStopFlying *PlayerStopFlyingAction `protobuf:"bytes,105,opt,name=player_stop_flying,json=playerStopFlying,proto3,oneof"`
+}
+
+type Action_PlayerSetImmobile struct {
+	// Player: Mobility lock
+	PlayerSetImmobile *PlayerSetImmobileAction `protobuf:"bytes,106,opt,name=player_set_immobile,json=playerSetImmobile,proto3,oneof"`
+}
+
+type Action_PlayerSetMobile struct {
+	PlayerSetMobile *PlayerSetMobileAction `protobuf:"bytes,107,opt,name=player_set_mobile,json=playerSetMobile,proto3,oneof"`
+}
+
+type Action_PlayerSetSpeed struct {
+	// Player: Movement attributes
+	PlayerSetSpeed *PlayerSetSpeedAction `protobuf:"bytes,108,opt,name=player_set_speed,json=playerSetSpeed,proto3,oneof"`
+}
+
+type Action_PlayerSetFlightSpeed struct {
+	PlayerSetFlightSpeed *PlayerSetFlightSpeedAction `protobuf:"bytes,109,opt,name=player_set_flight_speed,json=playerSetFlightSpeed,proto3,oneof"`
+}
+
+type Action_PlayerSetVerticalFlightSpeed struct {
+	PlayerSetVerticalFlightSpeed *PlayerSetVerticalFlightSpeedAction `protobuf:"bytes,110,opt,name=player_set_vertical_flight_speed,json=playerSetVerticalFlightSpeed,proto3,oneof"`
+}
+
+type Action_PlayerSetAbsorption struct {
+	// Player: Health/Status
+	PlayerSetAbsorption *PlayerSetAbsorptionAction `protobuf:"bytes,111,opt,name=player_set_absorption,json=playerSetAbsorption,proto3,oneof"`
+}
+
+type Action_PlayerSetOnFire struct {
+	PlayerSetOnFire *PlayerSetOnFireAction `protobuf:"bytes,112,opt,name=player_set_on_fire,json=playerSetOnFire,proto3,oneof"`
+}
+
+type Action_PlayerExtinguish struct {
+	PlayerExtinguish *PlayerExtinguishAction `protobuf:"bytes,113,opt,name=player_extinguish,json=playerExtinguish,proto3,oneof"`
+}
+
+type Action_PlayerSetInvisible struct {
+	PlayerSetInvisible *PlayerSetInvisibleAction `protobuf:"bytes,114,opt,name=player_set_invisible,json=playerSetInvisible,proto3,oneof"`
+}
+
+type Action_PlayerSetVisible struct {
+	PlayerSetVisible *PlayerSetVisibleAction `protobuf:"bytes,115,opt,name=player_set_visible,json=playerSetVisible,proto3,oneof"`
+}
+
+type Action_PlayerSetScale struct {
+	// Player: Misc attributes
+	PlayerSetScale *PlayerSetScaleAction `protobuf:"bytes,116,opt,name=player_set_scale,json=playerSetScale,proto3,oneof"`
+}
+
+type Action_PlayerSetHeldSlot struct {
+	PlayerSetHeldSlot *PlayerSetHeldSlotAction `protobuf:"bytes,117,opt,name=player_set_held_slot,json=playerSetHeldSlot,proto3,oneof"`
+}
+
+type Action_PlayerSendToast struct {
+	// Player: UI
+	PlayerSendToast *PlayerSendToastAction `protobuf:"bytes,118,opt,name=player_send_toast,json=playerSendToast,proto3,oneof"`
+}
+
+type Action_PlayerSendJukeboxPopup struct {
+	PlayerSendJukeboxPopup *PlayerSendJukeboxPopupAction `protobuf:"bytes,119,opt,name=player_send_jukebox_popup,json=playerSendJukeboxPopup,proto3,oneof"`
+}
+
+type Action_PlayerShowCoordinates struct {
+	PlayerShowCoordinates *PlayerShowCoordinatesAction `protobuf:"bytes,120,opt,name=player_show_coordinates,json=playerShowCoordinates,proto3,oneof"`
+}
+
+type Action_PlayerHideCoordinates struct {
+	PlayerHideCoordinates *PlayerHideCoordinatesAction `protobuf:"bytes,121,opt,name=player_hide_coordinates,json=playerHideCoordinates,proto3,oneof"`
+}
+
+type Action_PlayerEnableInstantRespawn struct {
+	PlayerEnableInstantRespawn *PlayerEnableInstantRespawnAction `protobuf:"bytes,122,opt,name=player_enable_instant_respawn,json=playerEnableInstantRespawn,proto3,oneof"`
+}
+
+type Action_PlayerDisableInstantRespawn struct {
+	PlayerDisableInstantRespawn *PlayerDisableInstantRespawnAction `protobuf:"bytes,123,opt,name=player_disable_instant_respawn,json=playerDisableInstantRespawn,proto3,oneof"`
+}
+
+type Action_PlayerSetNameTag struct {
+	PlayerSetNameTag *PlayerSetNameTagAction `protobuf:"bytes,124,opt,name=player_set_name_tag,json=playerSetNameTag,proto3,oneof"`
+}
+
+type Action_PlayerSetScoreTag struct {
+	PlayerSetScoreTag *PlayerSetScoreTagAction `protobuf:"bytes,125,opt,name=player_set_score_tag,json=playerSetScoreTag,proto3,oneof"`
+}
+
+type Action_PlayerShowParticle struct {
+	// Player: Visuals
+	PlayerShowParticle *PlayerShowParticleAction `protobuf:"bytes,126,opt,name=player_show_particle,json=playerShowParticle,proto3,oneof"`
+}
+
+type Action_PlayerRespawn struct {
+	// Player: Lifecycle/Control
+	PlayerRespawn *PlayerRespawnAction `protobuf:"bytes,127,opt,name=player_respawn,json=playerRespawn,proto3,oneof"`
+}
+
+type Action_PlayerTransfer struct {
+	PlayerTransfer *PlayerTransferAction `protobuf:"bytes,128,opt,name=player_transfer,json=playerTransfer,proto3,oneof"`
+}
+
+type Action_PlayerKnockBack struct {
+	PlayerKnockBack *PlayerKnockBackAction `protobuf:"bytes,129,opt,name=player_knock_back,json=playerKnockBack,proto3,oneof"`
+}
+
+type Action_PlayerSwingArm struct {
+	PlayerSwingArm *PlayerSwingArmAction `protobuf:"bytes,130,opt,name=player_swing_arm,json=playerSwingArm,proto3,oneof"`
+}
+
+type Action_PlayerPunchAir struct {
+	PlayerPunchAir *PlayerPunchAirAction `protobuf:"bytes,131,opt,name=player_punch_air,json=playerPunchAir,proto3,oneof"`
+}
+
 func (*Action_SendChat) isAction_Kind() {}
 
 func (*Action_Teleport) isAction_Kind() {}
@@ -986,6 +1526,82 @@ func (*Action_WorldQuerySnowingAt) isAction_Kind() {}
 func (*Action_WorldQueryThunderingAt) isAction_Kind() {}
 
 func (*Action_WorldQueryDefaultGameMode) isAction_Kind() {}
+
+func (*Action_PlayerStartSprinting) isAction_Kind() {}
+
+func (*Action_PlayerStopSprinting) isAction_Kind() {}
+
+func (*Action_PlayerStartSneaking) isAction_Kind() {}
+
+func (*Action_PlayerStopSneaking) isAction_Kind() {}
+
+func (*Action_PlayerStartSwimming) isAction_Kind() {}
+
+func (*Action_PlayerStopSwimming) isAction_Kind() {}
+
+func (*Action_PlayerStartCrawling) isAction_Kind() {}
+
+func (*Action_PlayerStopCrawling) isAction_Kind() {}
+
+func (*Action_PlayerStartGliding) isAction_Kind() {}
+
+func (*Action_PlayerStopGliding) isAction_Kind() {}
+
+func (*Action_PlayerStartFlying) isAction_Kind() {}
+
+func (*Action_PlayerStopFlying) isAction_Kind() {}
+
+func (*Action_PlayerSetImmobile) isAction_Kind() {}
+
+func (*Action_PlayerSetMobile) isAction_Kind() {}
+
+func (*Action_PlayerSetSpeed) isAction_Kind() {}
+
+func (*Action_PlayerSetFlightSpeed) isAction_Kind() {}
+
+func (*Action_PlayerSetVerticalFlightSpeed) isAction_Kind() {}
+
+func (*Action_PlayerSetAbsorption) isAction_Kind() {}
+
+func (*Action_PlayerSetOnFire) isAction_Kind() {}
+
+func (*Action_PlayerExtinguish) isAction_Kind() {}
+
+func (*Action_PlayerSetInvisible) isAction_Kind() {}
+
+func (*Action_PlayerSetVisible) isAction_Kind() {}
+
+func (*Action_PlayerSetScale) isAction_Kind() {}
+
+func (*Action_PlayerSetHeldSlot) isAction_Kind() {}
+
+func (*Action_PlayerSendToast) isAction_Kind() {}
+
+func (*Action_PlayerSendJukeboxPopup) isAction_Kind() {}
+
+func (*Action_PlayerShowCoordinates) isAction_Kind() {}
+
+func (*Action_PlayerHideCoordinates) isAction_Kind() {}
+
+func (*Action_PlayerEnableInstantRespawn) isAction_Kind() {}
+
+func (*Action_PlayerDisableInstantRespawn) isAction_Kind() {}
+
+func (*Action_PlayerSetNameTag) isAction_Kind() {}
+
+func (*Action_PlayerSetScoreTag) isAction_Kind() {}
+
+func (*Action_PlayerShowParticle) isAction_Kind() {}
+
+func (*Action_PlayerRespawn) isAction_Kind() {}
+
+func (*Action_PlayerTransfer) isAction_Kind() {}
+
+func (*Action_PlayerKnockBack) isAction_Kind() {}
+
+func (*Action_PlayerSwingArm) isAction_Kind() {}
+
+func (*Action_PlayerPunchAir) isAction_Kind() {}
 
 type SendChatAction struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -3747,13 +4363,1853 @@ func (x *WorldBuildStructureAction) GetStructure() *StructureDef {
 	return nil
 }
 
+// Player: Movement toggles
+type PlayerStartSprintingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartSprintingAction) Reset() {
+	*x = PlayerStartSprintingAction{}
+	mi := &file_actions_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartSprintingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartSprintingAction) ProtoMessage() {}
+
+func (x *PlayerStartSprintingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartSprintingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartSprintingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *PlayerStartSprintingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopSprintingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopSprintingAction) Reset() {
+	*x = PlayerStopSprintingAction{}
+	mi := &file_actions_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopSprintingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopSprintingAction) ProtoMessage() {}
+
+func (x *PlayerStopSprintingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopSprintingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopSprintingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *PlayerStopSprintingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStartSneakingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartSneakingAction) Reset() {
+	*x = PlayerStartSneakingAction{}
+	mi := &file_actions_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartSneakingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartSneakingAction) ProtoMessage() {}
+
+func (x *PlayerStartSneakingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartSneakingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartSneakingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *PlayerStartSneakingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopSneakingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopSneakingAction) Reset() {
+	*x = PlayerStopSneakingAction{}
+	mi := &file_actions_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopSneakingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopSneakingAction) ProtoMessage() {}
+
+func (x *PlayerStopSneakingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopSneakingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopSneakingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *PlayerStopSneakingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStartSwimmingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartSwimmingAction) Reset() {
+	*x = PlayerStartSwimmingAction{}
+	mi := &file_actions_proto_msgTypes[55]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartSwimmingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartSwimmingAction) ProtoMessage() {}
+
+func (x *PlayerStartSwimmingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[55]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartSwimmingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartSwimmingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *PlayerStartSwimmingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopSwimmingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopSwimmingAction) Reset() {
+	*x = PlayerStopSwimmingAction{}
+	mi := &file_actions_proto_msgTypes[56]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopSwimmingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopSwimmingAction) ProtoMessage() {}
+
+func (x *PlayerStopSwimmingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[56]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopSwimmingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopSwimmingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *PlayerStopSwimmingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStartCrawlingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartCrawlingAction) Reset() {
+	*x = PlayerStartCrawlingAction{}
+	mi := &file_actions_proto_msgTypes[57]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartCrawlingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartCrawlingAction) ProtoMessage() {}
+
+func (x *PlayerStartCrawlingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[57]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartCrawlingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartCrawlingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{57}
+}
+
+func (x *PlayerStartCrawlingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopCrawlingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopCrawlingAction) Reset() {
+	*x = PlayerStopCrawlingAction{}
+	mi := &file_actions_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopCrawlingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopCrawlingAction) ProtoMessage() {}
+
+func (x *PlayerStopCrawlingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopCrawlingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopCrawlingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{58}
+}
+
+func (x *PlayerStopCrawlingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStartGlidingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartGlidingAction) Reset() {
+	*x = PlayerStartGlidingAction{}
+	mi := &file_actions_proto_msgTypes[59]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartGlidingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartGlidingAction) ProtoMessage() {}
+
+func (x *PlayerStartGlidingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[59]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartGlidingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartGlidingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{59}
+}
+
+func (x *PlayerStartGlidingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopGlidingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopGlidingAction) Reset() {
+	*x = PlayerStopGlidingAction{}
+	mi := &file_actions_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopGlidingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopGlidingAction) ProtoMessage() {}
+
+func (x *PlayerStopGlidingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopGlidingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopGlidingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *PlayerStopGlidingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStartFlyingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStartFlyingAction) Reset() {
+	*x = PlayerStartFlyingAction{}
+	mi := &file_actions_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStartFlyingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStartFlyingAction) ProtoMessage() {}
+
+func (x *PlayerStartFlyingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStartFlyingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStartFlyingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{61}
+}
+
+func (x *PlayerStartFlyingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerStopFlyingAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerStopFlyingAction) Reset() {
+	*x = PlayerStopFlyingAction{}
+	mi := &file_actions_proto_msgTypes[62]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerStopFlyingAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerStopFlyingAction) ProtoMessage() {}
+
+func (x *PlayerStopFlyingAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[62]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerStopFlyingAction.ProtoReflect.Descriptor instead.
+func (*PlayerStopFlyingAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{62}
+}
+
+func (x *PlayerStopFlyingAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+// Player: Mobility lock
+type PlayerSetImmobileAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetImmobileAction) Reset() {
+	*x = PlayerSetImmobileAction{}
+	mi := &file_actions_proto_msgTypes[63]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetImmobileAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetImmobileAction) ProtoMessage() {}
+
+func (x *PlayerSetImmobileAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[63]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetImmobileAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetImmobileAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *PlayerSetImmobileAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerSetMobileAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetMobileAction) Reset() {
+	*x = PlayerSetMobileAction{}
+	mi := &file_actions_proto_msgTypes[64]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetMobileAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetMobileAction) ProtoMessage() {}
+
+func (x *PlayerSetMobileAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[64]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetMobileAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetMobileAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *PlayerSetMobileAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+// Player: Movement attributes
+type PlayerSetSpeedAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Speed         float64                `protobuf:"fixed64,2,opt,name=speed,proto3" json:"speed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetSpeedAction) Reset() {
+	*x = PlayerSetSpeedAction{}
+	mi := &file_actions_proto_msgTypes[65]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetSpeedAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetSpeedAction) ProtoMessage() {}
+
+func (x *PlayerSetSpeedAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[65]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetSpeedAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetSpeedAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{65}
+}
+
+func (x *PlayerSetSpeedAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetSpeedAction) GetSpeed() float64 {
+	if x != nil {
+		return x.Speed
+	}
+	return 0
+}
+
+type PlayerSetFlightSpeedAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	FlightSpeed   float64                `protobuf:"fixed64,2,opt,name=flight_speed,json=flightSpeed,proto3" json:"flight_speed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetFlightSpeedAction) Reset() {
+	*x = PlayerSetFlightSpeedAction{}
+	mi := &file_actions_proto_msgTypes[66]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetFlightSpeedAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetFlightSpeedAction) ProtoMessage() {}
+
+func (x *PlayerSetFlightSpeedAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[66]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetFlightSpeedAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetFlightSpeedAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{66}
+}
+
+func (x *PlayerSetFlightSpeedAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetFlightSpeedAction) GetFlightSpeed() float64 {
+	if x != nil {
+		return x.FlightSpeed
+	}
+	return 0
+}
+
+type PlayerSetVerticalFlightSpeedAction struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid          string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	VerticalFlightSpeed float64                `protobuf:"fixed64,2,opt,name=vertical_flight_speed,json=verticalFlightSpeed,proto3" json:"vertical_flight_speed,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *PlayerSetVerticalFlightSpeedAction) Reset() {
+	*x = PlayerSetVerticalFlightSpeedAction{}
+	mi := &file_actions_proto_msgTypes[67]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetVerticalFlightSpeedAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetVerticalFlightSpeedAction) ProtoMessage() {}
+
+func (x *PlayerSetVerticalFlightSpeedAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[67]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetVerticalFlightSpeedAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetVerticalFlightSpeedAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{67}
+}
+
+func (x *PlayerSetVerticalFlightSpeedAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetVerticalFlightSpeedAction) GetVerticalFlightSpeed() float64 {
+	if x != nil {
+		return x.VerticalFlightSpeed
+	}
+	return 0
+}
+
+// Player: Health/Status
+type PlayerSetAbsorptionAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Absorption    float64                `protobuf:"fixed64,2,opt,name=absorption,proto3" json:"absorption,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetAbsorptionAction) Reset() {
+	*x = PlayerSetAbsorptionAction{}
+	mi := &file_actions_proto_msgTypes[68]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetAbsorptionAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetAbsorptionAction) ProtoMessage() {}
+
+func (x *PlayerSetAbsorptionAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[68]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetAbsorptionAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetAbsorptionAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{68}
+}
+
+func (x *PlayerSetAbsorptionAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetAbsorptionAction) GetAbsorption() float64 {
+	if x != nil {
+		return x.Absorption
+	}
+	return 0
+}
+
+type PlayerSetOnFireAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	DurationMs    int64                  `protobuf:"varint,2,opt,name=duration_ms,json=durationMs,proto3" json:"duration_ms,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetOnFireAction) Reset() {
+	*x = PlayerSetOnFireAction{}
+	mi := &file_actions_proto_msgTypes[69]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetOnFireAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetOnFireAction) ProtoMessage() {}
+
+func (x *PlayerSetOnFireAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[69]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetOnFireAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetOnFireAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{69}
+}
+
+func (x *PlayerSetOnFireAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetOnFireAction) GetDurationMs() int64 {
+	if x != nil {
+		return x.DurationMs
+	}
+	return 0
+}
+
+type PlayerExtinguishAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerExtinguishAction) Reset() {
+	*x = PlayerExtinguishAction{}
+	mi := &file_actions_proto_msgTypes[70]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerExtinguishAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerExtinguishAction) ProtoMessage() {}
+
+func (x *PlayerExtinguishAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[70]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerExtinguishAction.ProtoReflect.Descriptor instead.
+func (*PlayerExtinguishAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{70}
+}
+
+func (x *PlayerExtinguishAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerSetInvisibleAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetInvisibleAction) Reset() {
+	*x = PlayerSetInvisibleAction{}
+	mi := &file_actions_proto_msgTypes[71]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetInvisibleAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetInvisibleAction) ProtoMessage() {}
+
+func (x *PlayerSetInvisibleAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[71]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetInvisibleAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetInvisibleAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{71}
+}
+
+func (x *PlayerSetInvisibleAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerSetVisibleAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetVisibleAction) Reset() {
+	*x = PlayerSetVisibleAction{}
+	mi := &file_actions_proto_msgTypes[72]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetVisibleAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetVisibleAction) ProtoMessage() {}
+
+func (x *PlayerSetVisibleAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[72]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetVisibleAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetVisibleAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{72}
+}
+
+func (x *PlayerSetVisibleAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+// Player: Misc attributes
+type PlayerSetScaleAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Scale         float64                `protobuf:"fixed64,2,opt,name=scale,proto3" json:"scale,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetScaleAction) Reset() {
+	*x = PlayerSetScaleAction{}
+	mi := &file_actions_proto_msgTypes[73]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetScaleAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetScaleAction) ProtoMessage() {}
+
+func (x *PlayerSetScaleAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[73]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetScaleAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetScaleAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{73}
+}
+
+func (x *PlayerSetScaleAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetScaleAction) GetScale() float64 {
+	if x != nil {
+		return x.Scale
+	}
+	return 0
+}
+
+type PlayerSetHeldSlotAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Slot          int32                  `protobuf:"varint,2,opt,name=slot,proto3" json:"slot,omitempty"` // 0-8
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetHeldSlotAction) Reset() {
+	*x = PlayerSetHeldSlotAction{}
+	mi := &file_actions_proto_msgTypes[74]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetHeldSlotAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetHeldSlotAction) ProtoMessage() {}
+
+func (x *PlayerSetHeldSlotAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[74]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetHeldSlotAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetHeldSlotAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{74}
+}
+
+func (x *PlayerSetHeldSlotAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetHeldSlotAction) GetSlot() int32 {
+	if x != nil {
+		return x.Slot
+	}
+	return 0
+}
+
+// Player: UI
+type PlayerSendToastAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSendToastAction) Reset() {
+	*x = PlayerSendToastAction{}
+	mi := &file_actions_proto_msgTypes[75]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSendToastAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSendToastAction) ProtoMessage() {}
+
+func (x *PlayerSendToastAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[75]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSendToastAction.ProtoReflect.Descriptor instead.
+func (*PlayerSendToastAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{75}
+}
+
+func (x *PlayerSendToastAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSendToastAction) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PlayerSendToastAction) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type PlayerSendJukeboxPopupAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSendJukeboxPopupAction) Reset() {
+	*x = PlayerSendJukeboxPopupAction{}
+	mi := &file_actions_proto_msgTypes[76]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSendJukeboxPopupAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSendJukeboxPopupAction) ProtoMessage() {}
+
+func (x *PlayerSendJukeboxPopupAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[76]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSendJukeboxPopupAction.ProtoReflect.Descriptor instead.
+func (*PlayerSendJukeboxPopupAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{76}
+}
+
+func (x *PlayerSendJukeboxPopupAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSendJukeboxPopupAction) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type PlayerShowCoordinatesAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerShowCoordinatesAction) Reset() {
+	*x = PlayerShowCoordinatesAction{}
+	mi := &file_actions_proto_msgTypes[77]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerShowCoordinatesAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerShowCoordinatesAction) ProtoMessage() {}
+
+func (x *PlayerShowCoordinatesAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[77]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerShowCoordinatesAction.ProtoReflect.Descriptor instead.
+func (*PlayerShowCoordinatesAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *PlayerShowCoordinatesAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerHideCoordinatesAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerHideCoordinatesAction) Reset() {
+	*x = PlayerHideCoordinatesAction{}
+	mi := &file_actions_proto_msgTypes[78]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerHideCoordinatesAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerHideCoordinatesAction) ProtoMessage() {}
+
+func (x *PlayerHideCoordinatesAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[78]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerHideCoordinatesAction.ProtoReflect.Descriptor instead.
+func (*PlayerHideCoordinatesAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *PlayerHideCoordinatesAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerEnableInstantRespawnAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerEnableInstantRespawnAction) Reset() {
+	*x = PlayerEnableInstantRespawnAction{}
+	mi := &file_actions_proto_msgTypes[79]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerEnableInstantRespawnAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerEnableInstantRespawnAction) ProtoMessage() {}
+
+func (x *PlayerEnableInstantRespawnAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[79]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerEnableInstantRespawnAction.ProtoReflect.Descriptor instead.
+func (*PlayerEnableInstantRespawnAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{79}
+}
+
+func (x *PlayerEnableInstantRespawnAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerDisableInstantRespawnAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerDisableInstantRespawnAction) Reset() {
+	*x = PlayerDisableInstantRespawnAction{}
+	mi := &file_actions_proto_msgTypes[80]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerDisableInstantRespawnAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerDisableInstantRespawnAction) ProtoMessage() {}
+
+func (x *PlayerDisableInstantRespawnAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[80]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerDisableInstantRespawnAction.ProtoReflect.Descriptor instead.
+func (*PlayerDisableInstantRespawnAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{80}
+}
+
+func (x *PlayerDisableInstantRespawnAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerSetNameTagAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	NameTag       string                 `protobuf:"bytes,2,opt,name=name_tag,json=nameTag,proto3" json:"name_tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetNameTagAction) Reset() {
+	*x = PlayerSetNameTagAction{}
+	mi := &file_actions_proto_msgTypes[81]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetNameTagAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetNameTagAction) ProtoMessage() {}
+
+func (x *PlayerSetNameTagAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[81]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetNameTagAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetNameTagAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{81}
+}
+
+func (x *PlayerSetNameTagAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetNameTagAction) GetNameTag() string {
+	if x != nil {
+		return x.NameTag
+	}
+	return ""
+}
+
+type PlayerSetScoreTagAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	ScoreTag      string                 `protobuf:"bytes,2,opt,name=score_tag,json=scoreTag,proto3" json:"score_tag,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetScoreTagAction) Reset() {
+	*x = PlayerSetScoreTagAction{}
+	mi := &file_actions_proto_msgTypes[82]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetScoreTagAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetScoreTagAction) ProtoMessage() {}
+
+func (x *PlayerSetScoreTagAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[82]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetScoreTagAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetScoreTagAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{82}
+}
+
+func (x *PlayerSetScoreTagAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetScoreTagAction) GetScoreTag() string {
+	if x != nil {
+		return x.ScoreTag
+	}
+	return ""
+}
+
+// Player: Visuals
+type PlayerShowParticleAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Position      *Vec3                  `protobuf:"bytes,2,opt,name=position,proto3" json:"position,omitempty"`
+	Particle      ParticleType           `protobuf:"varint,3,opt,name=particle,proto3,enum=df.plugin.ParticleType" json:"particle,omitempty"`
+	Block         *BlockState            `protobuf:"bytes,4,opt,name=block,proto3,oneof" json:"block,omitempty"` // used for block-based particles when provided
+	Face          *int32                 `protobuf:"varint,5,opt,name=face,proto3,oneof" json:"face,omitempty"`  // used for punch_block when provided
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerShowParticleAction) Reset() {
+	*x = PlayerShowParticleAction{}
+	mi := &file_actions_proto_msgTypes[83]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerShowParticleAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerShowParticleAction) ProtoMessage() {}
+
+func (x *PlayerShowParticleAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[83]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerShowParticleAction.ProtoReflect.Descriptor instead.
+func (*PlayerShowParticleAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{83}
+}
+
+func (x *PlayerShowParticleAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerShowParticleAction) GetPosition() *Vec3 {
+	if x != nil {
+		return x.Position
+	}
+	return nil
+}
+
+func (x *PlayerShowParticleAction) GetParticle() ParticleType {
+	if x != nil {
+		return x.Particle
+	}
+	return ParticleType_PARTICLE_TYPE_UNSPECIFIED
+}
+
+func (x *PlayerShowParticleAction) GetBlock() *BlockState {
+	if x != nil {
+		return x.Block
+	}
+	return nil
+}
+
+func (x *PlayerShowParticleAction) GetFace() int32 {
+	if x != nil && x.Face != nil {
+		return *x.Face
+	}
+	return 0
+}
+
+// Player: Lifecycle/Control
+type PlayerRespawnAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerRespawnAction) Reset() {
+	*x = PlayerRespawnAction{}
+	mi := &file_actions_proto_msgTypes[84]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerRespawnAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerRespawnAction) ProtoMessage() {}
+
+func (x *PlayerRespawnAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[84]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerRespawnAction.ProtoReflect.Descriptor instead.
+func (*PlayerRespawnAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{84}
+}
+
+func (x *PlayerRespawnAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerTransferAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Address       *Address               `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerTransferAction) Reset() {
+	*x = PlayerTransferAction{}
+	mi := &file_actions_proto_msgTypes[85]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerTransferAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerTransferAction) ProtoMessage() {}
+
+func (x *PlayerTransferAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[85]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerTransferAction.ProtoReflect.Descriptor instead.
+func (*PlayerTransferAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{85}
+}
+
+func (x *PlayerTransferAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerTransferAction) GetAddress() *Address {
+	if x != nil {
+		return x.Address
+	}
+	return nil
+}
+
+type PlayerKnockBackAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Source        *Vec3                  `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`
+	Force         float64                `protobuf:"fixed64,3,opt,name=force,proto3" json:"force,omitempty"`
+	Height        float64                `protobuf:"fixed64,4,opt,name=height,proto3" json:"height,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerKnockBackAction) Reset() {
+	*x = PlayerKnockBackAction{}
+	mi := &file_actions_proto_msgTypes[86]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerKnockBackAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerKnockBackAction) ProtoMessage() {}
+
+func (x *PlayerKnockBackAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[86]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerKnockBackAction.ProtoReflect.Descriptor instead.
+func (*PlayerKnockBackAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{86}
+}
+
+func (x *PlayerKnockBackAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerKnockBackAction) GetSource() *Vec3 {
+	if x != nil {
+		return x.Source
+	}
+	return nil
+}
+
+func (x *PlayerKnockBackAction) GetForce() float64 {
+	if x != nil {
+		return x.Force
+	}
+	return 0
+}
+
+func (x *PlayerKnockBackAction) GetHeight() float64 {
+	if x != nil {
+		return x.Height
+	}
+	return 0
+}
+
+type PlayerSwingArmAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSwingArmAction) Reset() {
+	*x = PlayerSwingArmAction{}
+	mi := &file_actions_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSwingArmAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSwingArmAction) ProtoMessage() {}
+
+func (x *PlayerSwingArmAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSwingArmAction.ProtoReflect.Descriptor instead.
+func (*PlayerSwingArmAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{87}
+}
+
+func (x *PlayerSwingArmAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+type PlayerPunchAirAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerPunchAirAction) Reset() {
+	*x = PlayerPunchAirAction{}
+	mi := &file_actions_proto_msgTypes[88]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerPunchAirAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerPunchAirAction) ProtoMessage() {}
+
+func (x *PlayerPunchAirAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[88]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerPunchAirAction.ProtoReflect.Descriptor instead.
+func (*PlayerPunchAirAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{88}
+}
+
+func (x *PlayerPunchAirAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
 var File_actions_proto protoreflect.FileDescriptor
 
 const file_actions_proto_rawDesc = "" +
 	"\n" +
 	"\ractions.proto\x12\tdf.plugin\x1a\fcommon.proto\":\n" +
 	"\vActionBatch\x12+\n" +
-	"\aactions\x18\x01 \x03(\v2\x11.df.plugin.ActionR\aactions\"\xb8\x1d\n" +
+	"\aactions\x18\x01 \x03(\v2\x11.df.plugin.ActionR\aactions\"\xed7\n" +
 	"\x06Action\x12*\n" +
 	"\x0ecorrelation_id\x18\x01 \x01(\tH\x01R\rcorrelationId\x88\x01\x01\x128\n" +
 	"\tsend_chat\x18\n" +
@@ -3808,7 +6264,45 @@ const file_actions_proto_rawDesc = "" +
 	"\x16world_query_raining_at\x18Q \x01(\v2$.df.plugin.WorldQueryRainingAtActionH\x00R\x13worldQueryRainingAt\x12[\n" +
 	"\x16world_query_snowing_at\x18R \x01(\v2$.df.plugin.WorldQuerySnowingAtActionH\x00R\x13worldQuerySnowingAt\x12d\n" +
 	"\x19world_query_thundering_at\x18S \x01(\v2'.df.plugin.WorldQueryThunderingAtActionH\x00R\x16worldQueryThunderingAt\x12n\n" +
-	"\x1dworld_query_default_game_mode\x18I \x01(\v2*.df.plugin.WorldQueryDefaultGameModeActionH\x00R\x19worldQueryDefaultGameModeB\x06\n" +
+	"\x1dworld_query_default_game_mode\x18I \x01(\v2*.df.plugin.WorldQueryDefaultGameModeActionH\x00R\x19worldQueryDefaultGameMode\x12]\n" +
+	"\x16player_start_sprinting\x18^ \x01(\v2%.df.plugin.PlayerStartSprintingActionH\x00R\x14playerStartSprinting\x12Z\n" +
+	"\x15player_stop_sprinting\x18_ \x01(\v2$.df.plugin.PlayerStopSprintingActionH\x00R\x13playerStopSprinting\x12Z\n" +
+	"\x15player_start_sneaking\x18` \x01(\v2$.df.plugin.PlayerStartSneakingActionH\x00R\x13playerStartSneaking\x12W\n" +
+	"\x14player_stop_sneaking\x18a \x01(\v2#.df.plugin.PlayerStopSneakingActionH\x00R\x12playerStopSneaking\x12Z\n" +
+	"\x15player_start_swimming\x18b \x01(\v2$.df.plugin.PlayerStartSwimmingActionH\x00R\x13playerStartSwimming\x12W\n" +
+	"\x14player_stop_swimming\x18c \x01(\v2#.df.plugin.PlayerStopSwimmingActionH\x00R\x12playerStopSwimming\x12Z\n" +
+	"\x15player_start_crawling\x18d \x01(\v2$.df.plugin.PlayerStartCrawlingActionH\x00R\x13playerStartCrawling\x12W\n" +
+	"\x14player_stop_crawling\x18e \x01(\v2#.df.plugin.PlayerStopCrawlingActionH\x00R\x12playerStopCrawling\x12W\n" +
+	"\x14player_start_gliding\x18f \x01(\v2#.df.plugin.PlayerStartGlidingActionH\x00R\x12playerStartGliding\x12T\n" +
+	"\x13player_stop_gliding\x18g \x01(\v2\".df.plugin.PlayerStopGlidingActionH\x00R\x11playerStopGliding\x12T\n" +
+	"\x13player_start_flying\x18h \x01(\v2\".df.plugin.PlayerStartFlyingActionH\x00R\x11playerStartFlying\x12Q\n" +
+	"\x12player_stop_flying\x18i \x01(\v2!.df.plugin.PlayerStopFlyingActionH\x00R\x10playerStopFlying\x12T\n" +
+	"\x13player_set_immobile\x18j \x01(\v2\".df.plugin.PlayerSetImmobileActionH\x00R\x11playerSetImmobile\x12N\n" +
+	"\x11player_set_mobile\x18k \x01(\v2 .df.plugin.PlayerSetMobileActionH\x00R\x0fplayerSetMobile\x12K\n" +
+	"\x10player_set_speed\x18l \x01(\v2\x1f.df.plugin.PlayerSetSpeedActionH\x00R\x0eplayerSetSpeed\x12^\n" +
+	"\x17player_set_flight_speed\x18m \x01(\v2%.df.plugin.PlayerSetFlightSpeedActionH\x00R\x14playerSetFlightSpeed\x12w\n" +
+	" player_set_vertical_flight_speed\x18n \x01(\v2-.df.plugin.PlayerSetVerticalFlightSpeedActionH\x00R\x1cplayerSetVerticalFlightSpeed\x12Z\n" +
+	"\x15player_set_absorption\x18o \x01(\v2$.df.plugin.PlayerSetAbsorptionActionH\x00R\x13playerSetAbsorption\x12O\n" +
+	"\x12player_set_on_fire\x18p \x01(\v2 .df.plugin.PlayerSetOnFireActionH\x00R\x0fplayerSetOnFire\x12P\n" +
+	"\x11player_extinguish\x18q \x01(\v2!.df.plugin.PlayerExtinguishActionH\x00R\x10playerExtinguish\x12W\n" +
+	"\x14player_set_invisible\x18r \x01(\v2#.df.plugin.PlayerSetInvisibleActionH\x00R\x12playerSetInvisible\x12Q\n" +
+	"\x12player_set_visible\x18s \x01(\v2!.df.plugin.PlayerSetVisibleActionH\x00R\x10playerSetVisible\x12K\n" +
+	"\x10player_set_scale\x18t \x01(\v2\x1f.df.plugin.PlayerSetScaleActionH\x00R\x0eplayerSetScale\x12U\n" +
+	"\x14player_set_held_slot\x18u \x01(\v2\".df.plugin.PlayerSetHeldSlotActionH\x00R\x11playerSetHeldSlot\x12N\n" +
+	"\x11player_send_toast\x18v \x01(\v2 .df.plugin.PlayerSendToastActionH\x00R\x0fplayerSendToast\x12d\n" +
+	"\x19player_send_jukebox_popup\x18w \x01(\v2'.df.plugin.PlayerSendJukeboxPopupActionH\x00R\x16playerSendJukeboxPopup\x12`\n" +
+	"\x17player_show_coordinates\x18x \x01(\v2&.df.plugin.PlayerShowCoordinatesActionH\x00R\x15playerShowCoordinates\x12`\n" +
+	"\x17player_hide_coordinates\x18y \x01(\v2&.df.plugin.PlayerHideCoordinatesActionH\x00R\x15playerHideCoordinates\x12p\n" +
+	"\x1dplayer_enable_instant_respawn\x18z \x01(\v2+.df.plugin.PlayerEnableInstantRespawnActionH\x00R\x1aplayerEnableInstantRespawn\x12s\n" +
+	"\x1eplayer_disable_instant_respawn\x18{ \x01(\v2,.df.plugin.PlayerDisableInstantRespawnActionH\x00R\x1bplayerDisableInstantRespawn\x12R\n" +
+	"\x13player_set_name_tag\x18| \x01(\v2!.df.plugin.PlayerSetNameTagActionH\x00R\x10playerSetNameTag\x12U\n" +
+	"\x14player_set_score_tag\x18} \x01(\v2\".df.plugin.PlayerSetScoreTagActionH\x00R\x11playerSetScoreTag\x12W\n" +
+	"\x14player_show_particle\x18~ \x01(\v2#.df.plugin.PlayerShowParticleActionH\x00R\x12playerShowParticle\x12G\n" +
+	"\x0eplayer_respawn\x18\x7f \x01(\v2\x1e.df.plugin.PlayerRespawnActionH\x00R\rplayerRespawn\x12K\n" +
+	"\x0fplayer_transfer\x18\x80\x01 \x01(\v2\x1f.df.plugin.PlayerTransferActionH\x00R\x0eplayerTransfer\x12O\n" +
+	"\x11player_knock_back\x18\x81\x01 \x01(\v2 .df.plugin.PlayerKnockBackActionH\x00R\x0fplayerKnockBack\x12L\n" +
+	"\x10player_swing_arm\x18\x82\x01 \x01(\v2\x1f.df.plugin.PlayerSwingArmActionH\x00R\x0eplayerSwingArm\x12L\n" +
+	"\x10player_punch_air\x18\x83\x01 \x01(\v2\x1f.df.plugin.PlayerPunchAirActionH\x00R\x0eplayerPunchAirB\x06\n" +
 	"\x04kindB\x11\n" +
 	"\x0f_correlation_id\"K\n" +
 	"\x0eSendChatAction\x12\x1f\n" +
@@ -4031,7 +6525,146 @@ const file_actions_proto_rawDesc = "" +
 	"\x19WorldBuildStructureAction\x12)\n" +
 	"\x05world\x18\x01 \x01(\v2\x13.df.plugin.WorldRefR\x05world\x12+\n" +
 	"\x06origin\x18\x02 \x01(\v2\x13.df.plugin.BlockPosR\x06origin\x125\n" +
-	"\tstructure\x18\x03 \x01(\v2\x17.df.plugin.StructureDefR\tstructure*\xeb\x03\n" +
+	"\tstructure\x18\x03 \x01(\v2\x17.df.plugin.StructureDefR\tstructure\"=\n" +
+	"\x1aPlayerStartSprintingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"<\n" +
+	"\x19PlayerStopSprintingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"<\n" +
+	"\x19PlayerStartSneakingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\";\n" +
+	"\x18PlayerStopSneakingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"<\n" +
+	"\x19PlayerStartSwimmingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\";\n" +
+	"\x18PlayerStopSwimmingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"<\n" +
+	"\x19PlayerStartCrawlingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\";\n" +
+	"\x18PlayerStopCrawlingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\";\n" +
+	"\x18PlayerStartGlidingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\":\n" +
+	"\x17PlayerStopGlidingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\":\n" +
+	"\x17PlayerStartFlyingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"9\n" +
+	"\x16PlayerStopFlyingAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\":\n" +
+	"\x17PlayerSetImmobileAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"8\n" +
+	"\x15PlayerSetMobileAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"M\n" +
+	"\x14PlayerSetSpeedAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x14\n" +
+	"\x05speed\x18\x02 \x01(\x01R\x05speed\"`\n" +
+	"\x1aPlayerSetFlightSpeedAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12!\n" +
+	"\fflight_speed\x18\x02 \x01(\x01R\vflightSpeed\"y\n" +
+	"\"PlayerSetVerticalFlightSpeedAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x122\n" +
+	"\x15vertical_flight_speed\x18\x02 \x01(\x01R\x13verticalFlightSpeed\"\\\n" +
+	"\x19PlayerSetAbsorptionAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x1e\n" +
+	"\n" +
+	"absorption\x18\x02 \x01(\x01R\n" +
+	"absorption\"Y\n" +
+	"\x15PlayerSetOnFireAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x1f\n" +
+	"\vduration_ms\x18\x02 \x01(\x03R\n" +
+	"durationMs\"9\n" +
+	"\x16PlayerExtinguishAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\";\n" +
+	"\x18PlayerSetInvisibleAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"9\n" +
+	"\x16PlayerSetVisibleAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"M\n" +
+	"\x14PlayerSetScaleAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x14\n" +
+	"\x05scale\x18\x02 \x01(\x01R\x05scale\"N\n" +
+	"\x17PlayerSetHeldSlotAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x12\n" +
+	"\x04slot\x18\x02 \x01(\x05R\x04slot\"h\n" +
+	"\x15PlayerSendToastAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"Y\n" +
+	"\x1cPlayerSendJukeboxPopupAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\">\n" +
+	"\x1bPlayerShowCoordinatesAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\">\n" +
+	"\x1bPlayerHideCoordinatesAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"C\n" +
+	" PlayerEnableInstantRespawnAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"D\n" +
+	"!PlayerDisableInstantRespawnAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"T\n" +
+	"\x16PlayerSetNameTagAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x19\n" +
+	"\bname_tag\x18\x02 \x01(\tR\anameTag\"W\n" +
+	"\x17PlayerSetScoreTagAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x1b\n" +
+	"\tscore_tag\x18\x02 \x01(\tR\bscoreTag\"\xfb\x01\n" +
+	"\x18PlayerShowParticleAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12+\n" +
+	"\bposition\x18\x02 \x01(\v2\x0f.df.plugin.Vec3R\bposition\x123\n" +
+	"\bparticle\x18\x03 \x01(\x0e2\x17.df.plugin.ParticleTypeR\bparticle\x120\n" +
+	"\x05block\x18\x04 \x01(\v2\x15.df.plugin.BlockStateH\x00R\x05block\x88\x01\x01\x12\x17\n" +
+	"\x04face\x18\x05 \x01(\x05H\x01R\x04face\x88\x01\x01B\b\n" +
+	"\x06_blockB\a\n" +
+	"\x05_face\"6\n" +
+	"\x13PlayerRespawnAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"e\n" +
+	"\x14PlayerTransferAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12,\n" +
+	"\aaddress\x18\x02 \x01(\v2\x12.df.plugin.AddressR\aaddress\"\x8f\x01\n" +
+	"\x15PlayerKnockBackAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12'\n" +
+	"\x06source\x18\x02 \x01(\v2\x0f.df.plugin.Vec3R\x06source\x12\x14\n" +
+	"\x05force\x18\x03 \x01(\x01R\x05force\x12\x16\n" +
+	"\x06height\x18\x04 \x01(\x01R\x06height\"7\n" +
+	"\x14PlayerSwingArmAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"7\n" +
+	"\x14PlayerPunchAirAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid*\xeb\x03\n" +
 	"\fParticleType\x12\x1d\n" +
 	"\x19PARTICLE_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17PARTICLE_HUGE_EXPLOSION\x10\x01\x12\x1e\n" +
@@ -4069,71 +6702,110 @@ func file_actions_proto_rawDescGZIP() []byte {
 }
 
 var file_actions_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_actions_proto_msgTypes = make([]protoimpl.MessageInfo, 51)
+var file_actions_proto_msgTypes = make([]protoimpl.MessageInfo, 89)
 var file_actions_proto_goTypes = []any{
-	(ParticleType)(0),                       // 0: df.plugin.ParticleType
-	(*ActionBatch)(nil),                     // 1: df.plugin.ActionBatch
-	(*Action)(nil),                          // 2: df.plugin.Action
-	(*SendChatAction)(nil),                  // 3: df.plugin.SendChatAction
-	(*TeleportAction)(nil),                  // 4: df.plugin.TeleportAction
-	(*KickAction)(nil),                      // 5: df.plugin.KickAction
-	(*SetGameModeAction)(nil),               // 6: df.plugin.SetGameModeAction
-	(*GiveItemAction)(nil),                  // 7: df.plugin.GiveItemAction
-	(*ClearInventoryAction)(nil),            // 8: df.plugin.ClearInventoryAction
-	(*SetHeldItemAction)(nil),               // 9: df.plugin.SetHeldItemAction
-	(*SetHealthAction)(nil),                 // 10: df.plugin.SetHealthAction
-	(*SetFoodAction)(nil),                   // 11: df.plugin.SetFoodAction
-	(*SetExperienceAction)(nil),             // 12: df.plugin.SetExperienceAction
-	(*SetVelocityAction)(nil),               // 13: df.plugin.SetVelocityAction
-	(*AddEffectAction)(nil),                 // 14: df.plugin.AddEffectAction
-	(*RemoveEffectAction)(nil),              // 15: df.plugin.RemoveEffectAction
-	(*SendTitleAction)(nil),                 // 16: df.plugin.SendTitleAction
-	(*SendPopupAction)(nil),                 // 17: df.plugin.SendPopupAction
-	(*SendTipAction)(nil),                   // 18: df.plugin.SendTipAction
-	(*PlaySoundAction)(nil),                 // 19: df.plugin.PlaySoundAction
-	(*ExecuteCommandAction)(nil),            // 20: df.plugin.ExecuteCommandAction
-	(*WorldSetDefaultGameModeAction)(nil),   // 21: df.plugin.WorldSetDefaultGameModeAction
-	(*WorldSetDifficultyAction)(nil),        // 22: df.plugin.WorldSetDifficultyAction
-	(*WorldSetTickRangeAction)(nil),         // 23: df.plugin.WorldSetTickRangeAction
-	(*WorldSetBlockAction)(nil),             // 24: df.plugin.WorldSetBlockAction
-	(*WorldPlaySoundAction)(nil),            // 25: df.plugin.WorldPlaySoundAction
-	(*WorldAddParticleAction)(nil),          // 26: df.plugin.WorldAddParticleAction
-	(*WorldSetTimeAction)(nil),              // 27: df.plugin.WorldSetTimeAction
-	(*WorldStopTimeAction)(nil),             // 28: df.plugin.WorldStopTimeAction
-	(*WorldStartTimeAction)(nil),            // 29: df.plugin.WorldStartTimeAction
-	(*WorldSetSpawnAction)(nil),             // 30: df.plugin.WorldSetSpawnAction
-	(*WorldQueryDefaultGameModeAction)(nil), // 31: df.plugin.WorldQueryDefaultGameModeAction
-	(*WorldQueryPlayerSpawnAction)(nil),     // 32: df.plugin.WorldQueryPlayerSpawnAction
-	(*WorldQueryEntitiesAction)(nil),        // 33: df.plugin.WorldQueryEntitiesAction
-	(*WorldQueryPlayersAction)(nil),         // 34: df.plugin.WorldQueryPlayersAction
-	(*WorldQueryEntitiesWithinAction)(nil),  // 35: df.plugin.WorldQueryEntitiesWithinAction
-	(*WorldQueryBlockAction)(nil),           // 36: df.plugin.WorldQueryBlockAction
-	(*WorldQueryBiomeAction)(nil),           // 37: df.plugin.WorldQueryBiomeAction
-	(*WorldQueryLightAction)(nil),           // 38: df.plugin.WorldQueryLightAction
-	(*WorldQuerySkyLightAction)(nil),        // 39: df.plugin.WorldQuerySkyLightAction
-	(*WorldQueryTemperatureAction)(nil),     // 40: df.plugin.WorldQueryTemperatureAction
-	(*WorldQueryHighestBlockAction)(nil),    // 41: df.plugin.WorldQueryHighestBlockAction
-	(*WorldQueryRainingAtAction)(nil),       // 42: df.plugin.WorldQueryRainingAtAction
-	(*WorldQuerySnowingAtAction)(nil),       // 43: df.plugin.WorldQuerySnowingAtAction
-	(*WorldQueryThunderingAtAction)(nil),    // 44: df.plugin.WorldQueryThunderingAtAction
-	(*WorldQueryLiquidAction)(nil),          // 45: df.plugin.WorldQueryLiquidAction
-	(*WorldSetBiomeAction)(nil),             // 46: df.plugin.WorldSetBiomeAction
-	(*WorldSetLiquidAction)(nil),            // 47: df.plugin.WorldSetLiquidAction
-	(*WorldScheduleBlockUpdateAction)(nil),  // 48: df.plugin.WorldScheduleBlockUpdateAction
-	(*StructureVoxel)(nil),                  // 49: df.plugin.StructureVoxel
-	(*StructureDef)(nil),                    // 50: df.plugin.StructureDef
-	(*WorldBuildStructureAction)(nil),       // 51: df.plugin.WorldBuildStructureAction
-	(*Vec3)(nil),                            // 52: df.plugin.Vec3
-	(GameMode)(0),                           // 53: df.plugin.GameMode
-	(*ItemStack)(nil),                       // 54: df.plugin.ItemStack
-	(EffectType)(0),                         // 55: df.plugin.EffectType
-	(Sound)(0),                              // 56: df.plugin.Sound
-	(*WorldRef)(nil),                        // 57: df.plugin.WorldRef
-	(Difficulty)(0),                         // 58: df.plugin.Difficulty
-	(*BlockPos)(nil),                        // 59: df.plugin.BlockPos
-	(*BlockState)(nil),                      // 60: df.plugin.BlockState
-	(*BBox)(nil),                            // 61: df.plugin.BBox
-	(*LiquidState)(nil),                     // 62: df.plugin.LiquidState
+	(ParticleType)(0),                          // 0: df.plugin.ParticleType
+	(*ActionBatch)(nil),                        // 1: df.plugin.ActionBatch
+	(*Action)(nil),                             // 2: df.plugin.Action
+	(*SendChatAction)(nil),                     // 3: df.plugin.SendChatAction
+	(*TeleportAction)(nil),                     // 4: df.plugin.TeleportAction
+	(*KickAction)(nil),                         // 5: df.plugin.KickAction
+	(*SetGameModeAction)(nil),                  // 6: df.plugin.SetGameModeAction
+	(*GiveItemAction)(nil),                     // 7: df.plugin.GiveItemAction
+	(*ClearInventoryAction)(nil),               // 8: df.plugin.ClearInventoryAction
+	(*SetHeldItemAction)(nil),                  // 9: df.plugin.SetHeldItemAction
+	(*SetHealthAction)(nil),                    // 10: df.plugin.SetHealthAction
+	(*SetFoodAction)(nil),                      // 11: df.plugin.SetFoodAction
+	(*SetExperienceAction)(nil),                // 12: df.plugin.SetExperienceAction
+	(*SetVelocityAction)(nil),                  // 13: df.plugin.SetVelocityAction
+	(*AddEffectAction)(nil),                    // 14: df.plugin.AddEffectAction
+	(*RemoveEffectAction)(nil),                 // 15: df.plugin.RemoveEffectAction
+	(*SendTitleAction)(nil),                    // 16: df.plugin.SendTitleAction
+	(*SendPopupAction)(nil),                    // 17: df.plugin.SendPopupAction
+	(*SendTipAction)(nil),                      // 18: df.plugin.SendTipAction
+	(*PlaySoundAction)(nil),                    // 19: df.plugin.PlaySoundAction
+	(*ExecuteCommandAction)(nil),               // 20: df.plugin.ExecuteCommandAction
+	(*WorldSetDefaultGameModeAction)(nil),      // 21: df.plugin.WorldSetDefaultGameModeAction
+	(*WorldSetDifficultyAction)(nil),           // 22: df.plugin.WorldSetDifficultyAction
+	(*WorldSetTickRangeAction)(nil),            // 23: df.plugin.WorldSetTickRangeAction
+	(*WorldSetBlockAction)(nil),                // 24: df.plugin.WorldSetBlockAction
+	(*WorldPlaySoundAction)(nil),               // 25: df.plugin.WorldPlaySoundAction
+	(*WorldAddParticleAction)(nil),             // 26: df.plugin.WorldAddParticleAction
+	(*WorldSetTimeAction)(nil),                 // 27: df.plugin.WorldSetTimeAction
+	(*WorldStopTimeAction)(nil),                // 28: df.plugin.WorldStopTimeAction
+	(*WorldStartTimeAction)(nil),               // 29: df.plugin.WorldStartTimeAction
+	(*WorldSetSpawnAction)(nil),                // 30: df.plugin.WorldSetSpawnAction
+	(*WorldQueryDefaultGameModeAction)(nil),    // 31: df.plugin.WorldQueryDefaultGameModeAction
+	(*WorldQueryPlayerSpawnAction)(nil),        // 32: df.plugin.WorldQueryPlayerSpawnAction
+	(*WorldQueryEntitiesAction)(nil),           // 33: df.plugin.WorldQueryEntitiesAction
+	(*WorldQueryPlayersAction)(nil),            // 34: df.plugin.WorldQueryPlayersAction
+	(*WorldQueryEntitiesWithinAction)(nil),     // 35: df.plugin.WorldQueryEntitiesWithinAction
+	(*WorldQueryBlockAction)(nil),              // 36: df.plugin.WorldQueryBlockAction
+	(*WorldQueryBiomeAction)(nil),              // 37: df.plugin.WorldQueryBiomeAction
+	(*WorldQueryLightAction)(nil),              // 38: df.plugin.WorldQueryLightAction
+	(*WorldQuerySkyLightAction)(nil),           // 39: df.plugin.WorldQuerySkyLightAction
+	(*WorldQueryTemperatureAction)(nil),        // 40: df.plugin.WorldQueryTemperatureAction
+	(*WorldQueryHighestBlockAction)(nil),       // 41: df.plugin.WorldQueryHighestBlockAction
+	(*WorldQueryRainingAtAction)(nil),          // 42: df.plugin.WorldQueryRainingAtAction
+	(*WorldQuerySnowingAtAction)(nil),          // 43: df.plugin.WorldQuerySnowingAtAction
+	(*WorldQueryThunderingAtAction)(nil),       // 44: df.plugin.WorldQueryThunderingAtAction
+	(*WorldQueryLiquidAction)(nil),             // 45: df.plugin.WorldQueryLiquidAction
+	(*WorldSetBiomeAction)(nil),                // 46: df.plugin.WorldSetBiomeAction
+	(*WorldSetLiquidAction)(nil),               // 47: df.plugin.WorldSetLiquidAction
+	(*WorldScheduleBlockUpdateAction)(nil),     // 48: df.plugin.WorldScheduleBlockUpdateAction
+	(*StructureVoxel)(nil),                     // 49: df.plugin.StructureVoxel
+	(*StructureDef)(nil),                       // 50: df.plugin.StructureDef
+	(*WorldBuildStructureAction)(nil),          // 51: df.plugin.WorldBuildStructureAction
+	(*PlayerStartSprintingAction)(nil),         // 52: df.plugin.PlayerStartSprintingAction
+	(*PlayerStopSprintingAction)(nil),          // 53: df.plugin.PlayerStopSprintingAction
+	(*PlayerStartSneakingAction)(nil),          // 54: df.plugin.PlayerStartSneakingAction
+	(*PlayerStopSneakingAction)(nil),           // 55: df.plugin.PlayerStopSneakingAction
+	(*PlayerStartSwimmingAction)(nil),          // 56: df.plugin.PlayerStartSwimmingAction
+	(*PlayerStopSwimmingAction)(nil),           // 57: df.plugin.PlayerStopSwimmingAction
+	(*PlayerStartCrawlingAction)(nil),          // 58: df.plugin.PlayerStartCrawlingAction
+	(*PlayerStopCrawlingAction)(nil),           // 59: df.plugin.PlayerStopCrawlingAction
+	(*PlayerStartGlidingAction)(nil),           // 60: df.plugin.PlayerStartGlidingAction
+	(*PlayerStopGlidingAction)(nil),            // 61: df.plugin.PlayerStopGlidingAction
+	(*PlayerStartFlyingAction)(nil),            // 62: df.plugin.PlayerStartFlyingAction
+	(*PlayerStopFlyingAction)(nil),             // 63: df.plugin.PlayerStopFlyingAction
+	(*PlayerSetImmobileAction)(nil),            // 64: df.plugin.PlayerSetImmobileAction
+	(*PlayerSetMobileAction)(nil),              // 65: df.plugin.PlayerSetMobileAction
+	(*PlayerSetSpeedAction)(nil),               // 66: df.plugin.PlayerSetSpeedAction
+	(*PlayerSetFlightSpeedAction)(nil),         // 67: df.plugin.PlayerSetFlightSpeedAction
+	(*PlayerSetVerticalFlightSpeedAction)(nil), // 68: df.plugin.PlayerSetVerticalFlightSpeedAction
+	(*PlayerSetAbsorptionAction)(nil),          // 69: df.plugin.PlayerSetAbsorptionAction
+	(*PlayerSetOnFireAction)(nil),              // 70: df.plugin.PlayerSetOnFireAction
+	(*PlayerExtinguishAction)(nil),             // 71: df.plugin.PlayerExtinguishAction
+	(*PlayerSetInvisibleAction)(nil),           // 72: df.plugin.PlayerSetInvisibleAction
+	(*PlayerSetVisibleAction)(nil),             // 73: df.plugin.PlayerSetVisibleAction
+	(*PlayerSetScaleAction)(nil),               // 74: df.plugin.PlayerSetScaleAction
+	(*PlayerSetHeldSlotAction)(nil),            // 75: df.plugin.PlayerSetHeldSlotAction
+	(*PlayerSendToastAction)(nil),              // 76: df.plugin.PlayerSendToastAction
+	(*PlayerSendJukeboxPopupAction)(nil),       // 77: df.plugin.PlayerSendJukeboxPopupAction
+	(*PlayerShowCoordinatesAction)(nil),        // 78: df.plugin.PlayerShowCoordinatesAction
+	(*PlayerHideCoordinatesAction)(nil),        // 79: df.plugin.PlayerHideCoordinatesAction
+	(*PlayerEnableInstantRespawnAction)(nil),   // 80: df.plugin.PlayerEnableInstantRespawnAction
+	(*PlayerDisableInstantRespawnAction)(nil),  // 81: df.plugin.PlayerDisableInstantRespawnAction
+	(*PlayerSetNameTagAction)(nil),             // 82: df.plugin.PlayerSetNameTagAction
+	(*PlayerSetScoreTagAction)(nil),            // 83: df.plugin.PlayerSetScoreTagAction
+	(*PlayerShowParticleAction)(nil),           // 84: df.plugin.PlayerShowParticleAction
+	(*PlayerRespawnAction)(nil),                // 85: df.plugin.PlayerRespawnAction
+	(*PlayerTransferAction)(nil),               // 86: df.plugin.PlayerTransferAction
+	(*PlayerKnockBackAction)(nil),              // 87: df.plugin.PlayerKnockBackAction
+	(*PlayerSwingArmAction)(nil),               // 88: df.plugin.PlayerSwingArmAction
+	(*PlayerPunchAirAction)(nil),               // 89: df.plugin.PlayerPunchAirAction
+	(*Vec3)(nil),                               // 90: df.plugin.Vec3
+	(GameMode)(0),                              // 91: df.plugin.GameMode
+	(*ItemStack)(nil),                          // 92: df.plugin.ItemStack
+	(EffectType)(0),                            // 93: df.plugin.EffectType
+	(Sound)(0),                                 // 94: df.plugin.Sound
+	(*WorldRef)(nil),                           // 95: df.plugin.WorldRef
+	(Difficulty)(0),                            // 96: df.plugin.Difficulty
+	(*BlockPos)(nil),                           // 97: df.plugin.BlockPos
+	(*BlockState)(nil),                         // 98: df.plugin.BlockState
+	(*BBox)(nil),                               // 99: df.plugin.BBox
+	(*LiquidState)(nil),                        // 100: df.plugin.LiquidState
+	(*Address)(nil),                            // 101: df.plugin.Address
 }
 var file_actions_proto_depIdxs = []int32{
 	2,   // 0: df.plugin.ActionBatch.actions:type_name -> df.plugin.Action
@@ -4184,81 +6856,124 @@ var file_actions_proto_depIdxs = []int32{
 	43,  // 45: df.plugin.Action.world_query_snowing_at:type_name -> df.plugin.WorldQuerySnowingAtAction
 	44,  // 46: df.plugin.Action.world_query_thundering_at:type_name -> df.plugin.WorldQueryThunderingAtAction
 	31,  // 47: df.plugin.Action.world_query_default_game_mode:type_name -> df.plugin.WorldQueryDefaultGameModeAction
-	52,  // 48: df.plugin.TeleportAction.position:type_name -> df.plugin.Vec3
-	52,  // 49: df.plugin.TeleportAction.rotation:type_name -> df.plugin.Vec3
-	53,  // 50: df.plugin.SetGameModeAction.game_mode:type_name -> df.plugin.GameMode
-	54,  // 51: df.plugin.GiveItemAction.item:type_name -> df.plugin.ItemStack
-	54,  // 52: df.plugin.SetHeldItemAction.main:type_name -> df.plugin.ItemStack
-	54,  // 53: df.plugin.SetHeldItemAction.offhand:type_name -> df.plugin.ItemStack
-	52,  // 54: df.plugin.SetVelocityAction.velocity:type_name -> df.plugin.Vec3
-	55,  // 55: df.plugin.AddEffectAction.effect_type:type_name -> df.plugin.EffectType
-	55,  // 56: df.plugin.RemoveEffectAction.effect_type:type_name -> df.plugin.EffectType
-	56,  // 57: df.plugin.PlaySoundAction.sound:type_name -> df.plugin.Sound
-	52,  // 58: df.plugin.PlaySoundAction.position:type_name -> df.plugin.Vec3
-	57,  // 59: df.plugin.WorldSetDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
-	53,  // 60: df.plugin.WorldSetDefaultGameModeAction.game_mode:type_name -> df.plugin.GameMode
-	57,  // 61: df.plugin.WorldSetDifficultyAction.world:type_name -> df.plugin.WorldRef
-	58,  // 62: df.plugin.WorldSetDifficultyAction.difficulty:type_name -> df.plugin.Difficulty
-	57,  // 63: df.plugin.WorldSetTickRangeAction.world:type_name -> df.plugin.WorldRef
-	57,  // 64: df.plugin.WorldSetBlockAction.world:type_name -> df.plugin.WorldRef
-	59,  // 65: df.plugin.WorldSetBlockAction.position:type_name -> df.plugin.BlockPos
-	60,  // 66: df.plugin.WorldSetBlockAction.block:type_name -> df.plugin.BlockState
-	57,  // 67: df.plugin.WorldPlaySoundAction.world:type_name -> df.plugin.WorldRef
-	56,  // 68: df.plugin.WorldPlaySoundAction.sound:type_name -> df.plugin.Sound
-	52,  // 69: df.plugin.WorldPlaySoundAction.position:type_name -> df.plugin.Vec3
-	57,  // 70: df.plugin.WorldAddParticleAction.world:type_name -> df.plugin.WorldRef
-	52,  // 71: df.plugin.WorldAddParticleAction.position:type_name -> df.plugin.Vec3
-	0,   // 72: df.plugin.WorldAddParticleAction.particle:type_name -> df.plugin.ParticleType
-	60,  // 73: df.plugin.WorldAddParticleAction.block:type_name -> df.plugin.BlockState
-	57,  // 74: df.plugin.WorldSetTimeAction.world:type_name -> df.plugin.WorldRef
-	57,  // 75: df.plugin.WorldStopTimeAction.world:type_name -> df.plugin.WorldRef
-	57,  // 76: df.plugin.WorldStartTimeAction.world:type_name -> df.plugin.WorldRef
-	57,  // 77: df.plugin.WorldSetSpawnAction.world:type_name -> df.plugin.WorldRef
-	59,  // 78: df.plugin.WorldSetSpawnAction.spawn:type_name -> df.plugin.BlockPos
-	57,  // 79: df.plugin.WorldQueryDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
-	57,  // 80: df.plugin.WorldQueryPlayerSpawnAction.world:type_name -> df.plugin.WorldRef
-	57,  // 81: df.plugin.WorldQueryEntitiesAction.world:type_name -> df.plugin.WorldRef
-	57,  // 82: df.plugin.WorldQueryPlayersAction.world:type_name -> df.plugin.WorldRef
-	57,  // 83: df.plugin.WorldQueryEntitiesWithinAction.world:type_name -> df.plugin.WorldRef
-	61,  // 84: df.plugin.WorldQueryEntitiesWithinAction.box:type_name -> df.plugin.BBox
-	57,  // 85: df.plugin.WorldQueryBlockAction.world:type_name -> df.plugin.WorldRef
-	59,  // 86: df.plugin.WorldQueryBlockAction.position:type_name -> df.plugin.BlockPos
-	57,  // 87: df.plugin.WorldQueryBiomeAction.world:type_name -> df.plugin.WorldRef
-	59,  // 88: df.plugin.WorldQueryBiomeAction.position:type_name -> df.plugin.BlockPos
-	57,  // 89: df.plugin.WorldQueryLightAction.world:type_name -> df.plugin.WorldRef
-	59,  // 90: df.plugin.WorldQueryLightAction.position:type_name -> df.plugin.BlockPos
-	57,  // 91: df.plugin.WorldQuerySkyLightAction.world:type_name -> df.plugin.WorldRef
-	59,  // 92: df.plugin.WorldQuerySkyLightAction.position:type_name -> df.plugin.BlockPos
-	57,  // 93: df.plugin.WorldQueryTemperatureAction.world:type_name -> df.plugin.WorldRef
-	59,  // 94: df.plugin.WorldQueryTemperatureAction.position:type_name -> df.plugin.BlockPos
-	57,  // 95: df.plugin.WorldQueryHighestBlockAction.world:type_name -> df.plugin.WorldRef
-	57,  // 96: df.plugin.WorldQueryRainingAtAction.world:type_name -> df.plugin.WorldRef
-	59,  // 97: df.plugin.WorldQueryRainingAtAction.position:type_name -> df.plugin.BlockPos
-	57,  // 98: df.plugin.WorldQuerySnowingAtAction.world:type_name -> df.plugin.WorldRef
-	59,  // 99: df.plugin.WorldQuerySnowingAtAction.position:type_name -> df.plugin.BlockPos
-	57,  // 100: df.plugin.WorldQueryThunderingAtAction.world:type_name -> df.plugin.WorldRef
-	59,  // 101: df.plugin.WorldQueryThunderingAtAction.position:type_name -> df.plugin.BlockPos
-	57,  // 102: df.plugin.WorldQueryLiquidAction.world:type_name -> df.plugin.WorldRef
-	59,  // 103: df.plugin.WorldQueryLiquidAction.position:type_name -> df.plugin.BlockPos
-	57,  // 104: df.plugin.WorldSetBiomeAction.world:type_name -> df.plugin.WorldRef
-	59,  // 105: df.plugin.WorldSetBiomeAction.position:type_name -> df.plugin.BlockPos
-	57,  // 106: df.plugin.WorldSetLiquidAction.world:type_name -> df.plugin.WorldRef
-	59,  // 107: df.plugin.WorldSetLiquidAction.position:type_name -> df.plugin.BlockPos
-	62,  // 108: df.plugin.WorldSetLiquidAction.liquid:type_name -> df.plugin.LiquidState
-	57,  // 109: df.plugin.WorldScheduleBlockUpdateAction.world:type_name -> df.plugin.WorldRef
-	59,  // 110: df.plugin.WorldScheduleBlockUpdateAction.position:type_name -> df.plugin.BlockPos
-	60,  // 111: df.plugin.WorldScheduleBlockUpdateAction.block:type_name -> df.plugin.BlockState
-	60,  // 112: df.plugin.StructureVoxel.block:type_name -> df.plugin.BlockState
-	62,  // 113: df.plugin.StructureVoxel.liquid:type_name -> df.plugin.LiquidState
-	49,  // 114: df.plugin.StructureDef.voxels:type_name -> df.plugin.StructureVoxel
-	57,  // 115: df.plugin.WorldBuildStructureAction.world:type_name -> df.plugin.WorldRef
-	59,  // 116: df.plugin.WorldBuildStructureAction.origin:type_name -> df.plugin.BlockPos
-	50,  // 117: df.plugin.WorldBuildStructureAction.structure:type_name -> df.plugin.StructureDef
-	118, // [118:118] is the sub-list for method output_type
-	118, // [118:118] is the sub-list for method input_type
-	118, // [118:118] is the sub-list for extension type_name
-	118, // [118:118] is the sub-list for extension extendee
-	0,   // [0:118] is the sub-list for field type_name
+	52,  // 48: df.plugin.Action.player_start_sprinting:type_name -> df.plugin.PlayerStartSprintingAction
+	53,  // 49: df.plugin.Action.player_stop_sprinting:type_name -> df.plugin.PlayerStopSprintingAction
+	54,  // 50: df.plugin.Action.player_start_sneaking:type_name -> df.plugin.PlayerStartSneakingAction
+	55,  // 51: df.plugin.Action.player_stop_sneaking:type_name -> df.plugin.PlayerStopSneakingAction
+	56,  // 52: df.plugin.Action.player_start_swimming:type_name -> df.plugin.PlayerStartSwimmingAction
+	57,  // 53: df.plugin.Action.player_stop_swimming:type_name -> df.plugin.PlayerStopSwimmingAction
+	58,  // 54: df.plugin.Action.player_start_crawling:type_name -> df.plugin.PlayerStartCrawlingAction
+	59,  // 55: df.plugin.Action.player_stop_crawling:type_name -> df.plugin.PlayerStopCrawlingAction
+	60,  // 56: df.plugin.Action.player_start_gliding:type_name -> df.plugin.PlayerStartGlidingAction
+	61,  // 57: df.plugin.Action.player_stop_gliding:type_name -> df.plugin.PlayerStopGlidingAction
+	62,  // 58: df.plugin.Action.player_start_flying:type_name -> df.plugin.PlayerStartFlyingAction
+	63,  // 59: df.plugin.Action.player_stop_flying:type_name -> df.plugin.PlayerStopFlyingAction
+	64,  // 60: df.plugin.Action.player_set_immobile:type_name -> df.plugin.PlayerSetImmobileAction
+	65,  // 61: df.plugin.Action.player_set_mobile:type_name -> df.plugin.PlayerSetMobileAction
+	66,  // 62: df.plugin.Action.player_set_speed:type_name -> df.plugin.PlayerSetSpeedAction
+	67,  // 63: df.plugin.Action.player_set_flight_speed:type_name -> df.plugin.PlayerSetFlightSpeedAction
+	68,  // 64: df.plugin.Action.player_set_vertical_flight_speed:type_name -> df.plugin.PlayerSetVerticalFlightSpeedAction
+	69,  // 65: df.plugin.Action.player_set_absorption:type_name -> df.plugin.PlayerSetAbsorptionAction
+	70,  // 66: df.plugin.Action.player_set_on_fire:type_name -> df.plugin.PlayerSetOnFireAction
+	71,  // 67: df.plugin.Action.player_extinguish:type_name -> df.plugin.PlayerExtinguishAction
+	72,  // 68: df.plugin.Action.player_set_invisible:type_name -> df.plugin.PlayerSetInvisibleAction
+	73,  // 69: df.plugin.Action.player_set_visible:type_name -> df.plugin.PlayerSetVisibleAction
+	74,  // 70: df.plugin.Action.player_set_scale:type_name -> df.plugin.PlayerSetScaleAction
+	75,  // 71: df.plugin.Action.player_set_held_slot:type_name -> df.plugin.PlayerSetHeldSlotAction
+	76,  // 72: df.plugin.Action.player_send_toast:type_name -> df.plugin.PlayerSendToastAction
+	77,  // 73: df.plugin.Action.player_send_jukebox_popup:type_name -> df.plugin.PlayerSendJukeboxPopupAction
+	78,  // 74: df.plugin.Action.player_show_coordinates:type_name -> df.plugin.PlayerShowCoordinatesAction
+	79,  // 75: df.plugin.Action.player_hide_coordinates:type_name -> df.plugin.PlayerHideCoordinatesAction
+	80,  // 76: df.plugin.Action.player_enable_instant_respawn:type_name -> df.plugin.PlayerEnableInstantRespawnAction
+	81,  // 77: df.plugin.Action.player_disable_instant_respawn:type_name -> df.plugin.PlayerDisableInstantRespawnAction
+	82,  // 78: df.plugin.Action.player_set_name_tag:type_name -> df.plugin.PlayerSetNameTagAction
+	83,  // 79: df.plugin.Action.player_set_score_tag:type_name -> df.plugin.PlayerSetScoreTagAction
+	84,  // 80: df.plugin.Action.player_show_particle:type_name -> df.plugin.PlayerShowParticleAction
+	85,  // 81: df.plugin.Action.player_respawn:type_name -> df.plugin.PlayerRespawnAction
+	86,  // 82: df.plugin.Action.player_transfer:type_name -> df.plugin.PlayerTransferAction
+	87,  // 83: df.plugin.Action.player_knock_back:type_name -> df.plugin.PlayerKnockBackAction
+	88,  // 84: df.plugin.Action.player_swing_arm:type_name -> df.plugin.PlayerSwingArmAction
+	89,  // 85: df.plugin.Action.player_punch_air:type_name -> df.plugin.PlayerPunchAirAction
+	90,  // 86: df.plugin.TeleportAction.position:type_name -> df.plugin.Vec3
+	90,  // 87: df.plugin.TeleportAction.rotation:type_name -> df.plugin.Vec3
+	91,  // 88: df.plugin.SetGameModeAction.game_mode:type_name -> df.plugin.GameMode
+	92,  // 89: df.plugin.GiveItemAction.item:type_name -> df.plugin.ItemStack
+	92,  // 90: df.plugin.SetHeldItemAction.main:type_name -> df.plugin.ItemStack
+	92,  // 91: df.plugin.SetHeldItemAction.offhand:type_name -> df.plugin.ItemStack
+	90,  // 92: df.plugin.SetVelocityAction.velocity:type_name -> df.plugin.Vec3
+	93,  // 93: df.plugin.AddEffectAction.effect_type:type_name -> df.plugin.EffectType
+	93,  // 94: df.plugin.RemoveEffectAction.effect_type:type_name -> df.plugin.EffectType
+	94,  // 95: df.plugin.PlaySoundAction.sound:type_name -> df.plugin.Sound
+	90,  // 96: df.plugin.PlaySoundAction.position:type_name -> df.plugin.Vec3
+	95,  // 97: df.plugin.WorldSetDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
+	91,  // 98: df.plugin.WorldSetDefaultGameModeAction.game_mode:type_name -> df.plugin.GameMode
+	95,  // 99: df.plugin.WorldSetDifficultyAction.world:type_name -> df.plugin.WorldRef
+	96,  // 100: df.plugin.WorldSetDifficultyAction.difficulty:type_name -> df.plugin.Difficulty
+	95,  // 101: df.plugin.WorldSetTickRangeAction.world:type_name -> df.plugin.WorldRef
+	95,  // 102: df.plugin.WorldSetBlockAction.world:type_name -> df.plugin.WorldRef
+	97,  // 103: df.plugin.WorldSetBlockAction.position:type_name -> df.plugin.BlockPos
+	98,  // 104: df.plugin.WorldSetBlockAction.block:type_name -> df.plugin.BlockState
+	95,  // 105: df.plugin.WorldPlaySoundAction.world:type_name -> df.plugin.WorldRef
+	94,  // 106: df.plugin.WorldPlaySoundAction.sound:type_name -> df.plugin.Sound
+	90,  // 107: df.plugin.WorldPlaySoundAction.position:type_name -> df.plugin.Vec3
+	95,  // 108: df.plugin.WorldAddParticleAction.world:type_name -> df.plugin.WorldRef
+	90,  // 109: df.plugin.WorldAddParticleAction.position:type_name -> df.plugin.Vec3
+	0,   // 110: df.plugin.WorldAddParticleAction.particle:type_name -> df.plugin.ParticleType
+	98,  // 111: df.plugin.WorldAddParticleAction.block:type_name -> df.plugin.BlockState
+	95,  // 112: df.plugin.WorldSetTimeAction.world:type_name -> df.plugin.WorldRef
+	95,  // 113: df.plugin.WorldStopTimeAction.world:type_name -> df.plugin.WorldRef
+	95,  // 114: df.plugin.WorldStartTimeAction.world:type_name -> df.plugin.WorldRef
+	95,  // 115: df.plugin.WorldSetSpawnAction.world:type_name -> df.plugin.WorldRef
+	97,  // 116: df.plugin.WorldSetSpawnAction.spawn:type_name -> df.plugin.BlockPos
+	95,  // 117: df.plugin.WorldQueryDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
+	95,  // 118: df.plugin.WorldQueryPlayerSpawnAction.world:type_name -> df.plugin.WorldRef
+	95,  // 119: df.plugin.WorldQueryEntitiesAction.world:type_name -> df.plugin.WorldRef
+	95,  // 120: df.plugin.WorldQueryPlayersAction.world:type_name -> df.plugin.WorldRef
+	95,  // 121: df.plugin.WorldQueryEntitiesWithinAction.world:type_name -> df.plugin.WorldRef
+	99,  // 122: df.plugin.WorldQueryEntitiesWithinAction.box:type_name -> df.plugin.BBox
+	95,  // 123: df.plugin.WorldQueryBlockAction.world:type_name -> df.plugin.WorldRef
+	97,  // 124: df.plugin.WorldQueryBlockAction.position:type_name -> df.plugin.BlockPos
+	95,  // 125: df.plugin.WorldQueryBiomeAction.world:type_name -> df.plugin.WorldRef
+	97,  // 126: df.plugin.WorldQueryBiomeAction.position:type_name -> df.plugin.BlockPos
+	95,  // 127: df.plugin.WorldQueryLightAction.world:type_name -> df.plugin.WorldRef
+	97,  // 128: df.plugin.WorldQueryLightAction.position:type_name -> df.plugin.BlockPos
+	95,  // 129: df.plugin.WorldQuerySkyLightAction.world:type_name -> df.plugin.WorldRef
+	97,  // 130: df.plugin.WorldQuerySkyLightAction.position:type_name -> df.plugin.BlockPos
+	95,  // 131: df.plugin.WorldQueryTemperatureAction.world:type_name -> df.plugin.WorldRef
+	97,  // 132: df.plugin.WorldQueryTemperatureAction.position:type_name -> df.plugin.BlockPos
+	95,  // 133: df.plugin.WorldQueryHighestBlockAction.world:type_name -> df.plugin.WorldRef
+	95,  // 134: df.plugin.WorldQueryRainingAtAction.world:type_name -> df.plugin.WorldRef
+	97,  // 135: df.plugin.WorldQueryRainingAtAction.position:type_name -> df.plugin.BlockPos
+	95,  // 136: df.plugin.WorldQuerySnowingAtAction.world:type_name -> df.plugin.WorldRef
+	97,  // 137: df.plugin.WorldQuerySnowingAtAction.position:type_name -> df.plugin.BlockPos
+	95,  // 138: df.plugin.WorldQueryThunderingAtAction.world:type_name -> df.plugin.WorldRef
+	97,  // 139: df.plugin.WorldQueryThunderingAtAction.position:type_name -> df.plugin.BlockPos
+	95,  // 140: df.plugin.WorldQueryLiquidAction.world:type_name -> df.plugin.WorldRef
+	97,  // 141: df.plugin.WorldQueryLiquidAction.position:type_name -> df.plugin.BlockPos
+	95,  // 142: df.plugin.WorldSetBiomeAction.world:type_name -> df.plugin.WorldRef
+	97,  // 143: df.plugin.WorldSetBiomeAction.position:type_name -> df.plugin.BlockPos
+	95,  // 144: df.plugin.WorldSetLiquidAction.world:type_name -> df.plugin.WorldRef
+	97,  // 145: df.plugin.WorldSetLiquidAction.position:type_name -> df.plugin.BlockPos
+	100, // 146: df.plugin.WorldSetLiquidAction.liquid:type_name -> df.plugin.LiquidState
+	95,  // 147: df.plugin.WorldScheduleBlockUpdateAction.world:type_name -> df.plugin.WorldRef
+	97,  // 148: df.plugin.WorldScheduleBlockUpdateAction.position:type_name -> df.plugin.BlockPos
+	98,  // 149: df.plugin.WorldScheduleBlockUpdateAction.block:type_name -> df.plugin.BlockState
+	98,  // 150: df.plugin.StructureVoxel.block:type_name -> df.plugin.BlockState
+	100, // 151: df.plugin.StructureVoxel.liquid:type_name -> df.plugin.LiquidState
+	49,  // 152: df.plugin.StructureDef.voxels:type_name -> df.plugin.StructureVoxel
+	95,  // 153: df.plugin.WorldBuildStructureAction.world:type_name -> df.plugin.WorldRef
+	97,  // 154: df.plugin.WorldBuildStructureAction.origin:type_name -> df.plugin.BlockPos
+	50,  // 155: df.plugin.WorldBuildStructureAction.structure:type_name -> df.plugin.StructureDef
+	90,  // 156: df.plugin.PlayerShowParticleAction.position:type_name -> df.plugin.Vec3
+	0,   // 157: df.plugin.PlayerShowParticleAction.particle:type_name -> df.plugin.ParticleType
+	98,  // 158: df.plugin.PlayerShowParticleAction.block:type_name -> df.plugin.BlockState
+	101, // 159: df.plugin.PlayerTransferAction.address:type_name -> df.plugin.Address
+	90,  // 160: df.plugin.PlayerKnockBackAction.source:type_name -> df.plugin.Vec3
+	161, // [161:161] is the sub-list for method output_type
+	161, // [161:161] is the sub-list for method input_type
+	161, // [161:161] is the sub-list for extension type_name
+	161, // [161:161] is the sub-list for extension extendee
+	0,   // [0:161] is the sub-list for field type_name
 }
 
 func init() { file_actions_proto_init() }
@@ -4315,6 +7030,44 @@ func file_actions_proto_init() {
 		(*Action_WorldQuerySnowingAt)(nil),
 		(*Action_WorldQueryThunderingAt)(nil),
 		(*Action_WorldQueryDefaultGameMode)(nil),
+		(*Action_PlayerStartSprinting)(nil),
+		(*Action_PlayerStopSprinting)(nil),
+		(*Action_PlayerStartSneaking)(nil),
+		(*Action_PlayerStopSneaking)(nil),
+		(*Action_PlayerStartSwimming)(nil),
+		(*Action_PlayerStopSwimming)(nil),
+		(*Action_PlayerStartCrawling)(nil),
+		(*Action_PlayerStopCrawling)(nil),
+		(*Action_PlayerStartGliding)(nil),
+		(*Action_PlayerStopGliding)(nil),
+		(*Action_PlayerStartFlying)(nil),
+		(*Action_PlayerStopFlying)(nil),
+		(*Action_PlayerSetImmobile)(nil),
+		(*Action_PlayerSetMobile)(nil),
+		(*Action_PlayerSetSpeed)(nil),
+		(*Action_PlayerSetFlightSpeed)(nil),
+		(*Action_PlayerSetVerticalFlightSpeed)(nil),
+		(*Action_PlayerSetAbsorption)(nil),
+		(*Action_PlayerSetOnFire)(nil),
+		(*Action_PlayerExtinguish)(nil),
+		(*Action_PlayerSetInvisible)(nil),
+		(*Action_PlayerSetVisible)(nil),
+		(*Action_PlayerSetScale)(nil),
+		(*Action_PlayerSetHeldSlot)(nil),
+		(*Action_PlayerSendToast)(nil),
+		(*Action_PlayerSendJukeboxPopup)(nil),
+		(*Action_PlayerShowCoordinates)(nil),
+		(*Action_PlayerHideCoordinates)(nil),
+		(*Action_PlayerEnableInstantRespawn)(nil),
+		(*Action_PlayerDisableInstantRespawn)(nil),
+		(*Action_PlayerSetNameTag)(nil),
+		(*Action_PlayerSetScoreTag)(nil),
+		(*Action_PlayerShowParticle)(nil),
+		(*Action_PlayerRespawn)(nil),
+		(*Action_PlayerTransfer)(nil),
+		(*Action_PlayerKnockBack)(nil),
+		(*Action_PlayerSwingArm)(nil),
+		(*Action_PlayerPunchAir)(nil),
 	}
 	file_actions_proto_msgTypes[8].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[9].OneofWrappers = []any{}
@@ -4325,13 +7078,14 @@ func file_actions_proto_init() {
 	file_actions_proto_msgTypes[25].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[46].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[48].OneofWrappers = []any{}
+	file_actions_proto_msgTypes[83].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_actions_proto_rawDesc), len(file_actions_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   51,
+			NumMessages:   89,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
