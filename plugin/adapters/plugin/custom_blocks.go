@@ -52,11 +52,11 @@ func (m propertiesModel) BBox(cube.Pos, world.BlockSource) []cube.BBox {
 		// No collision box provided: no collision.
 		return nil
 	}
-	if m.box != (cube.BBox{}) {
-		return []cube.BBox{m.box}
+	// Present but zero: treat as no collision.
+	if m.box == (cube.BBox{}) {
+		return nil
 	}
-	// Explicitly present but zero: default to solid cube.
-	return []cube.BBox{cube.Box(0, 0, 0, 1, 1, 1)}
+	return []cube.BBox{m.box}
 }
 
 func (propertiesModel) FaceSolid(cube.Pos, cube.Face, world.BlockSource) bool {
