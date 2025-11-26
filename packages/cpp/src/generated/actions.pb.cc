@@ -1071,6 +1071,39 @@ struct PlayerSendToastActionDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerSendToastActionDefaultTypeInternal _PlayerSendToastAction_default_instance_;
 
+inline constexpr PlayerSendScoreboardAction::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        lines_{},
+        player_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        title_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        padding_{false},
+        descending_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerSendScoreboardAction::PlayerSendScoreboardAction(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(PlayerSendScoreboardAction_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PlayerSendScoreboardActionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerSendScoreboardActionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerSendScoreboardActionDefaultTypeInternal() {}
+  union {
+    PlayerSendScoreboardAction _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerSendScoreboardActionDefaultTypeInternal _PlayerSendScoreboardAction_default_instance_;
+
 inline constexpr PlayerSendJukeboxPopupAction::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -1127,6 +1160,33 @@ struct PlayerRespawnActionDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerRespawnActionDefaultTypeInternal _PlayerRespawnAction_default_instance_;
+
+inline constexpr PlayerRemoveScoreboardAction::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        player_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerRemoveScoreboardAction::PlayerRemoveScoreboardAction(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(PlayerRemoveScoreboardAction_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PlayerRemoveScoreboardActionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerRemoveScoreboardActionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerRemoveScoreboardActionDefaultTypeInternal() {}
+  union {
+    PlayerRemoveScoreboardAction _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerRemoveScoreboardActionDefaultTypeInternal _PlayerRemoveScoreboardAction_default_instance_;
 
 inline constexpr PlayerPunchAirAction::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -2095,6 +2155,37 @@ struct PlayerTransferActionDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerTransferActionDefaultTypeInternal _PlayerTransferAction_default_instance_;
 
+inline constexpr PlayerSetArmourAction::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        player_uuid_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        helmet_{nullptr},
+        chestplate_{nullptr},
+        leggings_{nullptr},
+        boots_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerSetArmourAction::PlayerSetArmourAction(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(PlayerSetArmourAction_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PlayerSetArmourActionDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerSetArmourActionDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerSetArmourActionDefaultTypeInternal() {}
+  union {
+    PlayerSetArmourAction _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerSetArmourActionDefaultTypeInternal _PlayerSetArmourAction_default_instance_;
+
 inline constexpr PlayerKnockBackAction::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -2506,7 +2597,7 @@ const ::uint32_t
         0x085, // bitmap
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_._oneof_case_[0]),
-        91, // hasbit index offset
+        94, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.correlation_id_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
@@ -2594,7 +2685,13 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::Action, _impl_.kind_),
         0,
+        ~0u,
+        ~0u,
+        ~0u,
         ~0u,
         ~0u,
         ~0u,
@@ -3303,99 +3400,133 @@ const ::uint32_t
         4, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerPunchAirAction, _impl_.player_uuid_),
         0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_._has_bits_),
+        8, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_.player_uuid_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_.helmet_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_.chestplate_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_.leggings_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSetArmourAction, _impl_.boots_),
+        0,
+        1,
+        2,
+        3,
+        4,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_._has_bits_),
+        8, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_.player_uuid_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_.title_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_.lines_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_.padding_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerSendScoreboardAction, _impl_.descending_),
+        1,
+        2,
+        0,
+        3,
+        4,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerRemoveScoreboardAction, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerRemoveScoreboardAction, _impl_.player_uuid_),
+        0,
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::df::plugin::ActionBatch)},
         {5, sizeof(::df::plugin::Action)},
-        {182, sizeof(::df::plugin::SendChatAction)},
-        {189, sizeof(::df::plugin::TeleportAction)},
-        {198, sizeof(::df::plugin::KickAction)},
-        {205, sizeof(::df::plugin::SetGameModeAction)},
-        {212, sizeof(::df::plugin::GiveItemAction)},
-        {219, sizeof(::df::plugin::ClearInventoryAction)},
-        {224, sizeof(::df::plugin::SetHeldItemAction)},
-        {233, sizeof(::df::plugin::SetHealthAction)},
-        {242, sizeof(::df::plugin::SetFoodAction)},
-        {249, sizeof(::df::plugin::SetExperienceAction)},
-        {260, sizeof(::df::plugin::SetVelocityAction)},
-        {267, sizeof(::df::plugin::AddEffectAction)},
-        {280, sizeof(::df::plugin::RemoveEffectAction)},
-        {287, sizeof(::df::plugin::SendTitleAction)},
-        {302, sizeof(::df::plugin::SendPopupAction)},
-        {309, sizeof(::df::plugin::SendTipAction)},
-        {316, sizeof(::df::plugin::PlaySoundAction)},
-        {329, sizeof(::df::plugin::ExecuteCommandAction)},
-        {336, sizeof(::df::plugin::WorldSetDefaultGameModeAction)},
-        {343, sizeof(::df::plugin::WorldSetDifficultyAction)},
-        {350, sizeof(::df::plugin::WorldSetTickRangeAction)},
-        {357, sizeof(::df::plugin::WorldSetBlockAction)},
-        {366, sizeof(::df::plugin::WorldPlaySoundAction)},
-        {375, sizeof(::df::plugin::WorldAddParticleAction)},
-        {388, sizeof(::df::plugin::WorldSetTimeAction)},
-        {395, sizeof(::df::plugin::WorldStopTimeAction)},
-        {400, sizeof(::df::plugin::WorldStartTimeAction)},
-        {405, sizeof(::df::plugin::WorldSetSpawnAction)},
-        {412, sizeof(::df::plugin::WorldQueryDefaultGameModeAction)},
-        {417, sizeof(::df::plugin::WorldQueryPlayerSpawnAction)},
-        {424, sizeof(::df::plugin::WorldQueryEntitiesAction)},
-        {429, sizeof(::df::plugin::WorldQueryPlayersAction)},
-        {434, sizeof(::df::plugin::WorldQueryEntitiesWithinAction)},
-        {441, sizeof(::df::plugin::WorldQueryBlockAction)},
-        {448, sizeof(::df::plugin::WorldQueryBiomeAction)},
-        {455, sizeof(::df::plugin::WorldQueryLightAction)},
-        {462, sizeof(::df::plugin::WorldQuerySkyLightAction)},
-        {469, sizeof(::df::plugin::WorldQueryTemperatureAction)},
-        {476, sizeof(::df::plugin::WorldQueryHighestBlockAction)},
-        {485, sizeof(::df::plugin::WorldQueryRainingAtAction)},
-        {492, sizeof(::df::plugin::WorldQuerySnowingAtAction)},
-        {499, sizeof(::df::plugin::WorldQueryThunderingAtAction)},
-        {506, sizeof(::df::plugin::WorldQueryLiquidAction)},
-        {513, sizeof(::df::plugin::WorldSetBiomeAction)},
-        {522, sizeof(::df::plugin::WorldSetLiquidAction)},
-        {531, sizeof(::df::plugin::WorldScheduleBlockUpdateAction)},
-        {542, sizeof(::df::plugin::StructureVoxel)},
-        {555, sizeof(::df::plugin::StructureDef)},
-        {566, sizeof(::df::plugin::WorldBuildStructureAction)},
-        {575, sizeof(::df::plugin::PlayerStartSprintingAction)},
-        {580, sizeof(::df::plugin::PlayerStopSprintingAction)},
-        {585, sizeof(::df::plugin::PlayerStartSneakingAction)},
-        {590, sizeof(::df::plugin::PlayerStopSneakingAction)},
-        {595, sizeof(::df::plugin::PlayerStartSwimmingAction)},
-        {600, sizeof(::df::plugin::PlayerStopSwimmingAction)},
-        {605, sizeof(::df::plugin::PlayerStartCrawlingAction)},
-        {610, sizeof(::df::plugin::PlayerStopCrawlingAction)},
-        {615, sizeof(::df::plugin::PlayerStartGlidingAction)},
-        {620, sizeof(::df::plugin::PlayerStopGlidingAction)},
-        {625, sizeof(::df::plugin::PlayerStartFlyingAction)},
-        {630, sizeof(::df::plugin::PlayerStopFlyingAction)},
-        {635, sizeof(::df::plugin::PlayerSetImmobileAction)},
-        {640, sizeof(::df::plugin::PlayerSetMobileAction)},
-        {645, sizeof(::df::plugin::PlayerSetSpeedAction)},
-        {652, sizeof(::df::plugin::PlayerSetFlightSpeedAction)},
-        {659, sizeof(::df::plugin::PlayerSetVerticalFlightSpeedAction)},
-        {666, sizeof(::df::plugin::PlayerSetAbsorptionAction)},
-        {673, sizeof(::df::plugin::PlayerSetOnFireAction)},
-        {680, sizeof(::df::plugin::PlayerExtinguishAction)},
-        {685, sizeof(::df::plugin::PlayerSetInvisibleAction)},
-        {690, sizeof(::df::plugin::PlayerSetVisibleAction)},
-        {695, sizeof(::df::plugin::PlayerSetScaleAction)},
-        {702, sizeof(::df::plugin::PlayerSetHeldSlotAction)},
-        {709, sizeof(::df::plugin::PlayerSendToastAction)},
-        {718, sizeof(::df::plugin::PlayerSendJukeboxPopupAction)},
-        {725, sizeof(::df::plugin::PlayerShowCoordinatesAction)},
-        {730, sizeof(::df::plugin::PlayerHideCoordinatesAction)},
-        {735, sizeof(::df::plugin::PlayerEnableInstantRespawnAction)},
-        {740, sizeof(::df::plugin::PlayerDisableInstantRespawnAction)},
-        {745, sizeof(::df::plugin::PlayerSetNameTagAction)},
-        {752, sizeof(::df::plugin::PlayerSetScoreTagAction)},
-        {759, sizeof(::df::plugin::PlayerShowParticleAction)},
-        {772, sizeof(::df::plugin::PlayerRespawnAction)},
-        {777, sizeof(::df::plugin::PlayerTransferAction)},
-        {784, sizeof(::df::plugin::PlayerKnockBackAction)},
-        {795, sizeof(::df::plugin::PlayerSwingArmAction)},
-        {800, sizeof(::df::plugin::PlayerPunchAirAction)},
+        {188, sizeof(::df::plugin::SendChatAction)},
+        {195, sizeof(::df::plugin::TeleportAction)},
+        {204, sizeof(::df::plugin::KickAction)},
+        {211, sizeof(::df::plugin::SetGameModeAction)},
+        {218, sizeof(::df::plugin::GiveItemAction)},
+        {225, sizeof(::df::plugin::ClearInventoryAction)},
+        {230, sizeof(::df::plugin::SetHeldItemAction)},
+        {239, sizeof(::df::plugin::SetHealthAction)},
+        {248, sizeof(::df::plugin::SetFoodAction)},
+        {255, sizeof(::df::plugin::SetExperienceAction)},
+        {266, sizeof(::df::plugin::SetVelocityAction)},
+        {273, sizeof(::df::plugin::AddEffectAction)},
+        {286, sizeof(::df::plugin::RemoveEffectAction)},
+        {293, sizeof(::df::plugin::SendTitleAction)},
+        {308, sizeof(::df::plugin::SendPopupAction)},
+        {315, sizeof(::df::plugin::SendTipAction)},
+        {322, sizeof(::df::plugin::PlaySoundAction)},
+        {335, sizeof(::df::plugin::ExecuteCommandAction)},
+        {342, sizeof(::df::plugin::WorldSetDefaultGameModeAction)},
+        {349, sizeof(::df::plugin::WorldSetDifficultyAction)},
+        {356, sizeof(::df::plugin::WorldSetTickRangeAction)},
+        {363, sizeof(::df::plugin::WorldSetBlockAction)},
+        {372, sizeof(::df::plugin::WorldPlaySoundAction)},
+        {381, sizeof(::df::plugin::WorldAddParticleAction)},
+        {394, sizeof(::df::plugin::WorldSetTimeAction)},
+        {401, sizeof(::df::plugin::WorldStopTimeAction)},
+        {406, sizeof(::df::plugin::WorldStartTimeAction)},
+        {411, sizeof(::df::plugin::WorldSetSpawnAction)},
+        {418, sizeof(::df::plugin::WorldQueryDefaultGameModeAction)},
+        {423, sizeof(::df::plugin::WorldQueryPlayerSpawnAction)},
+        {430, sizeof(::df::plugin::WorldQueryEntitiesAction)},
+        {435, sizeof(::df::plugin::WorldQueryPlayersAction)},
+        {440, sizeof(::df::plugin::WorldQueryEntitiesWithinAction)},
+        {447, sizeof(::df::plugin::WorldQueryBlockAction)},
+        {454, sizeof(::df::plugin::WorldQueryBiomeAction)},
+        {461, sizeof(::df::plugin::WorldQueryLightAction)},
+        {468, sizeof(::df::plugin::WorldQuerySkyLightAction)},
+        {475, sizeof(::df::plugin::WorldQueryTemperatureAction)},
+        {482, sizeof(::df::plugin::WorldQueryHighestBlockAction)},
+        {491, sizeof(::df::plugin::WorldQueryRainingAtAction)},
+        {498, sizeof(::df::plugin::WorldQuerySnowingAtAction)},
+        {505, sizeof(::df::plugin::WorldQueryThunderingAtAction)},
+        {512, sizeof(::df::plugin::WorldQueryLiquidAction)},
+        {519, sizeof(::df::plugin::WorldSetBiomeAction)},
+        {528, sizeof(::df::plugin::WorldSetLiquidAction)},
+        {537, sizeof(::df::plugin::WorldScheduleBlockUpdateAction)},
+        {548, sizeof(::df::plugin::StructureVoxel)},
+        {561, sizeof(::df::plugin::StructureDef)},
+        {572, sizeof(::df::plugin::WorldBuildStructureAction)},
+        {581, sizeof(::df::plugin::PlayerStartSprintingAction)},
+        {586, sizeof(::df::plugin::PlayerStopSprintingAction)},
+        {591, sizeof(::df::plugin::PlayerStartSneakingAction)},
+        {596, sizeof(::df::plugin::PlayerStopSneakingAction)},
+        {601, sizeof(::df::plugin::PlayerStartSwimmingAction)},
+        {606, sizeof(::df::plugin::PlayerStopSwimmingAction)},
+        {611, sizeof(::df::plugin::PlayerStartCrawlingAction)},
+        {616, sizeof(::df::plugin::PlayerStopCrawlingAction)},
+        {621, sizeof(::df::plugin::PlayerStartGlidingAction)},
+        {626, sizeof(::df::plugin::PlayerStopGlidingAction)},
+        {631, sizeof(::df::plugin::PlayerStartFlyingAction)},
+        {636, sizeof(::df::plugin::PlayerStopFlyingAction)},
+        {641, sizeof(::df::plugin::PlayerSetImmobileAction)},
+        {646, sizeof(::df::plugin::PlayerSetMobileAction)},
+        {651, sizeof(::df::plugin::PlayerSetSpeedAction)},
+        {658, sizeof(::df::plugin::PlayerSetFlightSpeedAction)},
+        {665, sizeof(::df::plugin::PlayerSetVerticalFlightSpeedAction)},
+        {672, sizeof(::df::plugin::PlayerSetAbsorptionAction)},
+        {679, sizeof(::df::plugin::PlayerSetOnFireAction)},
+        {686, sizeof(::df::plugin::PlayerExtinguishAction)},
+        {691, sizeof(::df::plugin::PlayerSetInvisibleAction)},
+        {696, sizeof(::df::plugin::PlayerSetVisibleAction)},
+        {701, sizeof(::df::plugin::PlayerSetScaleAction)},
+        {708, sizeof(::df::plugin::PlayerSetHeldSlotAction)},
+        {715, sizeof(::df::plugin::PlayerSendToastAction)},
+        {724, sizeof(::df::plugin::PlayerSendJukeboxPopupAction)},
+        {731, sizeof(::df::plugin::PlayerShowCoordinatesAction)},
+        {736, sizeof(::df::plugin::PlayerHideCoordinatesAction)},
+        {741, sizeof(::df::plugin::PlayerEnableInstantRespawnAction)},
+        {746, sizeof(::df::plugin::PlayerDisableInstantRespawnAction)},
+        {751, sizeof(::df::plugin::PlayerSetNameTagAction)},
+        {758, sizeof(::df::plugin::PlayerSetScoreTagAction)},
+        {765, sizeof(::df::plugin::PlayerShowParticleAction)},
+        {778, sizeof(::df::plugin::PlayerRespawnAction)},
+        {783, sizeof(::df::plugin::PlayerTransferAction)},
+        {790, sizeof(::df::plugin::PlayerKnockBackAction)},
+        {801, sizeof(::df::plugin::PlayerSwingArmAction)},
+        {806, sizeof(::df::plugin::PlayerPunchAirAction)},
+        {811, sizeof(::df::plugin::PlayerSetArmourAction)},
+        {824, sizeof(::df::plugin::PlayerSendScoreboardAction)},
+        {837, sizeof(::df::plugin::PlayerRemoveScoreboardAction)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::df::plugin::_ActionBatch_default_instance_._instance,
@@ -3487,12 +3618,15 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::df::plugin::_PlayerKnockBackAction_default_instance_._instance,
     &::df::plugin::_PlayerSwingArmAction_default_instance_._instance,
     &::df::plugin::_PlayerPunchAirAction_default_instance_._instance,
+    &::df::plugin::_PlayerSetArmourAction_default_instance_._instance,
+    &::df::plugin::_PlayerSendScoreboardAction_default_instance_._instance,
+    &::df::plugin::_PlayerRemoveScoreboardAction_default_instance_._instance,
 };
 const char descriptor_table_protodef_actions_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ractions.proto\022\tdf.plugin\032\014common.proto"
     "\":\n\013ActionBatch\022+\n\007actions\030\001 \003(\0132\021.df.pl"
-    "ugin.ActionR\007actions\"\3557\n\006Action\022*\n\016corre"
+    "ugin.ActionR\007actions\"\204:\n\006Action\022*\n\016corre"
     "lation_id\030\001 \001(\tH\001R\rcorrelationId\210\001\001\0228\n\ts"
     "end_chat\030\n \001(\0132\031.df.plugin.SendChatActio"
     "nH\000R\010sendChat\0227\n\010teleport\030\013 \001(\0132\031.df.plu"
@@ -3504,418 +3638,440 @@ const char descriptor_table_protodef_actions_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "m\022J\n\017clear_inventory\030\017 \001(\0132\037.df.plugin.C"
     "learInventoryActionH\000R\016clearInventory\022B\n"
     "\rset_held_item\030\020 \001(\0132\034.df.plugin.SetHeld"
-    "ItemActionH\000R\013setHeldItem\022;\n\nset_health\030"
-    "\024 \001(\0132\032.df.plugin.SetHealthActionH\000R\tset"
-    "Health\0225\n\010set_food\030\025 \001(\0132\030.df.plugin.Set"
-    "FoodActionH\000R\007setFood\022G\n\016set_experience\030"
-    "\026 \001(\0132\036.df.plugin.SetExperienceActionH\000R"
-    "\rsetExperience\022A\n\014set_velocity\030\027 \001(\0132\034.d"
-    "f.plugin.SetVelocityActionH\000R\013setVelocit"
-    "y\022;\n\nadd_effect\030\036 \001(\0132\032.df.plugin.AddEff"
-    "ectActionH\000R\taddEffect\022D\n\rremove_effect\030"
-    "\037 \001(\0132\035.df.plugin.RemoveEffectActionH\000R\014"
-    "removeEffect\022;\n\nsend_title\030( \001(\0132\032.df.pl"
-    "ugin.SendTitleActionH\000R\tsendTitle\022;\n\nsen"
-    "d_popup\030) \001(\0132\032.df.plugin.SendPopupActio"
-    "nH\000R\tsendPopup\0225\n\010send_tip\030* \001(\0132\030.df.pl"
-    "ugin.SendTipActionH\000R\007sendTip\022;\n\nplay_so"
-    "und\030+ \001(\0132\032.df.plugin.PlaySoundActionH\000R"
-    "\tplaySound\022J\n\017execute_command\0302 \001(\0132\037.df"
-    ".plugin.ExecuteCommandActionH\000R\016executeC"
-    "ommand\022h\n\033world_set_default_game_mode\030< "
-    "\001(\0132(.df.plugin.WorldSetDefaultGameModeA"
-    "ctionH\000R\027worldSetDefaultGameMode\022W\n\024worl"
-    "d_set_difficulty\030= \001(\0132#.df.plugin.World"
-    "SetDifficultyActionH\000R\022worldSetDifficult"
-    "y\022U\n\024world_set_tick_range\030> \001(\0132\".df.plu"
-    "gin.WorldSetTickRangeActionH\000R\021worldSetT"
-    "ickRange\022H\n\017world_set_spawn\030E \001(\0132\036.df.p"
-    "lugin.WorldSetSpawnActionH\000R\rworldSetSpa"
-    "wn\022H\n\017world_set_block\030\? \001(\0132\036.df.plugin."
-    "WorldSetBlockActionH\000R\rworldSetBlock\022H\n\017"
-    "world_set_biome\030Z \001(\0132\036.df.plugin.WorldS"
-    "etBiomeActionH\000R\rworldSetBiome\022K\n\020world_"
-    "set_liquid\030[ \001(\0132\037.df.plugin.WorldSetLiq"
-    "uidActionH\000R\016worldSetLiquid\022j\n\033world_sch"
-    "edule_block_update\030\\ \001(\0132).df.plugin.Wor"
-    "ldScheduleBlockUpdateActionH\000R\030worldSche"
-    "duleBlockUpdate\022Z\n\025world_build_structure"
-    "\030] \001(\0132$.df.plugin.WorldBuildStructureAc"
-    "tionH\000R\023worldBuildStructure\022E\n\016world_set"
-    "_time\030B \001(\0132\035.df.plugin.WorldSetTimeActi"
-    "onH\000R\014worldSetTime\022H\n\017world_stop_time\030C "
-    "\001(\0132\036.df.plugin.WorldStopTimeActionH\000R\rw"
-    "orldStopTime\022K\n\020world_start_time\030D \001(\0132\037"
-    ".df.plugin.WorldStartTimeActionH\000R\016world"
-    "StartTime\022K\n\020world_play_sound\030@ \001(\0132\037.df"
-    ".plugin.WorldPlaySoundActionH\000R\016worldPla"
-    "ySound\022Q\n\022world_add_particle\030A \001(\0132!.df."
-    "plugin.WorldAddParticleActionH\000R\020worldAd"
-    "dParticle\022W\n\024world_query_entities\030F \001(\0132"
-    "#.df.plugin.WorldQueryEntitiesActionH\000R\022"
-    "worldQueryEntities\022T\n\023world_query_player"
-    "s\030G \001(\0132\".df.plugin.WorldQueryPlayersAct"
-    "ionH\000R\021worldQueryPlayers\022j\n\033world_query_"
-    "entities_within\030H \001(\0132).df.plugin.WorldQ"
-    "ueryEntitiesWithinActionH\000R\030worldQueryEn"
-    "titiesWithin\022a\n\030world_query_player_spawn"
-    "\030J \001(\0132&.df.plugin.WorldQueryPlayerSpawn"
-    "ActionH\000R\025worldQueryPlayerSpawn\022N\n\021world"
-    "_query_block\030K \001(\0132 .df.plugin.WorldQuer"
-    "yBlockActionH\000R\017worldQueryBlock\022N\n\021world"
-    "_query_biome\030L \001(\0132 .df.plugin.WorldQuer"
-    "yBiomeActionH\000R\017worldQueryBiome\022Q\n\022world"
-    "_query_liquid\030T \001(\0132!.df.plugin.WorldQue"
-    "ryLiquidActionH\000R\020worldQueryLiquid\022d\n\031wo"
-    "rld_query_highest_block\030P \001(\0132\'.df.plugi"
-    "n.WorldQueryHighestBlockActionH\000R\026worldQ"
-    "ueryHighestBlock\022N\n\021world_query_light\030M "
-    "\001(\0132 .df.plugin.WorldQueryLightActionH\000R"
-    "\017worldQueryLight\022X\n\025world_query_sky_ligh"
-    "t\030N \001(\0132#.df.plugin.WorldQuerySkyLightAc"
-    "tionH\000R\022worldQuerySkyLight\022`\n\027world_quer"
-    "y_temperature\030O \001(\0132&.df.plugin.WorldQue"
-    "ryTemperatureActionH\000R\025worldQueryTempera"
-    "ture\022[\n\026world_query_raining_at\030Q \001(\0132$.d"
-    "f.plugin.WorldQueryRainingAtActionH\000R\023wo"
-    "rldQueryRainingAt\022[\n\026world_query_snowing"
-    "_at\030R \001(\0132$.df.plugin.WorldQuerySnowingA"
-    "tActionH\000R\023worldQuerySnowingAt\022d\n\031world_"
-    "query_thundering_at\030S \001(\0132\'.df.plugin.Wo"
-    "rldQueryThunderingAtActionH\000R\026worldQuery"
-    "ThunderingAt\022n\n\035world_query_default_game"
-    "_mode\030I \001(\0132*.df.plugin.WorldQueryDefaul"
-    "tGameModeActionH\000R\031worldQueryDefaultGame"
-    "Mode\022]\n\026player_start_sprinting\030^ \001(\0132%.d"
-    "f.plugin.PlayerStartSprintingActionH\000R\024p"
-    "layerStartSprinting\022Z\n\025player_stop_sprin"
-    "ting\030_ \001(\0132$.df.plugin.PlayerStopSprinti"
-    "ngActionH\000R\023playerStopSprinting\022Z\n\025playe"
-    "r_start_sneaking\030` \001(\0132$.df.plugin.Playe"
-    "rStartSneakingActionH\000R\023playerStartSneak"
-    "ing\022W\n\024player_stop_sneaking\030a \001(\0132#.df.p"
-    "lugin.PlayerStopSneakingActionH\000R\022player"
-    "StopSneaking\022Z\n\025player_start_swimming\030b "
-    "\001(\0132$.df.plugin.PlayerStartSwimmingActio"
-    "nH\000R\023playerStartSwimming\022W\n\024player_stop_"
-    "swimming\030c \001(\0132#.df.plugin.PlayerStopSwi"
-    "mmingActionH\000R\022playerStopSwimming\022Z\n\025pla"
-    "yer_start_crawling\030d \001(\0132$.df.plugin.Pla"
-    "yerStartCrawlingActionH\000R\023playerStartCra"
-    "wling\022W\n\024player_stop_crawling\030e \001(\0132#.df"
-    ".plugin.PlayerStopCrawlingActionH\000R\022play"
-    "erStopCrawling\022W\n\024player_start_gliding\030f"
-    " \001(\0132#.df.plugin.PlayerStartGlidingActio"
-    "nH\000R\022playerStartGliding\022T\n\023player_stop_g"
-    "liding\030g \001(\0132\".df.plugin.PlayerStopGlidi"
-    "ngActionH\000R\021playerStopGliding\022T\n\023player_"
-    "start_flying\030h \001(\0132\".df.plugin.PlayerSta"
-    "rtFlyingActionH\000R\021playerStartFlying\022Q\n\022p"
-    "layer_stop_flying\030i \001(\0132!.df.plugin.Play"
-    "erStopFlyingActionH\000R\020playerStopFlying\022T"
-    "\n\023player_set_immobile\030j \001(\0132\".df.plugin."
-    "PlayerSetImmobileActionH\000R\021playerSetImmo"
-    "bile\022N\n\021player_set_mobile\030k \001(\0132 .df.plu"
-    "gin.PlayerSetMobileActionH\000R\017playerSetMo"
-    "bile\022K\n\020player_set_speed\030l \001(\0132\037.df.plug"
-    "in.PlayerSetSpeedActionH\000R\016playerSetSpee"
-    "d\022^\n\027player_set_flight_speed\030m \001(\0132%.df."
-    "plugin.PlayerSetFlightSpeedActionH\000R\024pla"
-    "yerSetFlightSpeed\022w\n player_set_vertical"
-    "_flight_speed\030n \001(\0132-.df.plugin.PlayerSe"
-    "tVerticalFlightSpeedActionH\000R\034playerSetV"
-    "erticalFlightSpeed\022Z\n\025player_set_absorpt"
-    "ion\030o \001(\0132$.df.plugin.PlayerSetAbsorptio"
-    "nActionH\000R\023playerSetAbsorption\022O\n\022player"
-    "_set_on_fire\030p \001(\0132 .df.plugin.PlayerSet"
-    "OnFireActionH\000R\017playerSetOnFire\022P\n\021playe"
-    "r_extinguish\030q \001(\0132!.df.plugin.PlayerExt"
-    "inguishActionH\000R\020playerExtinguish\022W\n\024pla"
-    "yer_set_invisible\030r \001(\0132#.df.plugin.Play"
-    "erSetInvisibleActionH\000R\022playerSetInvisib"
-    "le\022Q\n\022player_set_visible\030s \001(\0132!.df.plug"
-    "in.PlayerSetVisibleActionH\000R\020playerSetVi"
-    "sible\022K\n\020player_set_scale\030t \001(\0132\037.df.plu"
-    "gin.PlayerSetScaleActionH\000R\016playerSetSca"
-    "le\022U\n\024player_set_held_slot\030u \001(\0132\".df.pl"
-    "ugin.PlayerSetHeldSlotActionH\000R\021playerSe"
-    "tHeldSlot\022N\n\021player_send_toast\030v \001(\0132 .d"
-    "f.plugin.PlayerSendToastActionH\000R\017player"
-    "SendToast\022d\n\031player_send_jukebox_popup\030w"
-    " \001(\0132\'.df.plugin.PlayerSendJukeboxPopupA"
-    "ctionH\000R\026playerSendJukeboxPopup\022`\n\027playe"
-    "r_show_coordinates\030x \001(\0132&.df.plugin.Pla"
-    "yerShowCoordinatesActionH\000R\025playerShowCo"
-    "ordinates\022`\n\027player_hide_coordinates\030y \001"
-    "(\0132&.df.plugin.PlayerHideCoordinatesActi"
-    "onH\000R\025playerHideCoordinates\022p\n\035player_en"
-    "able_instant_respawn\030z \001(\0132+.df.plugin.P"
-    "layerEnableInstantRespawnActionH\000R\032playe"
-    "rEnableInstantRespawn\022s\n\036player_disable_"
-    "instant_respawn\030{ \001(\0132,.df.plugin.Player"
-    "DisableInstantRespawnActionH\000R\033playerDis"
-    "ableInstantRespawn\022R\n\023player_set_name_ta"
-    "g\030| \001(\0132!.df.plugin.PlayerSetNameTagActi"
-    "onH\000R\020playerSetNameTag\022U\n\024player_set_sco"
-    "re_tag\030} \001(\0132\".df.plugin.PlayerSetScoreT"
-    "agActionH\000R\021playerSetScoreTag\022W\n\024player_"
-    "show_particle\030~ \001(\0132#.df.plugin.PlayerSh"
-    "owParticleActionH\000R\022playerShowParticle\022G"
-    "\n\016player_respawn\030\177 \001(\0132\036.df.plugin.Playe"
-    "rRespawnActionH\000R\rplayerRespawn\022K\n\017playe"
-    "r_transfer\030\200\001 \001(\0132\037.df.plugin.PlayerTran"
-    "sferActionH\000R\016playerTransfer\022O\n\021player_k"
-    "nock_back\030\201\001 \001(\0132 .df.plugin.PlayerKnock"
-    "BackActionH\000R\017playerKnockBack\022L\n\020player_"
-    "swing_arm\030\202\001 \001(\0132\037.df.plugin.PlayerSwing"
-    "ArmActionH\000R\016playerSwingArm\022L\n\020player_pu"
-    "nch_air\030\203\001 \001(\0132\037.df.plugin.PlayerPunchAi"
-    "rActionH\000R\016playerPunchAirB\006\n\004kindB\021\n\017_co"
-    "rrelation_id\"K\n\016SendChatAction\022\037\n\013target"
-    "_uuid\030\001 \001(\tR\ntargetUuid\022\030\n\007message\030\002 \001(\t"
-    "R\007message\"\213\001\n\016TeleportAction\022\037\n\013player_u"
-    "uid\030\001 \001(\tR\nplayerUuid\022+\n\010position\030\002 \001(\0132"
-    "\017.df.plugin.Vec3R\010position\022+\n\010rotation\030\003"
-    " \001(\0132\017.df.plugin.Vec3R\010rotation\"E\n\nKickA"
-    "ction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022\026"
-    "\n\006reason\030\002 \001(\tR\006reason\"f\n\021SetGameModeAct"
-    "ion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\0220\n\t"
-    "game_mode\030\002 \001(\0162\023.df.plugin.GameModeR\010ga"
-    "meMode\"[\n\016GiveItemAction\022\037\n\013player_uuid\030"
-    "\001 \001(\tR\nplayerUuid\022(\n\004item\030\002 \001(\0132\024.df.plu"
-    "gin.ItemStackR\004item\"7\n\024ClearInventoryAct"
-    "ion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"\255\001\n"
-    "\021SetHeldItemAction\022\037\n\013player_uuid\030\001 \001(\tR"
-    "\nplayerUuid\022-\n\004main\030\002 \001(\0132\024.df.plugin.It"
-    "emStackH\000R\004main\210\001\001\0223\n\007offhand\030\003 \001(\0132\024.df"
-    ".plugin.ItemStackH\001R\007offhand\210\001\001B\007\n\005_main"
-    "B\n\n\010_offhand\"}\n\017SetHealthAction\022\037\n\013playe"
-    "r_uuid\030\001 \001(\tR\nplayerUuid\022\026\n\006health\030\002 \001(\001"
-    "R\006health\022\"\n\nmax_health\030\003 \001(\001H\000R\tmaxHealt"
-    "h\210\001\001B\r\n\013_max_health\"D\n\rSetFoodAction\022\037\n\013"
-    "player_uuid\030\001 \001(\tR\nplayerUuid\022\022\n\004food\030\002 "
-    "\001(\005R\004food\"\261\001\n\023SetExperienceAction\022\037\n\013pla"
-    "yer_uuid\030\001 \001(\tR\nplayerUuid\022\031\n\005level\030\002 \001("
-    "\005H\000R\005level\210\001\001\022\037\n\010progress\030\003 \001(\002H\001R\010progr"
-    "ess\210\001\001\022\033\n\006amount\030\004 \001(\005H\002R\006amount\210\001\001B\010\n\006_"
-    "levelB\013\n\t_progressB\t\n\007_amount\"a\n\021SetVelo"
-    "cityAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerU"
-    "uid\022+\n\010velocity\030\002 \001(\0132\017.df.plugin.Vec3R\010"
-    "velocity\"\310\001\n\017AddEffectAction\022\037\n\013player_u"
-    "uid\030\001 \001(\tR\nplayerUuid\0226\n\013effect_type\030\002 \001"
-    "(\0162\025.df.plugin.EffectTypeR\neffectType\022\024\n"
-    "\005level\030\003 \001(\005R\005level\022\037\n\013duration_ms\030\004 \001(\003"
-    "R\ndurationMs\022%\n\016show_particles\030\005 \001(\010R\rsh"
-    "owParticles\"m\n\022RemoveEffectAction\022\037\n\013pla"
-    "yer_uuid\030\001 \001(\tR\nplayerUuid\0226\n\013effect_typ"
-    "e\030\002 \001(\0162\025.df.plugin.EffectTypeR\neffectTy"
-    "pe\"\223\002\n\017SendTitleAction\022\037\n\013player_uuid\030\001 "
-    "\001(\tR\nplayerUuid\022\024\n\005title\030\002 \001(\tR\005title\022\037\n"
-    "\010subtitle\030\003 \001(\tH\000R\010subtitle\210\001\001\022!\n\nfade_i"
-    "n_ms\030\004 \001(\003H\001R\010fadeInMs\210\001\001\022$\n\013duration_ms"
-    "\030\005 \001(\003H\002R\ndurationMs\210\001\001\022#\n\013fade_out_ms\030\006"
-    " \001(\003H\003R\tfadeOutMs\210\001\001B\013\n\t_subtitleB\r\n\013_fa"
-    "de_in_msB\016\n\014_duration_msB\016\n\014_fade_out_ms"
-    "\"L\n\017SendPopupAction\022\037\n\013player_uuid\030\001 \001(\t"
-    "R\nplayerUuid\022\030\n\007message\030\002 \001(\tR\007message\"J"
-    "\n\rSendTipAction\022\037\n\013player_uuid\030\001 \001(\tR\npl"
-    "ayerUuid\022\030\n\007message\030\002 \001(\tR\007message\"\346\001\n\017P"
-    "laySoundAction\022\037\n\013player_uuid\030\001 \001(\tR\npla"
-    "yerUuid\022&\n\005sound\030\002 \001(\0162\020.df.plugin.Sound"
-    "R\005sound\0220\n\010position\030\003 \001(\0132\017.df.plugin.Ve"
-    "c3H\000R\010position\210\001\001\022\033\n\006volume\030\004 \001(\002H\001R\006vol"
-    "ume\210\001\001\022\031\n\005pitch\030\005 \001(\002H\002R\005pitch\210\001\001B\013\n\t_po"
-    "sitionB\t\n\007_volumeB\010\n\006_pitch\"Q\n\024ExecuteCo"
-    "mmandAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayer"
-    "Uuid\022\030\n\007command\030\002 \001(\tR\007command\"|\n\035WorldS"
-    "etDefaultGameModeAction\022)\n\005world\030\001 \001(\0132\023"
-    ".df.plugin.WorldRefR\005world\0220\n\tgame_mode\030"
-    "\002 \001(\0162\023.df.plugin.GameModeR\010gameMode\"|\n\030"
-    "WorldSetDifficultyAction\022)\n\005world\030\001 \001(\0132"
-    "\023.df.plugin.WorldRefR\005world\0225\n\ndifficult"
-    "y\030\002 \001(\0162\025.df.plugin.DifficultyR\ndifficul"
-    "ty\"c\n\027WorldSetTickRangeAction\022)\n\005world\030\001"
-    " \001(\0132\023.df.plugin.WorldRefR\005world\022\035\n\ntick"
-    "_range\030\002 \001(\005R\ttickRange\"\255\001\n\023WorldSetBloc"
-    "kAction\022)\n\005world\030\001 \001(\0132\023.df.plugin.World"
-    "RefR\005world\022/\n\010position\030\002 \001(\0132\023.df.plugin"
-    ".BlockPosR\010position\0220\n\005block\030\003 \001(\0132\025.df."
-    "plugin.BlockStateH\000R\005block\210\001\001B\010\n\006_block\""
-    "\226\001\n\024WorldPlaySoundAction\022)\n\005world\030\001 \001(\0132"
-    "\023.df.plugin.WorldRefR\005world\022&\n\005sound\030\002 \001"
-    "(\0162\020.df.plugin.SoundR\005sound\022+\n\010position\030"
-    "\003 \001(\0132\017.df.plugin.Vec3R\010position\"\203\002\n\026Wor"
-    "ldAddParticleAction\022)\n\005world\030\001 \001(\0132\023.df."
-    "plugin.WorldRefR\005world\022+\n\010position\030\002 \001(\013"
-    "2\017.df.plugin.Vec3R\010position\0223\n\010particle\030"
-    "\003 \001(\0162\027.df.plugin.ParticleTypeR\010particle"
-    "\0220\n\005block\030\004 \001(\0132\025.df.plugin.BlockStateH\000"
-    "R\005block\210\001\001\022\027\n\004face\030\005 \001(\005H\001R\004face\210\001\001B\010\n\006_"
-    "blockB\007\n\005_face\"S\n\022WorldSetTimeAction\022)\n\005"
-    "world\030\001 \001(\0132\023.df.plugin.WorldRefR\005world\022"
-    "\022\n\004time\030\002 \001(\005R\004time\"@\n\023WorldStopTimeActi"
-    "on\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005"
-    "world\"A\n\024WorldStartTimeAction\022)\n\005world\030\001"
-    " \001(\0132\023.df.plugin.WorldRefR\005world\"k\n\023Worl"
-    "dSetSpawnAction\022)\n\005world\030\001 \001(\0132\023.df.plug"
-    "in.WorldRefR\005world\022)\n\005spawn\030\002 \001(\0132\023.df.p"
-    "lugin.BlockPosR\005spawn\"L\n\037WorldQueryDefau"
-    "ltGameModeAction\022)\n\005world\030\001 \001(\0132\023.df.plu"
-    "gin.WorldRefR\005world\"i\n\033WorldQueryPlayerS"
-    "pawnAction\022)\n\005world\030\001 \001(\0132\023.df.plugin.Wo"
-    "rldRefR\005world\022\037\n\013player_uuid\030\002 \001(\tR\nplay"
-    "erUuid\"E\n\030WorldQueryEntitiesAction\022)\n\005wo"
-    "rld\030\001 \001(\0132\023.df.plugin.WorldRefR\005world\"D\n"
-    "\027WorldQueryPlayersAction\022)\n\005world\030\001 \001(\0132"
-    "\023.df.plugin.WorldRefR\005world\"n\n\036WorldQuer"
-    "yEntitiesWithinAction\022)\n\005world\030\001 \001(\0132\023.d"
-    "f.plugin.WorldRefR\005world\022!\n\003box\030\002 \001(\0132\017."
-    "df.plugin.BBoxR\003box\"s\n\025WorldQueryBlockAc"
-    "tion\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRef"
-    "R\005world\022/\n\010position\030\002 \001(\0132\023.df.plugin.Bl"
-    "ockPosR\010position\"s\n\025WorldQueryBiomeActio"
-    "n\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005w"
-    "orld\022/\n\010position\030\002 \001(\0132\023.df.plugin.Block"
-    "PosR\010position\"s\n\025WorldQueryLightAction\022)"
-    "\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005worl"
-    "d\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPos"
-    "R\010position\"v\n\030WorldQuerySkyLightAction\022)"
-    "\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005worl"
-    "d\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPos"
-    "R\010position\"y\n\033WorldQueryTemperatureActio"
-    "n\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005w"
-    "orld\022/\n\010position\030\002 \001(\0132\023.df.plugin.Block"
-    "PosR\010position\"e\n\034WorldQueryHighestBlockA"
-    "ction\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRe"
-    "fR\005world\022\014\n\001x\030\002 \001(\005R\001x\022\014\n\001z\030\003 \001(\005R\001z\"w\n\031"
-    "WorldQueryRainingAtAction\022)\n\005world\030\001 \001(\013"
-    "2\023.df.plugin.WorldRefR\005world\022/\n\010position"
-    "\030\002 \001(\0132\023.df.plugin.BlockPosR\010position\"w\n"
-    "\031WorldQuerySnowingAtAction\022)\n\005world\030\001 \001("
-    "\0132\023.df.plugin.WorldRefR\005world\022/\n\010positio"
-    "n\030\002 \001(\0132\023.df.plugin.BlockPosR\010position\"z"
-    "\n\034WorldQueryThunderingAtAction\022)\n\005world\030"
-    "\001 \001(\0132\023.df.plugin.WorldRefR\005world\022/\n\010pos"
-    "ition\030\002 \001(\0132\023.df.plugin.BlockPosR\010positi"
-    "on\"t\n\026WorldQueryLiquidAction\022)\n\005world\030\001 "
-    "\001(\0132\023.df.plugin.WorldRefR\005world\022/\n\010posit"
-    "ion\030\002 \001(\0132\023.df.plugin.BlockPosR\010position"
-    "\"\214\001\n\023WorldSetBiomeAction\022)\n\005world\030\001 \001(\0132"
-    "\023.df.plugin.WorldRefR\005world\022/\n\010position\030"
-    "\002 \001(\0132\023.df.plugin.BlockPosR\010position\022\031\n\010"
-    "biome_id\030\003 \001(\tR\007biomeId\"\262\001\n\024WorldSetLiqu"
-    "idAction\022)\n\005world\030\001 \001(\0132\023.df.plugin.Worl"
-    "dRefR\005world\022/\n\010position\030\002 \001(\0132\023.df.plugi"
-    "n.BlockPosR\010position\0223\n\006liquid\030\003 \001(\0132\026.d"
-    "f.plugin.LiquidStateH\000R\006liquid\210\001\001B\t\n\007_li"
-    "quid\"\304\001\n\036WorldScheduleBlockUpdateAction\022"
-    ")\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005wor"
-    "ld\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPo"
-    "sR\010position\022+\n\005block\030\003 \001(\0132\025.df.plugin.B"
-    "lockStateR\005block\022\031\n\010delay_ms\030\004 \001(\003R\007dela"
-    "yMs\"\247\001\n\016StructureVoxel\022\014\n\001x\030\001 \001(\005R\001x\022\014\n\001"
-    "y\030\002 \001(\005R\001y\022\014\n\001z\030\003 \001(\005R\001z\022+\n\005block\030\004 \001(\0132"
-    "\025.df.plugin.BlockStateR\005block\0223\n\006liquid\030"
-    "\005 \001(\0132\026.df.plugin.LiquidStateH\000R\006liquid\210"
-    "\001\001B\t\n\007_liquid\"\207\001\n\014StructureDef\022\024\n\005width\030"
-    "\001 \001(\005R\005width\022\026\n\006height\030\002 \001(\005R\006height\022\026\n\006"
-    "length\030\003 \001(\005R\006length\0221\n\006voxels\030\n \003(\0132\031.d"
-    "f.plugin.StructureVoxelR\006voxels\"\252\001\n\031Worl"
-    "dBuildStructureAction\022)\n\005world\030\001 \001(\0132\023.d"
-    "f.plugin.WorldRefR\005world\022+\n\006origin\030\002 \001(\013"
-    "2\023.df.plugin.BlockPosR\006origin\0225\n\tstructu"
-    "re\030\003 \001(\0132\027.df.plugin.StructureDefR\tstruc"
-    "ture\"=\n\032PlayerStartSprintingAction\022\037\n\013pl"
-    "ayer_uuid\030\001 \001(\tR\nplayerUuid\"<\n\031PlayerSto"
-    "pSprintingAction\022\037\n\013player_uuid\030\001 \001(\tR\np"
-    "layerUuid\"<\n\031PlayerStartSneakingAction\022\037"
-    "\n\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n\030Playe"
-    "rStopSneakingAction\022\037\n\013player_uuid\030\001 \001(\t"
-    "R\nplayerUuid\"<\n\031PlayerStartSwimmingActio"
-    "n\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n\030Pl"
-    "ayerStopSwimmingAction\022\037\n\013player_uuid\030\001 "
-    "\001(\tR\nplayerUuid\"<\n\031PlayerStartCrawlingAc"
-    "tion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n"
-    "\030PlayerStopCrawlingAction\022\037\n\013player_uuid"
-    "\030\001 \001(\tR\nplayerUuid\";\n\030PlayerStartGliding"
-    "Action\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\""
-    ":\n\027PlayerStopGlidingAction\022\037\n\013player_uui"
-    "d\030\001 \001(\tR\nplayerUuid\":\n\027PlayerStartFlying"
-    "Action\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\""
-    "9\n\026PlayerStopFlyingAction\022\037\n\013player_uuid"
-    "\030\001 \001(\tR\nplayerUuid\":\n\027PlayerSetImmobileA"
-    "ction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"8"
-    "\n\025PlayerSetMobileAction\022\037\n\013player_uuid\030\001"
-    " \001(\tR\nplayerUuid\"M\n\024PlayerSetSpeedAction"
-    "\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022\024\n\005spe"
-    "ed\030\002 \001(\001R\005speed\"`\n\032PlayerSetFlightSpeedA"
-    "ction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022!"
-    "\n\014flight_speed\030\002 \001(\001R\013flightSpeed\"y\n\"Pla"
-    "yerSetVerticalFlightSpeedAction\022\037\n\013playe"
-    "r_uuid\030\001 \001(\tR\nplayerUuid\0222\n\025vertical_fli"
-    "ght_speed\030\002 \001(\001R\023verticalFlightSpeed\"\\\n\031"
-    "PlayerSetAbsorptionAction\022\037\n\013player_uuid"
-    "\030\001 \001(\tR\nplayerUuid\022\036\n\nabsorption\030\002 \001(\001R\n"
-    "absorption\"Y\n\025PlayerSetOnFireAction\022\037\n\013p"
-    "layer_uuid\030\001 \001(\tR\nplayerUuid\022\037\n\013duration"
-    "_ms\030\002 \001(\003R\ndurationMs\"9\n\026PlayerExtinguis"
-    "hAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid"
-    "\";\n\030PlayerSetInvisibleAction\022\037\n\013player_u"
-    "uid\030\001 \001(\tR\nplayerUuid\"9\n\026PlayerSetVisibl"
-    "eAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid"
-    "\"M\n\024PlayerSetScaleAction\022\037\n\013player_uuid\030"
-    "\001 \001(\tR\nplayerUuid\022\024\n\005scale\030\002 \001(\001R\005scale\""
-    "N\n\027PlayerSetHeldSlotAction\022\037\n\013player_uui"
-    "d\030\001 \001(\tR\nplayerUuid\022\022\n\004slot\030\002 \001(\005R\004slot\""
-    "h\n\025PlayerSendToastAction\022\037\n\013player_uuid\030"
-    "\001 \001(\tR\nplayerUuid\022\024\n\005title\030\002 \001(\tR\005title\022"
-    "\030\n\007message\030\003 \001(\tR\007message\"Y\n\034PlayerSendJ"
-    "ukeboxPopupAction\022\037\n\013player_uuid\030\001 \001(\tR\n"
-    "playerUuid\022\030\n\007message\030\002 \001(\tR\007message\">\n\033"
-    "PlayerShowCoordinatesAction\022\037\n\013player_uu"
-    "id\030\001 \001(\tR\nplayerUuid\">\n\033PlayerHideCoordi"
-    "natesAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayer"
-    "Uuid\"C\n PlayerEnableInstantRespawnAction"
-    "\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"D\n!Pla"
-    "yerDisableInstantRespawnAction\022\037\n\013player"
-    "_uuid\030\001 \001(\tR\nplayerUuid\"T\n\026PlayerSetName"
-    "TagAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUu"
-    "id\022\031\n\010name_tag\030\002 \001(\tR\007nameTag\"W\n\027PlayerS"
-    "etScoreTagAction\022\037\n\013player_uuid\030\001 \001(\tR\np"
-    "layerUuid\022\033\n\tscore_tag\030\002 \001(\tR\010scoreTag\"\373"
-    "\001\n\030PlayerShowParticleAction\022\037\n\013player_uu"
+    "ItemActionH\000R\013setHeldItem\022O\n\021player_set_"
+    "armour\030\204\001 \001(\0132 .df.plugin.PlayerSetArmou"
+    "rActionH\000R\017playerSetArmour\022;\n\nset_health"
+    "\030\024 \001(\0132\032.df.plugin.SetHealthActionH\000R\tse"
+    "tHealth\0225\n\010set_food\030\025 \001(\0132\030.df.plugin.Se"
+    "tFoodActionH\000R\007setFood\022G\n\016set_experience"
+    "\030\026 \001(\0132\036.df.plugin.SetExperienceActionH\000"
+    "R\rsetExperience\022A\n\014set_velocity\030\027 \001(\0132\034."
+    "df.plugin.SetVelocityActionH\000R\013setVeloci"
+    "ty\022;\n\nadd_effect\030\036 \001(\0132\032.df.plugin.AddEf"
+    "fectActionH\000R\taddEffect\022D\n\rremove_effect"
+    "\030\037 \001(\0132\035.df.plugin.RemoveEffectActionH\000R"
+    "\014removeEffect\022;\n\nsend_title\030( \001(\0132\032.df.p"
+    "lugin.SendTitleActionH\000R\tsendTitle\022;\n\nse"
+    "nd_popup\030) \001(\0132\032.df.plugin.SendPopupActi"
+    "onH\000R\tsendPopup\0225\n\010send_tip\030* \001(\0132\030.df.p"
+    "lugin.SendTipActionH\000R\007sendTip\022N\n\021player"
+    "_send_toast\030v \001(\0132 .df.plugin.PlayerSend"
+    "ToastActionH\000R\017playerSendToast\022d\n\031player"
+    "_send_jukebox_popup\030w \001(\0132\'.df.plugin.Pl"
+    "ayerSendJukeboxPopupActionH\000R\026playerSend"
+    "JukeboxPopup\022`\n\027player_show_coordinates\030"
+    "x \001(\0132&.df.plugin.PlayerShowCoordinatesA"
+    "ctionH\000R\025playerShowCoordinates\022`\n\027player"
+    "_hide_coordinates\030y \001(\0132&.df.plugin.Play"
+    "erHideCoordinatesActionH\000R\025playerHideCoo"
+    "rdinates\022p\n\035player_enable_instant_respaw"
+    "n\030z \001(\0132+.df.plugin.PlayerEnableInstantR"
+    "espawnActionH\000R\032playerEnableInstantRespa"
+    "wn\022s\n\036player_disable_instant_respawn\030{ \001"
+    "(\0132,.df.plugin.PlayerDisableInstantRespa"
+    "wnActionH\000R\033playerDisableInstantRespawn\022"
+    "R\n\023player_set_name_tag\030| \001(\0132!.df.plugin"
+    ".PlayerSetNameTagActionH\000R\020playerSetName"
+    "Tag\022U\n\024player_set_score_tag\030} \001(\0132\".df.p"
+    "lugin.PlayerSetScoreTagActionH\000R\021playerS"
+    "etScoreTag\022;\n\nplay_sound\030+ \001(\0132\032.df.plug"
+    "in.PlaySoundActionH\000R\tplaySound\022W\n\024playe"
+    "r_show_particle\030~ \001(\0132#.df.plugin.Player"
+    "ShowParticleActionH\000R\022playerShowParticle"
+    "\022^\n\026player_send_scoreboard\030\205\001 \001(\0132%.df.p"
+    "lugin.PlayerSendScoreboardActionH\000R\024play"
+    "erSendScoreboard\022d\n\030player_remove_scoreb"
+    "oard\030\206\001 \001(\0132\'.df.plugin.PlayerRemoveScor"
+    "eboardActionH\000R\026playerRemoveScoreboard\022J"
+    "\n\017execute_command\0302 \001(\0132\037.df.plugin.Exec"
+    "uteCommandActionH\000R\016executeCommand\022]\n\026pl"
+    "ayer_start_sprinting\030^ \001(\0132%.df.plugin.P"
+    "layerStartSprintingActionH\000R\024playerStart"
+    "Sprinting\022Z\n\025player_stop_sprinting\030_ \001(\013"
+    "2$.df.plugin.PlayerStopSprintingActionH\000"
+    "R\023playerStopSprinting\022Z\n\025player_start_sn"
+    "eaking\030` \001(\0132$.df.plugin.PlayerStartSnea"
+    "kingActionH\000R\023playerStartSneaking\022W\n\024pla"
+    "yer_stop_sneaking\030a \001(\0132#.df.plugin.Play"
+    "erStopSneakingActionH\000R\022playerStopSneaki"
+    "ng\022Z\n\025player_start_swimming\030b \001(\0132$.df.p"
+    "lugin.PlayerStartSwimmingActionH\000R\023playe"
+    "rStartSwimming\022W\n\024player_stop_swimming\030c"
+    " \001(\0132#.df.plugin.PlayerStopSwimmingActio"
+    "nH\000R\022playerStopSwimming\022Z\n\025player_start_"
+    "crawling\030d \001(\0132$.df.plugin.PlayerStartCr"
+    "awlingActionH\000R\023playerStartCrawling\022W\n\024p"
+    "layer_stop_crawling\030e \001(\0132#.df.plugin.Pl"
+    "ayerStopCrawlingActionH\000R\022playerStopCraw"
+    "ling\022W\n\024player_start_gliding\030f \001(\0132#.df."
+    "plugin.PlayerStartGlidingActionH\000R\022playe"
+    "rStartGliding\022T\n\023player_stop_gliding\030g \001"
+    "(\0132\".df.plugin.PlayerStopGlidingActionH\000"
+    "R\021playerStopGliding\022T\n\023player_start_flyi"
+    "ng\030h \001(\0132\".df.plugin.PlayerStartFlyingAc"
+    "tionH\000R\021playerStartFlying\022Q\n\022player_stop"
+    "_flying\030i \001(\0132!.df.plugin.PlayerStopFlyi"
+    "ngActionH\000R\020playerStopFlying\022T\n\023player_s"
+    "et_immobile\030j \001(\0132\".df.plugin.PlayerSetI"
+    "mmobileActionH\000R\021playerSetImmobile\022N\n\021pl"
+    "ayer_set_mobile\030k \001(\0132 .df.plugin.Player"
+    "SetMobileActionH\000R\017playerSetMobile\022K\n\020pl"
+    "ayer_set_speed\030l \001(\0132\037.df.plugin.PlayerS"
+    "etSpeedActionH\000R\016playerSetSpeed\022^\n\027playe"
+    "r_set_flight_speed\030m \001(\0132%.df.plugin.Pla"
+    "yerSetFlightSpeedActionH\000R\024playerSetFlig"
+    "htSpeed\022w\n player_set_vertical_flight_sp"
+    "eed\030n \001(\0132-.df.plugin.PlayerSetVerticalF"
+    "lightSpeedActionH\000R\034playerSetVerticalFli"
+    "ghtSpeed\022Z\n\025player_set_absorption\030o \001(\0132"
+    "$.df.plugin.PlayerSetAbsorptionActionH\000R"
+    "\023playerSetAbsorption\022O\n\022player_set_on_fi"
+    "re\030p \001(\0132 .df.plugin.PlayerSetOnFireActi"
+    "onH\000R\017playerSetOnFire\022P\n\021player_extingui"
+    "sh\030q \001(\0132!.df.plugin.PlayerExtinguishAct"
+    "ionH\000R\020playerExtinguish\022W\n\024player_set_in"
+    "visible\030r \001(\0132#.df.plugin.PlayerSetInvis"
+    "ibleActionH\000R\022playerSetInvisible\022Q\n\022play"
+    "er_set_visible\030s \001(\0132!.df.plugin.PlayerS"
+    "etVisibleActionH\000R\020playerSetVisible\022K\n\020p"
+    "layer_set_scale\030t \001(\0132\037.df.plugin.Player"
+    "SetScaleActionH\000R\016playerSetScale\022U\n\024play"
+    "er_set_held_slot\030u \001(\0132\".df.plugin.Playe"
+    "rSetHeldSlotActionH\000R\021playerSetHeldSlot\022"
+    "G\n\016player_respawn\030\177 \001(\0132\036.df.plugin.Play"
+    "erRespawnActionH\000R\rplayerRespawn\022K\n\017play"
+    "er_transfer\030\200\001 \001(\0132\037.df.plugin.PlayerTra"
+    "nsferActionH\000R\016playerTransfer\022O\n\021player_"
+    "knock_back\030\201\001 \001(\0132 .df.plugin.PlayerKnoc"
+    "kBackActionH\000R\017playerKnockBack\022L\n\020player"
+    "_swing_arm\030\202\001 \001(\0132\037.df.plugin.PlayerSwin"
+    "gArmActionH\000R\016playerSwingArm\022L\n\020player_p"
+    "unch_air\030\203\001 \001(\0132\037.df.plugin.PlayerPunchA"
+    "irActionH\000R\016playerPunchAir\022h\n\033world_set_"
+    "default_game_mode\030< \001(\0132(.df.plugin.Worl"
+    "dSetDefaultGameModeActionH\000R\027worldSetDef"
+    "aultGameMode\022W\n\024world_set_difficulty\030= \001"
+    "(\0132#.df.plugin.WorldSetDifficultyActionH"
+    "\000R\022worldSetDifficulty\022U\n\024world_set_tick_"
+    "range\030> \001(\0132\".df.plugin.WorldSetTickRang"
+    "eActionH\000R\021worldSetTickRange\022H\n\017world_se"
+    "t_block\030\? \001(\0132\036.df.plugin.WorldSetBlockA"
+    "ctionH\000R\rworldSetBlock\022K\n\020world_play_sou"
+    "nd\030@ \001(\0132\037.df.plugin.WorldPlaySoundActio"
+    "nH\000R\016worldPlaySound\022Q\n\022world_add_particl"
+    "e\030A \001(\0132!.df.plugin.WorldAddParticleActi"
+    "onH\000R\020worldAddParticle\022E\n\016world_set_time"
+    "\030B \001(\0132\035.df.plugin.WorldSetTimeActionH\000R"
+    "\014worldSetTime\022H\n\017world_stop_time\030C \001(\0132\036"
+    ".df.plugin.WorldStopTimeActionH\000R\rworldS"
+    "topTime\022K\n\020world_start_time\030D \001(\0132\037.df.p"
+    "lugin.WorldStartTimeActionH\000R\016worldStart"
+    "Time\022H\n\017world_set_spawn\030E \001(\0132\036.df.plugi"
+    "n.WorldSetSpawnActionH\000R\rworldSetSpawn\022H"
+    "\n\017world_set_biome\030Z \001(\0132\036.df.plugin.Worl"
+    "dSetBiomeActionH\000R\rworldSetBiome\022K\n\020worl"
+    "d_set_liquid\030[ \001(\0132\037.df.plugin.WorldSetL"
+    "iquidActionH\000R\016worldSetLiquid\022j\n\033world_s"
+    "chedule_block_update\030\\ \001(\0132).df.plugin.W"
+    "orldScheduleBlockUpdateActionH\000R\030worldSc"
+    "heduleBlockUpdate\022Z\n\025world_build_structu"
+    "re\030] \001(\0132$.df.plugin.WorldBuildStructure"
+    "ActionH\000R\023worldBuildStructure\022W\n\024world_q"
+    "uery_entities\030F \001(\0132#.df.plugin.WorldQue"
+    "ryEntitiesActionH\000R\022worldQueryEntities\022T"
+    "\n\023world_query_players\030G \001(\0132\".df.plugin."
+    "WorldQueryPlayersActionH\000R\021worldQueryPla"
+    "yers\022j\n\033world_query_entities_within\030H \001("
+    "\0132).df.plugin.WorldQueryEntitiesWithinAc"
+    "tionH\000R\030worldQueryEntitiesWithin\022a\n\030worl"
+    "d_query_player_spawn\030J \001(\0132&.df.plugin.W"
+    "orldQueryPlayerSpawnActionH\000R\025worldQuery"
+    "PlayerSpawn\022N\n\021world_query_block\030K \001(\0132 "
+    ".df.plugin.WorldQueryBlockActionH\000R\017worl"
+    "dQueryBlock\022N\n\021world_query_biome\030L \001(\0132 "
+    ".df.plugin.WorldQueryBiomeActionH\000R\017worl"
+    "dQueryBiome\022N\n\021world_query_light\030M \001(\0132 "
+    ".df.plugin.WorldQueryLightActionH\000R\017worl"
+    "dQueryLight\022X\n\025world_query_sky_light\030N \001"
+    "(\0132#.df.plugin.WorldQuerySkyLightActionH"
+    "\000R\022worldQuerySkyLight\022`\n\027world_query_tem"
+    "perature\030O \001(\0132&.df.plugin.WorldQueryTem"
+    "peratureActionH\000R\025worldQueryTemperature\022"
+    "d\n\031world_query_highest_block\030P \001(\0132\'.df."
+    "plugin.WorldQueryHighestBlockActionH\000R\026w"
+    "orldQueryHighestBlock\022[\n\026world_query_rai"
+    "ning_at\030Q \001(\0132$.df.plugin.WorldQueryRain"
+    "ingAtActionH\000R\023worldQueryRainingAt\022[\n\026wo"
+    "rld_query_snowing_at\030R \001(\0132$.df.plugin.W"
+    "orldQuerySnowingAtActionH\000R\023worldQuerySn"
+    "owingAt\022d\n\031world_query_thundering_at\030S \001"
+    "(\0132\'.df.plugin.WorldQueryThunderingAtAct"
+    "ionH\000R\026worldQueryThunderingAt\022Q\n\022world_q"
+    "uery_liquid\030T \001(\0132!.df.plugin.WorldQuery"
+    "LiquidActionH\000R\020worldQueryLiquid\022n\n\035worl"
+    "d_query_default_game_mode\030I \001(\0132*.df.plu"
+    "gin.WorldQueryDefaultGameModeActionH\000R\031w"
+    "orldQueryDefaultGameModeB\006\n\004kindB\021\n\017_cor"
+    "relation_id\"K\n\016SendChatAction\022\037\n\013target_"
+    "uuid\030\001 \001(\tR\ntargetUuid\022\030\n\007message\030\002 \001(\tR"
+    "\007message\"\213\001\n\016TeleportAction\022\037\n\013player_uu"
     "id\030\001 \001(\tR\nplayerUuid\022+\n\010position\030\002 \001(\0132\017"
-    ".df.plugin.Vec3R\010position\0223\n\010particle\030\003 "
-    "\001(\0162\027.df.plugin.ParticleTypeR\010particle\0220"
-    "\n\005block\030\004 \001(\0132\025.df.plugin.BlockStateH\000R\005"
-    "block\210\001\001\022\027\n\004face\030\005 \001(\005H\001R\004face\210\001\001B\010\n\006_bl"
-    "ockB\007\n\005_face\"6\n\023PlayerRespawnAction\022\037\n\013p"
-    "layer_uuid\030\001 \001(\tR\nplayerUuid\"e\n\024PlayerTr"
-    "ansferAction\022\037\n\013player_uuid\030\001 \001(\tR\nplaye"
-    "rUuid\022,\n\007address\030\002 \001(\0132\022.df.plugin.Addre"
-    "ssR\007address\"\217\001\n\025PlayerKnockBackAction\022\037\n"
-    "\013player_uuid\030\001 \001(\tR\nplayerUuid\022\'\n\006source"
-    "\030\002 \001(\0132\017.df.plugin.Vec3R\006source\022\024\n\005force"
-    "\030\003 \001(\001R\005force\022\026\n\006height\030\004 \001(\001R\006height\"7\n"
-    "\024PlayerSwingArmAction\022\037\n\013player_uuid\030\001 \001"
-    "(\tR\nplayerUuid\"7\n\024PlayerPunchAirAction\022\037"
-    "\n\013player_uuid\030\001 \001(\tR\nplayerUuid*\353\003\n\014Part"
-    "icleType\022\035\n\031PARTICLE_TYPE_UNSPECIFIED\020\000\022"
-    "\033\n\027PARTICLE_HUGE_EXPLOSION\020\001\022\036\n\032PARTICLE"
-    "_ENDERMAN_TELEPORT\020\002\022\032\n\026PARTICLE_SNOWBAL"
-    "L_POOF\020\003\022\026\n\022PARTICLE_EGG_SMASH\020\004\022\023\n\017PART"
-    "ICLE_SPLASH\020\005\022\023\n\017PARTICLE_EFFECT\020\006\022\031\n\025PA"
-    "RTICLE_ENTITY_FLAME\020\007\022\022\n\016PARTICLE_FLAME\020"
-    "\010\022\021\n\rPARTICLE_DUST\020\t\022\036\n\032PARTICLE_BLOCK_F"
-    "ORCE_FIELD\020\n\022\026\n\022PARTICLE_BONE_MEAL\020\013\022\026\n\022"
-    "PARTICLE_EVAPORATE\020\014\022\027\n\023PARTICLE_WATER_D"
-    "RIP\020\r\022\026\n\022PARTICLE_LAVA_DRIP\020\016\022\021\n\rPARTICL"
-    "E_LAVA\020\017\022\027\n\023PARTICLE_DUST_PLUME\020\020\022\030\n\024PAR"
-    "TICLE_BLOCK_BREAK\020\021\022\030\n\024PARTICLE_PUNCH_BL"
-    "OCK\020\022B\213\001\n\rcom.df.pluginB\014ActionsProtoP\001Z"
-    "\'github.com/secmc/plugin/proto/generated"
-    "\242\002\003DPX\252\002\tDf.Plugin\312\002\tDf\\Plugin\342\002\025Df\\Plug"
-    "in\\GPBMetadata\352\002\nDf::Pluginb\006proto3"
+    ".df.plugin.Vec3R\010position\022+\n\010rotation\030\003 "
+    "\001(\0132\017.df.plugin.Vec3R\010rotation\"E\n\nKickAc"
+    "tion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022\026\n"
+    "\006reason\030\002 \001(\tR\006reason\"f\n\021SetGameModeActi"
+    "on\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\0220\n\tg"
+    "ame_mode\030\002 \001(\0162\023.df.plugin.GameModeR\010gam"
+    "eMode\"[\n\016GiveItemAction\022\037\n\013player_uuid\030\001"
+    " \001(\tR\nplayerUuid\022(\n\004item\030\002 \001(\0132\024.df.plug"
+    "in.ItemStackR\004item\"7\n\024ClearInventoryActi"
+    "on\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"\255\001\n\021"
+    "SetHeldItemAction\022\037\n\013player_uuid\030\001 \001(\tR\n"
+    "playerUuid\022-\n\004main\030\002 \001(\0132\024.df.plugin.Ite"
+    "mStackH\000R\004main\210\001\001\0223\n\007offhand\030\003 \001(\0132\024.df."
+    "plugin.ItemStackH\001R\007offhand\210\001\001B\007\n\005_mainB"
+    "\n\n\010_offhand\"}\n\017SetHealthAction\022\037\n\013player"
+    "_uuid\030\001 \001(\tR\nplayerUuid\022\026\n\006health\030\002 \001(\001R"
+    "\006health\022\"\n\nmax_health\030\003 \001(\001H\000R\tmaxHealth"
+    "\210\001\001B\r\n\013_max_health\"D\n\rSetFoodAction\022\037\n\013p"
+    "layer_uuid\030\001 \001(\tR\nplayerUuid\022\022\n\004food\030\002 \001"
+    "(\005R\004food\"\261\001\n\023SetExperienceAction\022\037\n\013play"
+    "er_uuid\030\001 \001(\tR\nplayerUuid\022\031\n\005level\030\002 \001(\005"
+    "H\000R\005level\210\001\001\022\037\n\010progress\030\003 \001(\002H\001R\010progre"
+    "ss\210\001\001\022\033\n\006amount\030\004 \001(\005H\002R\006amount\210\001\001B\010\n\006_l"
+    "evelB\013\n\t_progressB\t\n\007_amount\"a\n\021SetVeloc"
+    "ityAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUu"
+    "id\022+\n\010velocity\030\002 \001(\0132\017.df.plugin.Vec3R\010v"
+    "elocity\"\310\001\n\017AddEffectAction\022\037\n\013player_uu"
+    "id\030\001 \001(\tR\nplayerUuid\0226\n\013effect_type\030\002 \001("
+    "\0162\025.df.plugin.EffectTypeR\neffectType\022\024\n\005"
+    "level\030\003 \001(\005R\005level\022\037\n\013duration_ms\030\004 \001(\003R"
+    "\ndurationMs\022%\n\016show_particles\030\005 \001(\010R\rsho"
+    "wParticles\"m\n\022RemoveEffectAction\022\037\n\013play"
+    "er_uuid\030\001 \001(\tR\nplayerUuid\0226\n\013effect_type"
+    "\030\002 \001(\0162\025.df.plugin.EffectTypeR\neffectTyp"
+    "e\"\223\002\n\017SendTitleAction\022\037\n\013player_uuid\030\001 \001"
+    "(\tR\nplayerUuid\022\024\n\005title\030\002 \001(\tR\005title\022\037\n\010"
+    "subtitle\030\003 \001(\tH\000R\010subtitle\210\001\001\022!\n\nfade_in"
+    "_ms\030\004 \001(\003H\001R\010fadeInMs\210\001\001\022$\n\013duration_ms\030"
+    "\005 \001(\003H\002R\ndurationMs\210\001\001\022#\n\013fade_out_ms\030\006 "
+    "\001(\003H\003R\tfadeOutMs\210\001\001B\013\n\t_subtitleB\r\n\013_fad"
+    "e_in_msB\016\n\014_duration_msB\016\n\014_fade_out_ms\""
+    "L\n\017SendPopupAction\022\037\n\013player_uuid\030\001 \001(\tR"
+    "\nplayerUuid\022\030\n\007message\030\002 \001(\tR\007message\"J\n"
+    "\rSendTipAction\022\037\n\013player_uuid\030\001 \001(\tR\npla"
+    "yerUuid\022\030\n\007message\030\002 \001(\tR\007message\"\346\001\n\017Pl"
+    "aySoundAction\022\037\n\013player_uuid\030\001 \001(\tR\nplay"
+    "erUuid\022&\n\005sound\030\002 \001(\0162\020.df.plugin.SoundR"
+    "\005sound\0220\n\010position\030\003 \001(\0132\017.df.plugin.Vec"
+    "3H\000R\010position\210\001\001\022\033\n\006volume\030\004 \001(\002H\001R\006volu"
+    "me\210\001\001\022\031\n\005pitch\030\005 \001(\002H\002R\005pitch\210\001\001B\013\n\t_pos"
+    "itionB\t\n\007_volumeB\010\n\006_pitch\"Q\n\024ExecuteCom"
+    "mandAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerU"
+    "uid\022\030\n\007command\030\002 \001(\tR\007command\"|\n\035WorldSe"
+    "tDefaultGameModeAction\022)\n\005world\030\001 \001(\0132\023."
+    "df.plugin.WorldRefR\005world\0220\n\tgame_mode\030\002"
+    " \001(\0162\023.df.plugin.GameModeR\010gameMode\"|\n\030W"
+    "orldSetDifficultyAction\022)\n\005world\030\001 \001(\0132\023"
+    ".df.plugin.WorldRefR\005world\0225\n\ndifficulty"
+    "\030\002 \001(\0162\025.df.plugin.DifficultyR\ndifficult"
+    "y\"c\n\027WorldSetTickRangeAction\022)\n\005world\030\001 "
+    "\001(\0132\023.df.plugin.WorldRefR\005world\022\035\n\ntick_"
+    "range\030\002 \001(\005R\ttickRange\"\255\001\n\023WorldSetBlock"
+    "Action\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldR"
+    "efR\005world\022/\n\010position\030\002 \001(\0132\023.df.plugin."
+    "BlockPosR\010position\0220\n\005block\030\003 \001(\0132\025.df.p"
+    "lugin.BlockStateH\000R\005block\210\001\001B\010\n\006_block\"\226"
+    "\001\n\024WorldPlaySoundAction\022)\n\005world\030\001 \001(\0132\023"
+    ".df.plugin.WorldRefR\005world\022&\n\005sound\030\002 \001("
+    "\0162\020.df.plugin.SoundR\005sound\022+\n\010position\030\003"
+    " \001(\0132\017.df.plugin.Vec3R\010position\"\203\002\n\026Worl"
+    "dAddParticleAction\022)\n\005world\030\001 \001(\0132\023.df.p"
+    "lugin.WorldRefR\005world\022+\n\010position\030\002 \001(\0132"
+    "\017.df.plugin.Vec3R\010position\0223\n\010particle\030\003"
+    " \001(\0162\027.df.plugin.ParticleTypeR\010particle\022"
+    "0\n\005block\030\004 \001(\0132\025.df.plugin.BlockStateH\000R"
+    "\005block\210\001\001\022\027\n\004face\030\005 \001(\005H\001R\004face\210\001\001B\010\n\006_b"
+    "lockB\007\n\005_face\"S\n\022WorldSetTimeAction\022)\n\005w"
+    "orld\030\001 \001(\0132\023.df.plugin.WorldRefR\005world\022\022"
+    "\n\004time\030\002 \001(\005R\004time\"@\n\023WorldStopTimeActio"
+    "n\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005w"
+    "orld\"A\n\024WorldStartTimeAction\022)\n\005world\030\001 "
+    "\001(\0132\023.df.plugin.WorldRefR\005world\"k\n\023World"
+    "SetSpawnAction\022)\n\005world\030\001 \001(\0132\023.df.plugi"
+    "n.WorldRefR\005world\022)\n\005spawn\030\002 \001(\0132\023.df.pl"
+    "ugin.BlockPosR\005spawn\"L\n\037WorldQueryDefaul"
+    "tGameModeAction\022)\n\005world\030\001 \001(\0132\023.df.plug"
+    "in.WorldRefR\005world\"i\n\033WorldQueryPlayerSp"
+    "awnAction\022)\n\005world\030\001 \001(\0132\023.df.plugin.Wor"
+    "ldRefR\005world\022\037\n\013player_uuid\030\002 \001(\tR\nplaye"
+    "rUuid\"E\n\030WorldQueryEntitiesAction\022)\n\005wor"
+    "ld\030\001 \001(\0132\023.df.plugin.WorldRefR\005world\"D\n\027"
+    "WorldQueryPlayersAction\022)\n\005world\030\001 \001(\0132\023"
+    ".df.plugin.WorldRefR\005world\"n\n\036WorldQuery"
+    "EntitiesWithinAction\022)\n\005world\030\001 \001(\0132\023.df"
+    ".plugin.WorldRefR\005world\022!\n\003box\030\002 \001(\0132\017.d"
+    "f.plugin.BBoxR\003box\"s\n\025WorldQueryBlockAct"
+    "ion\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR"
+    "\005world\022/\n\010position\030\002 \001(\0132\023.df.plugin.Blo"
+    "ckPosR\010position\"s\n\025WorldQueryBiomeAction"
+    "\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005wo"
+    "rld\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockP"
+    "osR\010position\"s\n\025WorldQueryLightAction\022)\n"
+    "\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005world"
+    "\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPosR"
+    "\010position\"v\n\030WorldQuerySkyLightAction\022)\n"
+    "\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005world"
+    "\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPosR"
+    "\010position\"y\n\033WorldQueryTemperatureAction"
+    "\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005wo"
+    "rld\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockP"
+    "osR\010position\"e\n\034WorldQueryHighestBlockAc"
+    "tion\022)\n\005world\030\001 \001(\0132\023.df.plugin.WorldRef"
+    "R\005world\022\014\n\001x\030\002 \001(\005R\001x\022\014\n\001z\030\003 \001(\005R\001z\"w\n\031W"
+    "orldQueryRainingAtAction\022)\n\005world\030\001 \001(\0132"
+    "\023.df.plugin.WorldRefR\005world\022/\n\010position\030"
+    "\002 \001(\0132\023.df.plugin.BlockPosR\010position\"w\n\031"
+    "WorldQuerySnowingAtAction\022)\n\005world\030\001 \001(\013"
+    "2\023.df.plugin.WorldRefR\005world\022/\n\010position"
+    "\030\002 \001(\0132\023.df.plugin.BlockPosR\010position\"z\n"
+    "\034WorldQueryThunderingAtAction\022)\n\005world\030\001"
+    " \001(\0132\023.df.plugin.WorldRefR\005world\022/\n\010posi"
+    "tion\030\002 \001(\0132\023.df.plugin.BlockPosR\010positio"
+    "n\"t\n\026WorldQueryLiquidAction\022)\n\005world\030\001 \001"
+    "(\0132\023.df.plugin.WorldRefR\005world\022/\n\010positi"
+    "on\030\002 \001(\0132\023.df.plugin.BlockPosR\010position\""
+    "\214\001\n\023WorldSetBiomeAction\022)\n\005world\030\001 \001(\0132\023"
+    ".df.plugin.WorldRefR\005world\022/\n\010position\030\002"
+    " \001(\0132\023.df.plugin.BlockPosR\010position\022\031\n\010b"
+    "iome_id\030\003 \001(\tR\007biomeId\"\262\001\n\024WorldSetLiqui"
+    "dAction\022)\n\005world\030\001 \001(\0132\023.df.plugin.World"
+    "RefR\005world\022/\n\010position\030\002 \001(\0132\023.df.plugin"
+    ".BlockPosR\010position\0223\n\006liquid\030\003 \001(\0132\026.df"
+    ".plugin.LiquidStateH\000R\006liquid\210\001\001B\t\n\007_liq"
+    "uid\"\304\001\n\036WorldScheduleBlockUpdateAction\022)"
+    "\n\005world\030\001 \001(\0132\023.df.plugin.WorldRefR\005worl"
+    "d\022/\n\010position\030\002 \001(\0132\023.df.plugin.BlockPos"
+    "R\010position\022+\n\005block\030\003 \001(\0132\025.df.plugin.Bl"
+    "ockStateR\005block\022\031\n\010delay_ms\030\004 \001(\003R\007delay"
+    "Ms\"\247\001\n\016StructureVoxel\022\014\n\001x\030\001 \001(\005R\001x\022\014\n\001y"
+    "\030\002 \001(\005R\001y\022\014\n\001z\030\003 \001(\005R\001z\022+\n\005block\030\004 \001(\0132\025"
+    ".df.plugin.BlockStateR\005block\0223\n\006liquid\030\005"
+    " \001(\0132\026.df.plugin.LiquidStateH\000R\006liquid\210\001"
+    "\001B\t\n\007_liquid\"\207\001\n\014StructureDef\022\024\n\005width\030\001"
+    " \001(\005R\005width\022\026\n\006height\030\002 \001(\005R\006height\022\026\n\006l"
+    "ength\030\003 \001(\005R\006length\0221\n\006voxels\030\n \003(\0132\031.df"
+    ".plugin.StructureVoxelR\006voxels\"\252\001\n\031World"
+    "BuildStructureAction\022)\n\005world\030\001 \001(\0132\023.df"
+    ".plugin.WorldRefR\005world\022+\n\006origin\030\002 \001(\0132"
+    "\023.df.plugin.BlockPosR\006origin\0225\n\tstructur"
+    "e\030\003 \001(\0132\027.df.plugin.StructureDefR\tstruct"
+    "ure\"=\n\032PlayerStartSprintingAction\022\037\n\013pla"
+    "yer_uuid\030\001 \001(\tR\nplayerUuid\"<\n\031PlayerStop"
+    "SprintingAction\022\037\n\013player_uuid\030\001 \001(\tR\npl"
+    "ayerUuid\"<\n\031PlayerStartSneakingAction\022\037\n"
+    "\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n\030Player"
+    "StopSneakingAction\022\037\n\013player_uuid\030\001 \001(\tR"
+    "\nplayerUuid\"<\n\031PlayerStartSwimmingAction"
+    "\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n\030Pla"
+    "yerStopSwimmingAction\022\037\n\013player_uuid\030\001 \001"
+    "(\tR\nplayerUuid\"<\n\031PlayerStartCrawlingAct"
+    "ion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\";\n\030"
+    "PlayerStopCrawlingAction\022\037\n\013player_uuid\030"
+    "\001 \001(\tR\nplayerUuid\";\n\030PlayerStartGlidingA"
+    "ction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\":"
+    "\n\027PlayerStopGlidingAction\022\037\n\013player_uuid"
+    "\030\001 \001(\tR\nplayerUuid\":\n\027PlayerStartFlyingA"
+    "ction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"9"
+    "\n\026PlayerStopFlyingAction\022\037\n\013player_uuid\030"
+    "\001 \001(\tR\nplayerUuid\":\n\027PlayerSetImmobileAc"
+    "tion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"8\n"
+    "\025PlayerSetMobileAction\022\037\n\013player_uuid\030\001 "
+    "\001(\tR\nplayerUuid\"M\n\024PlayerSetSpeedAction\022"
+    "\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022\024\n\005spee"
+    "d\030\002 \001(\001R\005speed\"`\n\032PlayerSetFlightSpeedAc"
+    "tion\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\022!\n"
+    "\014flight_speed\030\002 \001(\001R\013flightSpeed\"y\n\"Play"
+    "erSetVerticalFlightSpeedAction\022\037\n\013player"
+    "_uuid\030\001 \001(\tR\nplayerUuid\0222\n\025vertical_flig"
+    "ht_speed\030\002 \001(\001R\023verticalFlightSpeed\"\\\n\031P"
+    "layerSetAbsorptionAction\022\037\n\013player_uuid\030"
+    "\001 \001(\tR\nplayerUuid\022\036\n\nabsorption\030\002 \001(\001R\na"
+    "bsorption\"Y\n\025PlayerSetOnFireAction\022\037\n\013pl"
+    "ayer_uuid\030\001 \001(\tR\nplayerUuid\022\037\n\013duration_"
+    "ms\030\002 \001(\003R\ndurationMs\"9\n\026PlayerExtinguish"
+    "Action\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\""
+    ";\n\030PlayerSetInvisibleAction\022\037\n\013player_uu"
+    "id\030\001 \001(\tR\nplayerUuid\"9\n\026PlayerSetVisible"
+    "Action\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\""
+    "M\n\024PlayerSetScaleAction\022\037\n\013player_uuid\030\001"
+    " \001(\tR\nplayerUuid\022\024\n\005scale\030\002 \001(\001R\005scale\"N"
+    "\n\027PlayerSetHeldSlotAction\022\037\n\013player_uuid"
+    "\030\001 \001(\tR\nplayerUuid\022\022\n\004slot\030\002 \001(\005R\004slot\"h"
+    "\n\025PlayerSendToastAction\022\037\n\013player_uuid\030\001"
+    " \001(\tR\nplayerUuid\022\024\n\005title\030\002 \001(\tR\005title\022\030"
+    "\n\007message\030\003 \001(\tR\007message\"Y\n\034PlayerSendJu"
+    "keboxPopupAction\022\037\n\013player_uuid\030\001 \001(\tR\np"
+    "layerUuid\022\030\n\007message\030\002 \001(\tR\007message\">\n\033P"
+    "layerShowCoordinatesAction\022\037\n\013player_uui"
+    "d\030\001 \001(\tR\nplayerUuid\">\n\033PlayerHideCoordin"
+    "atesAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerU"
+    "uid\"C\n PlayerEnableInstantRespawnAction\022"
+    "\037\n\013player_uuid\030\001 \001(\tR\nplayerUuid\"D\n!Play"
+    "erDisableInstantRespawnAction\022\037\n\013player_"
+    "uuid\030\001 \001(\tR\nplayerUuid\"T\n\026PlayerSetNameT"
+    "agAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayerUui"
+    "d\022\031\n\010name_tag\030\002 \001(\tR\007nameTag\"W\n\027PlayerSe"
+    "tScoreTagAction\022\037\n\013player_uuid\030\001 \001(\tR\npl"
+    "ayerUuid\022\033\n\tscore_tag\030\002 \001(\tR\010scoreTag\"\373\001"
+    "\n\030PlayerShowParticleAction\022\037\n\013player_uui"
+    "d\030\001 \001(\tR\nplayerUuid\022+\n\010position\030\002 \001(\0132\017."
+    "df.plugin.Vec3R\010position\0223\n\010particle\030\003 \001"
+    "(\0162\027.df.plugin.ParticleTypeR\010particle\0220\n"
+    "\005block\030\004 \001(\0132\025.df.plugin.BlockStateH\000R\005b"
+    "lock\210\001\001\022\027\n\004face\030\005 \001(\005H\001R\004face\210\001\001B\010\n\006_blo"
+    "ckB\007\n\005_face\"6\n\023PlayerRespawnAction\022\037\n\013pl"
+    "ayer_uuid\030\001 \001(\tR\nplayerUuid\"e\n\024PlayerTra"
+    "nsferAction\022\037\n\013player_uuid\030\001 \001(\tR\nplayer"
+    "Uuid\022,\n\007address\030\002 \001(\0132\022.df.plugin.Addres"
+    "sR\007address\"\217\001\n\025PlayerKnockBackAction\022\037\n\013"
+    "player_uuid\030\001 \001(\tR\nplayerUuid\022\'\n\006source\030"
+    "\002 \001(\0132\017.df.plugin.Vec3R\006source\022\024\n\005force\030"
+    "\003 \001(\001R\005force\022\026\n\006height\030\004 \001(\001R\006height\"7\n\024"
+    "PlayerSwingArmAction\022\037\n\013player_uuid\030\001 \001("
+    "\tR\nplayerUuid\"7\n\024PlayerPunchAirAction\022\037\n"
+    "\013player_uuid\030\001 \001(\tR\nplayerUuid\"\277\002\n\025Playe"
+    "rSetArmourAction\022\037\n\013player_uuid\030\001 \001(\tR\np"
+    "layerUuid\0221\n\006helmet\030\002 \001(\0132\024.df.plugin.It"
+    "emStackH\000R\006helmet\210\001\001\0229\n\nchestplate\030\003 \001(\013"
+    "2\024.df.plugin.ItemStackH\001R\nchestplate\210\001\001\022"
+    "5\n\010leggings\030\004 \001(\0132\024.df.plugin.ItemStackH"
+    "\002R\010leggings\210\001\001\022/\n\005boots\030\005 \001(\0132\024.df.plugi"
+    "n.ItemStackH\003R\005boots\210\001\001B\t\n\007_helmetB\r\n\013_c"
+    "hestplateB\013\n\t_leggingsB\010\n\006_boots\"\310\001\n\032Pla"
+    "yerSendScoreboardAction\022\037\n\013player_uuid\030\001"
+    " \001(\tR\nplayerUuid\022\024\n\005title\030\002 \001(\tR\005title\022\024"
+    "\n\005lines\030\003 \003(\tR\005lines\022\035\n\007padding\030\004 \001(\010H\000R"
+    "\007padding\210\001\001\022#\n\ndescending\030\005 \001(\010H\001R\ndesce"
+    "nding\210\001\001B\n\n\010_paddingB\r\n\013_descending\"\?\n\034P"
+    "layerRemoveScoreboardAction\022\037\n\013player_uu"
+    "id\030\001 \001(\tR\nplayerUuid*\353\003\n\014ParticleType\022\035\n"
+    "\031PARTICLE_TYPE_UNSPECIFIED\020\000\022\033\n\027PARTICLE"
+    "_HUGE_EXPLOSION\020\001\022\036\n\032PARTICLE_ENDERMAN_T"
+    "ELEPORT\020\002\022\032\n\026PARTICLE_SNOWBALL_POOF\020\003\022\026\n"
+    "\022PARTICLE_EGG_SMASH\020\004\022\023\n\017PARTICLE_SPLASH"
+    "\020\005\022\023\n\017PARTICLE_EFFECT\020\006\022\031\n\025PARTICLE_ENTI"
+    "TY_FLAME\020\007\022\022\n\016PARTICLE_FLAME\020\010\022\021\n\rPARTIC"
+    "LE_DUST\020\t\022\036\n\032PARTICLE_BLOCK_FORCE_FIELD\020"
+    "\n\022\026\n\022PARTICLE_BONE_MEAL\020\013\022\026\n\022PARTICLE_EV"
+    "APORATE\020\014\022\027\n\023PARTICLE_WATER_DRIP\020\r\022\026\n\022PA"
+    "RTICLE_LAVA_DRIP\020\016\022\021\n\rPARTICLE_LAVA\020\017\022\027\n"
+    "\023PARTICLE_DUST_PLUME\020\020\022\030\n\024PARTICLE_BLOCK"
+    "_BREAK\020\021\022\030\n\024PARTICLE_PUNCH_BLOCK\020\022B\213\001\n\rc"
+    "om.df.pluginB\014ActionsProtoP\001Z\'github.com"
+    "/secmc/plugin/proto/generated\242\002\003DPX\252\002\tDf"
+    ".Plugin\312\002\tDf\\Plugin\342\002\025Df\\Plugin\\GPBMetad"
+    "ata\352\002\nDf::Pluginb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_actions_2eproto_deps[1] = {
@@ -3925,13 +4081,13 @@ static ::absl::once_flag descriptor_table_actions_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_actions_2eproto = {
     false,
     false,
-    17035,
+    17904,
     descriptor_table_protodef_actions_2eproto,
     "actions.proto",
     &descriptor_table_actions_2eproto_once,
     descriptor_table_actions_2eproto_deps,
     1,
-    89,
+    92,
     schemas,
     file_default_instances,
     TableStruct_actions_2eproto::offsets,
@@ -4333,6 +4489,19 @@ void Action::set_allocated_set_held_item(::df::plugin::SetHeldItemAction* PROTOB
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.set_held_item)
 }
+void Action::set_allocated_player_set_armour(::df::plugin::PlayerSetArmourAction* PROTOBUF_NULLABLE player_set_armour) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_set_armour) {
+    ::google::protobuf::Arena* submessage_arena = player_set_armour->GetArena();
+    if (message_arena != submessage_arena) {
+      player_set_armour = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_set_armour, submessage_arena);
+    }
+    set_has_player_set_armour();
+    _impl_.kind_.player_set_armour_ = player_set_armour;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_armour)
+}
 void Action::set_allocated_set_health(::df::plugin::SetHealthAction* PROTOBUF_NULLABLE set_health) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_kind();
@@ -4450,6 +4619,110 @@ void Action::set_allocated_send_tip(::df::plugin::SendTipAction* PROTOBUF_NULLAB
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.send_tip)
 }
+void Action::set_allocated_player_send_toast(::df::plugin::PlayerSendToastAction* PROTOBUF_NULLABLE player_send_toast) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_send_toast) {
+    ::google::protobuf::Arena* submessage_arena = player_send_toast->GetArena();
+    if (message_arena != submessage_arena) {
+      player_send_toast = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_send_toast, submessage_arena);
+    }
+    set_has_player_send_toast();
+    _impl_.kind_.player_send_toast_ = player_send_toast;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_send_toast)
+}
+void Action::set_allocated_player_send_jukebox_popup(::df::plugin::PlayerSendJukeboxPopupAction* PROTOBUF_NULLABLE player_send_jukebox_popup) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_send_jukebox_popup) {
+    ::google::protobuf::Arena* submessage_arena = player_send_jukebox_popup->GetArena();
+    if (message_arena != submessage_arena) {
+      player_send_jukebox_popup = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_send_jukebox_popup, submessage_arena);
+    }
+    set_has_player_send_jukebox_popup();
+    _impl_.kind_.player_send_jukebox_popup_ = player_send_jukebox_popup;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_send_jukebox_popup)
+}
+void Action::set_allocated_player_show_coordinates(::df::plugin::PlayerShowCoordinatesAction* PROTOBUF_NULLABLE player_show_coordinates) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_show_coordinates) {
+    ::google::protobuf::Arena* submessage_arena = player_show_coordinates->GetArena();
+    if (message_arena != submessage_arena) {
+      player_show_coordinates = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_show_coordinates, submessage_arena);
+    }
+    set_has_player_show_coordinates();
+    _impl_.kind_.player_show_coordinates_ = player_show_coordinates;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_show_coordinates)
+}
+void Action::set_allocated_player_hide_coordinates(::df::plugin::PlayerHideCoordinatesAction* PROTOBUF_NULLABLE player_hide_coordinates) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_hide_coordinates) {
+    ::google::protobuf::Arena* submessage_arena = player_hide_coordinates->GetArena();
+    if (message_arena != submessage_arena) {
+      player_hide_coordinates = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_hide_coordinates, submessage_arena);
+    }
+    set_has_player_hide_coordinates();
+    _impl_.kind_.player_hide_coordinates_ = player_hide_coordinates;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_hide_coordinates)
+}
+void Action::set_allocated_player_enable_instant_respawn(::df::plugin::PlayerEnableInstantRespawnAction* PROTOBUF_NULLABLE player_enable_instant_respawn) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_enable_instant_respawn) {
+    ::google::protobuf::Arena* submessage_arena = player_enable_instant_respawn->GetArena();
+    if (message_arena != submessage_arena) {
+      player_enable_instant_respawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_enable_instant_respawn, submessage_arena);
+    }
+    set_has_player_enable_instant_respawn();
+    _impl_.kind_.player_enable_instant_respawn_ = player_enable_instant_respawn;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_enable_instant_respawn)
+}
+void Action::set_allocated_player_disable_instant_respawn(::df::plugin::PlayerDisableInstantRespawnAction* PROTOBUF_NULLABLE player_disable_instant_respawn) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_disable_instant_respawn) {
+    ::google::protobuf::Arena* submessage_arena = player_disable_instant_respawn->GetArena();
+    if (message_arena != submessage_arena) {
+      player_disable_instant_respawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_disable_instant_respawn, submessage_arena);
+    }
+    set_has_player_disable_instant_respawn();
+    _impl_.kind_.player_disable_instant_respawn_ = player_disable_instant_respawn;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_disable_instant_respawn)
+}
+void Action::set_allocated_player_set_name_tag(::df::plugin::PlayerSetNameTagAction* PROTOBUF_NULLABLE player_set_name_tag) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_set_name_tag) {
+    ::google::protobuf::Arena* submessage_arena = player_set_name_tag->GetArena();
+    if (message_arena != submessage_arena) {
+      player_set_name_tag = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_set_name_tag, submessage_arena);
+    }
+    set_has_player_set_name_tag();
+    _impl_.kind_.player_set_name_tag_ = player_set_name_tag;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_name_tag)
+}
+void Action::set_allocated_player_set_score_tag(::df::plugin::PlayerSetScoreTagAction* PROTOBUF_NULLABLE player_set_score_tag) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_set_score_tag) {
+    ::google::protobuf::Arena* submessage_arena = player_set_score_tag->GetArena();
+    if (message_arena != submessage_arena) {
+      player_set_score_tag = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_set_score_tag, submessage_arena);
+    }
+    set_has_player_set_score_tag();
+    _impl_.kind_.player_set_score_tag_ = player_set_score_tag;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_score_tag)
+}
 void Action::set_allocated_play_sound(::df::plugin::PlaySoundAction* PROTOBUF_NULLABLE play_sound) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_kind();
@@ -4463,6 +4736,45 @@ void Action::set_allocated_play_sound(::df::plugin::PlaySoundAction* PROTOBUF_NU
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.play_sound)
 }
+void Action::set_allocated_player_show_particle(::df::plugin::PlayerShowParticleAction* PROTOBUF_NULLABLE player_show_particle) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_show_particle) {
+    ::google::protobuf::Arena* submessage_arena = player_show_particle->GetArena();
+    if (message_arena != submessage_arena) {
+      player_show_particle = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_show_particle, submessage_arena);
+    }
+    set_has_player_show_particle();
+    _impl_.kind_.player_show_particle_ = player_show_particle;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_show_particle)
+}
+void Action::set_allocated_player_send_scoreboard(::df::plugin::PlayerSendScoreboardAction* PROTOBUF_NULLABLE player_send_scoreboard) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_send_scoreboard) {
+    ::google::protobuf::Arena* submessage_arena = player_send_scoreboard->GetArena();
+    if (message_arena != submessage_arena) {
+      player_send_scoreboard = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_send_scoreboard, submessage_arena);
+    }
+    set_has_player_send_scoreboard();
+    _impl_.kind_.player_send_scoreboard_ = player_send_scoreboard;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_send_scoreboard)
+}
+void Action::set_allocated_player_remove_scoreboard(::df::plugin::PlayerRemoveScoreboardAction* PROTOBUF_NULLABLE player_remove_scoreboard) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (player_remove_scoreboard) {
+    ::google::protobuf::Arena* submessage_arena = player_remove_scoreboard->GetArena();
+    if (message_arena != submessage_arena) {
+      player_remove_scoreboard = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_remove_scoreboard, submessage_arena);
+    }
+    set_has_player_remove_scoreboard();
+    _impl_.kind_.player_remove_scoreboard_ = player_remove_scoreboard;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_remove_scoreboard)
+}
 void Action::set_allocated_execute_command(::df::plugin::ExecuteCommandAction* PROTOBUF_NULLABLE execute_command) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_kind();
@@ -4475,383 +4787,6 @@ void Action::set_allocated_execute_command(::df::plugin::ExecuteCommandAction* P
     _impl_.kind_.execute_command_ = execute_command;
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.execute_command)
-}
-void Action::set_allocated_world_set_default_game_mode(::df::plugin::WorldSetDefaultGameModeAction* PROTOBUF_NULLABLE world_set_default_game_mode) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_default_game_mode) {
-    ::google::protobuf::Arena* submessage_arena = world_set_default_game_mode->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_default_game_mode = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_default_game_mode, submessage_arena);
-    }
-    set_has_world_set_default_game_mode();
-    _impl_.kind_.world_set_default_game_mode_ = world_set_default_game_mode;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_default_game_mode)
-}
-void Action::set_allocated_world_set_difficulty(::df::plugin::WorldSetDifficultyAction* PROTOBUF_NULLABLE world_set_difficulty) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_difficulty) {
-    ::google::protobuf::Arena* submessage_arena = world_set_difficulty->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_difficulty = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_difficulty, submessage_arena);
-    }
-    set_has_world_set_difficulty();
-    _impl_.kind_.world_set_difficulty_ = world_set_difficulty;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_difficulty)
-}
-void Action::set_allocated_world_set_tick_range(::df::plugin::WorldSetTickRangeAction* PROTOBUF_NULLABLE world_set_tick_range) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_tick_range) {
-    ::google::protobuf::Arena* submessage_arena = world_set_tick_range->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_tick_range = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_tick_range, submessage_arena);
-    }
-    set_has_world_set_tick_range();
-    _impl_.kind_.world_set_tick_range_ = world_set_tick_range;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_tick_range)
-}
-void Action::set_allocated_world_set_spawn(::df::plugin::WorldSetSpawnAction* PROTOBUF_NULLABLE world_set_spawn) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_spawn) {
-    ::google::protobuf::Arena* submessage_arena = world_set_spawn->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_spawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_spawn, submessage_arena);
-    }
-    set_has_world_set_spawn();
-    _impl_.kind_.world_set_spawn_ = world_set_spawn;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_spawn)
-}
-void Action::set_allocated_world_set_block(::df::plugin::WorldSetBlockAction* PROTOBUF_NULLABLE world_set_block) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_block) {
-    ::google::protobuf::Arena* submessage_arena = world_set_block->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_block, submessage_arena);
-    }
-    set_has_world_set_block();
-    _impl_.kind_.world_set_block_ = world_set_block;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_block)
-}
-void Action::set_allocated_world_set_biome(::df::plugin::WorldSetBiomeAction* PROTOBUF_NULLABLE world_set_biome) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_biome) {
-    ::google::protobuf::Arena* submessage_arena = world_set_biome->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_biome = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_biome, submessage_arena);
-    }
-    set_has_world_set_biome();
-    _impl_.kind_.world_set_biome_ = world_set_biome;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_biome)
-}
-void Action::set_allocated_world_set_liquid(::df::plugin::WorldSetLiquidAction* PROTOBUF_NULLABLE world_set_liquid) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_liquid) {
-    ::google::protobuf::Arena* submessage_arena = world_set_liquid->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_liquid = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_liquid, submessage_arena);
-    }
-    set_has_world_set_liquid();
-    _impl_.kind_.world_set_liquid_ = world_set_liquid;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_liquid)
-}
-void Action::set_allocated_world_schedule_block_update(::df::plugin::WorldScheduleBlockUpdateAction* PROTOBUF_NULLABLE world_schedule_block_update) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_schedule_block_update) {
-    ::google::protobuf::Arena* submessage_arena = world_schedule_block_update->GetArena();
-    if (message_arena != submessage_arena) {
-      world_schedule_block_update = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_schedule_block_update, submessage_arena);
-    }
-    set_has_world_schedule_block_update();
-    _impl_.kind_.world_schedule_block_update_ = world_schedule_block_update;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_schedule_block_update)
-}
-void Action::set_allocated_world_build_structure(::df::plugin::WorldBuildStructureAction* PROTOBUF_NULLABLE world_build_structure) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_build_structure) {
-    ::google::protobuf::Arena* submessage_arena = world_build_structure->GetArena();
-    if (message_arena != submessage_arena) {
-      world_build_structure = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_build_structure, submessage_arena);
-    }
-    set_has_world_build_structure();
-    _impl_.kind_.world_build_structure_ = world_build_structure;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_build_structure)
-}
-void Action::set_allocated_world_set_time(::df::plugin::WorldSetTimeAction* PROTOBUF_NULLABLE world_set_time) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_set_time) {
-    ::google::protobuf::Arena* submessage_arena = world_set_time->GetArena();
-    if (message_arena != submessage_arena) {
-      world_set_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_time, submessage_arena);
-    }
-    set_has_world_set_time();
-    _impl_.kind_.world_set_time_ = world_set_time;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_time)
-}
-void Action::set_allocated_world_stop_time(::df::plugin::WorldStopTimeAction* PROTOBUF_NULLABLE world_stop_time) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_stop_time) {
-    ::google::protobuf::Arena* submessage_arena = world_stop_time->GetArena();
-    if (message_arena != submessage_arena) {
-      world_stop_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_stop_time, submessage_arena);
-    }
-    set_has_world_stop_time();
-    _impl_.kind_.world_stop_time_ = world_stop_time;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_stop_time)
-}
-void Action::set_allocated_world_start_time(::df::plugin::WorldStartTimeAction* PROTOBUF_NULLABLE world_start_time) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_start_time) {
-    ::google::protobuf::Arena* submessage_arena = world_start_time->GetArena();
-    if (message_arena != submessage_arena) {
-      world_start_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_start_time, submessage_arena);
-    }
-    set_has_world_start_time();
-    _impl_.kind_.world_start_time_ = world_start_time;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_start_time)
-}
-void Action::set_allocated_world_play_sound(::df::plugin::WorldPlaySoundAction* PROTOBUF_NULLABLE world_play_sound) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_play_sound) {
-    ::google::protobuf::Arena* submessage_arena = world_play_sound->GetArena();
-    if (message_arena != submessage_arena) {
-      world_play_sound = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_play_sound, submessage_arena);
-    }
-    set_has_world_play_sound();
-    _impl_.kind_.world_play_sound_ = world_play_sound;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_play_sound)
-}
-void Action::set_allocated_world_add_particle(::df::plugin::WorldAddParticleAction* PROTOBUF_NULLABLE world_add_particle) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_add_particle) {
-    ::google::protobuf::Arena* submessage_arena = world_add_particle->GetArena();
-    if (message_arena != submessage_arena) {
-      world_add_particle = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_add_particle, submessage_arena);
-    }
-    set_has_world_add_particle();
-    _impl_.kind_.world_add_particle_ = world_add_particle;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_add_particle)
-}
-void Action::set_allocated_world_query_entities(::df::plugin::WorldQueryEntitiesAction* PROTOBUF_NULLABLE world_query_entities) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_entities) {
-    ::google::protobuf::Arena* submessage_arena = world_query_entities->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_entities = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_entities, submessage_arena);
-    }
-    set_has_world_query_entities();
-    _impl_.kind_.world_query_entities_ = world_query_entities;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_entities)
-}
-void Action::set_allocated_world_query_players(::df::plugin::WorldQueryPlayersAction* PROTOBUF_NULLABLE world_query_players) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_players) {
-    ::google::protobuf::Arena* submessage_arena = world_query_players->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_players = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_players, submessage_arena);
-    }
-    set_has_world_query_players();
-    _impl_.kind_.world_query_players_ = world_query_players;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_players)
-}
-void Action::set_allocated_world_query_entities_within(::df::plugin::WorldQueryEntitiesWithinAction* PROTOBUF_NULLABLE world_query_entities_within) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_entities_within) {
-    ::google::protobuf::Arena* submessage_arena = world_query_entities_within->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_entities_within = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_entities_within, submessage_arena);
-    }
-    set_has_world_query_entities_within();
-    _impl_.kind_.world_query_entities_within_ = world_query_entities_within;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_entities_within)
-}
-void Action::set_allocated_world_query_player_spawn(::df::plugin::WorldQueryPlayerSpawnAction* PROTOBUF_NULLABLE world_query_player_spawn) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_player_spawn) {
-    ::google::protobuf::Arena* submessage_arena = world_query_player_spawn->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_player_spawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_player_spawn, submessage_arena);
-    }
-    set_has_world_query_player_spawn();
-    _impl_.kind_.world_query_player_spawn_ = world_query_player_spawn;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_player_spawn)
-}
-void Action::set_allocated_world_query_block(::df::plugin::WorldQueryBlockAction* PROTOBUF_NULLABLE world_query_block) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_block) {
-    ::google::protobuf::Arena* submessage_arena = world_query_block->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_block, submessage_arena);
-    }
-    set_has_world_query_block();
-    _impl_.kind_.world_query_block_ = world_query_block;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_block)
-}
-void Action::set_allocated_world_query_biome(::df::plugin::WorldQueryBiomeAction* PROTOBUF_NULLABLE world_query_biome) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_biome) {
-    ::google::protobuf::Arena* submessage_arena = world_query_biome->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_biome = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_biome, submessage_arena);
-    }
-    set_has_world_query_biome();
-    _impl_.kind_.world_query_biome_ = world_query_biome;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_biome)
-}
-void Action::set_allocated_world_query_liquid(::df::plugin::WorldQueryLiquidAction* PROTOBUF_NULLABLE world_query_liquid) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_liquid) {
-    ::google::protobuf::Arena* submessage_arena = world_query_liquid->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_liquid = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_liquid, submessage_arena);
-    }
-    set_has_world_query_liquid();
-    _impl_.kind_.world_query_liquid_ = world_query_liquid;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_liquid)
-}
-void Action::set_allocated_world_query_highest_block(::df::plugin::WorldQueryHighestBlockAction* PROTOBUF_NULLABLE world_query_highest_block) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_highest_block) {
-    ::google::protobuf::Arena* submessage_arena = world_query_highest_block->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_highest_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_highest_block, submessage_arena);
-    }
-    set_has_world_query_highest_block();
-    _impl_.kind_.world_query_highest_block_ = world_query_highest_block;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_highest_block)
-}
-void Action::set_allocated_world_query_light(::df::plugin::WorldQueryLightAction* PROTOBUF_NULLABLE world_query_light) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_light) {
-    ::google::protobuf::Arena* submessage_arena = world_query_light->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_light = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_light, submessage_arena);
-    }
-    set_has_world_query_light();
-    _impl_.kind_.world_query_light_ = world_query_light;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_light)
-}
-void Action::set_allocated_world_query_sky_light(::df::plugin::WorldQuerySkyLightAction* PROTOBUF_NULLABLE world_query_sky_light) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_sky_light) {
-    ::google::protobuf::Arena* submessage_arena = world_query_sky_light->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_sky_light = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_sky_light, submessage_arena);
-    }
-    set_has_world_query_sky_light();
-    _impl_.kind_.world_query_sky_light_ = world_query_sky_light;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_sky_light)
-}
-void Action::set_allocated_world_query_temperature(::df::plugin::WorldQueryTemperatureAction* PROTOBUF_NULLABLE world_query_temperature) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_temperature) {
-    ::google::protobuf::Arena* submessage_arena = world_query_temperature->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_temperature = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_temperature, submessage_arena);
-    }
-    set_has_world_query_temperature();
-    _impl_.kind_.world_query_temperature_ = world_query_temperature;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_temperature)
-}
-void Action::set_allocated_world_query_raining_at(::df::plugin::WorldQueryRainingAtAction* PROTOBUF_NULLABLE world_query_raining_at) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_raining_at) {
-    ::google::protobuf::Arena* submessage_arena = world_query_raining_at->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_raining_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_raining_at, submessage_arena);
-    }
-    set_has_world_query_raining_at();
-    _impl_.kind_.world_query_raining_at_ = world_query_raining_at;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_raining_at)
-}
-void Action::set_allocated_world_query_snowing_at(::df::plugin::WorldQuerySnowingAtAction* PROTOBUF_NULLABLE world_query_snowing_at) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_snowing_at) {
-    ::google::protobuf::Arena* submessage_arena = world_query_snowing_at->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_snowing_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_snowing_at, submessage_arena);
-    }
-    set_has_world_query_snowing_at();
-    _impl_.kind_.world_query_snowing_at_ = world_query_snowing_at;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_snowing_at)
-}
-void Action::set_allocated_world_query_thundering_at(::df::plugin::WorldQueryThunderingAtAction* PROTOBUF_NULLABLE world_query_thundering_at) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_thundering_at) {
-    ::google::protobuf::Arena* submessage_arena = world_query_thundering_at->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_thundering_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_thundering_at, submessage_arena);
-    }
-    set_has_world_query_thundering_at();
-    _impl_.kind_.world_query_thundering_at_ = world_query_thundering_at;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_thundering_at)
-}
-void Action::set_allocated_world_query_default_game_mode(::df::plugin::WorldQueryDefaultGameModeAction* PROTOBUF_NULLABLE world_query_default_game_mode) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (world_query_default_game_mode) {
-    ::google::protobuf::Arena* submessage_arena = world_query_default_game_mode->GetArena();
-    if (message_arena != submessage_arena) {
-      world_query_default_game_mode = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_default_game_mode, submessage_arena);
-    }
-    set_has_world_query_default_game_mode();
-    _impl_.kind_.world_query_default_game_mode_ = world_query_default_game_mode;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_default_game_mode)
 }
 void Action::set_allocated_player_start_sprinting(::df::plugin::PlayerStartSprintingAction* PROTOBUF_NULLABLE player_start_sprinting) {
   ::google::protobuf::Arena* message_arena = GetArena();
@@ -5165,123 +5100,6 @@ void Action::set_allocated_player_set_held_slot(::df::plugin::PlayerSetHeldSlotA
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_held_slot)
 }
-void Action::set_allocated_player_send_toast(::df::plugin::PlayerSendToastAction* PROTOBUF_NULLABLE player_send_toast) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_send_toast) {
-    ::google::protobuf::Arena* submessage_arena = player_send_toast->GetArena();
-    if (message_arena != submessage_arena) {
-      player_send_toast = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_send_toast, submessage_arena);
-    }
-    set_has_player_send_toast();
-    _impl_.kind_.player_send_toast_ = player_send_toast;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_send_toast)
-}
-void Action::set_allocated_player_send_jukebox_popup(::df::plugin::PlayerSendJukeboxPopupAction* PROTOBUF_NULLABLE player_send_jukebox_popup) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_send_jukebox_popup) {
-    ::google::protobuf::Arena* submessage_arena = player_send_jukebox_popup->GetArena();
-    if (message_arena != submessage_arena) {
-      player_send_jukebox_popup = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_send_jukebox_popup, submessage_arena);
-    }
-    set_has_player_send_jukebox_popup();
-    _impl_.kind_.player_send_jukebox_popup_ = player_send_jukebox_popup;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_send_jukebox_popup)
-}
-void Action::set_allocated_player_show_coordinates(::df::plugin::PlayerShowCoordinatesAction* PROTOBUF_NULLABLE player_show_coordinates) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_show_coordinates) {
-    ::google::protobuf::Arena* submessage_arena = player_show_coordinates->GetArena();
-    if (message_arena != submessage_arena) {
-      player_show_coordinates = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_show_coordinates, submessage_arena);
-    }
-    set_has_player_show_coordinates();
-    _impl_.kind_.player_show_coordinates_ = player_show_coordinates;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_show_coordinates)
-}
-void Action::set_allocated_player_hide_coordinates(::df::plugin::PlayerHideCoordinatesAction* PROTOBUF_NULLABLE player_hide_coordinates) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_hide_coordinates) {
-    ::google::protobuf::Arena* submessage_arena = player_hide_coordinates->GetArena();
-    if (message_arena != submessage_arena) {
-      player_hide_coordinates = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_hide_coordinates, submessage_arena);
-    }
-    set_has_player_hide_coordinates();
-    _impl_.kind_.player_hide_coordinates_ = player_hide_coordinates;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_hide_coordinates)
-}
-void Action::set_allocated_player_enable_instant_respawn(::df::plugin::PlayerEnableInstantRespawnAction* PROTOBUF_NULLABLE player_enable_instant_respawn) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_enable_instant_respawn) {
-    ::google::protobuf::Arena* submessage_arena = player_enable_instant_respawn->GetArena();
-    if (message_arena != submessage_arena) {
-      player_enable_instant_respawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_enable_instant_respawn, submessage_arena);
-    }
-    set_has_player_enable_instant_respawn();
-    _impl_.kind_.player_enable_instant_respawn_ = player_enable_instant_respawn;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_enable_instant_respawn)
-}
-void Action::set_allocated_player_disable_instant_respawn(::df::plugin::PlayerDisableInstantRespawnAction* PROTOBUF_NULLABLE player_disable_instant_respawn) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_disable_instant_respawn) {
-    ::google::protobuf::Arena* submessage_arena = player_disable_instant_respawn->GetArena();
-    if (message_arena != submessage_arena) {
-      player_disable_instant_respawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_disable_instant_respawn, submessage_arena);
-    }
-    set_has_player_disable_instant_respawn();
-    _impl_.kind_.player_disable_instant_respawn_ = player_disable_instant_respawn;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_disable_instant_respawn)
-}
-void Action::set_allocated_player_set_name_tag(::df::plugin::PlayerSetNameTagAction* PROTOBUF_NULLABLE player_set_name_tag) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_set_name_tag) {
-    ::google::protobuf::Arena* submessage_arena = player_set_name_tag->GetArena();
-    if (message_arena != submessage_arena) {
-      player_set_name_tag = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_set_name_tag, submessage_arena);
-    }
-    set_has_player_set_name_tag();
-    _impl_.kind_.player_set_name_tag_ = player_set_name_tag;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_name_tag)
-}
-void Action::set_allocated_player_set_score_tag(::df::plugin::PlayerSetScoreTagAction* PROTOBUF_NULLABLE player_set_score_tag) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_set_score_tag) {
-    ::google::protobuf::Arena* submessage_arena = player_set_score_tag->GetArena();
-    if (message_arena != submessage_arena) {
-      player_set_score_tag = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_set_score_tag, submessage_arena);
-    }
-    set_has_player_set_score_tag();
-    _impl_.kind_.player_set_score_tag_ = player_set_score_tag;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_set_score_tag)
-}
-void Action::set_allocated_player_show_particle(::df::plugin::PlayerShowParticleAction* PROTOBUF_NULLABLE player_show_particle) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  clear_kind();
-  if (player_show_particle) {
-    ::google::protobuf::Arena* submessage_arena = player_show_particle->GetArena();
-    if (message_arena != submessage_arena) {
-      player_show_particle = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_show_particle, submessage_arena);
-    }
-    set_has_player_show_particle();
-    _impl_.kind_.player_show_particle_ = player_show_particle;
-  }
-  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_show_particle)
-}
 void Action::set_allocated_player_respawn(::df::plugin::PlayerRespawnAction* PROTOBUF_NULLABLE player_respawn) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_kind();
@@ -5347,6 +5165,383 @@ void Action::set_allocated_player_punch_air(::df::plugin::PlayerPunchAirAction* 
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.player_punch_air)
 }
+void Action::set_allocated_world_set_default_game_mode(::df::plugin::WorldSetDefaultGameModeAction* PROTOBUF_NULLABLE world_set_default_game_mode) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_default_game_mode) {
+    ::google::protobuf::Arena* submessage_arena = world_set_default_game_mode->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_default_game_mode = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_default_game_mode, submessage_arena);
+    }
+    set_has_world_set_default_game_mode();
+    _impl_.kind_.world_set_default_game_mode_ = world_set_default_game_mode;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_default_game_mode)
+}
+void Action::set_allocated_world_set_difficulty(::df::plugin::WorldSetDifficultyAction* PROTOBUF_NULLABLE world_set_difficulty) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_difficulty) {
+    ::google::protobuf::Arena* submessage_arena = world_set_difficulty->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_difficulty = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_difficulty, submessage_arena);
+    }
+    set_has_world_set_difficulty();
+    _impl_.kind_.world_set_difficulty_ = world_set_difficulty;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_difficulty)
+}
+void Action::set_allocated_world_set_tick_range(::df::plugin::WorldSetTickRangeAction* PROTOBUF_NULLABLE world_set_tick_range) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_tick_range) {
+    ::google::protobuf::Arena* submessage_arena = world_set_tick_range->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_tick_range = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_tick_range, submessage_arena);
+    }
+    set_has_world_set_tick_range();
+    _impl_.kind_.world_set_tick_range_ = world_set_tick_range;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_tick_range)
+}
+void Action::set_allocated_world_set_block(::df::plugin::WorldSetBlockAction* PROTOBUF_NULLABLE world_set_block) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_block) {
+    ::google::protobuf::Arena* submessage_arena = world_set_block->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_block, submessage_arena);
+    }
+    set_has_world_set_block();
+    _impl_.kind_.world_set_block_ = world_set_block;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_block)
+}
+void Action::set_allocated_world_play_sound(::df::plugin::WorldPlaySoundAction* PROTOBUF_NULLABLE world_play_sound) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_play_sound) {
+    ::google::protobuf::Arena* submessage_arena = world_play_sound->GetArena();
+    if (message_arena != submessage_arena) {
+      world_play_sound = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_play_sound, submessage_arena);
+    }
+    set_has_world_play_sound();
+    _impl_.kind_.world_play_sound_ = world_play_sound;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_play_sound)
+}
+void Action::set_allocated_world_add_particle(::df::plugin::WorldAddParticleAction* PROTOBUF_NULLABLE world_add_particle) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_add_particle) {
+    ::google::protobuf::Arena* submessage_arena = world_add_particle->GetArena();
+    if (message_arena != submessage_arena) {
+      world_add_particle = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_add_particle, submessage_arena);
+    }
+    set_has_world_add_particle();
+    _impl_.kind_.world_add_particle_ = world_add_particle;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_add_particle)
+}
+void Action::set_allocated_world_set_time(::df::plugin::WorldSetTimeAction* PROTOBUF_NULLABLE world_set_time) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_time) {
+    ::google::protobuf::Arena* submessage_arena = world_set_time->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_time, submessage_arena);
+    }
+    set_has_world_set_time();
+    _impl_.kind_.world_set_time_ = world_set_time;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_time)
+}
+void Action::set_allocated_world_stop_time(::df::plugin::WorldStopTimeAction* PROTOBUF_NULLABLE world_stop_time) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_stop_time) {
+    ::google::protobuf::Arena* submessage_arena = world_stop_time->GetArena();
+    if (message_arena != submessage_arena) {
+      world_stop_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_stop_time, submessage_arena);
+    }
+    set_has_world_stop_time();
+    _impl_.kind_.world_stop_time_ = world_stop_time;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_stop_time)
+}
+void Action::set_allocated_world_start_time(::df::plugin::WorldStartTimeAction* PROTOBUF_NULLABLE world_start_time) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_start_time) {
+    ::google::protobuf::Arena* submessage_arena = world_start_time->GetArena();
+    if (message_arena != submessage_arena) {
+      world_start_time = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_start_time, submessage_arena);
+    }
+    set_has_world_start_time();
+    _impl_.kind_.world_start_time_ = world_start_time;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_start_time)
+}
+void Action::set_allocated_world_set_spawn(::df::plugin::WorldSetSpawnAction* PROTOBUF_NULLABLE world_set_spawn) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_spawn) {
+    ::google::protobuf::Arena* submessage_arena = world_set_spawn->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_spawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_spawn, submessage_arena);
+    }
+    set_has_world_set_spawn();
+    _impl_.kind_.world_set_spawn_ = world_set_spawn;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_spawn)
+}
+void Action::set_allocated_world_set_biome(::df::plugin::WorldSetBiomeAction* PROTOBUF_NULLABLE world_set_biome) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_biome) {
+    ::google::protobuf::Arena* submessage_arena = world_set_biome->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_biome = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_biome, submessage_arena);
+    }
+    set_has_world_set_biome();
+    _impl_.kind_.world_set_biome_ = world_set_biome;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_biome)
+}
+void Action::set_allocated_world_set_liquid(::df::plugin::WorldSetLiquidAction* PROTOBUF_NULLABLE world_set_liquid) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_set_liquid) {
+    ::google::protobuf::Arena* submessage_arena = world_set_liquid->GetArena();
+    if (message_arena != submessage_arena) {
+      world_set_liquid = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_set_liquid, submessage_arena);
+    }
+    set_has_world_set_liquid();
+    _impl_.kind_.world_set_liquid_ = world_set_liquid;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_set_liquid)
+}
+void Action::set_allocated_world_schedule_block_update(::df::plugin::WorldScheduleBlockUpdateAction* PROTOBUF_NULLABLE world_schedule_block_update) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_schedule_block_update) {
+    ::google::protobuf::Arena* submessage_arena = world_schedule_block_update->GetArena();
+    if (message_arena != submessage_arena) {
+      world_schedule_block_update = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_schedule_block_update, submessage_arena);
+    }
+    set_has_world_schedule_block_update();
+    _impl_.kind_.world_schedule_block_update_ = world_schedule_block_update;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_schedule_block_update)
+}
+void Action::set_allocated_world_build_structure(::df::plugin::WorldBuildStructureAction* PROTOBUF_NULLABLE world_build_structure) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_build_structure) {
+    ::google::protobuf::Arena* submessage_arena = world_build_structure->GetArena();
+    if (message_arena != submessage_arena) {
+      world_build_structure = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_build_structure, submessage_arena);
+    }
+    set_has_world_build_structure();
+    _impl_.kind_.world_build_structure_ = world_build_structure;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_build_structure)
+}
+void Action::set_allocated_world_query_entities(::df::plugin::WorldQueryEntitiesAction* PROTOBUF_NULLABLE world_query_entities) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_entities) {
+    ::google::protobuf::Arena* submessage_arena = world_query_entities->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_entities = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_entities, submessage_arena);
+    }
+    set_has_world_query_entities();
+    _impl_.kind_.world_query_entities_ = world_query_entities;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_entities)
+}
+void Action::set_allocated_world_query_players(::df::plugin::WorldQueryPlayersAction* PROTOBUF_NULLABLE world_query_players) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_players) {
+    ::google::protobuf::Arena* submessage_arena = world_query_players->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_players = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_players, submessage_arena);
+    }
+    set_has_world_query_players();
+    _impl_.kind_.world_query_players_ = world_query_players;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_players)
+}
+void Action::set_allocated_world_query_entities_within(::df::plugin::WorldQueryEntitiesWithinAction* PROTOBUF_NULLABLE world_query_entities_within) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_entities_within) {
+    ::google::protobuf::Arena* submessage_arena = world_query_entities_within->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_entities_within = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_entities_within, submessage_arena);
+    }
+    set_has_world_query_entities_within();
+    _impl_.kind_.world_query_entities_within_ = world_query_entities_within;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_entities_within)
+}
+void Action::set_allocated_world_query_player_spawn(::df::plugin::WorldQueryPlayerSpawnAction* PROTOBUF_NULLABLE world_query_player_spawn) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_player_spawn) {
+    ::google::protobuf::Arena* submessage_arena = world_query_player_spawn->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_player_spawn = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_player_spawn, submessage_arena);
+    }
+    set_has_world_query_player_spawn();
+    _impl_.kind_.world_query_player_spawn_ = world_query_player_spawn;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_player_spawn)
+}
+void Action::set_allocated_world_query_block(::df::plugin::WorldQueryBlockAction* PROTOBUF_NULLABLE world_query_block) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_block) {
+    ::google::protobuf::Arena* submessage_arena = world_query_block->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_block, submessage_arena);
+    }
+    set_has_world_query_block();
+    _impl_.kind_.world_query_block_ = world_query_block;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_block)
+}
+void Action::set_allocated_world_query_biome(::df::plugin::WorldQueryBiomeAction* PROTOBUF_NULLABLE world_query_biome) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_biome) {
+    ::google::protobuf::Arena* submessage_arena = world_query_biome->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_biome = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_biome, submessage_arena);
+    }
+    set_has_world_query_biome();
+    _impl_.kind_.world_query_biome_ = world_query_biome;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_biome)
+}
+void Action::set_allocated_world_query_light(::df::plugin::WorldQueryLightAction* PROTOBUF_NULLABLE world_query_light) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_light) {
+    ::google::protobuf::Arena* submessage_arena = world_query_light->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_light = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_light, submessage_arena);
+    }
+    set_has_world_query_light();
+    _impl_.kind_.world_query_light_ = world_query_light;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_light)
+}
+void Action::set_allocated_world_query_sky_light(::df::plugin::WorldQuerySkyLightAction* PROTOBUF_NULLABLE world_query_sky_light) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_sky_light) {
+    ::google::protobuf::Arena* submessage_arena = world_query_sky_light->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_sky_light = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_sky_light, submessage_arena);
+    }
+    set_has_world_query_sky_light();
+    _impl_.kind_.world_query_sky_light_ = world_query_sky_light;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_sky_light)
+}
+void Action::set_allocated_world_query_temperature(::df::plugin::WorldQueryTemperatureAction* PROTOBUF_NULLABLE world_query_temperature) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_temperature) {
+    ::google::protobuf::Arena* submessage_arena = world_query_temperature->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_temperature = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_temperature, submessage_arena);
+    }
+    set_has_world_query_temperature();
+    _impl_.kind_.world_query_temperature_ = world_query_temperature;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_temperature)
+}
+void Action::set_allocated_world_query_highest_block(::df::plugin::WorldQueryHighestBlockAction* PROTOBUF_NULLABLE world_query_highest_block) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_highest_block) {
+    ::google::protobuf::Arena* submessage_arena = world_query_highest_block->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_highest_block = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_highest_block, submessage_arena);
+    }
+    set_has_world_query_highest_block();
+    _impl_.kind_.world_query_highest_block_ = world_query_highest_block;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_highest_block)
+}
+void Action::set_allocated_world_query_raining_at(::df::plugin::WorldQueryRainingAtAction* PROTOBUF_NULLABLE world_query_raining_at) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_raining_at) {
+    ::google::protobuf::Arena* submessage_arena = world_query_raining_at->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_raining_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_raining_at, submessage_arena);
+    }
+    set_has_world_query_raining_at();
+    _impl_.kind_.world_query_raining_at_ = world_query_raining_at;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_raining_at)
+}
+void Action::set_allocated_world_query_snowing_at(::df::plugin::WorldQuerySnowingAtAction* PROTOBUF_NULLABLE world_query_snowing_at) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_snowing_at) {
+    ::google::protobuf::Arena* submessage_arena = world_query_snowing_at->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_snowing_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_snowing_at, submessage_arena);
+    }
+    set_has_world_query_snowing_at();
+    _impl_.kind_.world_query_snowing_at_ = world_query_snowing_at;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_snowing_at)
+}
+void Action::set_allocated_world_query_thundering_at(::df::plugin::WorldQueryThunderingAtAction* PROTOBUF_NULLABLE world_query_thundering_at) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_thundering_at) {
+    ::google::protobuf::Arena* submessage_arena = world_query_thundering_at->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_thundering_at = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_thundering_at, submessage_arena);
+    }
+    set_has_world_query_thundering_at();
+    _impl_.kind_.world_query_thundering_at_ = world_query_thundering_at;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_thundering_at)
+}
+void Action::set_allocated_world_query_liquid(::df::plugin::WorldQueryLiquidAction* PROTOBUF_NULLABLE world_query_liquid) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_liquid) {
+    ::google::protobuf::Arena* submessage_arena = world_query_liquid->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_liquid = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_liquid, submessage_arena);
+    }
+    set_has_world_query_liquid();
+    _impl_.kind_.world_query_liquid_ = world_query_liquid;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_liquid)
+}
+void Action::set_allocated_world_query_default_game_mode(::df::plugin::WorldQueryDefaultGameModeAction* PROTOBUF_NULLABLE world_query_default_game_mode) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_kind();
+  if (world_query_default_game_mode) {
+    ::google::protobuf::Arena* submessage_arena = world_query_default_game_mode->GetArena();
+    if (message_arena != submessage_arena) {
+      world_query_default_game_mode = ::google::protobuf::internal::GetOwnedMessage(message_arena, world_query_default_game_mode, submessage_arena);
+    }
+    set_has_world_query_default_game_mode();
+    _impl_.kind_.world_query_default_game_mode_ = world_query_default_game_mode;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.Action.world_query_default_game_mode)
+}
 Action::Action(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, Action_class_data_.base()) {
@@ -5403,6 +5598,9 @@ Action::Action(
       case kSetHeldItem:
         _impl_.kind_.set_held_item_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.set_held_item_);
         break;
+      case kPlayerSetArmour:
+        _impl_.kind_.player_set_armour_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_armour_);
+        break;
       case kSetHealth:
         _impl_.kind_.set_health_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.set_health_);
         break;
@@ -5430,98 +5628,44 @@ Action::Action(
       case kSendTip:
         _impl_.kind_.send_tip_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.send_tip_);
         break;
+      case kPlayerSendToast:
+        _impl_.kind_.player_send_toast_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_toast_);
+        break;
+      case kPlayerSendJukeboxPopup:
+        _impl_.kind_.player_send_jukebox_popup_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_jukebox_popup_);
+        break;
+      case kPlayerShowCoordinates:
+        _impl_.kind_.player_show_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_coordinates_);
+        break;
+      case kPlayerHideCoordinates:
+        _impl_.kind_.player_hide_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_hide_coordinates_);
+        break;
+      case kPlayerEnableInstantRespawn:
+        _impl_.kind_.player_enable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_enable_instant_respawn_);
+        break;
+      case kPlayerDisableInstantRespawn:
+        _impl_.kind_.player_disable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_disable_instant_respawn_);
+        break;
+      case kPlayerSetNameTag:
+        _impl_.kind_.player_set_name_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_name_tag_);
+        break;
+      case kPlayerSetScoreTag:
+        _impl_.kind_.player_set_score_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_score_tag_);
+        break;
       case kPlaySound:
         _impl_.kind_.play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.play_sound_);
         break;
+      case kPlayerShowParticle:
+        _impl_.kind_.player_show_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_particle_);
+        break;
+      case kPlayerSendScoreboard:
+        _impl_.kind_.player_send_scoreboard_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_scoreboard_);
+        break;
+      case kPlayerRemoveScoreboard:
+        _impl_.kind_.player_remove_scoreboard_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_remove_scoreboard_);
+        break;
       case kExecuteCommand:
         _impl_.kind_.execute_command_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.execute_command_);
-        break;
-      case kWorldSetDefaultGameMode:
-        _impl_.kind_.world_set_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_default_game_mode_);
-        break;
-      case kWorldSetDifficulty:
-        _impl_.kind_.world_set_difficulty_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_difficulty_);
-        break;
-      case kWorldSetTickRange:
-        _impl_.kind_.world_set_tick_range_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_tick_range_);
-        break;
-      case kWorldSetSpawn:
-        _impl_.kind_.world_set_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_spawn_);
-        break;
-      case kWorldSetBlock:
-        _impl_.kind_.world_set_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_block_);
-        break;
-      case kWorldSetBiome:
-        _impl_.kind_.world_set_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_biome_);
-        break;
-      case kWorldSetLiquid:
-        _impl_.kind_.world_set_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_liquid_);
-        break;
-      case kWorldScheduleBlockUpdate:
-        _impl_.kind_.world_schedule_block_update_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_schedule_block_update_);
-        break;
-      case kWorldBuildStructure:
-        _impl_.kind_.world_build_structure_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_build_structure_);
-        break;
-      case kWorldSetTime:
-        _impl_.kind_.world_set_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_time_);
-        break;
-      case kWorldStopTime:
-        _impl_.kind_.world_stop_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_stop_time_);
-        break;
-      case kWorldStartTime:
-        _impl_.kind_.world_start_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_start_time_);
-        break;
-      case kWorldPlaySound:
-        _impl_.kind_.world_play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_play_sound_);
-        break;
-      case kWorldAddParticle:
-        _impl_.kind_.world_add_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_add_particle_);
-        break;
-      case kWorldQueryEntities:
-        _impl_.kind_.world_query_entities_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_);
-        break;
-      case kWorldQueryPlayers:
-        _impl_.kind_.world_query_players_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_players_);
-        break;
-      case kWorldQueryEntitiesWithin:
-        _impl_.kind_.world_query_entities_within_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_within_);
-        break;
-      case kWorldQueryPlayerSpawn:
-        _impl_.kind_.world_query_player_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_player_spawn_);
-        break;
-      case kWorldQueryBlock:
-        _impl_.kind_.world_query_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_block_);
-        break;
-      case kWorldQueryBiome:
-        _impl_.kind_.world_query_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_biome_);
-        break;
-      case kWorldQueryLiquid:
-        _impl_.kind_.world_query_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_liquid_);
-        break;
-      case kWorldQueryHighestBlock:
-        _impl_.kind_.world_query_highest_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_highest_block_);
-        break;
-      case kWorldQueryLight:
-        _impl_.kind_.world_query_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_light_);
-        break;
-      case kWorldQuerySkyLight:
-        _impl_.kind_.world_query_sky_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_sky_light_);
-        break;
-      case kWorldQueryTemperature:
-        _impl_.kind_.world_query_temperature_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_temperature_);
-        break;
-      case kWorldQueryRainingAt:
-        _impl_.kind_.world_query_raining_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_raining_at_);
-        break;
-      case kWorldQuerySnowingAt:
-        _impl_.kind_.world_query_snowing_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_snowing_at_);
-        break;
-      case kWorldQueryThunderingAt:
-        _impl_.kind_.world_query_thundering_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_thundering_at_);
-        break;
-      case kWorldQueryDefaultGameMode:
-        _impl_.kind_.world_query_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_default_game_mode_);
         break;
       case kPlayerStartSprinting:
         _impl_.kind_.player_start_sprinting_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_start_sprinting_);
@@ -5595,33 +5739,6 @@ Action::Action(
       case kPlayerSetHeldSlot:
         _impl_.kind_.player_set_held_slot_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_held_slot_);
         break;
-      case kPlayerSendToast:
-        _impl_.kind_.player_send_toast_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_toast_);
-        break;
-      case kPlayerSendJukeboxPopup:
-        _impl_.kind_.player_send_jukebox_popup_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_jukebox_popup_);
-        break;
-      case kPlayerShowCoordinates:
-        _impl_.kind_.player_show_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_coordinates_);
-        break;
-      case kPlayerHideCoordinates:
-        _impl_.kind_.player_hide_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_hide_coordinates_);
-        break;
-      case kPlayerEnableInstantRespawn:
-        _impl_.kind_.player_enable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_enable_instant_respawn_);
-        break;
-      case kPlayerDisableInstantRespawn:
-        _impl_.kind_.player_disable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_disable_instant_respawn_);
-        break;
-      case kPlayerSetNameTag:
-        _impl_.kind_.player_set_name_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_name_tag_);
-        break;
-      case kPlayerSetScoreTag:
-        _impl_.kind_.player_set_score_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_score_tag_);
-        break;
-      case kPlayerShowParticle:
-        _impl_.kind_.player_show_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_particle_);
-        break;
       case kPlayerRespawn:
         _impl_.kind_.player_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_respawn_);
         break;
@@ -5636,6 +5753,93 @@ Action::Action(
         break;
       case kPlayerPunchAir:
         _impl_.kind_.player_punch_air_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_punch_air_);
+        break;
+      case kWorldSetDefaultGameMode:
+        _impl_.kind_.world_set_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_default_game_mode_);
+        break;
+      case kWorldSetDifficulty:
+        _impl_.kind_.world_set_difficulty_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_difficulty_);
+        break;
+      case kWorldSetTickRange:
+        _impl_.kind_.world_set_tick_range_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_tick_range_);
+        break;
+      case kWorldSetBlock:
+        _impl_.kind_.world_set_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_block_);
+        break;
+      case kWorldPlaySound:
+        _impl_.kind_.world_play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_play_sound_);
+        break;
+      case kWorldAddParticle:
+        _impl_.kind_.world_add_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_add_particle_);
+        break;
+      case kWorldSetTime:
+        _impl_.kind_.world_set_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_time_);
+        break;
+      case kWorldStopTime:
+        _impl_.kind_.world_stop_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_stop_time_);
+        break;
+      case kWorldStartTime:
+        _impl_.kind_.world_start_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_start_time_);
+        break;
+      case kWorldSetSpawn:
+        _impl_.kind_.world_set_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_spawn_);
+        break;
+      case kWorldSetBiome:
+        _impl_.kind_.world_set_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_biome_);
+        break;
+      case kWorldSetLiquid:
+        _impl_.kind_.world_set_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_liquid_);
+        break;
+      case kWorldScheduleBlockUpdate:
+        _impl_.kind_.world_schedule_block_update_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_schedule_block_update_);
+        break;
+      case kWorldBuildStructure:
+        _impl_.kind_.world_build_structure_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_build_structure_);
+        break;
+      case kWorldQueryEntities:
+        _impl_.kind_.world_query_entities_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_);
+        break;
+      case kWorldQueryPlayers:
+        _impl_.kind_.world_query_players_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_players_);
+        break;
+      case kWorldQueryEntitiesWithin:
+        _impl_.kind_.world_query_entities_within_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_within_);
+        break;
+      case kWorldQueryPlayerSpawn:
+        _impl_.kind_.world_query_player_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_player_spawn_);
+        break;
+      case kWorldQueryBlock:
+        _impl_.kind_.world_query_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_block_);
+        break;
+      case kWorldQueryBiome:
+        _impl_.kind_.world_query_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_biome_);
+        break;
+      case kWorldQueryLight:
+        _impl_.kind_.world_query_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_light_);
+        break;
+      case kWorldQuerySkyLight:
+        _impl_.kind_.world_query_sky_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_sky_light_);
+        break;
+      case kWorldQueryTemperature:
+        _impl_.kind_.world_query_temperature_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_temperature_);
+        break;
+      case kWorldQueryHighestBlock:
+        _impl_.kind_.world_query_highest_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_highest_block_);
+        break;
+      case kWorldQueryRainingAt:
+        _impl_.kind_.world_query_raining_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_raining_at_);
+        break;
+      case kWorldQuerySnowingAt:
+        _impl_.kind_.world_query_snowing_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_snowing_at_);
+        break;
+      case kWorldQueryThunderingAt:
+        _impl_.kind_.world_query_thundering_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_thundering_at_);
+        break;
+      case kWorldQueryLiquid:
+        _impl_.kind_.world_query_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_liquid_);
+        break;
+      case kWorldQueryDefaultGameMode:
+        _impl_.kind_.world_query_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_default_game_mode_);
         break;
   }
 
@@ -5730,6 +5934,14 @@ void Action::clear_kind() {
       }
       break;
     }
+    case kPlayerSetArmour: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_set_armour_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_set_armour_);
+      }
+      break;
+    }
     case kSetHealth: {
       if (GetArena() == nullptr) {
         delete _impl_.kind_.set_health_;
@@ -5802,6 +6014,70 @@ void Action::clear_kind() {
       }
       break;
     }
+    case kPlayerSendToast: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_send_toast_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_send_toast_);
+      }
+      break;
+    }
+    case kPlayerSendJukeboxPopup: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_send_jukebox_popup_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_send_jukebox_popup_);
+      }
+      break;
+    }
+    case kPlayerShowCoordinates: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_show_coordinates_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_show_coordinates_);
+      }
+      break;
+    }
+    case kPlayerHideCoordinates: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_hide_coordinates_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_hide_coordinates_);
+      }
+      break;
+    }
+    case kPlayerEnableInstantRespawn: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_enable_instant_respawn_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_enable_instant_respawn_);
+      }
+      break;
+    }
+    case kPlayerDisableInstantRespawn: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_disable_instant_respawn_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_disable_instant_respawn_);
+      }
+      break;
+    }
+    case kPlayerSetNameTag: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_set_name_tag_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_set_name_tag_);
+      }
+      break;
+    }
+    case kPlayerSetScoreTag: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_set_score_tag_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_set_score_tag_);
+      }
+      break;
+    }
     case kPlaySound: {
       if (GetArena() == nullptr) {
         delete _impl_.kind_.play_sound_;
@@ -5810,243 +6086,35 @@ void Action::clear_kind() {
       }
       break;
     }
+    case kPlayerShowParticle: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_show_particle_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_show_particle_);
+      }
+      break;
+    }
+    case kPlayerSendScoreboard: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_send_scoreboard_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_send_scoreboard_);
+      }
+      break;
+    }
+    case kPlayerRemoveScoreboard: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.player_remove_scoreboard_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_remove_scoreboard_);
+      }
+      break;
+    }
     case kExecuteCommand: {
       if (GetArena() == nullptr) {
         delete _impl_.kind_.execute_command_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
         ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.execute_command_);
-      }
-      break;
-    }
-    case kWorldSetDefaultGameMode: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_default_game_mode_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_default_game_mode_);
-      }
-      break;
-    }
-    case kWorldSetDifficulty: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_difficulty_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_difficulty_);
-      }
-      break;
-    }
-    case kWorldSetTickRange: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_tick_range_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_tick_range_);
-      }
-      break;
-    }
-    case kWorldSetSpawn: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_spawn_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_spawn_);
-      }
-      break;
-    }
-    case kWorldSetBlock: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_block_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_block_);
-      }
-      break;
-    }
-    case kWorldSetBiome: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_biome_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_biome_);
-      }
-      break;
-    }
-    case kWorldSetLiquid: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_liquid_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_liquid_);
-      }
-      break;
-    }
-    case kWorldScheduleBlockUpdate: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_schedule_block_update_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_schedule_block_update_);
-      }
-      break;
-    }
-    case kWorldBuildStructure: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_build_structure_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_build_structure_);
-      }
-      break;
-    }
-    case kWorldSetTime: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_set_time_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_time_);
-      }
-      break;
-    }
-    case kWorldStopTime: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_stop_time_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_stop_time_);
-      }
-      break;
-    }
-    case kWorldStartTime: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_start_time_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_start_time_);
-      }
-      break;
-    }
-    case kWorldPlaySound: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_play_sound_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_play_sound_);
-      }
-      break;
-    }
-    case kWorldAddParticle: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_add_particle_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_add_particle_);
-      }
-      break;
-    }
-    case kWorldQueryEntities: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_entities_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_entities_);
-      }
-      break;
-    }
-    case kWorldQueryPlayers: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_players_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_players_);
-      }
-      break;
-    }
-    case kWorldQueryEntitiesWithin: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_entities_within_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_entities_within_);
-      }
-      break;
-    }
-    case kWorldQueryPlayerSpawn: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_player_spawn_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_player_spawn_);
-      }
-      break;
-    }
-    case kWorldQueryBlock: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_block_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_block_);
-      }
-      break;
-    }
-    case kWorldQueryBiome: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_biome_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_biome_);
-      }
-      break;
-    }
-    case kWorldQueryLiquid: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_liquid_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_liquid_);
-      }
-      break;
-    }
-    case kWorldQueryHighestBlock: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_highest_block_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_highest_block_);
-      }
-      break;
-    }
-    case kWorldQueryLight: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_light_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_light_);
-      }
-      break;
-    }
-    case kWorldQuerySkyLight: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_sky_light_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_sky_light_);
-      }
-      break;
-    }
-    case kWorldQueryTemperature: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_temperature_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_temperature_);
-      }
-      break;
-    }
-    case kWorldQueryRainingAt: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_raining_at_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_raining_at_);
-      }
-      break;
-    }
-    case kWorldQuerySnowingAt: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_snowing_at_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_snowing_at_);
-      }
-      break;
-    }
-    case kWorldQueryThunderingAt: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_thundering_at_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_thundering_at_);
-      }
-      break;
-    }
-    case kWorldQueryDefaultGameMode: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.world_query_default_game_mode_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_default_game_mode_);
       }
       break;
     }
@@ -6242,78 +6310,6 @@ void Action::clear_kind() {
       }
       break;
     }
-    case kPlayerSendToast: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_send_toast_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_send_toast_);
-      }
-      break;
-    }
-    case kPlayerSendJukeboxPopup: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_send_jukebox_popup_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_send_jukebox_popup_);
-      }
-      break;
-    }
-    case kPlayerShowCoordinates: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_show_coordinates_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_show_coordinates_);
-      }
-      break;
-    }
-    case kPlayerHideCoordinates: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_hide_coordinates_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_hide_coordinates_);
-      }
-      break;
-    }
-    case kPlayerEnableInstantRespawn: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_enable_instant_respawn_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_enable_instant_respawn_);
-      }
-      break;
-    }
-    case kPlayerDisableInstantRespawn: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_disable_instant_respawn_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_disable_instant_respawn_);
-      }
-      break;
-    }
-    case kPlayerSetNameTag: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_set_name_tag_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_set_name_tag_);
-      }
-      break;
-    }
-    case kPlayerSetScoreTag: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_set_score_tag_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_set_score_tag_);
-      }
-      break;
-    }
-    case kPlayerShowParticle: {
-      if (GetArena() == nullptr) {
-        delete _impl_.kind_.player_show_particle_;
-      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_show_particle_);
-      }
-      break;
-    }
     case kPlayerRespawn: {
       if (GetArena() == nullptr) {
         delete _impl_.kind_.player_respawn_;
@@ -6351,6 +6347,238 @@ void Action::clear_kind() {
         delete _impl_.kind_.player_punch_air_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
         ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.player_punch_air_);
+      }
+      break;
+    }
+    case kWorldSetDefaultGameMode: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_default_game_mode_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_default_game_mode_);
+      }
+      break;
+    }
+    case kWorldSetDifficulty: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_difficulty_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_difficulty_);
+      }
+      break;
+    }
+    case kWorldSetTickRange: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_tick_range_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_tick_range_);
+      }
+      break;
+    }
+    case kWorldSetBlock: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_block_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_block_);
+      }
+      break;
+    }
+    case kWorldPlaySound: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_play_sound_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_play_sound_);
+      }
+      break;
+    }
+    case kWorldAddParticle: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_add_particle_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_add_particle_);
+      }
+      break;
+    }
+    case kWorldSetTime: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_time_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_time_);
+      }
+      break;
+    }
+    case kWorldStopTime: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_stop_time_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_stop_time_);
+      }
+      break;
+    }
+    case kWorldStartTime: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_start_time_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_start_time_);
+      }
+      break;
+    }
+    case kWorldSetSpawn: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_spawn_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_spawn_);
+      }
+      break;
+    }
+    case kWorldSetBiome: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_biome_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_biome_);
+      }
+      break;
+    }
+    case kWorldSetLiquid: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_set_liquid_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_set_liquid_);
+      }
+      break;
+    }
+    case kWorldScheduleBlockUpdate: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_schedule_block_update_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_schedule_block_update_);
+      }
+      break;
+    }
+    case kWorldBuildStructure: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_build_structure_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_build_structure_);
+      }
+      break;
+    }
+    case kWorldQueryEntities: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_entities_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_entities_);
+      }
+      break;
+    }
+    case kWorldQueryPlayers: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_players_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_players_);
+      }
+      break;
+    }
+    case kWorldQueryEntitiesWithin: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_entities_within_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_entities_within_);
+      }
+      break;
+    }
+    case kWorldQueryPlayerSpawn: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_player_spawn_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_player_spawn_);
+      }
+      break;
+    }
+    case kWorldQueryBlock: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_block_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_block_);
+      }
+      break;
+    }
+    case kWorldQueryBiome: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_biome_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_biome_);
+      }
+      break;
+    }
+    case kWorldQueryLight: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_light_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_light_);
+      }
+      break;
+    }
+    case kWorldQuerySkyLight: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_sky_light_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_sky_light_);
+      }
+      break;
+    }
+    case kWorldQueryTemperature: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_temperature_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_temperature_);
+      }
+      break;
+    }
+    case kWorldQueryHighestBlock: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_highest_block_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_highest_block_);
+      }
+      break;
+    }
+    case kWorldQueryRainingAt: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_raining_at_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_raining_at_);
+      }
+      break;
+    }
+    case kWorldQuerySnowingAt: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_snowing_at_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_snowing_at_);
+      }
+      break;
+    }
+    case kWorldQueryThunderingAt: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_thundering_at_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_thundering_at_);
+      }
+      break;
+    }
+    case kWorldQueryLiquid: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_liquid_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_liquid_);
+      }
+      break;
+    }
+    case kWorldQueryDefaultGameMode: {
+      if (GetArena() == nullptr) {
+        delete _impl_.kind_.world_query_default_game_mode_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.kind_.world_query_default_game_mode_);
       }
       break;
     }
@@ -6405,17 +6633,17 @@ Action::GetClassData() const {
   return Action_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 86, 85, 119, 17>
+const ::_pbi::TcParseTable<0, 89, 88, 127, 17>
 Action::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Action, _impl_._has_bits_),
     0, // no _extensions_
-    131, 0,  // max_field_number, fast_idx_mask
+    134, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     2676425214,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    86,  // num_field_entries
-    85,  // num_aux_entries
+    89,  // num_field_entries
+    88,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     Action_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -6435,7 +6663,7 @@ Action::_table_ = {
     57344, 31,
     3, 44,
     0, 58,
-    61440, 74,
+    32768, 74,
     65535, 65535
   }}, {{
     // optional string correlation_id = 1 [json_name = "correlationId"];
@@ -6610,6 +6838,12 @@ Action::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Action, _impl_.kind_.player_swing_arm_), _Internal::kOneofCaseOffset + 0, 83, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .df.plugin.PlayerPunchAirAction player_punch_air = 131 [json_name = "playerPunchAir"];
     {PROTOBUF_FIELD_OFFSET(Action, _impl_.kind_.player_punch_air_), _Internal::kOneofCaseOffset + 0, 84, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .df.plugin.PlayerSetArmourAction player_set_armour = 132 [json_name = "playerSetArmour"];
+    {PROTOBUF_FIELD_OFFSET(Action, _impl_.kind_.player_set_armour_), _Internal::kOneofCaseOffset + 0, 85, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .df.plugin.PlayerSendScoreboardAction player_send_scoreboard = 133 [json_name = "playerSendScoreboard"];
+    {PROTOBUF_FIELD_OFFSET(Action, _impl_.kind_.player_send_scoreboard_), _Internal::kOneofCaseOffset + 0, 86, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .df.plugin.PlayerRemoveScoreboardAction player_remove_scoreboard = 134 [json_name = "playerRemoveScoreboard"];
+    {PROTOBUF_FIELD_OFFSET(Action, _impl_.kind_.player_remove_scoreboard_), _Internal::kOneofCaseOffset + 0, 87, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::df::plugin::SendChatAction>()},
@@ -6697,9 +6931,12 @@ Action::_table_ = {
       {::_pbi::TcParser::GetTable<::df::plugin::PlayerKnockBackAction>()},
       {::_pbi::TcParser::GetTable<::df::plugin::PlayerSwingArmAction>()},
       {::_pbi::TcParser::GetTable<::df::plugin::PlayerPunchAirAction>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::PlayerSetArmourAction>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::PlayerSendScoreboardAction>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::PlayerRemoveScoreboardAction>()},
   }},
   {{
-    "\20\16\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+    "\20\16\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "df.plugin.Action"
     "correlation_id"
   }},
@@ -7258,6 +7495,24 @@ PROTOBUF_NOINLINE void Action::Clear() {
           stream);
       break;
     }
+    case kPlayerSetArmour: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          132, *this_._impl_.kind_.player_set_armour_, this_._impl_.kind_.player_set_armour_->GetCachedSize(), target,
+          stream);
+      break;
+    }
+    case kPlayerSendScoreboard: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          133, *this_._impl_.kind_.player_send_scoreboard_, this_._impl_.kind_.player_send_scoreboard_->GetCachedSize(), target,
+          stream);
+      break;
+    }
+    case kPlayerRemoveScoreboard: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          134, *this_._impl_.kind_.player_remove_scoreboard_, this_._impl_.kind_.player_remove_scoreboard_->GetCachedSize(), target,
+          stream);
+      break;
+    }
     default:
       break;
   }
@@ -7335,6 +7590,12 @@ PROTOBUF_NOINLINE void Action::Clear() {
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.set_held_item_);
       break;
     }
+    // .df.plugin.PlayerSetArmourAction player_set_armour = 132 [json_name = "playerSetArmour"];
+    case kPlayerSetArmour: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_armour_);
+      break;
+    }
     // .df.plugin.SetHealthAction set_health = 20 [json_name = "setHealth"];
     case kSetHealth: {
       total_size += 2 +
@@ -7389,190 +7650,82 @@ PROTOBUF_NOINLINE void Action::Clear() {
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.send_tip_);
       break;
     }
+    // .df.plugin.PlayerSendToastAction player_send_toast = 118 [json_name = "playerSendToast"];
+    case kPlayerSendToast: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_send_toast_);
+      break;
+    }
+    // .df.plugin.PlayerSendJukeboxPopupAction player_send_jukebox_popup = 119 [json_name = "playerSendJukeboxPopup"];
+    case kPlayerSendJukeboxPopup: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_send_jukebox_popup_);
+      break;
+    }
+    // .df.plugin.PlayerShowCoordinatesAction player_show_coordinates = 120 [json_name = "playerShowCoordinates"];
+    case kPlayerShowCoordinates: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_show_coordinates_);
+      break;
+    }
+    // .df.plugin.PlayerHideCoordinatesAction player_hide_coordinates = 121 [json_name = "playerHideCoordinates"];
+    case kPlayerHideCoordinates: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_hide_coordinates_);
+      break;
+    }
+    // .df.plugin.PlayerEnableInstantRespawnAction player_enable_instant_respawn = 122 [json_name = "playerEnableInstantRespawn"];
+    case kPlayerEnableInstantRespawn: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_enable_instant_respawn_);
+      break;
+    }
+    // .df.plugin.PlayerDisableInstantRespawnAction player_disable_instant_respawn = 123 [json_name = "playerDisableInstantRespawn"];
+    case kPlayerDisableInstantRespawn: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_disable_instant_respawn_);
+      break;
+    }
+    // .df.plugin.PlayerSetNameTagAction player_set_name_tag = 124 [json_name = "playerSetNameTag"];
+    case kPlayerSetNameTag: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_name_tag_);
+      break;
+    }
+    // .df.plugin.PlayerSetScoreTagAction player_set_score_tag = 125 [json_name = "playerSetScoreTag"];
+    case kPlayerSetScoreTag: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_score_tag_);
+      break;
+    }
     // .df.plugin.PlaySoundAction play_sound = 43 [json_name = "playSound"];
     case kPlaySound: {
       total_size += 2 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.play_sound_);
       break;
     }
+    // .df.plugin.PlayerShowParticleAction player_show_particle = 126 [json_name = "playerShowParticle"];
+    case kPlayerShowParticle: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_show_particle_);
+      break;
+    }
+    // .df.plugin.PlayerSendScoreboardAction player_send_scoreboard = 133 [json_name = "playerSendScoreboard"];
+    case kPlayerSendScoreboard: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_send_scoreboard_);
+      break;
+    }
+    // .df.plugin.PlayerRemoveScoreboardAction player_remove_scoreboard = 134 [json_name = "playerRemoveScoreboard"];
+    case kPlayerRemoveScoreboard: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_remove_scoreboard_);
+      break;
+    }
     // .df.plugin.ExecuteCommandAction execute_command = 50 [json_name = "executeCommand"];
     case kExecuteCommand: {
       total_size += 2 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.execute_command_);
-      break;
-    }
-    // .df.plugin.WorldSetDefaultGameModeAction world_set_default_game_mode = 60 [json_name = "worldSetDefaultGameMode"];
-    case kWorldSetDefaultGameMode: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_default_game_mode_);
-      break;
-    }
-    // .df.plugin.WorldSetDifficultyAction world_set_difficulty = 61 [json_name = "worldSetDifficulty"];
-    case kWorldSetDifficulty: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_difficulty_);
-      break;
-    }
-    // .df.plugin.WorldSetTickRangeAction world_set_tick_range = 62 [json_name = "worldSetTickRange"];
-    case kWorldSetTickRange: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_tick_range_);
-      break;
-    }
-    // .df.plugin.WorldSetSpawnAction world_set_spawn = 69 [json_name = "worldSetSpawn"];
-    case kWorldSetSpawn: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_spawn_);
-      break;
-    }
-    // .df.plugin.WorldSetBlockAction world_set_block = 63 [json_name = "worldSetBlock"];
-    case kWorldSetBlock: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_block_);
-      break;
-    }
-    // .df.plugin.WorldSetBiomeAction world_set_biome = 90 [json_name = "worldSetBiome"];
-    case kWorldSetBiome: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_biome_);
-      break;
-    }
-    // .df.plugin.WorldSetLiquidAction world_set_liquid = 91 [json_name = "worldSetLiquid"];
-    case kWorldSetLiquid: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_liquid_);
-      break;
-    }
-    // .df.plugin.WorldScheduleBlockUpdateAction world_schedule_block_update = 92 [json_name = "worldScheduleBlockUpdate"];
-    case kWorldScheduleBlockUpdate: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_schedule_block_update_);
-      break;
-    }
-    // .df.plugin.WorldBuildStructureAction world_build_structure = 93 [json_name = "worldBuildStructure"];
-    case kWorldBuildStructure: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_build_structure_);
-      break;
-    }
-    // .df.plugin.WorldSetTimeAction world_set_time = 66 [json_name = "worldSetTime"];
-    case kWorldSetTime: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_time_);
-      break;
-    }
-    // .df.plugin.WorldStopTimeAction world_stop_time = 67 [json_name = "worldStopTime"];
-    case kWorldStopTime: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_stop_time_);
-      break;
-    }
-    // .df.plugin.WorldStartTimeAction world_start_time = 68 [json_name = "worldStartTime"];
-    case kWorldStartTime: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_start_time_);
-      break;
-    }
-    // .df.plugin.WorldPlaySoundAction world_play_sound = 64 [json_name = "worldPlaySound"];
-    case kWorldPlaySound: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_play_sound_);
-      break;
-    }
-    // .df.plugin.WorldAddParticleAction world_add_particle = 65 [json_name = "worldAddParticle"];
-    case kWorldAddParticle: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_add_particle_);
-      break;
-    }
-    // .df.plugin.WorldQueryEntitiesAction world_query_entities = 70 [json_name = "worldQueryEntities"];
-    case kWorldQueryEntities: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_entities_);
-      break;
-    }
-    // .df.plugin.WorldQueryPlayersAction world_query_players = 71 [json_name = "worldQueryPlayers"];
-    case kWorldQueryPlayers: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_players_);
-      break;
-    }
-    // .df.plugin.WorldQueryEntitiesWithinAction world_query_entities_within = 72 [json_name = "worldQueryEntitiesWithin"];
-    case kWorldQueryEntitiesWithin: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_entities_within_);
-      break;
-    }
-    // .df.plugin.WorldQueryPlayerSpawnAction world_query_player_spawn = 74 [json_name = "worldQueryPlayerSpawn"];
-    case kWorldQueryPlayerSpawn: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_player_spawn_);
-      break;
-    }
-    // .df.plugin.WorldQueryBlockAction world_query_block = 75 [json_name = "worldQueryBlock"];
-    case kWorldQueryBlock: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_block_);
-      break;
-    }
-    // .df.plugin.WorldQueryBiomeAction world_query_biome = 76 [json_name = "worldQueryBiome"];
-    case kWorldQueryBiome: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_biome_);
-      break;
-    }
-    // .df.plugin.WorldQueryLiquidAction world_query_liquid = 84 [json_name = "worldQueryLiquid"];
-    case kWorldQueryLiquid: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_liquid_);
-      break;
-    }
-    // .df.plugin.WorldQueryHighestBlockAction world_query_highest_block = 80 [json_name = "worldQueryHighestBlock"];
-    case kWorldQueryHighestBlock: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_highest_block_);
-      break;
-    }
-    // .df.plugin.WorldQueryLightAction world_query_light = 77 [json_name = "worldQueryLight"];
-    case kWorldQueryLight: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_light_);
-      break;
-    }
-    // .df.plugin.WorldQuerySkyLightAction world_query_sky_light = 78 [json_name = "worldQuerySkyLight"];
-    case kWorldQuerySkyLight: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_sky_light_);
-      break;
-    }
-    // .df.plugin.WorldQueryTemperatureAction world_query_temperature = 79 [json_name = "worldQueryTemperature"];
-    case kWorldQueryTemperature: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_temperature_);
-      break;
-    }
-    // .df.plugin.WorldQueryRainingAtAction world_query_raining_at = 81 [json_name = "worldQueryRainingAt"];
-    case kWorldQueryRainingAt: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_raining_at_);
-      break;
-    }
-    // .df.plugin.WorldQuerySnowingAtAction world_query_snowing_at = 82 [json_name = "worldQuerySnowingAt"];
-    case kWorldQuerySnowingAt: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_snowing_at_);
-      break;
-    }
-    // .df.plugin.WorldQueryThunderingAtAction world_query_thundering_at = 83 [json_name = "worldQueryThunderingAt"];
-    case kWorldQueryThunderingAt: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_thundering_at_);
-      break;
-    }
-    // .df.plugin.WorldQueryDefaultGameModeAction world_query_default_game_mode = 73 [json_name = "worldQueryDefaultGameMode"];
-    case kWorldQueryDefaultGameMode: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_default_game_mode_);
       break;
     }
     // .df.plugin.PlayerStartSprintingAction player_start_sprinting = 94 [json_name = "playerStartSprinting"];
@@ -7719,60 +7872,6 @@ PROTOBUF_NOINLINE void Action::Clear() {
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_held_slot_);
       break;
     }
-    // .df.plugin.PlayerSendToastAction player_send_toast = 118 [json_name = "playerSendToast"];
-    case kPlayerSendToast: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_send_toast_);
-      break;
-    }
-    // .df.plugin.PlayerSendJukeboxPopupAction player_send_jukebox_popup = 119 [json_name = "playerSendJukeboxPopup"];
-    case kPlayerSendJukeboxPopup: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_send_jukebox_popup_);
-      break;
-    }
-    // .df.plugin.PlayerShowCoordinatesAction player_show_coordinates = 120 [json_name = "playerShowCoordinates"];
-    case kPlayerShowCoordinates: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_show_coordinates_);
-      break;
-    }
-    // .df.plugin.PlayerHideCoordinatesAction player_hide_coordinates = 121 [json_name = "playerHideCoordinates"];
-    case kPlayerHideCoordinates: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_hide_coordinates_);
-      break;
-    }
-    // .df.plugin.PlayerEnableInstantRespawnAction player_enable_instant_respawn = 122 [json_name = "playerEnableInstantRespawn"];
-    case kPlayerEnableInstantRespawn: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_enable_instant_respawn_);
-      break;
-    }
-    // .df.plugin.PlayerDisableInstantRespawnAction player_disable_instant_respawn = 123 [json_name = "playerDisableInstantRespawn"];
-    case kPlayerDisableInstantRespawn: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_disable_instant_respawn_);
-      break;
-    }
-    // .df.plugin.PlayerSetNameTagAction player_set_name_tag = 124 [json_name = "playerSetNameTag"];
-    case kPlayerSetNameTag: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_name_tag_);
-      break;
-    }
-    // .df.plugin.PlayerSetScoreTagAction player_set_score_tag = 125 [json_name = "playerSetScoreTag"];
-    case kPlayerSetScoreTag: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_set_score_tag_);
-      break;
-    }
-    // .df.plugin.PlayerShowParticleAction player_show_particle = 126 [json_name = "playerShowParticle"];
-    case kPlayerShowParticle: {
-      total_size += 2 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_show_particle_);
-      break;
-    }
     // .df.plugin.PlayerRespawnAction player_respawn = 127 [json_name = "playerRespawn"];
     case kPlayerRespawn: {
       total_size += 2 +
@@ -7801,6 +7900,180 @@ PROTOBUF_NOINLINE void Action::Clear() {
     case kPlayerPunchAir: {
       total_size += 2 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.player_punch_air_);
+      break;
+    }
+    // .df.plugin.WorldSetDefaultGameModeAction world_set_default_game_mode = 60 [json_name = "worldSetDefaultGameMode"];
+    case kWorldSetDefaultGameMode: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_default_game_mode_);
+      break;
+    }
+    // .df.plugin.WorldSetDifficultyAction world_set_difficulty = 61 [json_name = "worldSetDifficulty"];
+    case kWorldSetDifficulty: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_difficulty_);
+      break;
+    }
+    // .df.plugin.WorldSetTickRangeAction world_set_tick_range = 62 [json_name = "worldSetTickRange"];
+    case kWorldSetTickRange: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_tick_range_);
+      break;
+    }
+    // .df.plugin.WorldSetBlockAction world_set_block = 63 [json_name = "worldSetBlock"];
+    case kWorldSetBlock: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_block_);
+      break;
+    }
+    // .df.plugin.WorldPlaySoundAction world_play_sound = 64 [json_name = "worldPlaySound"];
+    case kWorldPlaySound: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_play_sound_);
+      break;
+    }
+    // .df.plugin.WorldAddParticleAction world_add_particle = 65 [json_name = "worldAddParticle"];
+    case kWorldAddParticle: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_add_particle_);
+      break;
+    }
+    // .df.plugin.WorldSetTimeAction world_set_time = 66 [json_name = "worldSetTime"];
+    case kWorldSetTime: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_time_);
+      break;
+    }
+    // .df.plugin.WorldStopTimeAction world_stop_time = 67 [json_name = "worldStopTime"];
+    case kWorldStopTime: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_stop_time_);
+      break;
+    }
+    // .df.plugin.WorldStartTimeAction world_start_time = 68 [json_name = "worldStartTime"];
+    case kWorldStartTime: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_start_time_);
+      break;
+    }
+    // .df.plugin.WorldSetSpawnAction world_set_spawn = 69 [json_name = "worldSetSpawn"];
+    case kWorldSetSpawn: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_spawn_);
+      break;
+    }
+    // .df.plugin.WorldSetBiomeAction world_set_biome = 90 [json_name = "worldSetBiome"];
+    case kWorldSetBiome: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_biome_);
+      break;
+    }
+    // .df.plugin.WorldSetLiquidAction world_set_liquid = 91 [json_name = "worldSetLiquid"];
+    case kWorldSetLiquid: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_set_liquid_);
+      break;
+    }
+    // .df.plugin.WorldScheduleBlockUpdateAction world_schedule_block_update = 92 [json_name = "worldScheduleBlockUpdate"];
+    case kWorldScheduleBlockUpdate: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_schedule_block_update_);
+      break;
+    }
+    // .df.plugin.WorldBuildStructureAction world_build_structure = 93 [json_name = "worldBuildStructure"];
+    case kWorldBuildStructure: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_build_structure_);
+      break;
+    }
+    // .df.plugin.WorldQueryEntitiesAction world_query_entities = 70 [json_name = "worldQueryEntities"];
+    case kWorldQueryEntities: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_entities_);
+      break;
+    }
+    // .df.plugin.WorldQueryPlayersAction world_query_players = 71 [json_name = "worldQueryPlayers"];
+    case kWorldQueryPlayers: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_players_);
+      break;
+    }
+    // .df.plugin.WorldQueryEntitiesWithinAction world_query_entities_within = 72 [json_name = "worldQueryEntitiesWithin"];
+    case kWorldQueryEntitiesWithin: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_entities_within_);
+      break;
+    }
+    // .df.plugin.WorldQueryPlayerSpawnAction world_query_player_spawn = 74 [json_name = "worldQueryPlayerSpawn"];
+    case kWorldQueryPlayerSpawn: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_player_spawn_);
+      break;
+    }
+    // .df.plugin.WorldQueryBlockAction world_query_block = 75 [json_name = "worldQueryBlock"];
+    case kWorldQueryBlock: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_block_);
+      break;
+    }
+    // .df.plugin.WorldQueryBiomeAction world_query_biome = 76 [json_name = "worldQueryBiome"];
+    case kWorldQueryBiome: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_biome_);
+      break;
+    }
+    // .df.plugin.WorldQueryLightAction world_query_light = 77 [json_name = "worldQueryLight"];
+    case kWorldQueryLight: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_light_);
+      break;
+    }
+    // .df.plugin.WorldQuerySkyLightAction world_query_sky_light = 78 [json_name = "worldQuerySkyLight"];
+    case kWorldQuerySkyLight: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_sky_light_);
+      break;
+    }
+    // .df.plugin.WorldQueryTemperatureAction world_query_temperature = 79 [json_name = "worldQueryTemperature"];
+    case kWorldQueryTemperature: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_temperature_);
+      break;
+    }
+    // .df.plugin.WorldQueryHighestBlockAction world_query_highest_block = 80 [json_name = "worldQueryHighestBlock"];
+    case kWorldQueryHighestBlock: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_highest_block_);
+      break;
+    }
+    // .df.plugin.WorldQueryRainingAtAction world_query_raining_at = 81 [json_name = "worldQueryRainingAt"];
+    case kWorldQueryRainingAt: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_raining_at_);
+      break;
+    }
+    // .df.plugin.WorldQuerySnowingAtAction world_query_snowing_at = 82 [json_name = "worldQuerySnowingAt"];
+    case kWorldQuerySnowingAt: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_snowing_at_);
+      break;
+    }
+    // .df.plugin.WorldQueryThunderingAtAction world_query_thundering_at = 83 [json_name = "worldQueryThunderingAt"];
+    case kWorldQueryThunderingAt: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_thundering_at_);
+      break;
+    }
+    // .df.plugin.WorldQueryLiquidAction world_query_liquid = 84 [json_name = "worldQueryLiquid"];
+    case kWorldQueryLiquid: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_liquid_);
+      break;
+    }
+    // .df.plugin.WorldQueryDefaultGameModeAction world_query_default_game_mode = 73 [json_name = "worldQueryDefaultGameMode"];
+    case kWorldQueryDefaultGameMode: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.kind_.world_query_default_game_mode_);
       break;
     }
     case KIND_NOT_SET: {
@@ -7898,6 +8171,14 @@ void Action::MergeImpl(::google::protobuf::MessageLite& to_msg,
         }
         break;
       }
+      case kPlayerSetArmour: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_set_armour_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_armour_);
+        } else {
+          _this->_impl_.kind_.player_set_armour_->MergeFrom(*from._impl_.kind_.player_set_armour_);
+        }
+        break;
+      }
       case kSetHealth: {
         if (oneof_needs_init) {
           _this->_impl_.kind_.set_health_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.set_health_);
@@ -7970,6 +8251,70 @@ void Action::MergeImpl(::google::protobuf::MessageLite& to_msg,
         }
         break;
       }
+      case kPlayerSendToast: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_send_toast_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_toast_);
+        } else {
+          _this->_impl_.kind_.player_send_toast_->MergeFrom(*from._impl_.kind_.player_send_toast_);
+        }
+        break;
+      }
+      case kPlayerSendJukeboxPopup: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_send_jukebox_popup_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_jukebox_popup_);
+        } else {
+          _this->_impl_.kind_.player_send_jukebox_popup_->MergeFrom(*from._impl_.kind_.player_send_jukebox_popup_);
+        }
+        break;
+      }
+      case kPlayerShowCoordinates: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_show_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_coordinates_);
+        } else {
+          _this->_impl_.kind_.player_show_coordinates_->MergeFrom(*from._impl_.kind_.player_show_coordinates_);
+        }
+        break;
+      }
+      case kPlayerHideCoordinates: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_hide_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_hide_coordinates_);
+        } else {
+          _this->_impl_.kind_.player_hide_coordinates_->MergeFrom(*from._impl_.kind_.player_hide_coordinates_);
+        }
+        break;
+      }
+      case kPlayerEnableInstantRespawn: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_enable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_enable_instant_respawn_);
+        } else {
+          _this->_impl_.kind_.player_enable_instant_respawn_->MergeFrom(*from._impl_.kind_.player_enable_instant_respawn_);
+        }
+        break;
+      }
+      case kPlayerDisableInstantRespawn: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_disable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_disable_instant_respawn_);
+        } else {
+          _this->_impl_.kind_.player_disable_instant_respawn_->MergeFrom(*from._impl_.kind_.player_disable_instant_respawn_);
+        }
+        break;
+      }
+      case kPlayerSetNameTag: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_set_name_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_name_tag_);
+        } else {
+          _this->_impl_.kind_.player_set_name_tag_->MergeFrom(*from._impl_.kind_.player_set_name_tag_);
+        }
+        break;
+      }
+      case kPlayerSetScoreTag: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_set_score_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_score_tag_);
+        } else {
+          _this->_impl_.kind_.player_set_score_tag_->MergeFrom(*from._impl_.kind_.player_set_score_tag_);
+        }
+        break;
+      }
       case kPlaySound: {
         if (oneof_needs_init) {
           _this->_impl_.kind_.play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.play_sound_);
@@ -7978,243 +8323,35 @@ void Action::MergeImpl(::google::protobuf::MessageLite& to_msg,
         }
         break;
       }
+      case kPlayerShowParticle: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_show_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_particle_);
+        } else {
+          _this->_impl_.kind_.player_show_particle_->MergeFrom(*from._impl_.kind_.player_show_particle_);
+        }
+        break;
+      }
+      case kPlayerSendScoreboard: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_send_scoreboard_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_scoreboard_);
+        } else {
+          _this->_impl_.kind_.player_send_scoreboard_->MergeFrom(*from._impl_.kind_.player_send_scoreboard_);
+        }
+        break;
+      }
+      case kPlayerRemoveScoreboard: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.player_remove_scoreboard_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_remove_scoreboard_);
+        } else {
+          _this->_impl_.kind_.player_remove_scoreboard_->MergeFrom(*from._impl_.kind_.player_remove_scoreboard_);
+        }
+        break;
+      }
       case kExecuteCommand: {
         if (oneof_needs_init) {
           _this->_impl_.kind_.execute_command_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.execute_command_);
         } else {
           _this->_impl_.kind_.execute_command_->MergeFrom(*from._impl_.kind_.execute_command_);
-        }
-        break;
-      }
-      case kWorldSetDefaultGameMode: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_default_game_mode_);
-        } else {
-          _this->_impl_.kind_.world_set_default_game_mode_->MergeFrom(*from._impl_.kind_.world_set_default_game_mode_);
-        }
-        break;
-      }
-      case kWorldSetDifficulty: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_difficulty_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_difficulty_);
-        } else {
-          _this->_impl_.kind_.world_set_difficulty_->MergeFrom(*from._impl_.kind_.world_set_difficulty_);
-        }
-        break;
-      }
-      case kWorldSetTickRange: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_tick_range_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_tick_range_);
-        } else {
-          _this->_impl_.kind_.world_set_tick_range_->MergeFrom(*from._impl_.kind_.world_set_tick_range_);
-        }
-        break;
-      }
-      case kWorldSetSpawn: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_spawn_);
-        } else {
-          _this->_impl_.kind_.world_set_spawn_->MergeFrom(*from._impl_.kind_.world_set_spawn_);
-        }
-        break;
-      }
-      case kWorldSetBlock: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_block_);
-        } else {
-          _this->_impl_.kind_.world_set_block_->MergeFrom(*from._impl_.kind_.world_set_block_);
-        }
-        break;
-      }
-      case kWorldSetBiome: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_biome_);
-        } else {
-          _this->_impl_.kind_.world_set_biome_->MergeFrom(*from._impl_.kind_.world_set_biome_);
-        }
-        break;
-      }
-      case kWorldSetLiquid: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_liquid_);
-        } else {
-          _this->_impl_.kind_.world_set_liquid_->MergeFrom(*from._impl_.kind_.world_set_liquid_);
-        }
-        break;
-      }
-      case kWorldScheduleBlockUpdate: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_schedule_block_update_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_schedule_block_update_);
-        } else {
-          _this->_impl_.kind_.world_schedule_block_update_->MergeFrom(*from._impl_.kind_.world_schedule_block_update_);
-        }
-        break;
-      }
-      case kWorldBuildStructure: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_build_structure_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_build_structure_);
-        } else {
-          _this->_impl_.kind_.world_build_structure_->MergeFrom(*from._impl_.kind_.world_build_structure_);
-        }
-        break;
-      }
-      case kWorldSetTime: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_set_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_time_);
-        } else {
-          _this->_impl_.kind_.world_set_time_->MergeFrom(*from._impl_.kind_.world_set_time_);
-        }
-        break;
-      }
-      case kWorldStopTime: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_stop_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_stop_time_);
-        } else {
-          _this->_impl_.kind_.world_stop_time_->MergeFrom(*from._impl_.kind_.world_stop_time_);
-        }
-        break;
-      }
-      case kWorldStartTime: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_start_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_start_time_);
-        } else {
-          _this->_impl_.kind_.world_start_time_->MergeFrom(*from._impl_.kind_.world_start_time_);
-        }
-        break;
-      }
-      case kWorldPlaySound: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_play_sound_);
-        } else {
-          _this->_impl_.kind_.world_play_sound_->MergeFrom(*from._impl_.kind_.world_play_sound_);
-        }
-        break;
-      }
-      case kWorldAddParticle: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_add_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_add_particle_);
-        } else {
-          _this->_impl_.kind_.world_add_particle_->MergeFrom(*from._impl_.kind_.world_add_particle_);
-        }
-        break;
-      }
-      case kWorldQueryEntities: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_entities_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_);
-        } else {
-          _this->_impl_.kind_.world_query_entities_->MergeFrom(*from._impl_.kind_.world_query_entities_);
-        }
-        break;
-      }
-      case kWorldQueryPlayers: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_players_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_players_);
-        } else {
-          _this->_impl_.kind_.world_query_players_->MergeFrom(*from._impl_.kind_.world_query_players_);
-        }
-        break;
-      }
-      case kWorldQueryEntitiesWithin: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_entities_within_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_within_);
-        } else {
-          _this->_impl_.kind_.world_query_entities_within_->MergeFrom(*from._impl_.kind_.world_query_entities_within_);
-        }
-        break;
-      }
-      case kWorldQueryPlayerSpawn: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_player_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_player_spawn_);
-        } else {
-          _this->_impl_.kind_.world_query_player_spawn_->MergeFrom(*from._impl_.kind_.world_query_player_spawn_);
-        }
-        break;
-      }
-      case kWorldQueryBlock: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_block_);
-        } else {
-          _this->_impl_.kind_.world_query_block_->MergeFrom(*from._impl_.kind_.world_query_block_);
-        }
-        break;
-      }
-      case kWorldQueryBiome: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_biome_);
-        } else {
-          _this->_impl_.kind_.world_query_biome_->MergeFrom(*from._impl_.kind_.world_query_biome_);
-        }
-        break;
-      }
-      case kWorldQueryLiquid: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_liquid_);
-        } else {
-          _this->_impl_.kind_.world_query_liquid_->MergeFrom(*from._impl_.kind_.world_query_liquid_);
-        }
-        break;
-      }
-      case kWorldQueryHighestBlock: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_highest_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_highest_block_);
-        } else {
-          _this->_impl_.kind_.world_query_highest_block_->MergeFrom(*from._impl_.kind_.world_query_highest_block_);
-        }
-        break;
-      }
-      case kWorldQueryLight: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_light_);
-        } else {
-          _this->_impl_.kind_.world_query_light_->MergeFrom(*from._impl_.kind_.world_query_light_);
-        }
-        break;
-      }
-      case kWorldQuerySkyLight: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_sky_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_sky_light_);
-        } else {
-          _this->_impl_.kind_.world_query_sky_light_->MergeFrom(*from._impl_.kind_.world_query_sky_light_);
-        }
-        break;
-      }
-      case kWorldQueryTemperature: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_temperature_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_temperature_);
-        } else {
-          _this->_impl_.kind_.world_query_temperature_->MergeFrom(*from._impl_.kind_.world_query_temperature_);
-        }
-        break;
-      }
-      case kWorldQueryRainingAt: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_raining_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_raining_at_);
-        } else {
-          _this->_impl_.kind_.world_query_raining_at_->MergeFrom(*from._impl_.kind_.world_query_raining_at_);
-        }
-        break;
-      }
-      case kWorldQuerySnowingAt: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_snowing_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_snowing_at_);
-        } else {
-          _this->_impl_.kind_.world_query_snowing_at_->MergeFrom(*from._impl_.kind_.world_query_snowing_at_);
-        }
-        break;
-      }
-      case kWorldQueryThunderingAt: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_thundering_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_thundering_at_);
-        } else {
-          _this->_impl_.kind_.world_query_thundering_at_->MergeFrom(*from._impl_.kind_.world_query_thundering_at_);
-        }
-        break;
-      }
-      case kWorldQueryDefaultGameMode: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.world_query_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_default_game_mode_);
-        } else {
-          _this->_impl_.kind_.world_query_default_game_mode_->MergeFrom(*from._impl_.kind_.world_query_default_game_mode_);
         }
         break;
       }
@@ -8410,78 +8547,6 @@ void Action::MergeImpl(::google::protobuf::MessageLite& to_msg,
         }
         break;
       }
-      case kPlayerSendToast: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_send_toast_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_toast_);
-        } else {
-          _this->_impl_.kind_.player_send_toast_->MergeFrom(*from._impl_.kind_.player_send_toast_);
-        }
-        break;
-      }
-      case kPlayerSendJukeboxPopup: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_send_jukebox_popup_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_send_jukebox_popup_);
-        } else {
-          _this->_impl_.kind_.player_send_jukebox_popup_->MergeFrom(*from._impl_.kind_.player_send_jukebox_popup_);
-        }
-        break;
-      }
-      case kPlayerShowCoordinates: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_show_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_coordinates_);
-        } else {
-          _this->_impl_.kind_.player_show_coordinates_->MergeFrom(*from._impl_.kind_.player_show_coordinates_);
-        }
-        break;
-      }
-      case kPlayerHideCoordinates: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_hide_coordinates_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_hide_coordinates_);
-        } else {
-          _this->_impl_.kind_.player_hide_coordinates_->MergeFrom(*from._impl_.kind_.player_hide_coordinates_);
-        }
-        break;
-      }
-      case kPlayerEnableInstantRespawn: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_enable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_enable_instant_respawn_);
-        } else {
-          _this->_impl_.kind_.player_enable_instant_respawn_->MergeFrom(*from._impl_.kind_.player_enable_instant_respawn_);
-        }
-        break;
-      }
-      case kPlayerDisableInstantRespawn: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_disable_instant_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_disable_instant_respawn_);
-        } else {
-          _this->_impl_.kind_.player_disable_instant_respawn_->MergeFrom(*from._impl_.kind_.player_disable_instant_respawn_);
-        }
-        break;
-      }
-      case kPlayerSetNameTag: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_set_name_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_name_tag_);
-        } else {
-          _this->_impl_.kind_.player_set_name_tag_->MergeFrom(*from._impl_.kind_.player_set_name_tag_);
-        }
-        break;
-      }
-      case kPlayerSetScoreTag: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_set_score_tag_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_set_score_tag_);
-        } else {
-          _this->_impl_.kind_.player_set_score_tag_->MergeFrom(*from._impl_.kind_.player_set_score_tag_);
-        }
-        break;
-      }
-      case kPlayerShowParticle: {
-        if (oneof_needs_init) {
-          _this->_impl_.kind_.player_show_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_show_particle_);
-        } else {
-          _this->_impl_.kind_.player_show_particle_->MergeFrom(*from._impl_.kind_.player_show_particle_);
-        }
-        break;
-      }
       case kPlayerRespawn: {
         if (oneof_needs_init) {
           _this->_impl_.kind_.player_respawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_respawn_);
@@ -8519,6 +8584,238 @@ void Action::MergeImpl(::google::protobuf::MessageLite& to_msg,
           _this->_impl_.kind_.player_punch_air_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.player_punch_air_);
         } else {
           _this->_impl_.kind_.player_punch_air_->MergeFrom(*from._impl_.kind_.player_punch_air_);
+        }
+        break;
+      }
+      case kWorldSetDefaultGameMode: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_default_game_mode_);
+        } else {
+          _this->_impl_.kind_.world_set_default_game_mode_->MergeFrom(*from._impl_.kind_.world_set_default_game_mode_);
+        }
+        break;
+      }
+      case kWorldSetDifficulty: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_difficulty_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_difficulty_);
+        } else {
+          _this->_impl_.kind_.world_set_difficulty_->MergeFrom(*from._impl_.kind_.world_set_difficulty_);
+        }
+        break;
+      }
+      case kWorldSetTickRange: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_tick_range_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_tick_range_);
+        } else {
+          _this->_impl_.kind_.world_set_tick_range_->MergeFrom(*from._impl_.kind_.world_set_tick_range_);
+        }
+        break;
+      }
+      case kWorldSetBlock: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_block_);
+        } else {
+          _this->_impl_.kind_.world_set_block_->MergeFrom(*from._impl_.kind_.world_set_block_);
+        }
+        break;
+      }
+      case kWorldPlaySound: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_play_sound_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_play_sound_);
+        } else {
+          _this->_impl_.kind_.world_play_sound_->MergeFrom(*from._impl_.kind_.world_play_sound_);
+        }
+        break;
+      }
+      case kWorldAddParticle: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_add_particle_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_add_particle_);
+        } else {
+          _this->_impl_.kind_.world_add_particle_->MergeFrom(*from._impl_.kind_.world_add_particle_);
+        }
+        break;
+      }
+      case kWorldSetTime: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_time_);
+        } else {
+          _this->_impl_.kind_.world_set_time_->MergeFrom(*from._impl_.kind_.world_set_time_);
+        }
+        break;
+      }
+      case kWorldStopTime: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_stop_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_stop_time_);
+        } else {
+          _this->_impl_.kind_.world_stop_time_->MergeFrom(*from._impl_.kind_.world_stop_time_);
+        }
+        break;
+      }
+      case kWorldStartTime: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_start_time_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_start_time_);
+        } else {
+          _this->_impl_.kind_.world_start_time_->MergeFrom(*from._impl_.kind_.world_start_time_);
+        }
+        break;
+      }
+      case kWorldSetSpawn: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_spawn_);
+        } else {
+          _this->_impl_.kind_.world_set_spawn_->MergeFrom(*from._impl_.kind_.world_set_spawn_);
+        }
+        break;
+      }
+      case kWorldSetBiome: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_biome_);
+        } else {
+          _this->_impl_.kind_.world_set_biome_->MergeFrom(*from._impl_.kind_.world_set_biome_);
+        }
+        break;
+      }
+      case kWorldSetLiquid: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_set_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_set_liquid_);
+        } else {
+          _this->_impl_.kind_.world_set_liquid_->MergeFrom(*from._impl_.kind_.world_set_liquid_);
+        }
+        break;
+      }
+      case kWorldScheduleBlockUpdate: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_schedule_block_update_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_schedule_block_update_);
+        } else {
+          _this->_impl_.kind_.world_schedule_block_update_->MergeFrom(*from._impl_.kind_.world_schedule_block_update_);
+        }
+        break;
+      }
+      case kWorldBuildStructure: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_build_structure_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_build_structure_);
+        } else {
+          _this->_impl_.kind_.world_build_structure_->MergeFrom(*from._impl_.kind_.world_build_structure_);
+        }
+        break;
+      }
+      case kWorldQueryEntities: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_entities_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_);
+        } else {
+          _this->_impl_.kind_.world_query_entities_->MergeFrom(*from._impl_.kind_.world_query_entities_);
+        }
+        break;
+      }
+      case kWorldQueryPlayers: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_players_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_players_);
+        } else {
+          _this->_impl_.kind_.world_query_players_->MergeFrom(*from._impl_.kind_.world_query_players_);
+        }
+        break;
+      }
+      case kWorldQueryEntitiesWithin: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_entities_within_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_entities_within_);
+        } else {
+          _this->_impl_.kind_.world_query_entities_within_->MergeFrom(*from._impl_.kind_.world_query_entities_within_);
+        }
+        break;
+      }
+      case kWorldQueryPlayerSpawn: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_player_spawn_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_player_spawn_);
+        } else {
+          _this->_impl_.kind_.world_query_player_spawn_->MergeFrom(*from._impl_.kind_.world_query_player_spawn_);
+        }
+        break;
+      }
+      case kWorldQueryBlock: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_block_);
+        } else {
+          _this->_impl_.kind_.world_query_block_->MergeFrom(*from._impl_.kind_.world_query_block_);
+        }
+        break;
+      }
+      case kWorldQueryBiome: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_biome_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_biome_);
+        } else {
+          _this->_impl_.kind_.world_query_biome_->MergeFrom(*from._impl_.kind_.world_query_biome_);
+        }
+        break;
+      }
+      case kWorldQueryLight: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_light_);
+        } else {
+          _this->_impl_.kind_.world_query_light_->MergeFrom(*from._impl_.kind_.world_query_light_);
+        }
+        break;
+      }
+      case kWorldQuerySkyLight: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_sky_light_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_sky_light_);
+        } else {
+          _this->_impl_.kind_.world_query_sky_light_->MergeFrom(*from._impl_.kind_.world_query_sky_light_);
+        }
+        break;
+      }
+      case kWorldQueryTemperature: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_temperature_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_temperature_);
+        } else {
+          _this->_impl_.kind_.world_query_temperature_->MergeFrom(*from._impl_.kind_.world_query_temperature_);
+        }
+        break;
+      }
+      case kWorldQueryHighestBlock: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_highest_block_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_highest_block_);
+        } else {
+          _this->_impl_.kind_.world_query_highest_block_->MergeFrom(*from._impl_.kind_.world_query_highest_block_);
+        }
+        break;
+      }
+      case kWorldQueryRainingAt: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_raining_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_raining_at_);
+        } else {
+          _this->_impl_.kind_.world_query_raining_at_->MergeFrom(*from._impl_.kind_.world_query_raining_at_);
+        }
+        break;
+      }
+      case kWorldQuerySnowingAt: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_snowing_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_snowing_at_);
+        } else {
+          _this->_impl_.kind_.world_query_snowing_at_->MergeFrom(*from._impl_.kind_.world_query_snowing_at_);
+        }
+        break;
+      }
+      case kWorldQueryThunderingAt: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_thundering_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_thundering_at_);
+        } else {
+          _this->_impl_.kind_.world_query_thundering_at_->MergeFrom(*from._impl_.kind_.world_query_thundering_at_);
+        }
+        break;
+      }
+      case kWorldQueryLiquid: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_liquid_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_liquid_);
+        } else {
+          _this->_impl_.kind_.world_query_liquid_->MergeFrom(*from._impl_.kind_.world_query_liquid_);
+        }
+        break;
+      }
+      case kWorldQueryDefaultGameMode: {
+        if (oneof_needs_init) {
+          _this->_impl_.kind_.world_query_default_game_mode_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.kind_.world_query_default_game_mode_);
+        } else {
+          _this->_impl_.kind_.world_query_default_game_mode_->MergeFrom(*from._impl_.kind_.world_query_default_game_mode_);
         }
         break;
       }
@@ -36498,6 +36795,1171 @@ void PlayerPunchAirAction::InternalSwap(PlayerPunchAirAction* PROTOBUF_RESTRICT 
 }
 
 ::google::protobuf::Metadata PlayerPunchAirAction::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerSetArmourAction::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<PlayerSetArmourAction>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_._has_bits_);
+};
+
+void PlayerSetArmourAction::clear_helmet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.helmet_ != nullptr) _impl_.helmet_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+void PlayerSetArmourAction::clear_chestplate() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.chestplate_ != nullptr) _impl_.chestplate_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+void PlayerSetArmourAction::clear_leggings() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.leggings_ != nullptr) _impl_.leggings_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+void PlayerSetArmourAction::clear_boots() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.boots_ != nullptr) _impl_.boots_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000010U);
+}
+PlayerSetArmourAction::PlayerSetArmourAction(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerSetArmourAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.PlayerSetArmourAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerSetArmourAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::PlayerSetArmourAction& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        player_uuid_(arena, from.player_uuid_) {}
+
+PlayerSetArmourAction::PlayerSetArmourAction(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const PlayerSetArmourAction& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerSetArmourAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PlayerSetArmourAction* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.helmet_ = (CheckHasBit(cached_has_bits, 0x00000002U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.helmet_)
+                : nullptr;
+  _impl_.chestplate_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.chestplate_)
+                : nullptr;
+  _impl_.leggings_ = (CheckHasBit(cached_has_bits, 0x00000008U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.leggings_)
+                : nullptr;
+  _impl_.boots_ = (CheckHasBit(cached_has_bits, 0x00000010U))
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.boots_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.PlayerSetArmourAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerSetArmourAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        player_uuid_(arena) {}
+
+inline void PlayerSetArmourAction::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, helmet_),
+           0,
+           offsetof(Impl_, boots_) -
+               offsetof(Impl_, helmet_) +
+               sizeof(Impl_::boots_));
+}
+PlayerSetArmourAction::~PlayerSetArmourAction() {
+  // @@protoc_insertion_point(destructor:df.plugin.PlayerSetArmourAction)
+  SharedDtor(*this);
+}
+inline void PlayerSetArmourAction::SharedDtor(MessageLite& self) {
+  PlayerSetArmourAction& this_ = static_cast<PlayerSetArmourAction&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.player_uuid_.Destroy();
+  delete this_._impl_.helmet_;
+  delete this_._impl_.chestplate_;
+  delete this_._impl_.leggings_;
+  delete this_._impl_.boots_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL PlayerSetArmourAction::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) PlayerSetArmourAction(arena);
+}
+constexpr auto PlayerSetArmourAction::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PlayerSetArmourAction),
+                                            alignof(PlayerSetArmourAction));
+}
+constexpr auto PlayerSetArmourAction::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_PlayerSetArmourAction_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &PlayerSetArmourAction::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<PlayerSetArmourAction>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &PlayerSetArmourAction::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<PlayerSetArmourAction>(), &PlayerSetArmourAction::ByteSizeLong,
+              &PlayerSetArmourAction::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_._cached_size_),
+          false,
+      },
+      &PlayerSetArmourAction::kDescriptorMethods,
+      &descriptor_table_actions_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull PlayerSetArmourAction_class_data_ =
+        PlayerSetArmourAction::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+PlayerSetArmourAction::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&PlayerSetArmourAction_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(PlayerSetArmourAction_class_data_.tc_table);
+  return PlayerSetArmourAction_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 4, 51, 2>
+PlayerSetArmourAction::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    4,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    PlayerSetArmourAction_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::PlayerSetArmourAction>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.player_uuid_)}},
+    // optional .df.plugin.ItemStack helmet = 2 [json_name = "helmet"];
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.helmet_)}},
+    // optional .df.plugin.ItemStack chestplate = 3 [json_name = "chestplate"];
+    {::_pbi::TcParser::FastMtS1,
+     {26, 2, 1,
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.chestplate_)}},
+    // optional .df.plugin.ItemStack leggings = 4 [json_name = "leggings"];
+    {::_pbi::TcParser::FastMtS1,
+     {34, 3, 2,
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.leggings_)}},
+    // optional .df.plugin.ItemStack boots = 5 [json_name = "boots"];
+    {::_pbi::TcParser::FastMtS1,
+     {42, 4, 3,
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.boots_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.player_uuid_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional .df.plugin.ItemStack helmet = 2 [json_name = "helmet"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.helmet_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional .df.plugin.ItemStack chestplate = 3 [json_name = "chestplate"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.chestplate_), _Internal::kHasBitsOffset + 2, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional .df.plugin.ItemStack leggings = 4 [json_name = "leggings"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.leggings_), _Internal::kHasBitsOffset + 3, 2, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional .df.plugin.ItemStack boots = 5 [json_name = "boots"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.boots_), _Internal::kHasBitsOffset + 4, 3, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::df::plugin::ItemStack>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::ItemStack>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::ItemStack>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::ItemStack>()},
+  }},
+  {{
+    "\37\13\0\0\0\0\0\0"
+    "df.plugin.PlayerSetArmourAction"
+    "player_uuid"
+  }},
+};
+PROTOBUF_NOINLINE void PlayerSetArmourAction::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.PlayerSetArmourAction)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.player_uuid_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(_impl_.helmet_ != nullptr);
+      _impl_.helmet_->Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(_impl_.chestplate_ != nullptr);
+      _impl_.chestplate_->Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      ABSL_DCHECK(_impl_.leggings_ != nullptr);
+      _impl_.leggings_->Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      ABSL_DCHECK(_impl_.boots_ != nullptr);
+      _impl_.boots_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL PlayerSetArmourAction::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const PlayerSetArmourAction& this_ = static_cast<const PlayerSetArmourAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL PlayerSetArmourAction::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const PlayerSetArmourAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.PlayerSetArmourAction)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string player_uuid = 1 [json_name = "playerUuid"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_player_uuid().empty()) {
+      const ::std::string& _s = this_._internal_player_uuid();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "df.plugin.PlayerSetArmourAction.player_uuid");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // optional .df.plugin.ItemStack helmet = 2 [json_name = "helmet"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *this_._impl_.helmet_, this_._impl_.helmet_->GetCachedSize(), target,
+        stream);
+  }
+
+  // optional .df.plugin.ItemStack chestplate = 3 [json_name = "chestplate"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *this_._impl_.chestplate_, this_._impl_.chestplate_->GetCachedSize(), target,
+        stream);
+  }
+
+  // optional .df.plugin.ItemStack leggings = 4 [json_name = "leggings"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, *this_._impl_.leggings_, this_._impl_.leggings_->GetCachedSize(), target,
+        stream);
+  }
+
+  // optional .df.plugin.ItemStack boots = 5 [json_name = "boots"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        5, *this_._impl_.boots_, this_._impl_.boots_->GetCachedSize(), target,
+        stream);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.PlayerSetArmourAction)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t PlayerSetArmourAction::ByteSizeLong(const MessageLite& base) {
+  const PlayerSetArmourAction& this_ = static_cast<const PlayerSetArmourAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t PlayerSetArmourAction::ByteSizeLong() const {
+  const PlayerSetArmourAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.PlayerSetArmourAction)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_player_uuid().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_player_uuid());
+      }
+    }
+    // optional .df.plugin.ItemStack helmet = 2 [json_name = "helmet"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.helmet_);
+    }
+    // optional .df.plugin.ItemStack chestplate = 3 [json_name = "chestplate"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.chestplate_);
+    }
+    // optional .df.plugin.ItemStack leggings = 4 [json_name = "leggings"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.leggings_);
+    }
+    // optional .df.plugin.ItemStack boots = 5 [json_name = "boots"];
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.boots_);
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void PlayerSetArmourAction::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<PlayerSetArmourAction*>(&to_msg);
+  auto& from = static_cast<const PlayerSetArmourAction&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.PlayerSetArmourAction)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_player_uuid().empty()) {
+        _this->_internal_set_player_uuid(from._internal_player_uuid());
+      } else {
+        if (_this->_impl_.player_uuid_.IsDefault()) {
+          _this->_internal_set_player_uuid("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(from._impl_.helmet_ != nullptr);
+      if (_this->_impl_.helmet_ == nullptr) {
+        _this->_impl_.helmet_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.helmet_);
+      } else {
+        _this->_impl_.helmet_->MergeFrom(*from._impl_.helmet_);
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      ABSL_DCHECK(from._impl_.chestplate_ != nullptr);
+      if (_this->_impl_.chestplate_ == nullptr) {
+        _this->_impl_.chestplate_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.chestplate_);
+      } else {
+        _this->_impl_.chestplate_->MergeFrom(*from._impl_.chestplate_);
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      ABSL_DCHECK(from._impl_.leggings_ != nullptr);
+      if (_this->_impl_.leggings_ == nullptr) {
+        _this->_impl_.leggings_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.leggings_);
+      } else {
+        _this->_impl_.leggings_->MergeFrom(*from._impl_.leggings_);
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      ABSL_DCHECK(from._impl_.boots_ != nullptr);
+      if (_this->_impl_.boots_ == nullptr) {
+        _this->_impl_.boots_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.boots_);
+      } else {
+        _this->_impl_.boots_->MergeFrom(*from._impl_.boots_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void PlayerSetArmourAction::CopyFrom(const PlayerSetArmourAction& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.PlayerSetArmourAction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerSetArmourAction::InternalSwap(PlayerSetArmourAction* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_uuid_, &other->_impl_.player_uuid_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.boots_)
+      + sizeof(PlayerSetArmourAction::_impl_.boots_)
+      - PROTOBUF_FIELD_OFFSET(PlayerSetArmourAction, _impl_.helmet_)>(
+          reinterpret_cast<char*>(&_impl_.helmet_),
+          reinterpret_cast<char*>(&other->_impl_.helmet_));
+}
+
+::google::protobuf::Metadata PlayerSetArmourAction::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerSendScoreboardAction::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<PlayerSendScoreboardAction>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_._has_bits_);
+};
+
+PlayerSendScoreboardAction::PlayerSendScoreboardAction(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerSendScoreboardAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.PlayerSendScoreboardAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerSendScoreboardAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::PlayerSendScoreboardAction& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        lines_{visibility, arena, from.lines_},
+        player_uuid_(arena, from.player_uuid_),
+        title_(arena, from.title_) {}
+
+PlayerSendScoreboardAction::PlayerSendScoreboardAction(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const PlayerSendScoreboardAction& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerSendScoreboardAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PlayerSendScoreboardAction* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, padding_),
+           reinterpret_cast<const char*>(&from._impl_) +
+               offsetof(Impl_, padding_),
+           offsetof(Impl_, descending_) -
+               offsetof(Impl_, padding_) +
+               sizeof(Impl_::descending_));
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.PlayerSendScoreboardAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerSendScoreboardAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        lines_{visibility, arena},
+        player_uuid_(arena),
+        title_(arena) {}
+
+inline void PlayerSendScoreboardAction::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, padding_),
+           0,
+           offsetof(Impl_, descending_) -
+               offsetof(Impl_, padding_) +
+               sizeof(Impl_::descending_));
+}
+PlayerSendScoreboardAction::~PlayerSendScoreboardAction() {
+  // @@protoc_insertion_point(destructor:df.plugin.PlayerSendScoreboardAction)
+  SharedDtor(*this);
+}
+inline void PlayerSendScoreboardAction::SharedDtor(MessageLite& self) {
+  PlayerSendScoreboardAction& this_ = static_cast<PlayerSendScoreboardAction&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.player_uuid_.Destroy();
+  this_._impl_.title_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL PlayerSendScoreboardAction::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) PlayerSendScoreboardAction(arena);
+}
+constexpr auto PlayerSendScoreboardAction::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.lines_) +
+          decltype(PlayerSendScoreboardAction::_impl_.lines_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(PlayerSendScoreboardAction), alignof(PlayerSendScoreboardAction), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PlayerSendScoreboardAction::PlacementNew_,
+                                 sizeof(PlayerSendScoreboardAction),
+                                 alignof(PlayerSendScoreboardAction));
+  }
+}
+constexpr auto PlayerSendScoreboardAction::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_PlayerSendScoreboardAction_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &PlayerSendScoreboardAction::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<PlayerSendScoreboardAction>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &PlayerSendScoreboardAction::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<PlayerSendScoreboardAction>(), &PlayerSendScoreboardAction::ByteSizeLong,
+              &PlayerSendScoreboardAction::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_._cached_size_),
+          false,
+      },
+      &PlayerSendScoreboardAction::kDescriptorMethods,
+      &descriptor_table_actions_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull PlayerSendScoreboardAction_class_data_ =
+        PlayerSendScoreboardAction::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+PlayerSendScoreboardAction::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&PlayerSendScoreboardAction_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(PlayerSendScoreboardAction_class_data_.tc_table);
+  return PlayerSendScoreboardAction_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 66, 2>
+PlayerSendScoreboardAction::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    PlayerSendScoreboardAction_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::PlayerSendScoreboardAction>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 1, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.player_uuid_)}},
+    // string title = 2 [json_name = "title"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 2, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.title_)}},
+    // repeated string lines = 3 [json_name = "lines"];
+    {::_pbi::TcParser::FastUR1,
+     {26, 0, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.lines_)}},
+    // optional bool padding = 4 [json_name = "padding"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(PlayerSendScoreboardAction, _impl_.padding_), 3>(),
+     {32, 3, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.padding_)}},
+    // optional bool descending = 5 [json_name = "descending"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(PlayerSendScoreboardAction, _impl_.descending_), 4>(),
+     {40, 4, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.descending_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.player_uuid_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string title = 2 [json_name = "title"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.title_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string lines = 3 [json_name = "lines"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.lines_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // optional bool padding = 4 [json_name = "padding"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.padding_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // optional bool descending = 5 [json_name = "descending"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.descending_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\44\13\5\5\0\0\0\0"
+    "df.plugin.PlayerSendScoreboardAction"
+    "player_uuid"
+    "title"
+    "lines"
+  }},
+};
+PROTOBUF_NOINLINE void PlayerSendScoreboardAction::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.PlayerSendScoreboardAction)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _impl_.lines_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.player_uuid_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.title_.ClearNonDefaultToEmpty();
+    }
+  }
+  ::memset(&_impl_.padding_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.descending_) -
+      reinterpret_cast<char*>(&_impl_.padding_)) + sizeof(_impl_.descending_));
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL PlayerSendScoreboardAction::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const PlayerSendScoreboardAction& this_ = static_cast<const PlayerSendScoreboardAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL PlayerSendScoreboardAction::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const PlayerSendScoreboardAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.PlayerSendScoreboardAction)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string player_uuid = 1 [json_name = "playerUuid"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_player_uuid().empty()) {
+      const ::std::string& _s = this_._internal_player_uuid();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "df.plugin.PlayerSendScoreboardAction.player_uuid");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string title = 2 [json_name = "title"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (!this_._internal_title().empty()) {
+      const ::std::string& _s = this_._internal_title();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "df.plugin.PlayerSendScoreboardAction.title");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // repeated string lines = 3 [json_name = "lines"];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (int i = 0, n = this_._internal_lines_size(); i < n; ++i) {
+      const auto& s = this_._internal_lines().Get(i);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "df.plugin.PlayerSendScoreboardAction.lines");
+      target = stream->WriteString(3, s, target);
+    }
+  }
+
+  // optional bool padding = 4 [json_name = "padding"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        4, this_._internal_padding(), target);
+  }
+
+  // optional bool descending = 5 [json_name = "descending"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this_._internal_descending(), target);
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.PlayerSendScoreboardAction)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t PlayerSendScoreboardAction::ByteSizeLong(const MessageLite& base) {
+  const PlayerSendScoreboardAction& this_ = static_cast<const PlayerSendScoreboardAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t PlayerSendScoreboardAction::ByteSizeLong() const {
+  const PlayerSendScoreboardAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.PlayerSendScoreboardAction)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  total_size += ::absl::popcount(0x00000018U & cached_has_bits) * 2;
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // repeated string lines = 3 [json_name = "lines"];
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size +=
+          1 * ::google::protobuf::internal::FromIntSize(this_._internal_lines().size());
+      for (int i = 0, n = this_._internal_lines().size(); i < n; ++i) {
+        total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+            this_._internal_lines().Get(i));
+      }
+    }
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_player_uuid().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_player_uuid());
+      }
+    }
+    // string title = 2 [json_name = "title"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!this_._internal_title().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_title());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void PlayerSendScoreboardAction::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<PlayerSendScoreboardAction*>(&to_msg);
+  auto& from = static_cast<const PlayerSendScoreboardAction&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.PlayerSendScoreboardAction)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_lines()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_lines());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_player_uuid().empty()) {
+        _this->_internal_set_player_uuid(from._internal_player_uuid());
+      } else {
+        if (_this->_impl_.player_uuid_.IsDefault()) {
+          _this->_internal_set_player_uuid("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!from._internal_title().empty()) {
+        _this->_internal_set_title(from._internal_title());
+      } else {
+        if (_this->_impl_.title_.IsDefault()) {
+          _this->_internal_set_title("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      _this->_impl_.padding_ = from._impl_.padding_;
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      _this->_impl_.descending_ = from._impl_.descending_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void PlayerSendScoreboardAction::CopyFrom(const PlayerSendScoreboardAction& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.PlayerSendScoreboardAction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerSendScoreboardAction::InternalSwap(PlayerSendScoreboardAction* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.lines_.InternalSwap(&other->_impl_.lines_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_uuid_, &other->_impl_.player_uuid_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.title_, &other->_impl_.title_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.descending_)
+      + sizeof(PlayerSendScoreboardAction::_impl_.descending_)
+      - PROTOBUF_FIELD_OFFSET(PlayerSendScoreboardAction, _impl_.padding_)>(
+          reinterpret_cast<char*>(&_impl_.padding_),
+          reinterpret_cast<char*>(&other->_impl_.padding_));
+}
+
+::google::protobuf::Metadata PlayerSendScoreboardAction::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerRemoveScoreboardAction::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<PlayerRemoveScoreboardAction>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PlayerRemoveScoreboardAction, _impl_._has_bits_);
+};
+
+PlayerRemoveScoreboardAction::PlayerRemoveScoreboardAction(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerRemoveScoreboardAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.PlayerRemoveScoreboardAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerRemoveScoreboardAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::PlayerRemoveScoreboardAction& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        player_uuid_(arena, from.player_uuid_) {}
+
+PlayerRemoveScoreboardAction::PlayerRemoveScoreboardAction(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const PlayerRemoveScoreboardAction& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerRemoveScoreboardAction_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PlayerRemoveScoreboardAction* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.PlayerRemoveScoreboardAction)
+}
+PROTOBUF_NDEBUG_INLINE PlayerRemoveScoreboardAction::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        player_uuid_(arena) {}
+
+inline void PlayerRemoveScoreboardAction::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+PlayerRemoveScoreboardAction::~PlayerRemoveScoreboardAction() {
+  // @@protoc_insertion_point(destructor:df.plugin.PlayerRemoveScoreboardAction)
+  SharedDtor(*this);
+}
+inline void PlayerRemoveScoreboardAction::SharedDtor(MessageLite& self) {
+  PlayerRemoveScoreboardAction& this_ = static_cast<PlayerRemoveScoreboardAction&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.player_uuid_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL PlayerRemoveScoreboardAction::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) PlayerRemoveScoreboardAction(arena);
+}
+constexpr auto PlayerRemoveScoreboardAction::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PlayerRemoveScoreboardAction),
+                                            alignof(PlayerRemoveScoreboardAction));
+}
+constexpr auto PlayerRemoveScoreboardAction::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_PlayerRemoveScoreboardAction_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &PlayerRemoveScoreboardAction::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<PlayerRemoveScoreboardAction>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &PlayerRemoveScoreboardAction::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<PlayerRemoveScoreboardAction>(), &PlayerRemoveScoreboardAction::ByteSizeLong,
+              &PlayerRemoveScoreboardAction::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(PlayerRemoveScoreboardAction, _impl_._cached_size_),
+          false,
+      },
+      &PlayerRemoveScoreboardAction::kDescriptorMethods,
+      &descriptor_table_actions_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull PlayerRemoveScoreboardAction_class_data_ =
+        PlayerRemoveScoreboardAction::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+PlayerRemoveScoreboardAction::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&PlayerRemoveScoreboardAction_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(PlayerRemoveScoreboardAction_class_data_.tc_table);
+  return PlayerRemoveScoreboardAction_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 58, 2>
+PlayerRemoveScoreboardAction::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PlayerRemoveScoreboardAction, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    PlayerRemoveScoreboardAction_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::PlayerRemoveScoreboardAction>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerRemoveScoreboardAction, _impl_.player_uuid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    {PROTOBUF_FIELD_OFFSET(PlayerRemoveScoreboardAction, _impl_.player_uuid_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\46\13\0\0\0\0\0\0"
+    "df.plugin.PlayerRemoveScoreboardAction"
+    "player_uuid"
+  }},
+};
+PROTOBUF_NOINLINE void PlayerRemoveScoreboardAction::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.PlayerRemoveScoreboardAction)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.player_uuid_.ClearNonDefaultToEmpty();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL PlayerRemoveScoreboardAction::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const PlayerRemoveScoreboardAction& this_ = static_cast<const PlayerRemoveScoreboardAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL PlayerRemoveScoreboardAction::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const PlayerRemoveScoreboardAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.PlayerRemoveScoreboardAction)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string player_uuid = 1 [json_name = "playerUuid"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_player_uuid().empty()) {
+      const ::std::string& _s = this_._internal_player_uuid();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "df.plugin.PlayerRemoveScoreboardAction.player_uuid");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.PlayerRemoveScoreboardAction)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t PlayerRemoveScoreboardAction::ByteSizeLong(const MessageLite& base) {
+  const PlayerRemoveScoreboardAction& this_ = static_cast<const PlayerRemoveScoreboardAction&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t PlayerRemoveScoreboardAction::ByteSizeLong() const {
+  const PlayerRemoveScoreboardAction& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.PlayerRemoveScoreboardAction)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+   {
+    // string player_uuid = 1 [json_name = "playerUuid"];
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_player_uuid().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_player_uuid());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void PlayerRemoveScoreboardAction::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<PlayerRemoveScoreboardAction*>(&to_msg);
+  auto& from = static_cast<const PlayerRemoveScoreboardAction&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.PlayerRemoveScoreboardAction)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!from._internal_player_uuid().empty()) {
+      _this->_internal_set_player_uuid(from._internal_player_uuid());
+    } else {
+      if (_this->_impl_.player_uuid_.IsDefault()) {
+        _this->_internal_set_player_uuid("");
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void PlayerRemoveScoreboardAction::CopyFrom(const PlayerRemoveScoreboardAction& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.PlayerRemoveScoreboardAction)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerRemoveScoreboardAction::InternalSwap(PlayerRemoveScoreboardAction* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_uuid_, &other->_impl_.player_uuid_, arena);
+}
+
+::google::protobuf::Metadata PlayerRemoveScoreboardAction::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

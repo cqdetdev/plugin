@@ -779,7 +779,7 @@ pub struct ActionBatch {
 pub struct Action {
     #[prost(string, optional, tag="1")]
     pub correlation_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(oneof="action::Kind", tags="10, 11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 30, 31, 40, 41, 42, 43, 50, 60, 61, 62, 69, 63, 90, 91, 92, 93, 66, 67, 68, 64, 65, 70, 71, 72, 74, 75, 76, 84, 80, 77, 78, 79, 81, 82, 83, 73, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131")]
+    #[prost(oneof="action::Kind", tags="10, 11, 12, 13, 14, 15, 16, 132, 20, 21, 22, 23, 30, 31, 40, 41, 42, 118, 119, 120, 121, 122, 123, 124, 125, 43, 126, 133, 134, 50, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 127, 128, 129, 130, 131, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 90, 91, 92, 93, 70, 71, 72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 73")]
     pub kind: ::core::option::Option<action::Kind>,
 }
 /// Nested message and enum types in `Action`.
@@ -787,7 +787,7 @@ pub mod action {
     #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Kind {
-        /// Player: Basic Actions
+        /// Player: Basic
         #[prost(message, tag="10")]
         SendChat(super::SendChatAction),
         #[prost(message, tag="11")]
@@ -803,6 +803,8 @@ pub mod action {
         ClearInventory(super::ClearInventoryAction),
         #[prost(message, tag="16")]
         SetHeldItem(super::SetHeldItemAction),
+        #[prost(message, tag="132")]
+        PlayerSetArmour(super::PlayerSetArmourAction),
         /// Player: State & Attributes
         #[prost(message, tag="20")]
         SetHealth(super::SetHealthAction),
@@ -812,7 +814,7 @@ pub mod action {
         SetExperience(super::SetExperienceAction),
         #[prost(message, tag="23")]
         SetVelocity(super::SetVelocityAction),
-        /// Player: Effects & Status
+        /// Player: Effects
         #[prost(message, tag="30")]
         AddEffect(super::AddEffectAction),
         #[prost(message, tag="31")]
@@ -824,78 +826,36 @@ pub mod action {
         SendPopup(super::SendPopupAction),
         #[prost(message, tag="42")]
         SendTip(super::SendTipAction),
+        #[prost(message, tag="118")]
+        PlayerSendToast(super::PlayerSendToastAction),
+        #[prost(message, tag="119")]
+        PlayerSendJukeboxPopup(super::PlayerSendJukeboxPopupAction),
+        #[prost(message, tag="120")]
+        PlayerShowCoordinates(super::PlayerShowCoordinatesAction),
+        #[prost(message, tag="121")]
+        PlayerHideCoordinates(super::PlayerHideCoordinatesAction),
+        #[prost(message, tag="122")]
+        PlayerEnableInstantRespawn(super::PlayerEnableInstantRespawnAction),
+        #[prost(message, tag="123")]
+        PlayerDisableInstantRespawn(super::PlayerDisableInstantRespawnAction),
+        /// Player: Appearance (overhead)
+        #[prost(message, tag="124")]
+        PlayerSetNameTag(super::PlayerSetNameTagAction),
+        #[prost(message, tag="125")]
+        PlayerSetScoreTag(super::PlayerSetScoreTagAction),
+        /// Player: Audio & Visuals
         #[prost(message, tag="43")]
         PlaySound(super::PlaySoundAction),
-        /// Commands
+        #[prost(message, tag="126")]
+        PlayerShowParticle(super::PlayerShowParticleAction),
+        /// Player: Scoreboard
+        #[prost(message, tag="133")]
+        PlayerSendScoreboard(super::PlayerSendScoreboardAction),
+        #[prost(message, tag="134")]
+        PlayerRemoveScoreboard(super::PlayerRemoveScoreboardAction),
+        /// Player: Commands
         #[prost(message, tag="50")]
         ExecuteCommand(super::ExecuteCommandAction),
-        /// World: Configuration & Settings
-        #[prost(message, tag="60")]
-        WorldSetDefaultGameMode(super::WorldSetDefaultGameModeAction),
-        #[prost(message, tag="61")]
-        WorldSetDifficulty(super::WorldSetDifficultyAction),
-        #[prost(message, tag="62")]
-        WorldSetTickRange(super::WorldSetTickRangeAction),
-        #[prost(message, tag="69")]
-        WorldSetSpawn(super::WorldSetSpawnAction),
-        /// World: Actions - Blocks & Terrain
-        #[prost(message, tag="63")]
-        WorldSetBlock(super::WorldSetBlockAction),
-        #[prost(message, tag="90")]
-        WorldSetBiome(super::WorldSetBiomeAction),
-        #[prost(message, tag="91")]
-        WorldSetLiquid(super::WorldSetLiquidAction),
-        #[prost(message, tag="92")]
-        WorldScheduleBlockUpdate(super::WorldScheduleBlockUpdateAction),
-        #[prost(message, tag="93")]
-        WorldBuildStructure(super::WorldBuildStructureAction),
-        /// World: Actions -  Time
-        #[prost(message, tag="66")]
-        WorldSetTime(super::WorldSetTimeAction),
-        #[prost(message, tag="67")]
-        WorldStopTime(super::WorldStopTimeAction),
-        #[prost(message, tag="68")]
-        WorldStartTime(super::WorldStartTimeAction),
-        /// World: Actions - Effects & Audio
-        #[prost(message, tag="64")]
-        WorldPlaySound(super::WorldPlaySoundAction),
-        #[prost(message, tag="65")]
-        WorldAddParticle(super::WorldAddParticleAction),
-        /// World: Queries - Entities & Players
-        #[prost(message, tag="70")]
-        WorldQueryEntities(super::WorldQueryEntitiesAction),
-        #[prost(message, tag="71")]
-        WorldQueryPlayers(super::WorldQueryPlayersAction),
-        #[prost(message, tag="72")]
-        WorldQueryEntitiesWithin(super::WorldQueryEntitiesWithinAction),
-        #[prost(message, tag="74")]
-        WorldQueryPlayerSpawn(super::WorldQueryPlayerSpawnAction),
-        /// World: Queries - Blocks & Terrain
-        #[prost(message, tag="75")]
-        WorldQueryBlock(super::WorldQueryBlockAction),
-        #[prost(message, tag="76")]
-        WorldQueryBiome(super::WorldQueryBiomeAction),
-        #[prost(message, tag="84")]
-        WorldQueryLiquid(super::WorldQueryLiquidAction),
-        #[prost(message, tag="80")]
-        WorldQueryHighestBlock(super::WorldQueryHighestBlockAction),
-        /// World: Queries - Lighting
-        #[prost(message, tag="77")]
-        WorldQueryLight(super::WorldQueryLightAction),
-        #[prost(message, tag="78")]
-        WorldQuerySkyLight(super::WorldQuerySkyLightAction),
-        /// World: Queries - Weather & Environment
-        #[prost(message, tag="79")]
-        WorldQueryTemperature(super::WorldQueryTemperatureAction),
-        #[prost(message, tag="81")]
-        WorldQueryRainingAt(super::WorldQueryRainingAtAction),
-        #[prost(message, tag="82")]
-        WorldQuerySnowingAt(super::WorldQuerySnowingAtAction),
-        #[prost(message, tag="83")]
-        WorldQueryThunderingAt(super::WorldQueryThunderingAtAction),
-        /// World: Queries - Settings
-        #[prost(message, tag="73")]
-        WorldQueryDefaultGameMode(super::WorldQueryDefaultGameModeAction),
         /// Player: Movement toggles
         #[prost(message, tag="94")]
         PlayerStartSprinting(super::PlayerStartSprintingAction),
@@ -949,26 +909,6 @@ pub mod action {
         PlayerSetScale(super::PlayerSetScaleAction),
         #[prost(message, tag="117")]
         PlayerSetHeldSlot(super::PlayerSetHeldSlotAction),
-        /// Player: UI
-        #[prost(message, tag="118")]
-        PlayerSendToast(super::PlayerSendToastAction),
-        #[prost(message, tag="119")]
-        PlayerSendJukeboxPopup(super::PlayerSendJukeboxPopupAction),
-        #[prost(message, tag="120")]
-        PlayerShowCoordinates(super::PlayerShowCoordinatesAction),
-        #[prost(message, tag="121")]
-        PlayerHideCoordinates(super::PlayerHideCoordinatesAction),
-        #[prost(message, tag="122")]
-        PlayerEnableInstantRespawn(super::PlayerEnableInstantRespawnAction),
-        #[prost(message, tag="123")]
-        PlayerDisableInstantRespawn(super::PlayerDisableInstantRespawnAction),
-        #[prost(message, tag="124")]
-        PlayerSetNameTag(super::PlayerSetNameTagAction),
-        #[prost(message, tag="125")]
-        PlayerSetScoreTag(super::PlayerSetScoreTagAction),
-        /// Player: Visuals
-        #[prost(message, tag="126")]
-        PlayerShowParticle(super::PlayerShowParticleAction),
         /// Player: Lifecycle/Control
         #[prost(message, tag="127")]
         PlayerRespawn(super::PlayerRespawnAction),
@@ -980,6 +920,71 @@ pub mod action {
         PlayerSwingArm(super::PlayerSwingArmAction),
         #[prost(message, tag="131")]
         PlayerPunchAir(super::PlayerPunchAirAction),
+        /// World: Configuration & Settings
+        #[prost(message, tag="60")]
+        WorldSetDefaultGameMode(super::WorldSetDefaultGameModeAction),
+        #[prost(message, tag="61")]
+        WorldSetDifficulty(super::WorldSetDifficultyAction),
+        #[prost(message, tag="62")]
+        WorldSetTickRange(super::WorldSetTickRangeAction),
+        #[prost(message, tag="63")]
+        WorldSetBlock(super::WorldSetBlockAction),
+        #[prost(message, tag="64")]
+        WorldPlaySound(super::WorldPlaySoundAction),
+        #[prost(message, tag="65")]
+        WorldAddParticle(super::WorldAddParticleAction),
+        /// World: Time
+        #[prost(message, tag="66")]
+        WorldSetTime(super::WorldSetTimeAction),
+        #[prost(message, tag="67")]
+        WorldStopTime(super::WorldStopTimeAction),
+        #[prost(message, tag="68")]
+        WorldStartTime(super::WorldStartTimeAction),
+        #[prost(message, tag="69")]
+        WorldSetSpawn(super::WorldSetSpawnAction),
+        /// World: Mutations
+        #[prost(message, tag="90")]
+        WorldSetBiome(super::WorldSetBiomeAction),
+        #[prost(message, tag="91")]
+        WorldSetLiquid(super::WorldSetLiquidAction),
+        #[prost(message, tag="92")]
+        WorldScheduleBlockUpdate(super::WorldScheduleBlockUpdateAction),
+        #[prost(message, tag="93")]
+        WorldBuildStructure(super::WorldBuildStructureAction),
+        /// World: Queries - Entities & Players
+        #[prost(message, tag="70")]
+        WorldQueryEntities(super::WorldQueryEntitiesAction),
+        #[prost(message, tag="71")]
+        WorldQueryPlayers(super::WorldQueryPlayersAction),
+        #[prost(message, tag="72")]
+        WorldQueryEntitiesWithin(super::WorldQueryEntitiesWithinAction),
+        #[prost(message, tag="74")]
+        WorldQueryPlayerSpawn(super::WorldQueryPlayerSpawnAction),
+        /// World: Queries - Blocks & Terrain
+        #[prost(message, tag="75")]
+        WorldQueryBlock(super::WorldQueryBlockAction),
+        #[prost(message, tag="76")]
+        WorldQueryBiome(super::WorldQueryBiomeAction),
+        #[prost(message, tag="77")]
+        WorldQueryLight(super::WorldQueryLightAction),
+        #[prost(message, tag="78")]
+        WorldQuerySkyLight(super::WorldQuerySkyLightAction),
+        #[prost(message, tag="79")]
+        WorldQueryTemperature(super::WorldQueryTemperatureAction),
+        #[prost(message, tag="80")]
+        WorldQueryHighestBlock(super::WorldQueryHighestBlockAction),
+        /// World: Queries - Weather & Environment
+        #[prost(message, tag="81")]
+        WorldQueryRainingAt(super::WorldQueryRainingAtAction),
+        #[prost(message, tag="82")]
+        WorldQuerySnowingAt(super::WorldQuerySnowingAtAction),
+        #[prost(message, tag="83")]
+        WorldQueryThunderingAt(super::WorldQueryThunderingAtAction),
+        /// World: Queries - Liquid & Settings
+        #[prost(message, tag="84")]
+        WorldQueryLiquid(super::WorldQueryLiquidAction),
+        #[prost(message, tag="73")]
+        WorldQueryDefaultGameMode(super::WorldQueryDefaultGameModeAction),
     }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -1731,6 +1736,44 @@ pub struct PlayerSwingArmAction {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PlayerPunchAirAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+}
+/// Player armour management
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSetArmourAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub helmet: ::core::option::Option<ItemStack>,
+    #[prost(message, optional, tag="3")]
+    pub chestplate: ::core::option::Option<ItemStack>,
+    #[prost(message, optional, tag="4")]
+    pub leggings: ::core::option::Option<ItemStack>,
+    #[prost(message, optional, tag="5")]
+    pub boots: ::core::option::Option<ItemStack>,
+}
+/// Player scoreboard management
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerSendScoreboardAction {
+    #[prost(string, tag="1")]
+    pub player_uuid: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag="3")]
+    pub lines: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    /// default true
+    #[prost(bool, optional, tag="4")]
+    pub padding: ::core::option::Option<bool>,
+    /// default false
+    #[prost(bool, optional, tag="5")]
+    pub descending: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerRemoveScoreboardAction {
     #[prost(string, tag="1")]
     pub player_uuid: ::prost::alloc::string::String,
 }

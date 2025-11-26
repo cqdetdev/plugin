@@ -21,6 +21,7 @@ message Action {
         GiveItemAction give_item = 14;
         ClearInventoryAction clear_inventory = 15;
         SetHeldItemAction set_held_item = 16;
+        PlayerSetArmourAction player_set_armour = 132;
         // Player: State & Attributes
         SetHealthAction set_health = 20;
         SetFoodAction set_food = 21;
@@ -45,6 +46,9 @@ message Action {
         // Player: Audio & Visuals
         PlaySoundAction play_sound = 43;
         PlayerShowParticleAction player_show_particle = 126;
+        // Player: Scoreboard
+        PlayerSendScoreboardAction player_send_scoreboard = 133;
+        PlayerRemoveScoreboardAction player_remove_scoreboard = 134;
         // Player: Commands
         ExecuteCommandAction execute_command = 50;
         // Player: Movement toggles
@@ -573,5 +577,27 @@ message PlayerSwingArmAction {
     string player_uuid = 1;
 }
 message PlayerPunchAirAction {
+    string player_uuid = 1;
+}
+
+// Player armour management
+message PlayerSetArmourAction {
+    string player_uuid = 1;
+    optional ItemStack helmet = 2;
+    optional ItemStack chestplate = 3;
+    optional ItemStack leggings = 4;
+    optional ItemStack boots = 5;
+}
+
+// Player scoreboard management
+message PlayerSendScoreboardAction {
+    string player_uuid = 1;
+    string title = 2;
+    repeated string lines = 3;
+    optional bool padding = 4;     // default true
+    optional bool descending = 5;  // default false
+}
+
+message PlayerRemoveScoreboardAction {
     string player_uuid = 1;
 }

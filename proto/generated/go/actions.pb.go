@@ -174,6 +174,7 @@ type Action struct {
 	//	*Action_GiveItem
 	//	*Action_ClearInventory
 	//	*Action_SetHeldItem
+	//	*Action_PlayerSetArmour
 	//	*Action_SetHealth
 	//	*Action_SetFood
 	//	*Action_SetExperience
@@ -183,37 +184,19 @@ type Action struct {
 	//	*Action_SendTitle
 	//	*Action_SendPopup
 	//	*Action_SendTip
+	//	*Action_PlayerSendToast
+	//	*Action_PlayerSendJukeboxPopup
+	//	*Action_PlayerShowCoordinates
+	//	*Action_PlayerHideCoordinates
+	//	*Action_PlayerEnableInstantRespawn
+	//	*Action_PlayerDisableInstantRespawn
+	//	*Action_PlayerSetNameTag
+	//	*Action_PlayerSetScoreTag
 	//	*Action_PlaySound
+	//	*Action_PlayerShowParticle
+	//	*Action_PlayerSendScoreboard
+	//	*Action_PlayerRemoveScoreboard
 	//	*Action_ExecuteCommand
-	//	*Action_WorldSetDefaultGameMode
-	//	*Action_WorldSetDifficulty
-	//	*Action_WorldSetTickRange
-	//	*Action_WorldSetSpawn
-	//	*Action_WorldSetBlock
-	//	*Action_WorldSetBiome
-	//	*Action_WorldSetLiquid
-	//	*Action_WorldScheduleBlockUpdate
-	//	*Action_WorldBuildStructure
-	//	*Action_WorldSetTime
-	//	*Action_WorldStopTime
-	//	*Action_WorldStartTime
-	//	*Action_WorldPlaySound
-	//	*Action_WorldAddParticle
-	//	*Action_WorldQueryEntities
-	//	*Action_WorldQueryPlayers
-	//	*Action_WorldQueryEntitiesWithin
-	//	*Action_WorldQueryPlayerSpawn
-	//	*Action_WorldQueryBlock
-	//	*Action_WorldQueryBiome
-	//	*Action_WorldQueryLiquid
-	//	*Action_WorldQueryHighestBlock
-	//	*Action_WorldQueryLight
-	//	*Action_WorldQuerySkyLight
-	//	*Action_WorldQueryTemperature
-	//	*Action_WorldQueryRainingAt
-	//	*Action_WorldQuerySnowingAt
-	//	*Action_WorldQueryThunderingAt
-	//	*Action_WorldQueryDefaultGameMode
 	//	*Action_PlayerStartSprinting
 	//	*Action_PlayerStopSprinting
 	//	*Action_PlayerStartSneaking
@@ -238,20 +221,40 @@ type Action struct {
 	//	*Action_PlayerSetVisible
 	//	*Action_PlayerSetScale
 	//	*Action_PlayerSetHeldSlot
-	//	*Action_PlayerSendToast
-	//	*Action_PlayerSendJukeboxPopup
-	//	*Action_PlayerShowCoordinates
-	//	*Action_PlayerHideCoordinates
-	//	*Action_PlayerEnableInstantRespawn
-	//	*Action_PlayerDisableInstantRespawn
-	//	*Action_PlayerSetNameTag
-	//	*Action_PlayerSetScoreTag
-	//	*Action_PlayerShowParticle
 	//	*Action_PlayerRespawn
 	//	*Action_PlayerTransfer
 	//	*Action_PlayerKnockBack
 	//	*Action_PlayerSwingArm
 	//	*Action_PlayerPunchAir
+	//	*Action_WorldSetDefaultGameMode
+	//	*Action_WorldSetDifficulty
+	//	*Action_WorldSetTickRange
+	//	*Action_WorldSetBlock
+	//	*Action_WorldPlaySound
+	//	*Action_WorldAddParticle
+	//	*Action_WorldSetTime
+	//	*Action_WorldStopTime
+	//	*Action_WorldStartTime
+	//	*Action_WorldSetSpawn
+	//	*Action_WorldSetBiome
+	//	*Action_WorldSetLiquid
+	//	*Action_WorldScheduleBlockUpdate
+	//	*Action_WorldBuildStructure
+	//	*Action_WorldQueryEntities
+	//	*Action_WorldQueryPlayers
+	//	*Action_WorldQueryEntitiesWithin
+	//	*Action_WorldQueryPlayerSpawn
+	//	*Action_WorldQueryBlock
+	//	*Action_WorldQueryBiome
+	//	*Action_WorldQueryLight
+	//	*Action_WorldQuerySkyLight
+	//	*Action_WorldQueryTemperature
+	//	*Action_WorldQueryHighestBlock
+	//	*Action_WorldQueryRainingAt
+	//	*Action_WorldQuerySnowingAt
+	//	*Action_WorldQueryThunderingAt
+	//	*Action_WorldQueryLiquid
+	//	*Action_WorldQueryDefaultGameMode
 	Kind          isAction_Kind `protobuf_oneof:"kind"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -364,6 +367,15 @@ func (x *Action) GetSetHeldItem() *SetHeldItemAction {
 	return nil
 }
 
+func (x *Action) GetPlayerSetArmour() *PlayerSetArmourAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetArmour); ok {
+			return x.PlayerSetArmour
+		}
+	}
+	return nil
+}
+
 func (x *Action) GetSetHealth() *SetHealthAction {
 	if x != nil {
 		if x, ok := x.Kind.(*Action_SetHealth); ok {
@@ -445,6 +457,78 @@ func (x *Action) GetSendTip() *SendTipAction {
 	return nil
 }
 
+func (x *Action) GetPlayerSendToast() *PlayerSendToastAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSendToast); ok {
+			return x.PlayerSendToast
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSendJukeboxPopup() *PlayerSendJukeboxPopupAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSendJukeboxPopup); ok {
+			return x.PlayerSendJukeboxPopup
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerShowCoordinates() *PlayerShowCoordinatesAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerShowCoordinates); ok {
+			return x.PlayerShowCoordinates
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerHideCoordinates() *PlayerHideCoordinatesAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerHideCoordinates); ok {
+			return x.PlayerHideCoordinates
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerEnableInstantRespawn() *PlayerEnableInstantRespawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerEnableInstantRespawn); ok {
+			return x.PlayerEnableInstantRespawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerDisableInstantRespawn() *PlayerDisableInstantRespawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerDisableInstantRespawn); ok {
+			return x.PlayerDisableInstantRespawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetNameTag() *PlayerSetNameTagAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetNameTag); ok {
+			return x.PlayerSetNameTag
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSetScoreTag() *PlayerSetScoreTagAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSetScoreTag); ok {
+			return x.PlayerSetScoreTag
+		}
+	}
+	return nil
+}
+
 func (x *Action) GetPlaySound() *PlaySoundAction {
 	if x != nil {
 		if x, ok := x.Kind.(*Action_PlaySound); ok {
@@ -454,271 +538,37 @@ func (x *Action) GetPlaySound() *PlaySoundAction {
 	return nil
 }
 
+func (x *Action) GetPlayerShowParticle() *PlayerShowParticleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerShowParticle); ok {
+			return x.PlayerShowParticle
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerSendScoreboard() *PlayerSendScoreboardAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerSendScoreboard); ok {
+			return x.PlayerSendScoreboard
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetPlayerRemoveScoreboard() *PlayerRemoveScoreboardAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_PlayerRemoveScoreboard); ok {
+			return x.PlayerRemoveScoreboard
+		}
+	}
+	return nil
+}
+
 func (x *Action) GetExecuteCommand() *ExecuteCommandAction {
 	if x != nil {
 		if x, ok := x.Kind.(*Action_ExecuteCommand); ok {
 			return x.ExecuteCommand
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetDefaultGameMode() *WorldSetDefaultGameModeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetDefaultGameMode); ok {
-			return x.WorldSetDefaultGameMode
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetDifficulty() *WorldSetDifficultyAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetDifficulty); ok {
-			return x.WorldSetDifficulty
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetTickRange() *WorldSetTickRangeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetTickRange); ok {
-			return x.WorldSetTickRange
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetSpawn() *WorldSetSpawnAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetSpawn); ok {
-			return x.WorldSetSpawn
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetBlock() *WorldSetBlockAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetBlock); ok {
-			return x.WorldSetBlock
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetBiome() *WorldSetBiomeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetBiome); ok {
-			return x.WorldSetBiome
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetLiquid() *WorldSetLiquidAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetLiquid); ok {
-			return x.WorldSetLiquid
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldScheduleBlockUpdate() *WorldScheduleBlockUpdateAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldScheduleBlockUpdate); ok {
-			return x.WorldScheduleBlockUpdate
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldBuildStructure() *WorldBuildStructureAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldBuildStructure); ok {
-			return x.WorldBuildStructure
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldSetTime() *WorldSetTimeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldSetTime); ok {
-			return x.WorldSetTime
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldStopTime() *WorldStopTimeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldStopTime); ok {
-			return x.WorldStopTime
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldStartTime() *WorldStartTimeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldStartTime); ok {
-			return x.WorldStartTime
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldPlaySound() *WorldPlaySoundAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldPlaySound); ok {
-			return x.WorldPlaySound
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldAddParticle() *WorldAddParticleAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldAddParticle); ok {
-			return x.WorldAddParticle
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryEntities() *WorldQueryEntitiesAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryEntities); ok {
-			return x.WorldQueryEntities
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryPlayers() *WorldQueryPlayersAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryPlayers); ok {
-			return x.WorldQueryPlayers
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryEntitiesWithin() *WorldQueryEntitiesWithinAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryEntitiesWithin); ok {
-			return x.WorldQueryEntitiesWithin
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryPlayerSpawn() *WorldQueryPlayerSpawnAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryPlayerSpawn); ok {
-			return x.WorldQueryPlayerSpawn
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryBlock() *WorldQueryBlockAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryBlock); ok {
-			return x.WorldQueryBlock
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryBiome() *WorldQueryBiomeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryBiome); ok {
-			return x.WorldQueryBiome
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryLiquid() *WorldQueryLiquidAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryLiquid); ok {
-			return x.WorldQueryLiquid
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryHighestBlock() *WorldQueryHighestBlockAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryHighestBlock); ok {
-			return x.WorldQueryHighestBlock
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryLight() *WorldQueryLightAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryLight); ok {
-			return x.WorldQueryLight
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQuerySkyLight() *WorldQuerySkyLightAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQuerySkyLight); ok {
-			return x.WorldQuerySkyLight
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryTemperature() *WorldQueryTemperatureAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryTemperature); ok {
-			return x.WorldQueryTemperature
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryRainingAt() *WorldQueryRainingAtAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryRainingAt); ok {
-			return x.WorldQueryRainingAt
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQuerySnowingAt() *WorldQuerySnowingAtAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQuerySnowingAt); ok {
-			return x.WorldQuerySnowingAt
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryThunderingAt() *WorldQueryThunderingAtAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryThunderingAt); ok {
-			return x.WorldQueryThunderingAt
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetWorldQueryDefaultGameMode() *WorldQueryDefaultGameModeAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_WorldQueryDefaultGameMode); ok {
-			return x.WorldQueryDefaultGameMode
 		}
 	}
 	return nil
@@ -940,87 +790,6 @@ func (x *Action) GetPlayerSetHeldSlot() *PlayerSetHeldSlotAction {
 	return nil
 }
 
-func (x *Action) GetPlayerSendToast() *PlayerSendToastAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerSendToast); ok {
-			return x.PlayerSendToast
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerSendJukeboxPopup() *PlayerSendJukeboxPopupAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerSendJukeboxPopup); ok {
-			return x.PlayerSendJukeboxPopup
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerShowCoordinates() *PlayerShowCoordinatesAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerShowCoordinates); ok {
-			return x.PlayerShowCoordinates
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerHideCoordinates() *PlayerHideCoordinatesAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerHideCoordinates); ok {
-			return x.PlayerHideCoordinates
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerEnableInstantRespawn() *PlayerEnableInstantRespawnAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerEnableInstantRespawn); ok {
-			return x.PlayerEnableInstantRespawn
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerDisableInstantRespawn() *PlayerDisableInstantRespawnAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerDisableInstantRespawn); ok {
-			return x.PlayerDisableInstantRespawn
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerSetNameTag() *PlayerSetNameTagAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerSetNameTag); ok {
-			return x.PlayerSetNameTag
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerSetScoreTag() *PlayerSetScoreTagAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerSetScoreTag); ok {
-			return x.PlayerSetScoreTag
-		}
-	}
-	return nil
-}
-
-func (x *Action) GetPlayerShowParticle() *PlayerShowParticleAction {
-	if x != nil {
-		if x, ok := x.Kind.(*Action_PlayerShowParticle); ok {
-			return x.PlayerShowParticle
-		}
-	}
-	return nil
-}
-
 func (x *Action) GetPlayerRespawn() *PlayerRespawnAction {
 	if x != nil {
 		if x, ok := x.Kind.(*Action_PlayerRespawn); ok {
@@ -1066,12 +835,273 @@ func (x *Action) GetPlayerPunchAir() *PlayerPunchAirAction {
 	return nil
 }
 
+func (x *Action) GetWorldSetDefaultGameMode() *WorldSetDefaultGameModeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetDefaultGameMode); ok {
+			return x.WorldSetDefaultGameMode
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetDifficulty() *WorldSetDifficultyAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetDifficulty); ok {
+			return x.WorldSetDifficulty
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetTickRange() *WorldSetTickRangeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetTickRange); ok {
+			return x.WorldSetTickRange
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetBlock() *WorldSetBlockAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetBlock); ok {
+			return x.WorldSetBlock
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldPlaySound() *WorldPlaySoundAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldPlaySound); ok {
+			return x.WorldPlaySound
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldAddParticle() *WorldAddParticleAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldAddParticle); ok {
+			return x.WorldAddParticle
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetTime() *WorldSetTimeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetTime); ok {
+			return x.WorldSetTime
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldStopTime() *WorldStopTimeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldStopTime); ok {
+			return x.WorldStopTime
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldStartTime() *WorldStartTimeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldStartTime); ok {
+			return x.WorldStartTime
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetSpawn() *WorldSetSpawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetSpawn); ok {
+			return x.WorldSetSpawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetBiome() *WorldSetBiomeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetBiome); ok {
+			return x.WorldSetBiome
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldSetLiquid() *WorldSetLiquidAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldSetLiquid); ok {
+			return x.WorldSetLiquid
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldScheduleBlockUpdate() *WorldScheduleBlockUpdateAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldScheduleBlockUpdate); ok {
+			return x.WorldScheduleBlockUpdate
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldBuildStructure() *WorldBuildStructureAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldBuildStructure); ok {
+			return x.WorldBuildStructure
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryEntities() *WorldQueryEntitiesAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryEntities); ok {
+			return x.WorldQueryEntities
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryPlayers() *WorldQueryPlayersAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryPlayers); ok {
+			return x.WorldQueryPlayers
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryEntitiesWithin() *WorldQueryEntitiesWithinAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryEntitiesWithin); ok {
+			return x.WorldQueryEntitiesWithin
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryPlayerSpawn() *WorldQueryPlayerSpawnAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryPlayerSpawn); ok {
+			return x.WorldQueryPlayerSpawn
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryBlock() *WorldQueryBlockAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryBlock); ok {
+			return x.WorldQueryBlock
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryBiome() *WorldQueryBiomeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryBiome); ok {
+			return x.WorldQueryBiome
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryLight() *WorldQueryLightAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryLight); ok {
+			return x.WorldQueryLight
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQuerySkyLight() *WorldQuerySkyLightAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQuerySkyLight); ok {
+			return x.WorldQuerySkyLight
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryTemperature() *WorldQueryTemperatureAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryTemperature); ok {
+			return x.WorldQueryTemperature
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryHighestBlock() *WorldQueryHighestBlockAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryHighestBlock); ok {
+			return x.WorldQueryHighestBlock
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryRainingAt() *WorldQueryRainingAtAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryRainingAt); ok {
+			return x.WorldQueryRainingAt
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQuerySnowingAt() *WorldQuerySnowingAtAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQuerySnowingAt); ok {
+			return x.WorldQuerySnowingAt
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryThunderingAt() *WorldQueryThunderingAtAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryThunderingAt); ok {
+			return x.WorldQueryThunderingAt
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryLiquid() *WorldQueryLiquidAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryLiquid); ok {
+			return x.WorldQueryLiquid
+		}
+	}
+	return nil
+}
+
+func (x *Action) GetWorldQueryDefaultGameMode() *WorldQueryDefaultGameModeAction {
+	if x != nil {
+		if x, ok := x.Kind.(*Action_WorldQueryDefaultGameMode); ok {
+			return x.WorldQueryDefaultGameMode
+		}
+	}
+	return nil
+}
+
 type isAction_Kind interface {
 	isAction_Kind()
 }
 
 type Action_SendChat struct {
-	// Player: Basic Actions
+	// Player: Basic
 	SendChat *SendChatAction `protobuf:"bytes,10,opt,name=send_chat,json=sendChat,proto3,oneof"`
 }
 
@@ -1100,6 +1130,10 @@ type Action_SetHeldItem struct {
 	SetHeldItem *SetHeldItemAction `protobuf:"bytes,16,opt,name=set_held_item,json=setHeldItem,proto3,oneof"`
 }
 
+type Action_PlayerSetArmour struct {
+	PlayerSetArmour *PlayerSetArmourAction `protobuf:"bytes,132,opt,name=player_set_armour,json=playerSetArmour,proto3,oneof"`
+}
+
 type Action_SetHealth struct {
 	// Player: State & Attributes
 	SetHealth *SetHealthAction `protobuf:"bytes,20,opt,name=set_health,json=setHealth,proto3,oneof"`
@@ -1118,7 +1152,7 @@ type Action_SetVelocity struct {
 }
 
 type Action_AddEffect struct {
-	// Player: Effects & Status
+	// Player: Effects
 	AddEffect *AddEffectAction `protobuf:"bytes,30,opt,name=add_effect,json=addEffect,proto3,oneof"`
 }
 
@@ -1139,138 +1173,60 @@ type Action_SendTip struct {
 	SendTip *SendTipAction `protobuf:"bytes,42,opt,name=send_tip,json=sendTip,proto3,oneof"`
 }
 
+type Action_PlayerSendToast struct {
+	PlayerSendToast *PlayerSendToastAction `protobuf:"bytes,118,opt,name=player_send_toast,json=playerSendToast,proto3,oneof"`
+}
+
+type Action_PlayerSendJukeboxPopup struct {
+	PlayerSendJukeboxPopup *PlayerSendJukeboxPopupAction `protobuf:"bytes,119,opt,name=player_send_jukebox_popup,json=playerSendJukeboxPopup,proto3,oneof"`
+}
+
+type Action_PlayerShowCoordinates struct {
+	PlayerShowCoordinates *PlayerShowCoordinatesAction `protobuf:"bytes,120,opt,name=player_show_coordinates,json=playerShowCoordinates,proto3,oneof"`
+}
+
+type Action_PlayerHideCoordinates struct {
+	PlayerHideCoordinates *PlayerHideCoordinatesAction `protobuf:"bytes,121,opt,name=player_hide_coordinates,json=playerHideCoordinates,proto3,oneof"`
+}
+
+type Action_PlayerEnableInstantRespawn struct {
+	PlayerEnableInstantRespawn *PlayerEnableInstantRespawnAction `protobuf:"bytes,122,opt,name=player_enable_instant_respawn,json=playerEnableInstantRespawn,proto3,oneof"`
+}
+
+type Action_PlayerDisableInstantRespawn struct {
+	PlayerDisableInstantRespawn *PlayerDisableInstantRespawnAction `protobuf:"bytes,123,opt,name=player_disable_instant_respawn,json=playerDisableInstantRespawn,proto3,oneof"`
+}
+
+type Action_PlayerSetNameTag struct {
+	// Player: Appearance (overhead)
+	PlayerSetNameTag *PlayerSetNameTagAction `protobuf:"bytes,124,opt,name=player_set_name_tag,json=playerSetNameTag,proto3,oneof"`
+}
+
+type Action_PlayerSetScoreTag struct {
+	PlayerSetScoreTag *PlayerSetScoreTagAction `protobuf:"bytes,125,opt,name=player_set_score_tag,json=playerSetScoreTag,proto3,oneof"`
+}
+
 type Action_PlaySound struct {
+	// Player: Audio & Visuals
 	PlaySound *PlaySoundAction `protobuf:"bytes,43,opt,name=play_sound,json=playSound,proto3,oneof"`
 }
 
+type Action_PlayerShowParticle struct {
+	PlayerShowParticle *PlayerShowParticleAction `protobuf:"bytes,126,opt,name=player_show_particle,json=playerShowParticle,proto3,oneof"`
+}
+
+type Action_PlayerSendScoreboard struct {
+	// Player: Scoreboard
+	PlayerSendScoreboard *PlayerSendScoreboardAction `protobuf:"bytes,133,opt,name=player_send_scoreboard,json=playerSendScoreboard,proto3,oneof"`
+}
+
+type Action_PlayerRemoveScoreboard struct {
+	PlayerRemoveScoreboard *PlayerRemoveScoreboardAction `protobuf:"bytes,134,opt,name=player_remove_scoreboard,json=playerRemoveScoreboard,proto3,oneof"`
+}
+
 type Action_ExecuteCommand struct {
-	// Commands
+	// Player: Commands
 	ExecuteCommand *ExecuteCommandAction `protobuf:"bytes,50,opt,name=execute_command,json=executeCommand,proto3,oneof"`
-}
-
-type Action_WorldSetDefaultGameMode struct {
-	// World: Configuration & Settings
-	WorldSetDefaultGameMode *WorldSetDefaultGameModeAction `protobuf:"bytes,60,opt,name=world_set_default_game_mode,json=worldSetDefaultGameMode,proto3,oneof"`
-}
-
-type Action_WorldSetDifficulty struct {
-	WorldSetDifficulty *WorldSetDifficultyAction `protobuf:"bytes,61,opt,name=world_set_difficulty,json=worldSetDifficulty,proto3,oneof"`
-}
-
-type Action_WorldSetTickRange struct {
-	WorldSetTickRange *WorldSetTickRangeAction `protobuf:"bytes,62,opt,name=world_set_tick_range,json=worldSetTickRange,proto3,oneof"`
-}
-
-type Action_WorldSetSpawn struct {
-	WorldSetSpawn *WorldSetSpawnAction `protobuf:"bytes,69,opt,name=world_set_spawn,json=worldSetSpawn,proto3,oneof"`
-}
-
-type Action_WorldSetBlock struct {
-	// World: Actions - Blocks & Terrain
-	WorldSetBlock *WorldSetBlockAction `protobuf:"bytes,63,opt,name=world_set_block,json=worldSetBlock,proto3,oneof"`
-}
-
-type Action_WorldSetBiome struct {
-	WorldSetBiome *WorldSetBiomeAction `protobuf:"bytes,90,opt,name=world_set_biome,json=worldSetBiome,proto3,oneof"`
-}
-
-type Action_WorldSetLiquid struct {
-	WorldSetLiquid *WorldSetLiquidAction `protobuf:"bytes,91,opt,name=world_set_liquid,json=worldSetLiquid,proto3,oneof"`
-}
-
-type Action_WorldScheduleBlockUpdate struct {
-	WorldScheduleBlockUpdate *WorldScheduleBlockUpdateAction `protobuf:"bytes,92,opt,name=world_schedule_block_update,json=worldScheduleBlockUpdate,proto3,oneof"`
-}
-
-type Action_WorldBuildStructure struct {
-	WorldBuildStructure *WorldBuildStructureAction `protobuf:"bytes,93,opt,name=world_build_structure,json=worldBuildStructure,proto3,oneof"`
-}
-
-type Action_WorldSetTime struct {
-	// World: Actions -  Time
-	WorldSetTime *WorldSetTimeAction `protobuf:"bytes,66,opt,name=world_set_time,json=worldSetTime,proto3,oneof"`
-}
-
-type Action_WorldStopTime struct {
-	WorldStopTime *WorldStopTimeAction `protobuf:"bytes,67,opt,name=world_stop_time,json=worldStopTime,proto3,oneof"`
-}
-
-type Action_WorldStartTime struct {
-	WorldStartTime *WorldStartTimeAction `protobuf:"bytes,68,opt,name=world_start_time,json=worldStartTime,proto3,oneof"`
-}
-
-type Action_WorldPlaySound struct {
-	// World: Actions - Effects & Audio
-	WorldPlaySound *WorldPlaySoundAction `protobuf:"bytes,64,opt,name=world_play_sound,json=worldPlaySound,proto3,oneof"`
-}
-
-type Action_WorldAddParticle struct {
-	WorldAddParticle *WorldAddParticleAction `protobuf:"bytes,65,opt,name=world_add_particle,json=worldAddParticle,proto3,oneof"`
-}
-
-type Action_WorldQueryEntities struct {
-	// World: Queries - Entities & Players
-	WorldQueryEntities *WorldQueryEntitiesAction `protobuf:"bytes,70,opt,name=world_query_entities,json=worldQueryEntities,proto3,oneof"`
-}
-
-type Action_WorldQueryPlayers struct {
-	WorldQueryPlayers *WorldQueryPlayersAction `protobuf:"bytes,71,opt,name=world_query_players,json=worldQueryPlayers,proto3,oneof"`
-}
-
-type Action_WorldQueryEntitiesWithin struct {
-	WorldQueryEntitiesWithin *WorldQueryEntitiesWithinAction `protobuf:"bytes,72,opt,name=world_query_entities_within,json=worldQueryEntitiesWithin,proto3,oneof"`
-}
-
-type Action_WorldQueryPlayerSpawn struct {
-	WorldQueryPlayerSpawn *WorldQueryPlayerSpawnAction `protobuf:"bytes,74,opt,name=world_query_player_spawn,json=worldQueryPlayerSpawn,proto3,oneof"`
-}
-
-type Action_WorldQueryBlock struct {
-	// World: Queries - Blocks & Terrain
-	WorldQueryBlock *WorldQueryBlockAction `protobuf:"bytes,75,opt,name=world_query_block,json=worldQueryBlock,proto3,oneof"`
-}
-
-type Action_WorldQueryBiome struct {
-	WorldQueryBiome *WorldQueryBiomeAction `protobuf:"bytes,76,opt,name=world_query_biome,json=worldQueryBiome,proto3,oneof"`
-}
-
-type Action_WorldQueryLiquid struct {
-	WorldQueryLiquid *WorldQueryLiquidAction `protobuf:"bytes,84,opt,name=world_query_liquid,json=worldQueryLiquid,proto3,oneof"`
-}
-
-type Action_WorldQueryHighestBlock struct {
-	WorldQueryHighestBlock *WorldQueryHighestBlockAction `protobuf:"bytes,80,opt,name=world_query_highest_block,json=worldQueryHighestBlock,proto3,oneof"`
-}
-
-type Action_WorldQueryLight struct {
-	// World: Queries - Lighting
-	WorldQueryLight *WorldQueryLightAction `protobuf:"bytes,77,opt,name=world_query_light,json=worldQueryLight,proto3,oneof"`
-}
-
-type Action_WorldQuerySkyLight struct {
-	WorldQuerySkyLight *WorldQuerySkyLightAction `protobuf:"bytes,78,opt,name=world_query_sky_light,json=worldQuerySkyLight,proto3,oneof"`
-}
-
-type Action_WorldQueryTemperature struct {
-	// World: Queries - Weather & Environment
-	WorldQueryTemperature *WorldQueryTemperatureAction `protobuf:"bytes,79,opt,name=world_query_temperature,json=worldQueryTemperature,proto3,oneof"`
-}
-
-type Action_WorldQueryRainingAt struct {
-	WorldQueryRainingAt *WorldQueryRainingAtAction `protobuf:"bytes,81,opt,name=world_query_raining_at,json=worldQueryRainingAt,proto3,oneof"`
-}
-
-type Action_WorldQuerySnowingAt struct {
-	WorldQuerySnowingAt *WorldQuerySnowingAtAction `protobuf:"bytes,82,opt,name=world_query_snowing_at,json=worldQuerySnowingAt,proto3,oneof"`
-}
-
-type Action_WorldQueryThunderingAt struct {
-	WorldQueryThunderingAt *WorldQueryThunderingAtAction `protobuf:"bytes,83,opt,name=world_query_thundering_at,json=worldQueryThunderingAt,proto3,oneof"`
-}
-
-type Action_WorldQueryDefaultGameMode struct {
-	// World: Queries - Settings
-	WorldQueryDefaultGameMode *WorldQueryDefaultGameModeAction `protobuf:"bytes,73,opt,name=world_query_default_game_mode,json=worldQueryDefaultGameMode,proto3,oneof"`
 }
 
 type Action_PlayerStartSprinting struct {
@@ -1374,44 +1330,6 @@ type Action_PlayerSetHeldSlot struct {
 	PlayerSetHeldSlot *PlayerSetHeldSlotAction `protobuf:"bytes,117,opt,name=player_set_held_slot,json=playerSetHeldSlot,proto3,oneof"`
 }
 
-type Action_PlayerSendToast struct {
-	// Player: UI
-	PlayerSendToast *PlayerSendToastAction `protobuf:"bytes,118,opt,name=player_send_toast,json=playerSendToast,proto3,oneof"`
-}
-
-type Action_PlayerSendJukeboxPopup struct {
-	PlayerSendJukeboxPopup *PlayerSendJukeboxPopupAction `protobuf:"bytes,119,opt,name=player_send_jukebox_popup,json=playerSendJukeboxPopup,proto3,oneof"`
-}
-
-type Action_PlayerShowCoordinates struct {
-	PlayerShowCoordinates *PlayerShowCoordinatesAction `protobuf:"bytes,120,opt,name=player_show_coordinates,json=playerShowCoordinates,proto3,oneof"`
-}
-
-type Action_PlayerHideCoordinates struct {
-	PlayerHideCoordinates *PlayerHideCoordinatesAction `protobuf:"bytes,121,opt,name=player_hide_coordinates,json=playerHideCoordinates,proto3,oneof"`
-}
-
-type Action_PlayerEnableInstantRespawn struct {
-	PlayerEnableInstantRespawn *PlayerEnableInstantRespawnAction `protobuf:"bytes,122,opt,name=player_enable_instant_respawn,json=playerEnableInstantRespawn,proto3,oneof"`
-}
-
-type Action_PlayerDisableInstantRespawn struct {
-	PlayerDisableInstantRespawn *PlayerDisableInstantRespawnAction `protobuf:"bytes,123,opt,name=player_disable_instant_respawn,json=playerDisableInstantRespawn,proto3,oneof"`
-}
-
-type Action_PlayerSetNameTag struct {
-	PlayerSetNameTag *PlayerSetNameTagAction `protobuf:"bytes,124,opt,name=player_set_name_tag,json=playerSetNameTag,proto3,oneof"`
-}
-
-type Action_PlayerSetScoreTag struct {
-	PlayerSetScoreTag *PlayerSetScoreTagAction `protobuf:"bytes,125,opt,name=player_set_score_tag,json=playerSetScoreTag,proto3,oneof"`
-}
-
-type Action_PlayerShowParticle struct {
-	// Player: Visuals
-	PlayerShowParticle *PlayerShowParticleAction `protobuf:"bytes,126,opt,name=player_show_particle,json=playerShowParticle,proto3,oneof"`
-}
-
 type Action_PlayerRespawn struct {
 	// Player: Lifecycle/Control
 	PlayerRespawn *PlayerRespawnAction `protobuf:"bytes,127,opt,name=player_respawn,json=playerRespawn,proto3,oneof"`
@@ -1433,6 +1351,129 @@ type Action_PlayerPunchAir struct {
 	PlayerPunchAir *PlayerPunchAirAction `protobuf:"bytes,131,opt,name=player_punch_air,json=playerPunchAir,proto3,oneof"`
 }
 
+type Action_WorldSetDefaultGameMode struct {
+	// World: Configuration & Settings
+	WorldSetDefaultGameMode *WorldSetDefaultGameModeAction `protobuf:"bytes,60,opt,name=world_set_default_game_mode,json=worldSetDefaultGameMode,proto3,oneof"`
+}
+
+type Action_WorldSetDifficulty struct {
+	WorldSetDifficulty *WorldSetDifficultyAction `protobuf:"bytes,61,opt,name=world_set_difficulty,json=worldSetDifficulty,proto3,oneof"`
+}
+
+type Action_WorldSetTickRange struct {
+	WorldSetTickRange *WorldSetTickRangeAction `protobuf:"bytes,62,opt,name=world_set_tick_range,json=worldSetTickRange,proto3,oneof"`
+}
+
+type Action_WorldSetBlock struct {
+	WorldSetBlock *WorldSetBlockAction `protobuf:"bytes,63,opt,name=world_set_block,json=worldSetBlock,proto3,oneof"`
+}
+
+type Action_WorldPlaySound struct {
+	WorldPlaySound *WorldPlaySoundAction `protobuf:"bytes,64,opt,name=world_play_sound,json=worldPlaySound,proto3,oneof"`
+}
+
+type Action_WorldAddParticle struct {
+	WorldAddParticle *WorldAddParticleAction `protobuf:"bytes,65,opt,name=world_add_particle,json=worldAddParticle,proto3,oneof"`
+}
+
+type Action_WorldSetTime struct {
+	// World: Time
+	WorldSetTime *WorldSetTimeAction `protobuf:"bytes,66,opt,name=world_set_time,json=worldSetTime,proto3,oneof"`
+}
+
+type Action_WorldStopTime struct {
+	WorldStopTime *WorldStopTimeAction `protobuf:"bytes,67,opt,name=world_stop_time,json=worldStopTime,proto3,oneof"`
+}
+
+type Action_WorldStartTime struct {
+	WorldStartTime *WorldStartTimeAction `protobuf:"bytes,68,opt,name=world_start_time,json=worldStartTime,proto3,oneof"`
+}
+
+type Action_WorldSetSpawn struct {
+	WorldSetSpawn *WorldSetSpawnAction `protobuf:"bytes,69,opt,name=world_set_spawn,json=worldSetSpawn,proto3,oneof"`
+}
+
+type Action_WorldSetBiome struct {
+	// World: Mutations
+	WorldSetBiome *WorldSetBiomeAction `protobuf:"bytes,90,opt,name=world_set_biome,json=worldSetBiome,proto3,oneof"`
+}
+
+type Action_WorldSetLiquid struct {
+	WorldSetLiquid *WorldSetLiquidAction `protobuf:"bytes,91,opt,name=world_set_liquid,json=worldSetLiquid,proto3,oneof"`
+}
+
+type Action_WorldScheduleBlockUpdate struct {
+	WorldScheduleBlockUpdate *WorldScheduleBlockUpdateAction `protobuf:"bytes,92,opt,name=world_schedule_block_update,json=worldScheduleBlockUpdate,proto3,oneof"`
+}
+
+type Action_WorldBuildStructure struct {
+	WorldBuildStructure *WorldBuildStructureAction `protobuf:"bytes,93,opt,name=world_build_structure,json=worldBuildStructure,proto3,oneof"`
+}
+
+type Action_WorldQueryEntities struct {
+	// World: Queries - Entities & Players
+	WorldQueryEntities *WorldQueryEntitiesAction `protobuf:"bytes,70,opt,name=world_query_entities,json=worldQueryEntities,proto3,oneof"`
+}
+
+type Action_WorldQueryPlayers struct {
+	WorldQueryPlayers *WorldQueryPlayersAction `protobuf:"bytes,71,opt,name=world_query_players,json=worldQueryPlayers,proto3,oneof"`
+}
+
+type Action_WorldQueryEntitiesWithin struct {
+	WorldQueryEntitiesWithin *WorldQueryEntitiesWithinAction `protobuf:"bytes,72,opt,name=world_query_entities_within,json=worldQueryEntitiesWithin,proto3,oneof"`
+}
+
+type Action_WorldQueryPlayerSpawn struct {
+	WorldQueryPlayerSpawn *WorldQueryPlayerSpawnAction `protobuf:"bytes,74,opt,name=world_query_player_spawn,json=worldQueryPlayerSpawn,proto3,oneof"`
+}
+
+type Action_WorldQueryBlock struct {
+	// World: Queries - Blocks & Terrain
+	WorldQueryBlock *WorldQueryBlockAction `protobuf:"bytes,75,opt,name=world_query_block,json=worldQueryBlock,proto3,oneof"`
+}
+
+type Action_WorldQueryBiome struct {
+	WorldQueryBiome *WorldQueryBiomeAction `protobuf:"bytes,76,opt,name=world_query_biome,json=worldQueryBiome,proto3,oneof"`
+}
+
+type Action_WorldQueryLight struct {
+	WorldQueryLight *WorldQueryLightAction `protobuf:"bytes,77,opt,name=world_query_light,json=worldQueryLight,proto3,oneof"`
+}
+
+type Action_WorldQuerySkyLight struct {
+	WorldQuerySkyLight *WorldQuerySkyLightAction `protobuf:"bytes,78,opt,name=world_query_sky_light,json=worldQuerySkyLight,proto3,oneof"`
+}
+
+type Action_WorldQueryTemperature struct {
+	WorldQueryTemperature *WorldQueryTemperatureAction `protobuf:"bytes,79,opt,name=world_query_temperature,json=worldQueryTemperature,proto3,oneof"`
+}
+
+type Action_WorldQueryHighestBlock struct {
+	WorldQueryHighestBlock *WorldQueryHighestBlockAction `protobuf:"bytes,80,opt,name=world_query_highest_block,json=worldQueryHighestBlock,proto3,oneof"`
+}
+
+type Action_WorldQueryRainingAt struct {
+	// World: Queries - Weather & Environment
+	WorldQueryRainingAt *WorldQueryRainingAtAction `protobuf:"bytes,81,opt,name=world_query_raining_at,json=worldQueryRainingAt,proto3,oneof"`
+}
+
+type Action_WorldQuerySnowingAt struct {
+	WorldQuerySnowingAt *WorldQuerySnowingAtAction `protobuf:"bytes,82,opt,name=world_query_snowing_at,json=worldQuerySnowingAt,proto3,oneof"`
+}
+
+type Action_WorldQueryThunderingAt struct {
+	WorldQueryThunderingAt *WorldQueryThunderingAtAction `protobuf:"bytes,83,opt,name=world_query_thundering_at,json=worldQueryThunderingAt,proto3,oneof"`
+}
+
+type Action_WorldQueryLiquid struct {
+	// World: Queries - Liquid & Settings
+	WorldQueryLiquid *WorldQueryLiquidAction `protobuf:"bytes,84,opt,name=world_query_liquid,json=worldQueryLiquid,proto3,oneof"`
+}
+
+type Action_WorldQueryDefaultGameMode struct {
+	WorldQueryDefaultGameMode *WorldQueryDefaultGameModeAction `protobuf:"bytes,73,opt,name=world_query_default_game_mode,json=worldQueryDefaultGameMode,proto3,oneof"`
+}
+
 func (*Action_SendChat) isAction_Kind() {}
 
 func (*Action_Teleport) isAction_Kind() {}
@@ -1446,6 +1487,8 @@ func (*Action_GiveItem) isAction_Kind() {}
 func (*Action_ClearInventory) isAction_Kind() {}
 
 func (*Action_SetHeldItem) isAction_Kind() {}
+
+func (*Action_PlayerSetArmour) isAction_Kind() {}
 
 func (*Action_SetHealth) isAction_Kind() {}
 
@@ -1465,67 +1508,31 @@ func (*Action_SendPopup) isAction_Kind() {}
 
 func (*Action_SendTip) isAction_Kind() {}
 
+func (*Action_PlayerSendToast) isAction_Kind() {}
+
+func (*Action_PlayerSendJukeboxPopup) isAction_Kind() {}
+
+func (*Action_PlayerShowCoordinates) isAction_Kind() {}
+
+func (*Action_PlayerHideCoordinates) isAction_Kind() {}
+
+func (*Action_PlayerEnableInstantRespawn) isAction_Kind() {}
+
+func (*Action_PlayerDisableInstantRespawn) isAction_Kind() {}
+
+func (*Action_PlayerSetNameTag) isAction_Kind() {}
+
+func (*Action_PlayerSetScoreTag) isAction_Kind() {}
+
 func (*Action_PlaySound) isAction_Kind() {}
 
+func (*Action_PlayerShowParticle) isAction_Kind() {}
+
+func (*Action_PlayerSendScoreboard) isAction_Kind() {}
+
+func (*Action_PlayerRemoveScoreboard) isAction_Kind() {}
+
 func (*Action_ExecuteCommand) isAction_Kind() {}
-
-func (*Action_WorldSetDefaultGameMode) isAction_Kind() {}
-
-func (*Action_WorldSetDifficulty) isAction_Kind() {}
-
-func (*Action_WorldSetTickRange) isAction_Kind() {}
-
-func (*Action_WorldSetSpawn) isAction_Kind() {}
-
-func (*Action_WorldSetBlock) isAction_Kind() {}
-
-func (*Action_WorldSetBiome) isAction_Kind() {}
-
-func (*Action_WorldSetLiquid) isAction_Kind() {}
-
-func (*Action_WorldScheduleBlockUpdate) isAction_Kind() {}
-
-func (*Action_WorldBuildStructure) isAction_Kind() {}
-
-func (*Action_WorldSetTime) isAction_Kind() {}
-
-func (*Action_WorldStopTime) isAction_Kind() {}
-
-func (*Action_WorldStartTime) isAction_Kind() {}
-
-func (*Action_WorldPlaySound) isAction_Kind() {}
-
-func (*Action_WorldAddParticle) isAction_Kind() {}
-
-func (*Action_WorldQueryEntities) isAction_Kind() {}
-
-func (*Action_WorldQueryPlayers) isAction_Kind() {}
-
-func (*Action_WorldQueryEntitiesWithin) isAction_Kind() {}
-
-func (*Action_WorldQueryPlayerSpawn) isAction_Kind() {}
-
-func (*Action_WorldQueryBlock) isAction_Kind() {}
-
-func (*Action_WorldQueryBiome) isAction_Kind() {}
-
-func (*Action_WorldQueryLiquid) isAction_Kind() {}
-
-func (*Action_WorldQueryHighestBlock) isAction_Kind() {}
-
-func (*Action_WorldQueryLight) isAction_Kind() {}
-
-func (*Action_WorldQuerySkyLight) isAction_Kind() {}
-
-func (*Action_WorldQueryTemperature) isAction_Kind() {}
-
-func (*Action_WorldQueryRainingAt) isAction_Kind() {}
-
-func (*Action_WorldQuerySnowingAt) isAction_Kind() {}
-
-func (*Action_WorldQueryThunderingAt) isAction_Kind() {}
-
-func (*Action_WorldQueryDefaultGameMode) isAction_Kind() {}
 
 func (*Action_PlayerStartSprinting) isAction_Kind() {}
 
@@ -1575,24 +1582,6 @@ func (*Action_PlayerSetScale) isAction_Kind() {}
 
 func (*Action_PlayerSetHeldSlot) isAction_Kind() {}
 
-func (*Action_PlayerSendToast) isAction_Kind() {}
-
-func (*Action_PlayerSendJukeboxPopup) isAction_Kind() {}
-
-func (*Action_PlayerShowCoordinates) isAction_Kind() {}
-
-func (*Action_PlayerHideCoordinates) isAction_Kind() {}
-
-func (*Action_PlayerEnableInstantRespawn) isAction_Kind() {}
-
-func (*Action_PlayerDisableInstantRespawn) isAction_Kind() {}
-
-func (*Action_PlayerSetNameTag) isAction_Kind() {}
-
-func (*Action_PlayerSetScoreTag) isAction_Kind() {}
-
-func (*Action_PlayerShowParticle) isAction_Kind() {}
-
 func (*Action_PlayerRespawn) isAction_Kind() {}
 
 func (*Action_PlayerTransfer) isAction_Kind() {}
@@ -1602,6 +1591,64 @@ func (*Action_PlayerKnockBack) isAction_Kind() {}
 func (*Action_PlayerSwingArm) isAction_Kind() {}
 
 func (*Action_PlayerPunchAir) isAction_Kind() {}
+
+func (*Action_WorldSetDefaultGameMode) isAction_Kind() {}
+
+func (*Action_WorldSetDifficulty) isAction_Kind() {}
+
+func (*Action_WorldSetTickRange) isAction_Kind() {}
+
+func (*Action_WorldSetBlock) isAction_Kind() {}
+
+func (*Action_WorldPlaySound) isAction_Kind() {}
+
+func (*Action_WorldAddParticle) isAction_Kind() {}
+
+func (*Action_WorldSetTime) isAction_Kind() {}
+
+func (*Action_WorldStopTime) isAction_Kind() {}
+
+func (*Action_WorldStartTime) isAction_Kind() {}
+
+func (*Action_WorldSetSpawn) isAction_Kind() {}
+
+func (*Action_WorldSetBiome) isAction_Kind() {}
+
+func (*Action_WorldSetLiquid) isAction_Kind() {}
+
+func (*Action_WorldScheduleBlockUpdate) isAction_Kind() {}
+
+func (*Action_WorldBuildStructure) isAction_Kind() {}
+
+func (*Action_WorldQueryEntities) isAction_Kind() {}
+
+func (*Action_WorldQueryPlayers) isAction_Kind() {}
+
+func (*Action_WorldQueryEntitiesWithin) isAction_Kind() {}
+
+func (*Action_WorldQueryPlayerSpawn) isAction_Kind() {}
+
+func (*Action_WorldQueryBlock) isAction_Kind() {}
+
+func (*Action_WorldQueryBiome) isAction_Kind() {}
+
+func (*Action_WorldQueryLight) isAction_Kind() {}
+
+func (*Action_WorldQuerySkyLight) isAction_Kind() {}
+
+func (*Action_WorldQueryTemperature) isAction_Kind() {}
+
+func (*Action_WorldQueryHighestBlock) isAction_Kind() {}
+
+func (*Action_WorldQueryRainingAt) isAction_Kind() {}
+
+func (*Action_WorldQuerySnowingAt) isAction_Kind() {}
+
+func (*Action_WorldQueryThunderingAt) isAction_Kind() {}
+
+func (*Action_WorldQueryLiquid) isAction_Kind() {}
+
+func (*Action_WorldQueryDefaultGameMode) isAction_Kind() {}
 
 type SendChatAction struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -6203,13 +6250,211 @@ func (x *PlayerPunchAirAction) GetPlayerUuid() string {
 	return ""
 }
 
+// Player armour management
+type PlayerSetArmourAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Helmet        *ItemStack             `protobuf:"bytes,2,opt,name=helmet,proto3,oneof" json:"helmet,omitempty"`
+	Chestplate    *ItemStack             `protobuf:"bytes,3,opt,name=chestplate,proto3,oneof" json:"chestplate,omitempty"`
+	Leggings      *ItemStack             `protobuf:"bytes,4,opt,name=leggings,proto3,oneof" json:"leggings,omitempty"`
+	Boots         *ItemStack             `protobuf:"bytes,5,opt,name=boots,proto3,oneof" json:"boots,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSetArmourAction) Reset() {
+	*x = PlayerSetArmourAction{}
+	mi := &file_actions_proto_msgTypes[89]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSetArmourAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSetArmourAction) ProtoMessage() {}
+
+func (x *PlayerSetArmourAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[89]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSetArmourAction.ProtoReflect.Descriptor instead.
+func (*PlayerSetArmourAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{89}
+}
+
+func (x *PlayerSetArmourAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSetArmourAction) GetHelmet() *ItemStack {
+	if x != nil {
+		return x.Helmet
+	}
+	return nil
+}
+
+func (x *PlayerSetArmourAction) GetChestplate() *ItemStack {
+	if x != nil {
+		return x.Chestplate
+	}
+	return nil
+}
+
+func (x *PlayerSetArmourAction) GetLeggings() *ItemStack {
+	if x != nil {
+		return x.Leggings
+	}
+	return nil
+}
+
+func (x *PlayerSetArmourAction) GetBoots() *ItemStack {
+	if x != nil {
+		return x.Boots
+	}
+	return nil
+}
+
+// Player scoreboard management
+type PlayerSendScoreboardAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Lines         []string               `protobuf:"bytes,3,rep,name=lines,proto3" json:"lines,omitempty"`
+	Padding       *bool                  `protobuf:"varint,4,opt,name=padding,proto3,oneof" json:"padding,omitempty"`       // default true
+	Descending    *bool                  `protobuf:"varint,5,opt,name=descending,proto3,oneof" json:"descending,omitempty"` // default false
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerSendScoreboardAction) Reset() {
+	*x = PlayerSendScoreboardAction{}
+	mi := &file_actions_proto_msgTypes[90]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerSendScoreboardAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerSendScoreboardAction) ProtoMessage() {}
+
+func (x *PlayerSendScoreboardAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[90]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerSendScoreboardAction.ProtoReflect.Descriptor instead.
+func (*PlayerSendScoreboardAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{90}
+}
+
+func (x *PlayerSendScoreboardAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
+func (x *PlayerSendScoreboardAction) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *PlayerSendScoreboardAction) GetLines() []string {
+	if x != nil {
+		return x.Lines
+	}
+	return nil
+}
+
+func (x *PlayerSendScoreboardAction) GetPadding() bool {
+	if x != nil && x.Padding != nil {
+		return *x.Padding
+	}
+	return false
+}
+
+func (x *PlayerSendScoreboardAction) GetDescending() bool {
+	if x != nil && x.Descending != nil {
+		return *x.Descending
+	}
+	return false
+}
+
+type PlayerRemoveScoreboardAction struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerUuid    string                 `protobuf:"bytes,1,opt,name=player_uuid,json=playerUuid,proto3" json:"player_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PlayerRemoveScoreboardAction) Reset() {
+	*x = PlayerRemoveScoreboardAction{}
+	mi := &file_actions_proto_msgTypes[91]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PlayerRemoveScoreboardAction) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PlayerRemoveScoreboardAction) ProtoMessage() {}
+
+func (x *PlayerRemoveScoreboardAction) ProtoReflect() protoreflect.Message {
+	mi := &file_actions_proto_msgTypes[91]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PlayerRemoveScoreboardAction.ProtoReflect.Descriptor instead.
+func (*PlayerRemoveScoreboardAction) Descriptor() ([]byte, []int) {
+	return file_actions_proto_rawDescGZIP(), []int{91}
+}
+
+func (x *PlayerRemoveScoreboardAction) GetPlayerUuid() string {
+	if x != nil {
+		return x.PlayerUuid
+	}
+	return ""
+}
+
 var File_actions_proto protoreflect.FileDescriptor
 
 const file_actions_proto_rawDesc = "" +
 	"\n" +
 	"\ractions.proto\x12\tdf.plugin\x1a\fcommon.proto\":\n" +
 	"\vActionBatch\x12+\n" +
-	"\aactions\x18\x01 \x03(\v2\x11.df.plugin.ActionR\aactions\"\xed7\n" +
+	"\aactions\x18\x01 \x03(\v2\x11.df.plugin.ActionR\aactions\"\x84:\n" +
 	"\x06Action\x12*\n" +
 	"\x0ecorrelation_id\x18\x01 \x01(\tH\x01R\rcorrelationId\x88\x01\x01\x128\n" +
 	"\tsend_chat\x18\n" +
@@ -6219,7 +6464,8 @@ const file_actions_proto_rawDesc = "" +
 	"\rset_game_mode\x18\r \x01(\v2\x1c.df.plugin.SetGameModeActionH\x00R\vsetGameMode\x128\n" +
 	"\tgive_item\x18\x0e \x01(\v2\x19.df.plugin.GiveItemActionH\x00R\bgiveItem\x12J\n" +
 	"\x0fclear_inventory\x18\x0f \x01(\v2\x1f.df.plugin.ClearInventoryActionH\x00R\x0eclearInventory\x12B\n" +
-	"\rset_held_item\x18\x10 \x01(\v2\x1c.df.plugin.SetHeldItemActionH\x00R\vsetHeldItem\x12;\n" +
+	"\rset_held_item\x18\x10 \x01(\v2\x1c.df.plugin.SetHeldItemActionH\x00R\vsetHeldItem\x12O\n" +
+	"\x11player_set_armour\x18\x84\x01 \x01(\v2 .df.plugin.PlayerSetArmourActionH\x00R\x0fplayerSetArmour\x12;\n" +
 	"\n" +
 	"set_health\x18\x14 \x01(\v2\x1a.df.plugin.SetHealthActionH\x00R\tsetHealth\x125\n" +
 	"\bset_food\x18\x15 \x01(\v2\x18.df.plugin.SetFoodActionH\x00R\asetFood\x12G\n" +
@@ -6232,39 +6478,21 @@ const file_actions_proto_rawDesc = "" +
 	"send_title\x18( \x01(\v2\x1a.df.plugin.SendTitleActionH\x00R\tsendTitle\x12;\n" +
 	"\n" +
 	"send_popup\x18) \x01(\v2\x1a.df.plugin.SendPopupActionH\x00R\tsendPopup\x125\n" +
-	"\bsend_tip\x18* \x01(\v2\x18.df.plugin.SendTipActionH\x00R\asendTip\x12;\n" +
+	"\bsend_tip\x18* \x01(\v2\x18.df.plugin.SendTipActionH\x00R\asendTip\x12N\n" +
+	"\x11player_send_toast\x18v \x01(\v2 .df.plugin.PlayerSendToastActionH\x00R\x0fplayerSendToast\x12d\n" +
+	"\x19player_send_jukebox_popup\x18w \x01(\v2'.df.plugin.PlayerSendJukeboxPopupActionH\x00R\x16playerSendJukeboxPopup\x12`\n" +
+	"\x17player_show_coordinates\x18x \x01(\v2&.df.plugin.PlayerShowCoordinatesActionH\x00R\x15playerShowCoordinates\x12`\n" +
+	"\x17player_hide_coordinates\x18y \x01(\v2&.df.plugin.PlayerHideCoordinatesActionH\x00R\x15playerHideCoordinates\x12p\n" +
+	"\x1dplayer_enable_instant_respawn\x18z \x01(\v2+.df.plugin.PlayerEnableInstantRespawnActionH\x00R\x1aplayerEnableInstantRespawn\x12s\n" +
+	"\x1eplayer_disable_instant_respawn\x18{ \x01(\v2,.df.plugin.PlayerDisableInstantRespawnActionH\x00R\x1bplayerDisableInstantRespawn\x12R\n" +
+	"\x13player_set_name_tag\x18| \x01(\v2!.df.plugin.PlayerSetNameTagActionH\x00R\x10playerSetNameTag\x12U\n" +
+	"\x14player_set_score_tag\x18} \x01(\v2\".df.plugin.PlayerSetScoreTagActionH\x00R\x11playerSetScoreTag\x12;\n" +
 	"\n" +
-	"play_sound\x18+ \x01(\v2\x1a.df.plugin.PlaySoundActionH\x00R\tplaySound\x12J\n" +
-	"\x0fexecute_command\x182 \x01(\v2\x1f.df.plugin.ExecuteCommandActionH\x00R\x0eexecuteCommand\x12h\n" +
-	"\x1bworld_set_default_game_mode\x18< \x01(\v2(.df.plugin.WorldSetDefaultGameModeActionH\x00R\x17worldSetDefaultGameMode\x12W\n" +
-	"\x14world_set_difficulty\x18= \x01(\v2#.df.plugin.WorldSetDifficultyActionH\x00R\x12worldSetDifficulty\x12U\n" +
-	"\x14world_set_tick_range\x18> \x01(\v2\".df.plugin.WorldSetTickRangeActionH\x00R\x11worldSetTickRange\x12H\n" +
-	"\x0fworld_set_spawn\x18E \x01(\v2\x1e.df.plugin.WorldSetSpawnActionH\x00R\rworldSetSpawn\x12H\n" +
-	"\x0fworld_set_block\x18? \x01(\v2\x1e.df.plugin.WorldSetBlockActionH\x00R\rworldSetBlock\x12H\n" +
-	"\x0fworld_set_biome\x18Z \x01(\v2\x1e.df.plugin.WorldSetBiomeActionH\x00R\rworldSetBiome\x12K\n" +
-	"\x10world_set_liquid\x18[ \x01(\v2\x1f.df.plugin.WorldSetLiquidActionH\x00R\x0eworldSetLiquid\x12j\n" +
-	"\x1bworld_schedule_block_update\x18\\ \x01(\v2).df.plugin.WorldScheduleBlockUpdateActionH\x00R\x18worldScheduleBlockUpdate\x12Z\n" +
-	"\x15world_build_structure\x18] \x01(\v2$.df.plugin.WorldBuildStructureActionH\x00R\x13worldBuildStructure\x12E\n" +
-	"\x0eworld_set_time\x18B \x01(\v2\x1d.df.plugin.WorldSetTimeActionH\x00R\fworldSetTime\x12H\n" +
-	"\x0fworld_stop_time\x18C \x01(\v2\x1e.df.plugin.WorldStopTimeActionH\x00R\rworldStopTime\x12K\n" +
-	"\x10world_start_time\x18D \x01(\v2\x1f.df.plugin.WorldStartTimeActionH\x00R\x0eworldStartTime\x12K\n" +
-	"\x10world_play_sound\x18@ \x01(\v2\x1f.df.plugin.WorldPlaySoundActionH\x00R\x0eworldPlaySound\x12Q\n" +
-	"\x12world_add_particle\x18A \x01(\v2!.df.plugin.WorldAddParticleActionH\x00R\x10worldAddParticle\x12W\n" +
-	"\x14world_query_entities\x18F \x01(\v2#.df.plugin.WorldQueryEntitiesActionH\x00R\x12worldQueryEntities\x12T\n" +
-	"\x13world_query_players\x18G \x01(\v2\".df.plugin.WorldQueryPlayersActionH\x00R\x11worldQueryPlayers\x12j\n" +
-	"\x1bworld_query_entities_within\x18H \x01(\v2).df.plugin.WorldQueryEntitiesWithinActionH\x00R\x18worldQueryEntitiesWithin\x12a\n" +
-	"\x18world_query_player_spawn\x18J \x01(\v2&.df.plugin.WorldQueryPlayerSpawnActionH\x00R\x15worldQueryPlayerSpawn\x12N\n" +
-	"\x11world_query_block\x18K \x01(\v2 .df.plugin.WorldQueryBlockActionH\x00R\x0fworldQueryBlock\x12N\n" +
-	"\x11world_query_biome\x18L \x01(\v2 .df.plugin.WorldQueryBiomeActionH\x00R\x0fworldQueryBiome\x12Q\n" +
-	"\x12world_query_liquid\x18T \x01(\v2!.df.plugin.WorldQueryLiquidActionH\x00R\x10worldQueryLiquid\x12d\n" +
-	"\x19world_query_highest_block\x18P \x01(\v2'.df.plugin.WorldQueryHighestBlockActionH\x00R\x16worldQueryHighestBlock\x12N\n" +
-	"\x11world_query_light\x18M \x01(\v2 .df.plugin.WorldQueryLightActionH\x00R\x0fworldQueryLight\x12X\n" +
-	"\x15world_query_sky_light\x18N \x01(\v2#.df.plugin.WorldQuerySkyLightActionH\x00R\x12worldQuerySkyLight\x12`\n" +
-	"\x17world_query_temperature\x18O \x01(\v2&.df.plugin.WorldQueryTemperatureActionH\x00R\x15worldQueryTemperature\x12[\n" +
-	"\x16world_query_raining_at\x18Q \x01(\v2$.df.plugin.WorldQueryRainingAtActionH\x00R\x13worldQueryRainingAt\x12[\n" +
-	"\x16world_query_snowing_at\x18R \x01(\v2$.df.plugin.WorldQuerySnowingAtActionH\x00R\x13worldQuerySnowingAt\x12d\n" +
-	"\x19world_query_thundering_at\x18S \x01(\v2'.df.plugin.WorldQueryThunderingAtActionH\x00R\x16worldQueryThunderingAt\x12n\n" +
-	"\x1dworld_query_default_game_mode\x18I \x01(\v2*.df.plugin.WorldQueryDefaultGameModeActionH\x00R\x19worldQueryDefaultGameMode\x12]\n" +
+	"play_sound\x18+ \x01(\v2\x1a.df.plugin.PlaySoundActionH\x00R\tplaySound\x12W\n" +
+	"\x14player_show_particle\x18~ \x01(\v2#.df.plugin.PlayerShowParticleActionH\x00R\x12playerShowParticle\x12^\n" +
+	"\x16player_send_scoreboard\x18\x85\x01 \x01(\v2%.df.plugin.PlayerSendScoreboardActionH\x00R\x14playerSendScoreboard\x12d\n" +
+	"\x18player_remove_scoreboard\x18\x86\x01 \x01(\v2'.df.plugin.PlayerRemoveScoreboardActionH\x00R\x16playerRemoveScoreboard\x12J\n" +
+	"\x0fexecute_command\x182 \x01(\v2\x1f.df.plugin.ExecuteCommandActionH\x00R\x0eexecuteCommand\x12]\n" +
 	"\x16player_start_sprinting\x18^ \x01(\v2%.df.plugin.PlayerStartSprintingActionH\x00R\x14playerStartSprinting\x12Z\n" +
 	"\x15player_stop_sprinting\x18_ \x01(\v2$.df.plugin.PlayerStopSprintingActionH\x00R\x13playerStopSprinting\x12Z\n" +
 	"\x15player_start_sneaking\x18` \x01(\v2$.df.plugin.PlayerStartSneakingActionH\x00R\x13playerStartSneaking\x12W\n" +
@@ -6288,21 +6516,41 @@ const file_actions_proto_rawDesc = "" +
 	"\x14player_set_invisible\x18r \x01(\v2#.df.plugin.PlayerSetInvisibleActionH\x00R\x12playerSetInvisible\x12Q\n" +
 	"\x12player_set_visible\x18s \x01(\v2!.df.plugin.PlayerSetVisibleActionH\x00R\x10playerSetVisible\x12K\n" +
 	"\x10player_set_scale\x18t \x01(\v2\x1f.df.plugin.PlayerSetScaleActionH\x00R\x0eplayerSetScale\x12U\n" +
-	"\x14player_set_held_slot\x18u \x01(\v2\".df.plugin.PlayerSetHeldSlotActionH\x00R\x11playerSetHeldSlot\x12N\n" +
-	"\x11player_send_toast\x18v \x01(\v2 .df.plugin.PlayerSendToastActionH\x00R\x0fplayerSendToast\x12d\n" +
-	"\x19player_send_jukebox_popup\x18w \x01(\v2'.df.plugin.PlayerSendJukeboxPopupActionH\x00R\x16playerSendJukeboxPopup\x12`\n" +
-	"\x17player_show_coordinates\x18x \x01(\v2&.df.plugin.PlayerShowCoordinatesActionH\x00R\x15playerShowCoordinates\x12`\n" +
-	"\x17player_hide_coordinates\x18y \x01(\v2&.df.plugin.PlayerHideCoordinatesActionH\x00R\x15playerHideCoordinates\x12p\n" +
-	"\x1dplayer_enable_instant_respawn\x18z \x01(\v2+.df.plugin.PlayerEnableInstantRespawnActionH\x00R\x1aplayerEnableInstantRespawn\x12s\n" +
-	"\x1eplayer_disable_instant_respawn\x18{ \x01(\v2,.df.plugin.PlayerDisableInstantRespawnActionH\x00R\x1bplayerDisableInstantRespawn\x12R\n" +
-	"\x13player_set_name_tag\x18| \x01(\v2!.df.plugin.PlayerSetNameTagActionH\x00R\x10playerSetNameTag\x12U\n" +
-	"\x14player_set_score_tag\x18} \x01(\v2\".df.plugin.PlayerSetScoreTagActionH\x00R\x11playerSetScoreTag\x12W\n" +
-	"\x14player_show_particle\x18~ \x01(\v2#.df.plugin.PlayerShowParticleActionH\x00R\x12playerShowParticle\x12G\n" +
+	"\x14player_set_held_slot\x18u \x01(\v2\".df.plugin.PlayerSetHeldSlotActionH\x00R\x11playerSetHeldSlot\x12G\n" +
 	"\x0eplayer_respawn\x18\x7f \x01(\v2\x1e.df.plugin.PlayerRespawnActionH\x00R\rplayerRespawn\x12K\n" +
 	"\x0fplayer_transfer\x18\x80\x01 \x01(\v2\x1f.df.plugin.PlayerTransferActionH\x00R\x0eplayerTransfer\x12O\n" +
 	"\x11player_knock_back\x18\x81\x01 \x01(\v2 .df.plugin.PlayerKnockBackActionH\x00R\x0fplayerKnockBack\x12L\n" +
 	"\x10player_swing_arm\x18\x82\x01 \x01(\v2\x1f.df.plugin.PlayerSwingArmActionH\x00R\x0eplayerSwingArm\x12L\n" +
-	"\x10player_punch_air\x18\x83\x01 \x01(\v2\x1f.df.plugin.PlayerPunchAirActionH\x00R\x0eplayerPunchAirB\x06\n" +
+	"\x10player_punch_air\x18\x83\x01 \x01(\v2\x1f.df.plugin.PlayerPunchAirActionH\x00R\x0eplayerPunchAir\x12h\n" +
+	"\x1bworld_set_default_game_mode\x18< \x01(\v2(.df.plugin.WorldSetDefaultGameModeActionH\x00R\x17worldSetDefaultGameMode\x12W\n" +
+	"\x14world_set_difficulty\x18= \x01(\v2#.df.plugin.WorldSetDifficultyActionH\x00R\x12worldSetDifficulty\x12U\n" +
+	"\x14world_set_tick_range\x18> \x01(\v2\".df.plugin.WorldSetTickRangeActionH\x00R\x11worldSetTickRange\x12H\n" +
+	"\x0fworld_set_block\x18? \x01(\v2\x1e.df.plugin.WorldSetBlockActionH\x00R\rworldSetBlock\x12K\n" +
+	"\x10world_play_sound\x18@ \x01(\v2\x1f.df.plugin.WorldPlaySoundActionH\x00R\x0eworldPlaySound\x12Q\n" +
+	"\x12world_add_particle\x18A \x01(\v2!.df.plugin.WorldAddParticleActionH\x00R\x10worldAddParticle\x12E\n" +
+	"\x0eworld_set_time\x18B \x01(\v2\x1d.df.plugin.WorldSetTimeActionH\x00R\fworldSetTime\x12H\n" +
+	"\x0fworld_stop_time\x18C \x01(\v2\x1e.df.plugin.WorldStopTimeActionH\x00R\rworldStopTime\x12K\n" +
+	"\x10world_start_time\x18D \x01(\v2\x1f.df.plugin.WorldStartTimeActionH\x00R\x0eworldStartTime\x12H\n" +
+	"\x0fworld_set_spawn\x18E \x01(\v2\x1e.df.plugin.WorldSetSpawnActionH\x00R\rworldSetSpawn\x12H\n" +
+	"\x0fworld_set_biome\x18Z \x01(\v2\x1e.df.plugin.WorldSetBiomeActionH\x00R\rworldSetBiome\x12K\n" +
+	"\x10world_set_liquid\x18[ \x01(\v2\x1f.df.plugin.WorldSetLiquidActionH\x00R\x0eworldSetLiquid\x12j\n" +
+	"\x1bworld_schedule_block_update\x18\\ \x01(\v2).df.plugin.WorldScheduleBlockUpdateActionH\x00R\x18worldScheduleBlockUpdate\x12Z\n" +
+	"\x15world_build_structure\x18] \x01(\v2$.df.plugin.WorldBuildStructureActionH\x00R\x13worldBuildStructure\x12W\n" +
+	"\x14world_query_entities\x18F \x01(\v2#.df.plugin.WorldQueryEntitiesActionH\x00R\x12worldQueryEntities\x12T\n" +
+	"\x13world_query_players\x18G \x01(\v2\".df.plugin.WorldQueryPlayersActionH\x00R\x11worldQueryPlayers\x12j\n" +
+	"\x1bworld_query_entities_within\x18H \x01(\v2).df.plugin.WorldQueryEntitiesWithinActionH\x00R\x18worldQueryEntitiesWithin\x12a\n" +
+	"\x18world_query_player_spawn\x18J \x01(\v2&.df.plugin.WorldQueryPlayerSpawnActionH\x00R\x15worldQueryPlayerSpawn\x12N\n" +
+	"\x11world_query_block\x18K \x01(\v2 .df.plugin.WorldQueryBlockActionH\x00R\x0fworldQueryBlock\x12N\n" +
+	"\x11world_query_biome\x18L \x01(\v2 .df.plugin.WorldQueryBiomeActionH\x00R\x0fworldQueryBiome\x12N\n" +
+	"\x11world_query_light\x18M \x01(\v2 .df.plugin.WorldQueryLightActionH\x00R\x0fworldQueryLight\x12X\n" +
+	"\x15world_query_sky_light\x18N \x01(\v2#.df.plugin.WorldQuerySkyLightActionH\x00R\x12worldQuerySkyLight\x12`\n" +
+	"\x17world_query_temperature\x18O \x01(\v2&.df.plugin.WorldQueryTemperatureActionH\x00R\x15worldQueryTemperature\x12d\n" +
+	"\x19world_query_highest_block\x18P \x01(\v2'.df.plugin.WorldQueryHighestBlockActionH\x00R\x16worldQueryHighestBlock\x12[\n" +
+	"\x16world_query_raining_at\x18Q \x01(\v2$.df.plugin.WorldQueryRainingAtActionH\x00R\x13worldQueryRainingAt\x12[\n" +
+	"\x16world_query_snowing_at\x18R \x01(\v2$.df.plugin.WorldQuerySnowingAtActionH\x00R\x13worldQuerySnowingAt\x12d\n" +
+	"\x19world_query_thundering_at\x18S \x01(\v2'.df.plugin.WorldQueryThunderingAtActionH\x00R\x16worldQueryThunderingAt\x12Q\n" +
+	"\x12world_query_liquid\x18T \x01(\v2!.df.plugin.WorldQueryLiquidActionH\x00R\x10worldQueryLiquid\x12n\n" +
+	"\x1dworld_query_default_game_mode\x18I \x01(\v2*.df.plugin.WorldQueryDefaultGameModeActionH\x00R\x19worldQueryDefaultGameModeB\x06\n" +
 	"\x04kindB\x11\n" +
 	"\x0f_correlation_id\"K\n" +
 	"\x0eSendChatAction\x12\x1f\n" +
@@ -6664,6 +6912,34 @@ const file_actions_proto_rawDesc = "" +
 	"playerUuid\"7\n" +
 	"\x14PlayerPunchAirAction\x12\x1f\n" +
 	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\"\xbf\x02\n" +
+	"\x15PlayerSetArmourAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x121\n" +
+	"\x06helmet\x18\x02 \x01(\v2\x14.df.plugin.ItemStackH\x00R\x06helmet\x88\x01\x01\x129\n" +
+	"\n" +
+	"chestplate\x18\x03 \x01(\v2\x14.df.plugin.ItemStackH\x01R\n" +
+	"chestplate\x88\x01\x01\x125\n" +
+	"\bleggings\x18\x04 \x01(\v2\x14.df.plugin.ItemStackH\x02R\bleggings\x88\x01\x01\x12/\n" +
+	"\x05boots\x18\x05 \x01(\v2\x14.df.plugin.ItemStackH\x03R\x05boots\x88\x01\x01B\t\n" +
+	"\a_helmetB\r\n" +
+	"\v_chestplateB\v\n" +
+	"\t_leggingsB\b\n" +
+	"\x06_boots\"\xc8\x01\n" +
+	"\x1aPlayerSendScoreboardAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
+	"playerUuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
+	"\x05lines\x18\x03 \x03(\tR\x05lines\x12\x1d\n" +
+	"\apadding\x18\x04 \x01(\bH\x00R\apadding\x88\x01\x01\x12#\n" +
+	"\n" +
+	"descending\x18\x05 \x01(\bH\x01R\n" +
+	"descending\x88\x01\x01B\n" +
+	"\n" +
+	"\b_paddingB\r\n" +
+	"\v_descending\"?\n" +
+	"\x1cPlayerRemoveScoreboardAction\x12\x1f\n" +
+	"\vplayer_uuid\x18\x01 \x01(\tR\n" +
 	"playerUuid*\xeb\x03\n" +
 	"\fParticleType\x12\x1d\n" +
 	"\x19PARTICLE_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n" +
@@ -6702,7 +6978,7 @@ func file_actions_proto_rawDescGZIP() []byte {
 }
 
 var file_actions_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_actions_proto_msgTypes = make([]protoimpl.MessageInfo, 89)
+var file_actions_proto_msgTypes = make([]protoimpl.MessageInfo, 92)
 var file_actions_proto_goTypes = []any{
 	(ParticleType)(0),                          // 0: df.plugin.ParticleType
 	(*ActionBatch)(nil),                        // 1: df.plugin.ActionBatch
@@ -6794,18 +7070,21 @@ var file_actions_proto_goTypes = []any{
 	(*PlayerKnockBackAction)(nil),              // 87: df.plugin.PlayerKnockBackAction
 	(*PlayerSwingArmAction)(nil),               // 88: df.plugin.PlayerSwingArmAction
 	(*PlayerPunchAirAction)(nil),               // 89: df.plugin.PlayerPunchAirAction
-	(*Vec3)(nil),                               // 90: df.plugin.Vec3
-	(GameMode)(0),                              // 91: df.plugin.GameMode
-	(*ItemStack)(nil),                          // 92: df.plugin.ItemStack
-	(EffectType)(0),                            // 93: df.plugin.EffectType
-	(Sound)(0),                                 // 94: df.plugin.Sound
-	(*WorldRef)(nil),                           // 95: df.plugin.WorldRef
-	(Difficulty)(0),                            // 96: df.plugin.Difficulty
-	(*BlockPos)(nil),                           // 97: df.plugin.BlockPos
-	(*BlockState)(nil),                         // 98: df.plugin.BlockState
-	(*BBox)(nil),                               // 99: df.plugin.BBox
-	(*LiquidState)(nil),                        // 100: df.plugin.LiquidState
-	(*Address)(nil),                            // 101: df.plugin.Address
+	(*PlayerSetArmourAction)(nil),              // 90: df.plugin.PlayerSetArmourAction
+	(*PlayerSendScoreboardAction)(nil),         // 91: df.plugin.PlayerSendScoreboardAction
+	(*PlayerRemoveScoreboardAction)(nil),       // 92: df.plugin.PlayerRemoveScoreboardAction
+	(*Vec3)(nil),                               // 93: df.plugin.Vec3
+	(GameMode)(0),                              // 94: df.plugin.GameMode
+	(*ItemStack)(nil),                          // 95: df.plugin.ItemStack
+	(EffectType)(0),                            // 96: df.plugin.EffectType
+	(Sound)(0),                                 // 97: df.plugin.Sound
+	(*WorldRef)(nil),                           // 98: df.plugin.WorldRef
+	(Difficulty)(0),                            // 99: df.plugin.Difficulty
+	(*BlockPos)(nil),                           // 100: df.plugin.BlockPos
+	(*BlockState)(nil),                         // 101: df.plugin.BlockState
+	(*BBox)(nil),                               // 102: df.plugin.BBox
+	(*LiquidState)(nil),                        // 103: df.plugin.LiquidState
+	(*Address)(nil),                            // 104: df.plugin.Address
 }
 var file_actions_proto_depIdxs = []int32{
 	2,   // 0: df.plugin.ActionBatch.actions:type_name -> df.plugin.Action
@@ -6816,164 +7095,171 @@ var file_actions_proto_depIdxs = []int32{
 	7,   // 5: df.plugin.Action.give_item:type_name -> df.plugin.GiveItemAction
 	8,   // 6: df.plugin.Action.clear_inventory:type_name -> df.plugin.ClearInventoryAction
 	9,   // 7: df.plugin.Action.set_held_item:type_name -> df.plugin.SetHeldItemAction
-	10,  // 8: df.plugin.Action.set_health:type_name -> df.plugin.SetHealthAction
-	11,  // 9: df.plugin.Action.set_food:type_name -> df.plugin.SetFoodAction
-	12,  // 10: df.plugin.Action.set_experience:type_name -> df.plugin.SetExperienceAction
-	13,  // 11: df.plugin.Action.set_velocity:type_name -> df.plugin.SetVelocityAction
-	14,  // 12: df.plugin.Action.add_effect:type_name -> df.plugin.AddEffectAction
-	15,  // 13: df.plugin.Action.remove_effect:type_name -> df.plugin.RemoveEffectAction
-	16,  // 14: df.plugin.Action.send_title:type_name -> df.plugin.SendTitleAction
-	17,  // 15: df.plugin.Action.send_popup:type_name -> df.plugin.SendPopupAction
-	18,  // 16: df.plugin.Action.send_tip:type_name -> df.plugin.SendTipAction
-	19,  // 17: df.plugin.Action.play_sound:type_name -> df.plugin.PlaySoundAction
-	20,  // 18: df.plugin.Action.execute_command:type_name -> df.plugin.ExecuteCommandAction
-	21,  // 19: df.plugin.Action.world_set_default_game_mode:type_name -> df.plugin.WorldSetDefaultGameModeAction
-	22,  // 20: df.plugin.Action.world_set_difficulty:type_name -> df.plugin.WorldSetDifficultyAction
-	23,  // 21: df.plugin.Action.world_set_tick_range:type_name -> df.plugin.WorldSetTickRangeAction
-	30,  // 22: df.plugin.Action.world_set_spawn:type_name -> df.plugin.WorldSetSpawnAction
-	24,  // 23: df.plugin.Action.world_set_block:type_name -> df.plugin.WorldSetBlockAction
-	46,  // 24: df.plugin.Action.world_set_biome:type_name -> df.plugin.WorldSetBiomeAction
-	47,  // 25: df.plugin.Action.world_set_liquid:type_name -> df.plugin.WorldSetLiquidAction
-	48,  // 26: df.plugin.Action.world_schedule_block_update:type_name -> df.plugin.WorldScheduleBlockUpdateAction
-	51,  // 27: df.plugin.Action.world_build_structure:type_name -> df.plugin.WorldBuildStructureAction
-	27,  // 28: df.plugin.Action.world_set_time:type_name -> df.plugin.WorldSetTimeAction
-	28,  // 29: df.plugin.Action.world_stop_time:type_name -> df.plugin.WorldStopTimeAction
-	29,  // 30: df.plugin.Action.world_start_time:type_name -> df.plugin.WorldStartTimeAction
-	25,  // 31: df.plugin.Action.world_play_sound:type_name -> df.plugin.WorldPlaySoundAction
-	26,  // 32: df.plugin.Action.world_add_particle:type_name -> df.plugin.WorldAddParticleAction
-	33,  // 33: df.plugin.Action.world_query_entities:type_name -> df.plugin.WorldQueryEntitiesAction
-	34,  // 34: df.plugin.Action.world_query_players:type_name -> df.plugin.WorldQueryPlayersAction
-	35,  // 35: df.plugin.Action.world_query_entities_within:type_name -> df.plugin.WorldQueryEntitiesWithinAction
-	32,  // 36: df.plugin.Action.world_query_player_spawn:type_name -> df.plugin.WorldQueryPlayerSpawnAction
-	36,  // 37: df.plugin.Action.world_query_block:type_name -> df.plugin.WorldQueryBlockAction
-	37,  // 38: df.plugin.Action.world_query_biome:type_name -> df.plugin.WorldQueryBiomeAction
-	45,  // 39: df.plugin.Action.world_query_liquid:type_name -> df.plugin.WorldQueryLiquidAction
-	41,  // 40: df.plugin.Action.world_query_highest_block:type_name -> df.plugin.WorldQueryHighestBlockAction
-	38,  // 41: df.plugin.Action.world_query_light:type_name -> df.plugin.WorldQueryLightAction
-	39,  // 42: df.plugin.Action.world_query_sky_light:type_name -> df.plugin.WorldQuerySkyLightAction
-	40,  // 43: df.plugin.Action.world_query_temperature:type_name -> df.plugin.WorldQueryTemperatureAction
-	42,  // 44: df.plugin.Action.world_query_raining_at:type_name -> df.plugin.WorldQueryRainingAtAction
-	43,  // 45: df.plugin.Action.world_query_snowing_at:type_name -> df.plugin.WorldQuerySnowingAtAction
-	44,  // 46: df.plugin.Action.world_query_thundering_at:type_name -> df.plugin.WorldQueryThunderingAtAction
-	31,  // 47: df.plugin.Action.world_query_default_game_mode:type_name -> df.plugin.WorldQueryDefaultGameModeAction
-	52,  // 48: df.plugin.Action.player_start_sprinting:type_name -> df.plugin.PlayerStartSprintingAction
-	53,  // 49: df.plugin.Action.player_stop_sprinting:type_name -> df.plugin.PlayerStopSprintingAction
-	54,  // 50: df.plugin.Action.player_start_sneaking:type_name -> df.plugin.PlayerStartSneakingAction
-	55,  // 51: df.plugin.Action.player_stop_sneaking:type_name -> df.plugin.PlayerStopSneakingAction
-	56,  // 52: df.plugin.Action.player_start_swimming:type_name -> df.plugin.PlayerStartSwimmingAction
-	57,  // 53: df.plugin.Action.player_stop_swimming:type_name -> df.plugin.PlayerStopSwimmingAction
-	58,  // 54: df.plugin.Action.player_start_crawling:type_name -> df.plugin.PlayerStartCrawlingAction
-	59,  // 55: df.plugin.Action.player_stop_crawling:type_name -> df.plugin.PlayerStopCrawlingAction
-	60,  // 56: df.plugin.Action.player_start_gliding:type_name -> df.plugin.PlayerStartGlidingAction
-	61,  // 57: df.plugin.Action.player_stop_gliding:type_name -> df.plugin.PlayerStopGlidingAction
-	62,  // 58: df.plugin.Action.player_start_flying:type_name -> df.plugin.PlayerStartFlyingAction
-	63,  // 59: df.plugin.Action.player_stop_flying:type_name -> df.plugin.PlayerStopFlyingAction
-	64,  // 60: df.plugin.Action.player_set_immobile:type_name -> df.plugin.PlayerSetImmobileAction
-	65,  // 61: df.plugin.Action.player_set_mobile:type_name -> df.plugin.PlayerSetMobileAction
-	66,  // 62: df.plugin.Action.player_set_speed:type_name -> df.plugin.PlayerSetSpeedAction
-	67,  // 63: df.plugin.Action.player_set_flight_speed:type_name -> df.plugin.PlayerSetFlightSpeedAction
-	68,  // 64: df.plugin.Action.player_set_vertical_flight_speed:type_name -> df.plugin.PlayerSetVerticalFlightSpeedAction
-	69,  // 65: df.plugin.Action.player_set_absorption:type_name -> df.plugin.PlayerSetAbsorptionAction
-	70,  // 66: df.plugin.Action.player_set_on_fire:type_name -> df.plugin.PlayerSetOnFireAction
-	71,  // 67: df.plugin.Action.player_extinguish:type_name -> df.plugin.PlayerExtinguishAction
-	72,  // 68: df.plugin.Action.player_set_invisible:type_name -> df.plugin.PlayerSetInvisibleAction
-	73,  // 69: df.plugin.Action.player_set_visible:type_name -> df.plugin.PlayerSetVisibleAction
-	74,  // 70: df.plugin.Action.player_set_scale:type_name -> df.plugin.PlayerSetScaleAction
-	75,  // 71: df.plugin.Action.player_set_held_slot:type_name -> df.plugin.PlayerSetHeldSlotAction
-	76,  // 72: df.plugin.Action.player_send_toast:type_name -> df.plugin.PlayerSendToastAction
-	77,  // 73: df.plugin.Action.player_send_jukebox_popup:type_name -> df.plugin.PlayerSendJukeboxPopupAction
-	78,  // 74: df.plugin.Action.player_show_coordinates:type_name -> df.plugin.PlayerShowCoordinatesAction
-	79,  // 75: df.plugin.Action.player_hide_coordinates:type_name -> df.plugin.PlayerHideCoordinatesAction
-	80,  // 76: df.plugin.Action.player_enable_instant_respawn:type_name -> df.plugin.PlayerEnableInstantRespawnAction
-	81,  // 77: df.plugin.Action.player_disable_instant_respawn:type_name -> df.plugin.PlayerDisableInstantRespawnAction
-	82,  // 78: df.plugin.Action.player_set_name_tag:type_name -> df.plugin.PlayerSetNameTagAction
-	83,  // 79: df.plugin.Action.player_set_score_tag:type_name -> df.plugin.PlayerSetScoreTagAction
-	84,  // 80: df.plugin.Action.player_show_particle:type_name -> df.plugin.PlayerShowParticleAction
-	85,  // 81: df.plugin.Action.player_respawn:type_name -> df.plugin.PlayerRespawnAction
-	86,  // 82: df.plugin.Action.player_transfer:type_name -> df.plugin.PlayerTransferAction
-	87,  // 83: df.plugin.Action.player_knock_back:type_name -> df.plugin.PlayerKnockBackAction
-	88,  // 84: df.plugin.Action.player_swing_arm:type_name -> df.plugin.PlayerSwingArmAction
-	89,  // 85: df.plugin.Action.player_punch_air:type_name -> df.plugin.PlayerPunchAirAction
-	90,  // 86: df.plugin.TeleportAction.position:type_name -> df.plugin.Vec3
-	90,  // 87: df.plugin.TeleportAction.rotation:type_name -> df.plugin.Vec3
-	91,  // 88: df.plugin.SetGameModeAction.game_mode:type_name -> df.plugin.GameMode
-	92,  // 89: df.plugin.GiveItemAction.item:type_name -> df.plugin.ItemStack
-	92,  // 90: df.plugin.SetHeldItemAction.main:type_name -> df.plugin.ItemStack
-	92,  // 91: df.plugin.SetHeldItemAction.offhand:type_name -> df.plugin.ItemStack
-	90,  // 92: df.plugin.SetVelocityAction.velocity:type_name -> df.plugin.Vec3
-	93,  // 93: df.plugin.AddEffectAction.effect_type:type_name -> df.plugin.EffectType
-	93,  // 94: df.plugin.RemoveEffectAction.effect_type:type_name -> df.plugin.EffectType
-	94,  // 95: df.plugin.PlaySoundAction.sound:type_name -> df.plugin.Sound
-	90,  // 96: df.plugin.PlaySoundAction.position:type_name -> df.plugin.Vec3
-	95,  // 97: df.plugin.WorldSetDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
-	91,  // 98: df.plugin.WorldSetDefaultGameModeAction.game_mode:type_name -> df.plugin.GameMode
-	95,  // 99: df.plugin.WorldSetDifficultyAction.world:type_name -> df.plugin.WorldRef
-	96,  // 100: df.plugin.WorldSetDifficultyAction.difficulty:type_name -> df.plugin.Difficulty
-	95,  // 101: df.plugin.WorldSetTickRangeAction.world:type_name -> df.plugin.WorldRef
-	95,  // 102: df.plugin.WorldSetBlockAction.world:type_name -> df.plugin.WorldRef
-	97,  // 103: df.plugin.WorldSetBlockAction.position:type_name -> df.plugin.BlockPos
-	98,  // 104: df.plugin.WorldSetBlockAction.block:type_name -> df.plugin.BlockState
-	95,  // 105: df.plugin.WorldPlaySoundAction.world:type_name -> df.plugin.WorldRef
-	94,  // 106: df.plugin.WorldPlaySoundAction.sound:type_name -> df.plugin.Sound
-	90,  // 107: df.plugin.WorldPlaySoundAction.position:type_name -> df.plugin.Vec3
-	95,  // 108: df.plugin.WorldAddParticleAction.world:type_name -> df.plugin.WorldRef
-	90,  // 109: df.plugin.WorldAddParticleAction.position:type_name -> df.plugin.Vec3
-	0,   // 110: df.plugin.WorldAddParticleAction.particle:type_name -> df.plugin.ParticleType
-	98,  // 111: df.plugin.WorldAddParticleAction.block:type_name -> df.plugin.BlockState
-	95,  // 112: df.plugin.WorldSetTimeAction.world:type_name -> df.plugin.WorldRef
-	95,  // 113: df.plugin.WorldStopTimeAction.world:type_name -> df.plugin.WorldRef
-	95,  // 114: df.plugin.WorldStartTimeAction.world:type_name -> df.plugin.WorldRef
-	95,  // 115: df.plugin.WorldSetSpawnAction.world:type_name -> df.plugin.WorldRef
-	97,  // 116: df.plugin.WorldSetSpawnAction.spawn:type_name -> df.plugin.BlockPos
-	95,  // 117: df.plugin.WorldQueryDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
-	95,  // 118: df.plugin.WorldQueryPlayerSpawnAction.world:type_name -> df.plugin.WorldRef
-	95,  // 119: df.plugin.WorldQueryEntitiesAction.world:type_name -> df.plugin.WorldRef
-	95,  // 120: df.plugin.WorldQueryPlayersAction.world:type_name -> df.plugin.WorldRef
-	95,  // 121: df.plugin.WorldQueryEntitiesWithinAction.world:type_name -> df.plugin.WorldRef
-	99,  // 122: df.plugin.WorldQueryEntitiesWithinAction.box:type_name -> df.plugin.BBox
-	95,  // 123: df.plugin.WorldQueryBlockAction.world:type_name -> df.plugin.WorldRef
-	97,  // 124: df.plugin.WorldQueryBlockAction.position:type_name -> df.plugin.BlockPos
-	95,  // 125: df.plugin.WorldQueryBiomeAction.world:type_name -> df.plugin.WorldRef
-	97,  // 126: df.plugin.WorldQueryBiomeAction.position:type_name -> df.plugin.BlockPos
-	95,  // 127: df.plugin.WorldQueryLightAction.world:type_name -> df.plugin.WorldRef
-	97,  // 128: df.plugin.WorldQueryLightAction.position:type_name -> df.plugin.BlockPos
-	95,  // 129: df.plugin.WorldQuerySkyLightAction.world:type_name -> df.plugin.WorldRef
-	97,  // 130: df.plugin.WorldQuerySkyLightAction.position:type_name -> df.plugin.BlockPos
-	95,  // 131: df.plugin.WorldQueryTemperatureAction.world:type_name -> df.plugin.WorldRef
-	97,  // 132: df.plugin.WorldQueryTemperatureAction.position:type_name -> df.plugin.BlockPos
-	95,  // 133: df.plugin.WorldQueryHighestBlockAction.world:type_name -> df.plugin.WorldRef
-	95,  // 134: df.plugin.WorldQueryRainingAtAction.world:type_name -> df.plugin.WorldRef
-	97,  // 135: df.plugin.WorldQueryRainingAtAction.position:type_name -> df.plugin.BlockPos
-	95,  // 136: df.plugin.WorldQuerySnowingAtAction.world:type_name -> df.plugin.WorldRef
-	97,  // 137: df.plugin.WorldQuerySnowingAtAction.position:type_name -> df.plugin.BlockPos
-	95,  // 138: df.plugin.WorldQueryThunderingAtAction.world:type_name -> df.plugin.WorldRef
-	97,  // 139: df.plugin.WorldQueryThunderingAtAction.position:type_name -> df.plugin.BlockPos
-	95,  // 140: df.plugin.WorldQueryLiquidAction.world:type_name -> df.plugin.WorldRef
-	97,  // 141: df.plugin.WorldQueryLiquidAction.position:type_name -> df.plugin.BlockPos
-	95,  // 142: df.plugin.WorldSetBiomeAction.world:type_name -> df.plugin.WorldRef
-	97,  // 143: df.plugin.WorldSetBiomeAction.position:type_name -> df.plugin.BlockPos
-	95,  // 144: df.plugin.WorldSetLiquidAction.world:type_name -> df.plugin.WorldRef
-	97,  // 145: df.plugin.WorldSetLiquidAction.position:type_name -> df.plugin.BlockPos
-	100, // 146: df.plugin.WorldSetLiquidAction.liquid:type_name -> df.plugin.LiquidState
-	95,  // 147: df.plugin.WorldScheduleBlockUpdateAction.world:type_name -> df.plugin.WorldRef
-	97,  // 148: df.plugin.WorldScheduleBlockUpdateAction.position:type_name -> df.plugin.BlockPos
-	98,  // 149: df.plugin.WorldScheduleBlockUpdateAction.block:type_name -> df.plugin.BlockState
-	98,  // 150: df.plugin.StructureVoxel.block:type_name -> df.plugin.BlockState
-	100, // 151: df.plugin.StructureVoxel.liquid:type_name -> df.plugin.LiquidState
-	49,  // 152: df.plugin.StructureDef.voxels:type_name -> df.plugin.StructureVoxel
-	95,  // 153: df.plugin.WorldBuildStructureAction.world:type_name -> df.plugin.WorldRef
-	97,  // 154: df.plugin.WorldBuildStructureAction.origin:type_name -> df.plugin.BlockPos
-	50,  // 155: df.plugin.WorldBuildStructureAction.structure:type_name -> df.plugin.StructureDef
-	90,  // 156: df.plugin.PlayerShowParticleAction.position:type_name -> df.plugin.Vec3
-	0,   // 157: df.plugin.PlayerShowParticleAction.particle:type_name -> df.plugin.ParticleType
-	98,  // 158: df.plugin.PlayerShowParticleAction.block:type_name -> df.plugin.BlockState
-	101, // 159: df.plugin.PlayerTransferAction.address:type_name -> df.plugin.Address
-	90,  // 160: df.plugin.PlayerKnockBackAction.source:type_name -> df.plugin.Vec3
-	161, // [161:161] is the sub-list for method output_type
-	161, // [161:161] is the sub-list for method input_type
-	161, // [161:161] is the sub-list for extension type_name
-	161, // [161:161] is the sub-list for extension extendee
-	0,   // [0:161] is the sub-list for field type_name
+	90,  // 8: df.plugin.Action.player_set_armour:type_name -> df.plugin.PlayerSetArmourAction
+	10,  // 9: df.plugin.Action.set_health:type_name -> df.plugin.SetHealthAction
+	11,  // 10: df.plugin.Action.set_food:type_name -> df.plugin.SetFoodAction
+	12,  // 11: df.plugin.Action.set_experience:type_name -> df.plugin.SetExperienceAction
+	13,  // 12: df.plugin.Action.set_velocity:type_name -> df.plugin.SetVelocityAction
+	14,  // 13: df.plugin.Action.add_effect:type_name -> df.plugin.AddEffectAction
+	15,  // 14: df.plugin.Action.remove_effect:type_name -> df.plugin.RemoveEffectAction
+	16,  // 15: df.plugin.Action.send_title:type_name -> df.plugin.SendTitleAction
+	17,  // 16: df.plugin.Action.send_popup:type_name -> df.plugin.SendPopupAction
+	18,  // 17: df.plugin.Action.send_tip:type_name -> df.plugin.SendTipAction
+	76,  // 18: df.plugin.Action.player_send_toast:type_name -> df.plugin.PlayerSendToastAction
+	77,  // 19: df.plugin.Action.player_send_jukebox_popup:type_name -> df.plugin.PlayerSendJukeboxPopupAction
+	78,  // 20: df.plugin.Action.player_show_coordinates:type_name -> df.plugin.PlayerShowCoordinatesAction
+	79,  // 21: df.plugin.Action.player_hide_coordinates:type_name -> df.plugin.PlayerHideCoordinatesAction
+	80,  // 22: df.plugin.Action.player_enable_instant_respawn:type_name -> df.plugin.PlayerEnableInstantRespawnAction
+	81,  // 23: df.plugin.Action.player_disable_instant_respawn:type_name -> df.plugin.PlayerDisableInstantRespawnAction
+	82,  // 24: df.plugin.Action.player_set_name_tag:type_name -> df.plugin.PlayerSetNameTagAction
+	83,  // 25: df.plugin.Action.player_set_score_tag:type_name -> df.plugin.PlayerSetScoreTagAction
+	19,  // 26: df.plugin.Action.play_sound:type_name -> df.plugin.PlaySoundAction
+	84,  // 27: df.plugin.Action.player_show_particle:type_name -> df.plugin.PlayerShowParticleAction
+	91,  // 28: df.plugin.Action.player_send_scoreboard:type_name -> df.plugin.PlayerSendScoreboardAction
+	92,  // 29: df.plugin.Action.player_remove_scoreboard:type_name -> df.plugin.PlayerRemoveScoreboardAction
+	20,  // 30: df.plugin.Action.execute_command:type_name -> df.plugin.ExecuteCommandAction
+	52,  // 31: df.plugin.Action.player_start_sprinting:type_name -> df.plugin.PlayerStartSprintingAction
+	53,  // 32: df.plugin.Action.player_stop_sprinting:type_name -> df.plugin.PlayerStopSprintingAction
+	54,  // 33: df.plugin.Action.player_start_sneaking:type_name -> df.plugin.PlayerStartSneakingAction
+	55,  // 34: df.plugin.Action.player_stop_sneaking:type_name -> df.plugin.PlayerStopSneakingAction
+	56,  // 35: df.plugin.Action.player_start_swimming:type_name -> df.plugin.PlayerStartSwimmingAction
+	57,  // 36: df.plugin.Action.player_stop_swimming:type_name -> df.plugin.PlayerStopSwimmingAction
+	58,  // 37: df.plugin.Action.player_start_crawling:type_name -> df.plugin.PlayerStartCrawlingAction
+	59,  // 38: df.plugin.Action.player_stop_crawling:type_name -> df.plugin.PlayerStopCrawlingAction
+	60,  // 39: df.plugin.Action.player_start_gliding:type_name -> df.plugin.PlayerStartGlidingAction
+	61,  // 40: df.plugin.Action.player_stop_gliding:type_name -> df.plugin.PlayerStopGlidingAction
+	62,  // 41: df.plugin.Action.player_start_flying:type_name -> df.plugin.PlayerStartFlyingAction
+	63,  // 42: df.plugin.Action.player_stop_flying:type_name -> df.plugin.PlayerStopFlyingAction
+	64,  // 43: df.plugin.Action.player_set_immobile:type_name -> df.plugin.PlayerSetImmobileAction
+	65,  // 44: df.plugin.Action.player_set_mobile:type_name -> df.plugin.PlayerSetMobileAction
+	66,  // 45: df.plugin.Action.player_set_speed:type_name -> df.plugin.PlayerSetSpeedAction
+	67,  // 46: df.plugin.Action.player_set_flight_speed:type_name -> df.plugin.PlayerSetFlightSpeedAction
+	68,  // 47: df.plugin.Action.player_set_vertical_flight_speed:type_name -> df.plugin.PlayerSetVerticalFlightSpeedAction
+	69,  // 48: df.plugin.Action.player_set_absorption:type_name -> df.plugin.PlayerSetAbsorptionAction
+	70,  // 49: df.plugin.Action.player_set_on_fire:type_name -> df.plugin.PlayerSetOnFireAction
+	71,  // 50: df.plugin.Action.player_extinguish:type_name -> df.plugin.PlayerExtinguishAction
+	72,  // 51: df.plugin.Action.player_set_invisible:type_name -> df.plugin.PlayerSetInvisibleAction
+	73,  // 52: df.plugin.Action.player_set_visible:type_name -> df.plugin.PlayerSetVisibleAction
+	74,  // 53: df.plugin.Action.player_set_scale:type_name -> df.plugin.PlayerSetScaleAction
+	75,  // 54: df.plugin.Action.player_set_held_slot:type_name -> df.plugin.PlayerSetHeldSlotAction
+	85,  // 55: df.plugin.Action.player_respawn:type_name -> df.plugin.PlayerRespawnAction
+	86,  // 56: df.plugin.Action.player_transfer:type_name -> df.plugin.PlayerTransferAction
+	87,  // 57: df.plugin.Action.player_knock_back:type_name -> df.plugin.PlayerKnockBackAction
+	88,  // 58: df.plugin.Action.player_swing_arm:type_name -> df.plugin.PlayerSwingArmAction
+	89,  // 59: df.plugin.Action.player_punch_air:type_name -> df.plugin.PlayerPunchAirAction
+	21,  // 60: df.plugin.Action.world_set_default_game_mode:type_name -> df.plugin.WorldSetDefaultGameModeAction
+	22,  // 61: df.plugin.Action.world_set_difficulty:type_name -> df.plugin.WorldSetDifficultyAction
+	23,  // 62: df.plugin.Action.world_set_tick_range:type_name -> df.plugin.WorldSetTickRangeAction
+	24,  // 63: df.plugin.Action.world_set_block:type_name -> df.plugin.WorldSetBlockAction
+	25,  // 64: df.plugin.Action.world_play_sound:type_name -> df.plugin.WorldPlaySoundAction
+	26,  // 65: df.plugin.Action.world_add_particle:type_name -> df.plugin.WorldAddParticleAction
+	27,  // 66: df.plugin.Action.world_set_time:type_name -> df.plugin.WorldSetTimeAction
+	28,  // 67: df.plugin.Action.world_stop_time:type_name -> df.plugin.WorldStopTimeAction
+	29,  // 68: df.plugin.Action.world_start_time:type_name -> df.plugin.WorldStartTimeAction
+	30,  // 69: df.plugin.Action.world_set_spawn:type_name -> df.plugin.WorldSetSpawnAction
+	46,  // 70: df.plugin.Action.world_set_biome:type_name -> df.plugin.WorldSetBiomeAction
+	47,  // 71: df.plugin.Action.world_set_liquid:type_name -> df.plugin.WorldSetLiquidAction
+	48,  // 72: df.plugin.Action.world_schedule_block_update:type_name -> df.plugin.WorldScheduleBlockUpdateAction
+	51,  // 73: df.plugin.Action.world_build_structure:type_name -> df.plugin.WorldBuildStructureAction
+	33,  // 74: df.plugin.Action.world_query_entities:type_name -> df.plugin.WorldQueryEntitiesAction
+	34,  // 75: df.plugin.Action.world_query_players:type_name -> df.plugin.WorldQueryPlayersAction
+	35,  // 76: df.plugin.Action.world_query_entities_within:type_name -> df.plugin.WorldQueryEntitiesWithinAction
+	32,  // 77: df.plugin.Action.world_query_player_spawn:type_name -> df.plugin.WorldQueryPlayerSpawnAction
+	36,  // 78: df.plugin.Action.world_query_block:type_name -> df.plugin.WorldQueryBlockAction
+	37,  // 79: df.plugin.Action.world_query_biome:type_name -> df.plugin.WorldQueryBiomeAction
+	38,  // 80: df.plugin.Action.world_query_light:type_name -> df.plugin.WorldQueryLightAction
+	39,  // 81: df.plugin.Action.world_query_sky_light:type_name -> df.plugin.WorldQuerySkyLightAction
+	40,  // 82: df.plugin.Action.world_query_temperature:type_name -> df.plugin.WorldQueryTemperatureAction
+	41,  // 83: df.plugin.Action.world_query_highest_block:type_name -> df.plugin.WorldQueryHighestBlockAction
+	42,  // 84: df.plugin.Action.world_query_raining_at:type_name -> df.plugin.WorldQueryRainingAtAction
+	43,  // 85: df.plugin.Action.world_query_snowing_at:type_name -> df.plugin.WorldQuerySnowingAtAction
+	44,  // 86: df.plugin.Action.world_query_thundering_at:type_name -> df.plugin.WorldQueryThunderingAtAction
+	45,  // 87: df.plugin.Action.world_query_liquid:type_name -> df.plugin.WorldQueryLiquidAction
+	31,  // 88: df.plugin.Action.world_query_default_game_mode:type_name -> df.plugin.WorldQueryDefaultGameModeAction
+	93,  // 89: df.plugin.TeleportAction.position:type_name -> df.plugin.Vec3
+	93,  // 90: df.plugin.TeleportAction.rotation:type_name -> df.plugin.Vec3
+	94,  // 91: df.plugin.SetGameModeAction.game_mode:type_name -> df.plugin.GameMode
+	95,  // 92: df.plugin.GiveItemAction.item:type_name -> df.plugin.ItemStack
+	95,  // 93: df.plugin.SetHeldItemAction.main:type_name -> df.plugin.ItemStack
+	95,  // 94: df.plugin.SetHeldItemAction.offhand:type_name -> df.plugin.ItemStack
+	93,  // 95: df.plugin.SetVelocityAction.velocity:type_name -> df.plugin.Vec3
+	96,  // 96: df.plugin.AddEffectAction.effect_type:type_name -> df.plugin.EffectType
+	96,  // 97: df.plugin.RemoveEffectAction.effect_type:type_name -> df.plugin.EffectType
+	97,  // 98: df.plugin.PlaySoundAction.sound:type_name -> df.plugin.Sound
+	93,  // 99: df.plugin.PlaySoundAction.position:type_name -> df.plugin.Vec3
+	98,  // 100: df.plugin.WorldSetDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
+	94,  // 101: df.plugin.WorldSetDefaultGameModeAction.game_mode:type_name -> df.plugin.GameMode
+	98,  // 102: df.plugin.WorldSetDifficultyAction.world:type_name -> df.plugin.WorldRef
+	99,  // 103: df.plugin.WorldSetDifficultyAction.difficulty:type_name -> df.plugin.Difficulty
+	98,  // 104: df.plugin.WorldSetTickRangeAction.world:type_name -> df.plugin.WorldRef
+	98,  // 105: df.plugin.WorldSetBlockAction.world:type_name -> df.plugin.WorldRef
+	100, // 106: df.plugin.WorldSetBlockAction.position:type_name -> df.plugin.BlockPos
+	101, // 107: df.plugin.WorldSetBlockAction.block:type_name -> df.plugin.BlockState
+	98,  // 108: df.plugin.WorldPlaySoundAction.world:type_name -> df.plugin.WorldRef
+	97,  // 109: df.plugin.WorldPlaySoundAction.sound:type_name -> df.plugin.Sound
+	93,  // 110: df.plugin.WorldPlaySoundAction.position:type_name -> df.plugin.Vec3
+	98,  // 111: df.plugin.WorldAddParticleAction.world:type_name -> df.plugin.WorldRef
+	93,  // 112: df.plugin.WorldAddParticleAction.position:type_name -> df.plugin.Vec3
+	0,   // 113: df.plugin.WorldAddParticleAction.particle:type_name -> df.plugin.ParticleType
+	101, // 114: df.plugin.WorldAddParticleAction.block:type_name -> df.plugin.BlockState
+	98,  // 115: df.plugin.WorldSetTimeAction.world:type_name -> df.plugin.WorldRef
+	98,  // 116: df.plugin.WorldStopTimeAction.world:type_name -> df.plugin.WorldRef
+	98,  // 117: df.plugin.WorldStartTimeAction.world:type_name -> df.plugin.WorldRef
+	98,  // 118: df.plugin.WorldSetSpawnAction.world:type_name -> df.plugin.WorldRef
+	100, // 119: df.plugin.WorldSetSpawnAction.spawn:type_name -> df.plugin.BlockPos
+	98,  // 120: df.plugin.WorldQueryDefaultGameModeAction.world:type_name -> df.plugin.WorldRef
+	98,  // 121: df.plugin.WorldQueryPlayerSpawnAction.world:type_name -> df.plugin.WorldRef
+	98,  // 122: df.plugin.WorldQueryEntitiesAction.world:type_name -> df.plugin.WorldRef
+	98,  // 123: df.plugin.WorldQueryPlayersAction.world:type_name -> df.plugin.WorldRef
+	98,  // 124: df.plugin.WorldQueryEntitiesWithinAction.world:type_name -> df.plugin.WorldRef
+	102, // 125: df.plugin.WorldQueryEntitiesWithinAction.box:type_name -> df.plugin.BBox
+	98,  // 126: df.plugin.WorldQueryBlockAction.world:type_name -> df.plugin.WorldRef
+	100, // 127: df.plugin.WorldQueryBlockAction.position:type_name -> df.plugin.BlockPos
+	98,  // 128: df.plugin.WorldQueryBiomeAction.world:type_name -> df.plugin.WorldRef
+	100, // 129: df.plugin.WorldQueryBiomeAction.position:type_name -> df.plugin.BlockPos
+	98,  // 130: df.plugin.WorldQueryLightAction.world:type_name -> df.plugin.WorldRef
+	100, // 131: df.plugin.WorldQueryLightAction.position:type_name -> df.plugin.BlockPos
+	98,  // 132: df.plugin.WorldQuerySkyLightAction.world:type_name -> df.plugin.WorldRef
+	100, // 133: df.plugin.WorldQuerySkyLightAction.position:type_name -> df.plugin.BlockPos
+	98,  // 134: df.plugin.WorldQueryTemperatureAction.world:type_name -> df.plugin.WorldRef
+	100, // 135: df.plugin.WorldQueryTemperatureAction.position:type_name -> df.plugin.BlockPos
+	98,  // 136: df.plugin.WorldQueryHighestBlockAction.world:type_name -> df.plugin.WorldRef
+	98,  // 137: df.plugin.WorldQueryRainingAtAction.world:type_name -> df.plugin.WorldRef
+	100, // 138: df.plugin.WorldQueryRainingAtAction.position:type_name -> df.plugin.BlockPos
+	98,  // 139: df.plugin.WorldQuerySnowingAtAction.world:type_name -> df.plugin.WorldRef
+	100, // 140: df.plugin.WorldQuerySnowingAtAction.position:type_name -> df.plugin.BlockPos
+	98,  // 141: df.plugin.WorldQueryThunderingAtAction.world:type_name -> df.plugin.WorldRef
+	100, // 142: df.plugin.WorldQueryThunderingAtAction.position:type_name -> df.plugin.BlockPos
+	98,  // 143: df.plugin.WorldQueryLiquidAction.world:type_name -> df.plugin.WorldRef
+	100, // 144: df.plugin.WorldQueryLiquidAction.position:type_name -> df.plugin.BlockPos
+	98,  // 145: df.plugin.WorldSetBiomeAction.world:type_name -> df.plugin.WorldRef
+	100, // 146: df.plugin.WorldSetBiomeAction.position:type_name -> df.plugin.BlockPos
+	98,  // 147: df.plugin.WorldSetLiquidAction.world:type_name -> df.plugin.WorldRef
+	100, // 148: df.plugin.WorldSetLiquidAction.position:type_name -> df.plugin.BlockPos
+	103, // 149: df.plugin.WorldSetLiquidAction.liquid:type_name -> df.plugin.LiquidState
+	98,  // 150: df.plugin.WorldScheduleBlockUpdateAction.world:type_name -> df.plugin.WorldRef
+	100, // 151: df.plugin.WorldScheduleBlockUpdateAction.position:type_name -> df.plugin.BlockPos
+	101, // 152: df.plugin.WorldScheduleBlockUpdateAction.block:type_name -> df.plugin.BlockState
+	101, // 153: df.plugin.StructureVoxel.block:type_name -> df.plugin.BlockState
+	103, // 154: df.plugin.StructureVoxel.liquid:type_name -> df.plugin.LiquidState
+	49,  // 155: df.plugin.StructureDef.voxels:type_name -> df.plugin.StructureVoxel
+	98,  // 156: df.plugin.WorldBuildStructureAction.world:type_name -> df.plugin.WorldRef
+	100, // 157: df.plugin.WorldBuildStructureAction.origin:type_name -> df.plugin.BlockPos
+	50,  // 158: df.plugin.WorldBuildStructureAction.structure:type_name -> df.plugin.StructureDef
+	93,  // 159: df.plugin.PlayerShowParticleAction.position:type_name -> df.plugin.Vec3
+	0,   // 160: df.plugin.PlayerShowParticleAction.particle:type_name -> df.plugin.ParticleType
+	101, // 161: df.plugin.PlayerShowParticleAction.block:type_name -> df.plugin.BlockState
+	104, // 162: df.plugin.PlayerTransferAction.address:type_name -> df.plugin.Address
+	93,  // 163: df.plugin.PlayerKnockBackAction.source:type_name -> df.plugin.Vec3
+	95,  // 164: df.plugin.PlayerSetArmourAction.helmet:type_name -> df.plugin.ItemStack
+	95,  // 165: df.plugin.PlayerSetArmourAction.chestplate:type_name -> df.plugin.ItemStack
+	95,  // 166: df.plugin.PlayerSetArmourAction.leggings:type_name -> df.plugin.ItemStack
+	95,  // 167: df.plugin.PlayerSetArmourAction.boots:type_name -> df.plugin.ItemStack
+	168, // [168:168] is the sub-list for method output_type
+	168, // [168:168] is the sub-list for method input_type
+	168, // [168:168] is the sub-list for extension type_name
+	168, // [168:168] is the sub-list for extension extendee
+	0,   // [0:168] is the sub-list for field type_name
 }
 
 func init() { file_actions_proto_init() }
@@ -6990,6 +7276,7 @@ func file_actions_proto_init() {
 		(*Action_GiveItem)(nil),
 		(*Action_ClearInventory)(nil),
 		(*Action_SetHeldItem)(nil),
+		(*Action_PlayerSetArmour)(nil),
 		(*Action_SetHealth)(nil),
 		(*Action_SetFood)(nil),
 		(*Action_SetExperience)(nil),
@@ -6999,37 +7286,19 @@ func file_actions_proto_init() {
 		(*Action_SendTitle)(nil),
 		(*Action_SendPopup)(nil),
 		(*Action_SendTip)(nil),
+		(*Action_PlayerSendToast)(nil),
+		(*Action_PlayerSendJukeboxPopup)(nil),
+		(*Action_PlayerShowCoordinates)(nil),
+		(*Action_PlayerHideCoordinates)(nil),
+		(*Action_PlayerEnableInstantRespawn)(nil),
+		(*Action_PlayerDisableInstantRespawn)(nil),
+		(*Action_PlayerSetNameTag)(nil),
+		(*Action_PlayerSetScoreTag)(nil),
 		(*Action_PlaySound)(nil),
+		(*Action_PlayerShowParticle)(nil),
+		(*Action_PlayerSendScoreboard)(nil),
+		(*Action_PlayerRemoveScoreboard)(nil),
 		(*Action_ExecuteCommand)(nil),
-		(*Action_WorldSetDefaultGameMode)(nil),
-		(*Action_WorldSetDifficulty)(nil),
-		(*Action_WorldSetTickRange)(nil),
-		(*Action_WorldSetSpawn)(nil),
-		(*Action_WorldSetBlock)(nil),
-		(*Action_WorldSetBiome)(nil),
-		(*Action_WorldSetLiquid)(nil),
-		(*Action_WorldScheduleBlockUpdate)(nil),
-		(*Action_WorldBuildStructure)(nil),
-		(*Action_WorldSetTime)(nil),
-		(*Action_WorldStopTime)(nil),
-		(*Action_WorldStartTime)(nil),
-		(*Action_WorldPlaySound)(nil),
-		(*Action_WorldAddParticle)(nil),
-		(*Action_WorldQueryEntities)(nil),
-		(*Action_WorldQueryPlayers)(nil),
-		(*Action_WorldQueryEntitiesWithin)(nil),
-		(*Action_WorldQueryPlayerSpawn)(nil),
-		(*Action_WorldQueryBlock)(nil),
-		(*Action_WorldQueryBiome)(nil),
-		(*Action_WorldQueryLiquid)(nil),
-		(*Action_WorldQueryHighestBlock)(nil),
-		(*Action_WorldQueryLight)(nil),
-		(*Action_WorldQuerySkyLight)(nil),
-		(*Action_WorldQueryTemperature)(nil),
-		(*Action_WorldQueryRainingAt)(nil),
-		(*Action_WorldQuerySnowingAt)(nil),
-		(*Action_WorldQueryThunderingAt)(nil),
-		(*Action_WorldQueryDefaultGameMode)(nil),
 		(*Action_PlayerStartSprinting)(nil),
 		(*Action_PlayerStopSprinting)(nil),
 		(*Action_PlayerStartSneaking)(nil),
@@ -7054,20 +7323,40 @@ func file_actions_proto_init() {
 		(*Action_PlayerSetVisible)(nil),
 		(*Action_PlayerSetScale)(nil),
 		(*Action_PlayerSetHeldSlot)(nil),
-		(*Action_PlayerSendToast)(nil),
-		(*Action_PlayerSendJukeboxPopup)(nil),
-		(*Action_PlayerShowCoordinates)(nil),
-		(*Action_PlayerHideCoordinates)(nil),
-		(*Action_PlayerEnableInstantRespawn)(nil),
-		(*Action_PlayerDisableInstantRespawn)(nil),
-		(*Action_PlayerSetNameTag)(nil),
-		(*Action_PlayerSetScoreTag)(nil),
-		(*Action_PlayerShowParticle)(nil),
 		(*Action_PlayerRespawn)(nil),
 		(*Action_PlayerTransfer)(nil),
 		(*Action_PlayerKnockBack)(nil),
 		(*Action_PlayerSwingArm)(nil),
 		(*Action_PlayerPunchAir)(nil),
+		(*Action_WorldSetDefaultGameMode)(nil),
+		(*Action_WorldSetDifficulty)(nil),
+		(*Action_WorldSetTickRange)(nil),
+		(*Action_WorldSetBlock)(nil),
+		(*Action_WorldPlaySound)(nil),
+		(*Action_WorldAddParticle)(nil),
+		(*Action_WorldSetTime)(nil),
+		(*Action_WorldStopTime)(nil),
+		(*Action_WorldStartTime)(nil),
+		(*Action_WorldSetSpawn)(nil),
+		(*Action_WorldSetBiome)(nil),
+		(*Action_WorldSetLiquid)(nil),
+		(*Action_WorldScheduleBlockUpdate)(nil),
+		(*Action_WorldBuildStructure)(nil),
+		(*Action_WorldQueryEntities)(nil),
+		(*Action_WorldQueryPlayers)(nil),
+		(*Action_WorldQueryEntitiesWithin)(nil),
+		(*Action_WorldQueryPlayerSpawn)(nil),
+		(*Action_WorldQueryBlock)(nil),
+		(*Action_WorldQueryBiome)(nil),
+		(*Action_WorldQueryLight)(nil),
+		(*Action_WorldQuerySkyLight)(nil),
+		(*Action_WorldQueryTemperature)(nil),
+		(*Action_WorldQueryHighestBlock)(nil),
+		(*Action_WorldQueryRainingAt)(nil),
+		(*Action_WorldQuerySnowingAt)(nil),
+		(*Action_WorldQueryThunderingAt)(nil),
+		(*Action_WorldQueryLiquid)(nil),
+		(*Action_WorldQueryDefaultGameMode)(nil),
 	}
 	file_actions_proto_msgTypes[8].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[9].OneofWrappers = []any{}
@@ -7079,13 +7368,15 @@ func file_actions_proto_init() {
 	file_actions_proto_msgTypes[46].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[48].OneofWrappers = []any{}
 	file_actions_proto_msgTypes[83].OneofWrappers = []any{}
+	file_actions_proto_msgTypes[89].OneofWrappers = []any{}
+	file_actions_proto_msgTypes[90].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_actions_proto_rawDesc), len(file_actions_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   89,
+			NumMessages:   92,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

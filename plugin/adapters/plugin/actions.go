@@ -11,6 +11,7 @@ import (
 	"github.com/df-mc/dragonfly/server/item"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
+	"github.com/df-mc/dragonfly/server/player/scoreboard"
 	"github.com/df-mc/dragonfly/server/player/title"
 	"github.com/df-mc/dragonfly/server/world"
 	"github.com/df-mc/dragonfly/server/world/particle"
@@ -44,6 +45,8 @@ func (m *Manager) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
 			m.handleClearInventory(kind.ClearInventory)
 		case *pb.Action_SetHeldItem:
 			m.handleSetHeldItem(kind.SetHeldItem)
+		case *pb.Action_PlayerSetArmour:
+			m.handlePlayerSetArmour(kind.PlayerSetArmour)
 		case *pb.Action_SetHealth:
 			m.handleSetHealth(kind.SetHealth)
 		case *pb.Action_SetFood:
@@ -190,6 +193,10 @@ func (m *Manager) applyActions(p *pluginProcess, batch *pb.ActionBatch) {
 			m.handlePlayerSetScoreTag(kind.PlayerSetScoreTag)
 		case *pb.Action_PlayerShowParticle:
 			m.handlePlayerShowParticle(kind.PlayerShowParticle)
+		case *pb.Action_PlayerSendScoreboard:
+			m.handlePlayerSendScoreboard(kind.PlayerSendScoreboard)
+		case *pb.Action_PlayerRemoveScoreboard:
+			m.handlePlayerRemoveScoreboard(kind.PlayerRemoveScoreboard)
 		case *pb.Action_PlayerRespawn:
 			m.handlePlayerRespawn(kind.PlayerRespawn)
 		case *pb.Action_PlayerTransfer:
@@ -837,6 +844,77 @@ func (m *Manager) handlePlayerPunchAirAction(act *pb.PlayerPunchAirAction) {
 		return
 	}
 	m.execMethod(id, func(pl *player.Player) { pl.PunchAir() })
+}
+
+// Player armour
+func (m *Manager) handlePlayerSetArmour(act *pb.PlayerSetArmourAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) {
+		if act.Helmet != nil {
+			if s, ok := convertProtoItemStackValue(act.Helmet); ok {
+				pl.Armour().SetHelmet(s)
+			} else {
+				pl.Armour().SetHelmet(item.Stack{})
+			}
+		}
+		if act.Chestplate != nil {
+			if s, ok := convertProtoItemStackValue(act.Chestplate); ok {
+				pl.Armour().SetChestplate(s)
+			} else {
+				pl.Armour().SetChestplate(item.Stack{})
+			}
+		}
+		if act.Leggings != nil {
+			if s, ok := convertProtoItemStackValue(act.Leggings); ok {
+				pl.Armour().SetLeggings(s)
+			} else {
+				pl.Armour().SetLeggings(item.Stack{})
+			}
+		}
+		if act.Boots != nil {
+			if s, ok := convertProtoItemStackValue(act.Boots); ok {
+				pl.Armour().SetBoots(s)
+			} else {
+				pl.Armour().SetBoots(item.Stack{})
+			}
+		}
+	})
+}
+
+// Player scoreboard
+func (m *Manager) handlePlayerSendScoreboard(act *pb.PlayerSendScoreboardAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) {
+		sb := scoreboard.New(act.Title)
+		if act.Padding != nil && !*act.Padding {
+			sb.RemovePadding()
+		}
+		if act.Descending != nil && *act.Descending {
+			sb.SetDescending()
+		}
+		// Clamp to 15 lines as per Dragonfly's limit and set them deterministically without trailing newlines.
+		max := min(len(act.Lines), 15)
+		for i := range max {
+			sb.Set(i, act.Lines[i])
+		}
+		pl.SendScoreboard(sb)
+	})
+}
+
+func (m *Manager) handlePlayerRemoveScoreboard(act *pb.PlayerRemoveScoreboardAction) {
+	id, err := uuid.Parse(act.PlayerUuid)
+	if err != nil {
+		return
+	}
+	m.execMethod(id, func(pl *player.Player) {
+		pl.RemoveScoreboard()
+	})
 }
 
 func (m *Manager) handleWorldSetTickRange(p *pluginProcess, correlationID string, act *pb.WorldSetTickRangeAction) {
