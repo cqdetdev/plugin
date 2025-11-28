@@ -1,8 +1,10 @@
 package plugin
 
 import (
+	"context"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/df-mc/dragonfly/server/block/cube"
 	"github.com/df-mc/dragonfly/server/world"
@@ -117,7 +119,12 @@ func (m *Manager) EmitWorldLeavesDecay(ctx *world.Context, pos cube.Pos) {
 }
 
 func (m *Manager) EmitWorldEntitySpawn(tx *world.Tx, e world.Entity) {
-	m.broadcastEvent(&pb.EventEnvelope{
+	if tx == nil || e == nil {
+		return
+	}
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_WORLD_ENTITY_SPAWN,
 		Payload: &pb.EventEnvelope_WorldEntitySpawn{
 			WorldEntitySpawn: &pb.WorldEntitySpawnEvent{
@@ -129,7 +136,12 @@ func (m *Manager) EmitWorldEntitySpawn(tx *world.Tx, e world.Entity) {
 }
 
 func (m *Manager) EmitWorldEntityDespawn(tx *world.Tx, e world.Entity) {
-	m.broadcastEvent(&pb.EventEnvelope{
+	if tx == nil || e == nil {
+		return
+	}
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_WORLD_ENTITY_DESPAWN,
 		Payload: &pb.EventEnvelope_WorldEntityDespawn{
 			WorldEntityDespawn: &pb.WorldEntityDespawnEvent{
@@ -191,7 +203,12 @@ func (m *Manager) EmitWorldExplosion(ctx *world.Context, position mgl64.Vec3, en
 
 func (m *Manager) EmitWorldClose(tx *world.Tx) {
 	w := worldFromTx(tx)
-	m.broadcastEvent(&pb.EventEnvelope{
+	if w == nil {
+		return
+	}
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_WORLD_CLOSE,
 		Payload: &pb.EventEnvelope_WorldClose{
 			WorldClose: &pb.WorldCloseEvent{

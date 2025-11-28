@@ -17,6 +17,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	"github.com/golang/snappy"
 	"google.golang.org/protobuf/proto"
 
 	"github.com/secmc/plugin/plugin/adapters/grpc"
@@ -27,9 +28,17 @@ import (
 const (
 	apiVersion = "v1"
 
-	sendChannelBuffer = 64
-	shutdownTimeout   = 5 * time.Second
+	sendChannelBuffer    = 64
+	shutdownTimeout      = 5 * time.Second
+	compressionThreshold = 1024 // If marshaled batch is larger than this, compress it.
 )
+
+var bufferPool = sync.Pool{
+	New: func() any {
+		b := make([]byte, 0, 4096)
+		return &b
+	},
+}
 
 type pluginProcess struct {
 	id      string
@@ -44,7 +53,7 @@ type pluginProcess struct {
 	sendCh   chan *pb.HostToPlugin
 	actionCh chan *pb.ActionBatch
 	done     chan struct{}
-	wg     sync.WaitGroup
+	wg       sync.WaitGroup
 
 	subscriptions sync.Map
 	connected     atomic.Bool
@@ -68,14 +77,14 @@ func newPluginProcess(m *Manager, cfg config.PluginConfig) *pluginProcess {
 		logger = logger.With("name", cfg.Name)
 	}
 	return &pluginProcess{
-		id:      cfg.ID,
-		cfg:     cfg,
-		manager: m,
-				log:      logger,
-				sendCh:   make(chan *pb.HostToPlugin, sendChannelBuffer),
-				actionCh: make(chan *pb.ActionBatch, sendChannelBuffer),
-				done:     make(chan struct{}),
-		
+		id:       cfg.ID,
+		cfg:      cfg,
+		manager:  m,
+		log:      logger,
+		sendCh:   make(chan *pb.HostToPlugin, sendChannelBuffer),
+		actionCh: make(chan *pb.ActionBatch, sendChannelBuffer),
+		done:     make(chan struct{}),
+
 		pending: make(map[string]chan *pb.EventResult),
 	}
 }
@@ -108,7 +117,7 @@ func (p *pluginProcess) attachStream(stream *grpc.GrpcStream) error {
 		return err
 	}
 
-		p.wg.Add(4)
+	p.wg.Add(4)
 	go p.sendLoop()
 	go p.recvLoop()
 	go p.batchSendLoop()
@@ -263,12 +272,25 @@ func (p *pluginProcess) sendLoop() {
 			if msg == nil {
 				continue
 			}
-			data, err := proto.Marshal(msg)
+
+			// Get buffer from pool
+			bufPtr := bufferPool.Get().(*[]byte)
+			*bufPtr = (*bufPtr)[:0] // Reset length
+
+			data, err := proto.MarshalOptions{}.MarshalAppend(*bufPtr, msg)
 			if err != nil {
 				p.log.Error("marshal message", "error", err)
+				bufferPool.Put(bufPtr)
 				continue
 			}
-			if err := p.stream.Send(data); err != nil {
+
+			// Send using the pooled buffer
+			err = p.stream.Send(data)
+
+			// Return buffer to pool
+			bufferPool.Put(bufPtr)
+
+			if err != nil {
 				// Treat expected shutdown conditions as non-errors.
 				if st, ok := status.FromError(err); ok && (st.Code() == codes.Canceled || st.Code() == codes.Unavailable) {
 					p.log.Info("connection closed", "reason", st.Code().String())
@@ -464,7 +486,56 @@ func (p *pluginProcess) queueEvent(event *pb.EventEnvelope) {
 	}
 	p.eventBufferMu.Lock()
 	p.eventBuffer = append(p.eventBuffer, event)
+	shouldFlush := event.Immediate || len(p.eventBuffer) >= 100
 	p.eventBufferMu.Unlock()
+
+	if shouldFlush {
+		p.Flush()
+	}
+}
+
+func (p *pluginProcess) Flush() {
+	p.eventBufferMu.Lock()
+	if len(p.eventBuffer) == 0 {
+		p.eventBufferMu.Unlock()
+		return
+	}
+	batch := &pb.EventBatch{Events: p.eventBuffer}
+	// Allocate new buffer, old one is moved to batch
+	p.eventBuffer = make([]*pb.EventEnvelope, 0, cap(p.eventBuffer))
+	p.eventBufferMu.Unlock()
+
+	// Marshal the batch to check its size and potentially compress.
+	originalBatchData, err := proto.Marshal(batch)
+	if err != nil {
+		p.log.Error("marshal event batch for compression check", "error", err)
+		return
+	}
+
+	if len(originalBatchData) > compressionThreshold {
+		compressedData := snappy.Encode(nil, originalBatchData)
+		p.queue(&pb.HostToPlugin{
+			PluginId: p.id,
+			Payload: &pb.HostToPlugin_CompressedEvents{
+				CompressedEvents: &pb.CompressedEventBatch{
+					Data:         compressedData,
+					OriginalSize: int32(len(originalBatchData)),
+				},
+			},
+		})
+		p.log.Debug("sent compressed event batch",
+			"original_size", len(originalBatchData),
+			"compressed_size", len(compressedData),
+			"ratio", float64(len(compressedData))/float64(len(originalBatchData)))
+	} else {
+		p.queue(&pb.HostToPlugin{
+			PluginId: p.id,
+			Payload: &pb.HostToPlugin_Events{
+				Events: batch,
+			},
+		})
+		p.log.Debug("sent uncompressed event batch", "size", len(originalBatchData))
+	}
 }
 
 func (p *pluginProcess) batchSendLoop() {
@@ -495,6 +566,3 @@ func (p *pluginProcess) batchSendLoop() {
 		}
 	}
 }
-
-
-

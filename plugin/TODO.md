@@ -19,33 +19,42 @@
 ## Critical (Must Do Before Production)
 
 ### 1. Add Player Movement Event
-- [ ] Add `PlayerMoveEvent` message to `plugin.proto`
-  ```protobuf
-  message PlayerMoveEvent {
-    string player_uuid = 1;
-    double x = 2;
-    double y = 3;
-    double z = 4;
-    float yaw = 5;
-    float pitch = 6;
-    bool on_ground = 7;
-  }
-  ```
-- [ ] Add to `EventEnvelope.payload` oneof (field 16)
-- [ ] Regenerate with `protoc --go_out=. --go_opt=paths=source_relative plugin/proto/plugin.proto`
-- [ ] Wire up in player movement handler
+- [x] Add `PlayerMoveEvent` message to `plugin.proto`
+- [x] Add to `EventEnvelope.payload` oneof (field 16)
+- [x] Regenerate with `protoc --go_out=. --go_opt=paths=source_relative plugin/proto/plugin.proto`
+- [x] Wire up in player movement handler
+  - **Note:** Implemented as a `broadcastEvent` (async/batched) to avoid blocking the server tick loop. Remote cancellation is disabled for performance.
 
 ### 2. Implement Event Batching
-- [ ] Add `EventBatch` message to `plugin.proto`
-  ```protobuf
-  message EventBatch {
+- [x] Add `EventBatch` message to `plugin.proto`
+- [x] Update event dispatcher to batch high-frequency events
+- [x] Send batches once per tick instead of individual events (implemented as 5ms ticker)
+
+#### Proto Definition
+```protobuf
+message EventBatch {
     repeated EventEnvelope events = 1;
-  }
-  ```
-- [ ] Add to `HostToPlugin.payload` oneof (field 21)
-- [ ] Regenerate protobuf code
-- [ ] Update event dispatcher to batch high-frequency events
-- [ ] Send batches once per tick instead of individual events
+}
+```
+
+#### Batching Strategy
+- High-frequency events (PlayerMove, PlayerRotate) are buffered
+- Buffer is flushed:
+  - When it reaches max size (e.g., 100 events) (Note: Code uses 5ms ticker, no max size check yet)
+  - Every server tick (50ms) (Note: Code uses 5ms ticker)
+  - Immediately for high-priority events (e.g., PlayerChat)
+
+#### Performance Targets
+- [ ] Typical size: 256-512 bytes for common events, 4KB for batches
+- [ ] Compression ratio: > 50% with LZ4/Snappy
+
+#### Implementation Plan
+- [x] Create `EventBatch` struct in `plugin/events.go`
+- [x] Add buffering to `PluginProcess`
+- [ ] Implement `Flush()` method
+- [ ] Add "immediate" flag to `EventEnvelope` for priority events
+
+### 3. Compression (Optional)
 
 ### 3. Buffer Pooling (Adapted for Generated Code)
 - [ ] Create `sync.Pool` for marshal buffers in `manager.go`

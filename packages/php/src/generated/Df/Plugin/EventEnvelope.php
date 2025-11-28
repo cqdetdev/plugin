@@ -28,6 +28,12 @@ class EventEnvelope extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool expects_response = 3 [json_name = "expectsResponse"];</code>
      */
     protected $expects_response = false;
+    /**
+     * If true, the event is sent immediately, bypassing any batching.
+     *
+     * Generated from protobuf field <code>bool immediate = 4 [json_name = "immediate"];</code>
+     */
+    protected $immediate = false;
     protected $payload;
 
     /**
@@ -40,6 +46,8 @@ class EventEnvelope extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *     @type bool $expects_response
      *           If an event can be cancelled or mutated it expects an acknowledgement.
+     *     @type bool $immediate
+     *           If true, the event is sent immediately, bypassing any batching.
      *     @type \Df\Plugin\PlayerJoinEvent $player_join
      *     @type \Df\Plugin\PlayerQuitEvent $player_quit
      *     @type \Df\Plugin\PlayerMoveEvent $player_move
@@ -162,6 +170,32 @@ class EventEnvelope extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->expects_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the event is sent immediately, bypassing any batching.
+     *
+     * Generated from protobuf field <code>bool immediate = 4 [json_name = "immediate"];</code>
+     * @return bool
+     */
+    public function getImmediate()
+    {
+        return $this->immediate;
+    }
+
+    /**
+     * If true, the event is sent immediately, bypassing any batching.
+     *
+     * Generated from protobuf field <code>bool immediate = 4 [json_name = "immediate"];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setImmediate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->immediate = $var;
 
         return $this;
     }

@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "nodenext",
     "lib": ["ES2022"],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -14,7 +14,9 @@
     "outDir": "./dist",
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

@@ -7,12 +7,16 @@ import (
 	"log/slog"
 	"os"
 	"time"
+	"net/http" // New import
+	"github.com/prometheus/client_golang/prometheus/promhttp" // New import
 
 	"github.com/df-mc/dragonfly/server"
+	"github.com/df-mc/dragonfly/server/block/cube"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/df-mc/dragonfly/server/world"
 	"github.com/didntpot/pregdk"
+	"github.com/go-gl/mathgl/mgl64"
 	"github.com/pelletier/go-toml"
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/secmc/plugin/plugin/adapters/handlers"
@@ -68,8 +72,22 @@ func main() {
 	manager.AttachWorld(srv.End())
 	defer manager.Close()
 
+	// Start Prometheus metrics server
+	go func() {
+		http.Handle("/metrics", promhttp.Handler())
+		metricsPort := os.Getenv("DRAGONFLY_METRICS_PORT")
+		if metricsPort == "" {
+			metricsPort = ":9090" // Default metrics port
+		}
+		slog.Info("Starting Prometheus metrics server", "port", metricsPort)
+		if err := http.ListenAndServe(metricsPort, nil); err != nil {
+			slog.Error("Failed to start metrics server", "error", err)
+		}
+	}()
+
 	srv.Listen()
 	for p := range srv.Accept() {
+		p.Handle(&handler{p: p})
 		manager.AttachPlayer(p)
 	}
 }
@@ -105,4 +123,15 @@ func readConfig(log *slog.Logger) (server.Config, error) {
 		basicProtocol{Protocol: 860, Version: "1.21.124"},
 	})
 	return cfg, nil
+}
+
+type handler struct {
+	player.NopHandler
+
+	p *player.Player
+}
+
+func (h *handler) HandleMove(ctx *player.Context, pos mgl64.Vec3, rot cube.Rotation) {
+	fmt.Println("HELLO??")
+	h.p.SendTip("DF: (%.2f, %.2f, %.2f)", pos.X(), pos.Y(), pos.Z())
 }

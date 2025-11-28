@@ -65,6 +65,10 @@ namespace df {
 namespace plugin {
 enum EventType : int;
 extern const uint32_t EventType_internal_data_[];
+class CompressedEventBatch;
+struct CompressedEventBatchDefaultTypeInternal;
+extern CompressedEventBatchDefaultTypeInternal _CompressedEventBatch_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull CompressedEventBatch_class_data_;
 class EventBatch;
 struct EventBatchDefaultTypeInternal;
 extern EventBatchDefaultTypeInternal _EventBatch_default_instance_;
@@ -93,6 +97,14 @@ class LogMessage;
 struct LogMessageDefaultTypeInternal;
 extern LogMessageDefaultTypeInternal _LogMessage_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull LogMessage_class_data_;
+class PackedPlayerMove;
+struct PackedPlayerMoveDefaultTypeInternal;
+extern PackedPlayerMoveDefaultTypeInternal _PackedPlayerMove_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull PackedPlayerMove_class_data_;
+class PlayerMovementsPacked;
+struct PlayerMovementsPackedDefaultTypeInternal;
+extern PlayerMovementsPackedDefaultTypeInternal _PlayerMovementsPacked_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull PlayerMovementsPacked_class_data_;
 class PluginHello;
 struct PluginHelloDefaultTypeInternal;
 extern PluginHelloDefaultTypeInternal _PluginHello_default_instance_;
@@ -267,7 +279,7 @@ class ServerInformationResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const ServerInformationResponse*>(
         &_ServerInformationResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(ServerInformationResponse& a, ServerInformationResponse& b) { a.Swap(&b); }
   inline void Swap(ServerInformationResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -468,7 +480,7 @@ class ServerInformationRequest final : public ::google::protobuf::internal::Zero
     return *reinterpret_cast<const ServerInformationRequest*>(
         &_ServerInformationRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(ServerInformationRequest& a, ServerInformationRequest& b) { a.Swap(&b); }
   inline void Swap(ServerInformationRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -548,6 +560,261 @@ class ServerInformationRequest final : public ::google::protobuf::internal::Zero
 extern const ::google::protobuf::internal::ClassDataFull ServerInformationRequest_class_data_;
 // -------------------------------------------------------------------
 
+class PackedPlayerMove final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:df.plugin.PackedPlayerMove) */ {
+ public:
+  inline PackedPlayerMove() : PackedPlayerMove(nullptr) {}
+  ~PackedPlayerMove() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(PackedPlayerMove* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(PackedPlayerMove));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PackedPlayerMove(::google::protobuf::internal::ConstantInitialized);
+
+  inline PackedPlayerMove(const PackedPlayerMove& from) : PackedPlayerMove(nullptr, from) {}
+  inline PackedPlayerMove(PackedPlayerMove&& from) noexcept
+      : PackedPlayerMove(nullptr, ::std::move(from)) {}
+  inline PackedPlayerMove& operator=(const PackedPlayerMove& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PackedPlayerMove& operator=(PackedPlayerMove&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PackedPlayerMove& default_instance() {
+    return *reinterpret_cast<const PackedPlayerMove*>(
+        &_PackedPlayerMove_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(PackedPlayerMove& a, PackedPlayerMove& b) { a.Swap(&b); }
+  inline void Swap(PackedPlayerMove* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PackedPlayerMove* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PackedPlayerMove* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<PackedPlayerMove>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PackedPlayerMove& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PackedPlayerMove& from) { PackedPlayerMove::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(PackedPlayerMove* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "df.plugin.PackedPlayerMove"; }
+
+  explicit PackedPlayerMove(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  PackedPlayerMove(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const PackedPlayerMove& from);
+  PackedPlayerMove(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, PackedPlayerMove&& from) noexcept
+      : PackedPlayerMove(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPlayerUuidBytesFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kZFieldNumber = 4,
+    kYawFieldNumber = 5,
+    kPitchFieldNumber = 6,
+  };
+  // bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+  void clear_player_uuid_bytes() ;
+  const ::std::string& player_uuid_bytes() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_player_uuid_bytes(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_player_uuid_bytes();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_player_uuid_bytes();
+  void set_allocated_player_uuid_bytes(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_player_uuid_bytes() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_player_uuid_bytes(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_player_uuid_bytes();
+
+  public:
+  // float x = 2 [json_name = "x"];
+  void clear_x() ;
+  float x() const;
+  void set_x(float value);
+
+  private:
+  float _internal_x() const;
+  void _internal_set_x(float value);
+
+  public:
+  // float y = 3 [json_name = "y"];
+  void clear_y() ;
+  float y() const;
+  void set_y(float value);
+
+  private:
+  float _internal_y() const;
+  void _internal_set_y(float value);
+
+  public:
+  // float z = 4 [json_name = "z"];
+  void clear_z() ;
+  float z() const;
+  void set_z(float value);
+
+  private:
+  float _internal_z() const;
+  void _internal_set_z(float value);
+
+  public:
+  // float yaw = 5 [json_name = "yaw"];
+  void clear_yaw() ;
+  float yaw() const;
+  void set_yaw(float value);
+
+  private:
+  float _internal_yaw() const;
+  void _internal_set_yaw(float value);
+
+  public:
+  // float pitch = 6 [json_name = "pitch"];
+  void clear_pitch() ;
+  float pitch() const;
+  void set_pitch(float value);
+
+  private:
+  float _internal_pitch() const;
+  void _internal_set_pitch(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:df.plugin.PackedPlayerMove)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const PackedPlayerMove& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr player_uuid_bytes_;
+    float x_;
+    float y_;
+    float z_;
+    float yaw_;
+    float pitch_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_plugin_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull PackedPlayerMove_class_data_;
+// -------------------------------------------------------------------
+
 class LogMessage final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:df.plugin.LogMessage) */ {
  public:
@@ -603,7 +870,7 @@ class LogMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LogMessage*>(
         &_LogMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(LogMessage& a, LogMessage& b) { a.Swap(&b); }
   inline void Swap(LogMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -815,7 +1082,7 @@ class HostShutdown final : public ::google::protobuf::Message
     return *reinterpret_cast<const HostShutdown*>(
         &_HostShutdown_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(HostShutdown& a, HostShutdown& b) { a.Swap(&b); }
   inline void Swap(HostShutdown* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1010,7 +1277,7 @@ class HostHello final : public ::google::protobuf::Message
     return *reinterpret_cast<const HostHello*>(
         &_HostHello_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(HostHello& a, HostHello& b) { a.Swap(&b); }
   inline void Swap(HostHello* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1222,7 +1489,7 @@ class EventSubscribe final : public ::google::protobuf::Message
     return *reinterpret_cast<const EventSubscribe*>(
         &_EventSubscribe_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(EventSubscribe& a, EventSubscribe& b) { a.Swap(&b); }
   inline void Swap(EventSubscribe* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1367,6 +1634,410 @@ class EventSubscribe final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull EventSubscribe_class_data_;
 // -------------------------------------------------------------------
 
+class CompressedEventBatch final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:df.plugin.CompressedEventBatch) */ {
+ public:
+  inline CompressedEventBatch() : CompressedEventBatch(nullptr) {}
+  ~CompressedEventBatch() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(CompressedEventBatch* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(CompressedEventBatch));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR CompressedEventBatch(::google::protobuf::internal::ConstantInitialized);
+
+  inline CompressedEventBatch(const CompressedEventBatch& from) : CompressedEventBatch(nullptr, from) {}
+  inline CompressedEventBatch(CompressedEventBatch&& from) noexcept
+      : CompressedEventBatch(nullptr, ::std::move(from)) {}
+  inline CompressedEventBatch& operator=(const CompressedEventBatch& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CompressedEventBatch& operator=(CompressedEventBatch&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CompressedEventBatch& default_instance() {
+    return *reinterpret_cast<const CompressedEventBatch*>(
+        &_CompressedEventBatch_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(CompressedEventBatch& a, CompressedEventBatch& b) { a.Swap(&b); }
+  inline void Swap(CompressedEventBatch* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CompressedEventBatch* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CompressedEventBatch* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<CompressedEventBatch>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CompressedEventBatch& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const CompressedEventBatch& from) { CompressedEventBatch::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(CompressedEventBatch* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "df.plugin.CompressedEventBatch"; }
+
+  explicit CompressedEventBatch(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  CompressedEventBatch(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const CompressedEventBatch& from);
+  CompressedEventBatch(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, CompressedEventBatch&& from) noexcept
+      : CompressedEventBatch(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDataFieldNumber = 1,
+    kOriginalSizeFieldNumber = 2,
+  };
+  // bytes data = 1 [json_name = "data"];
+  void clear_data() ;
+  const ::std::string& data() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_data();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_data();
+  void set_allocated_data(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_data() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_data(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_data();
+
+  public:
+  // int32 original_size = 2 [json_name = "originalSize"];
+  void clear_original_size() ;
+  ::int32_t original_size() const;
+  void set_original_size(::int32_t value);
+
+  private:
+  ::int32_t _internal_original_size() const;
+  void _internal_set_original_size(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:df.plugin.CompressedEventBatch)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const CompressedEventBatch& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::int32_t original_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_plugin_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull CompressedEventBatch_class_data_;
+// -------------------------------------------------------------------
+
+class PlayerMovementsPacked final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:df.plugin.PlayerMovementsPacked) */ {
+ public:
+  inline PlayerMovementsPacked() : PlayerMovementsPacked(nullptr) {}
+  ~PlayerMovementsPacked() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(PlayerMovementsPacked* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(PlayerMovementsPacked));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PlayerMovementsPacked(::google::protobuf::internal::ConstantInitialized);
+
+  inline PlayerMovementsPacked(const PlayerMovementsPacked& from) : PlayerMovementsPacked(nullptr, from) {}
+  inline PlayerMovementsPacked(PlayerMovementsPacked&& from) noexcept
+      : PlayerMovementsPacked(nullptr, ::std::move(from)) {}
+  inline PlayerMovementsPacked& operator=(const PlayerMovementsPacked& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlayerMovementsPacked& operator=(PlayerMovementsPacked&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlayerMovementsPacked& default_instance() {
+    return *reinterpret_cast<const PlayerMovementsPacked*>(
+        &_PlayerMovementsPacked_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(PlayerMovementsPacked& a, PlayerMovementsPacked& b) { a.Swap(&b); }
+  inline void Swap(PlayerMovementsPacked* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlayerMovementsPacked* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlayerMovementsPacked* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<PlayerMovementsPacked>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PlayerMovementsPacked& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PlayerMovementsPacked& from) { PlayerMovementsPacked::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(PlayerMovementsPacked* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "df.plugin.PlayerMovementsPacked"; }
+
+  explicit PlayerMovementsPacked(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  PlayerMovementsPacked(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const PlayerMovementsPacked& from);
+  PlayerMovementsPacked(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, PlayerMovementsPacked&& from) noexcept
+      : PlayerMovementsPacked(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMovesFieldNumber = 1,
+  };
+  // repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+  int moves_size() const;
+  private:
+  int _internal_moves_size() const;
+
+  public:
+  void clear_moves() ;
+  ::df::plugin::PackedPlayerMove* PROTOBUF_NONNULL mutable_moves(int index);
+  ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>* PROTOBUF_NONNULL mutable_moves();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>& _internal_moves() const;
+  ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>* PROTOBUF_NONNULL _internal_mutable_moves();
+  public:
+  const ::df::plugin::PackedPlayerMove& moves(int index) const;
+  ::df::plugin::PackedPlayerMove* PROTOBUF_NONNULL add_moves();
+  const ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>& moves() const;
+  // @@protoc_insertion_point(class_scope:df.plugin.PlayerMovementsPacked)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   1, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const PlayerMovementsPacked& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::df::plugin::PackedPlayerMove > moves_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_plugin_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull PlayerMovementsPacked_class_data_;
+// -------------------------------------------------------------------
+
 class PluginHello final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:df.plugin.PluginHello) */ {
  public:
@@ -1422,7 +2093,7 @@ class PluginHello final : public ::google::protobuf::Message
     return *reinterpret_cast<const PluginHello*>(
         &_PluginHello_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(PluginHello& a, PluginHello& b) { a.Swap(&b); }
   inline void Swap(PluginHello* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1760,7 +2431,7 @@ class EventEnvelope final : public ::google::protobuf::Message
     kWorldClose = 81,
     PAYLOAD_NOT_SET = 0,
   };
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(EventEnvelope& a, EventEnvelope& b) { a.Swap(&b); }
   inline void Swap(EventEnvelope* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1850,6 +2521,7 @@ class EventEnvelope final : public ::google::protobuf::Message
     kEventIdFieldNumber = 1,
     kTypeFieldNumber = 2,
     kExpectsResponseFieldNumber = 3,
+    kImmediateFieldNumber = 4,
     kPlayerJoinFieldNumber = 10,
     kPlayerQuitFieldNumber = 11,
     kPlayerMoveFieldNumber = 12,
@@ -1933,6 +2605,16 @@ class EventEnvelope final : public ::google::protobuf::Message
   private:
   bool _internal_expects_response() const;
   void _internal_set_expects_response(bool value);
+
+  public:
+  // bool immediate = 4 [json_name = "immediate"];
+  void clear_immediate() ;
+  bool immediate() const;
+  void set_immediate(bool value);
+
+  private:
+  bool _internal_immediate() const;
+  void _internal_set_immediate(bool value);
 
   public:
   // .df.plugin.PlayerJoinEvent player_join = 10 [json_name = "playerJoin"];
@@ -2923,7 +3605,7 @@ class EventEnvelope final : public ::google::protobuf::Message
   inline bool has_payload() const;
   inline void clear_has_payload();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 52,
+  static const ::google::protobuf::internal::TcParseTable<2, 53,
                                    49, 88,
                                    13>
       _table_;
@@ -2948,6 +3630,7 @@ class EventEnvelope final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr event_id_;
     int type_;
     bool expects_response_;
+    bool immediate_;
     union PayloadUnion {
       constexpr PayloadUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -3066,7 +3749,7 @@ class EventBatch final : public ::google::protobuf::Message
     return *reinterpret_cast<const EventBatch*>(
         &_EventBatch_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(EventBatch& a, EventBatch& b) { a.Swap(&b); }
   inline void Swap(EventBatch* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3270,6 +3953,8 @@ class HostToPlugin final : public ::google::protobuf::Message
     kEvent = 20,
     kActionResult = 21,
     kEvents = 22,
+    kCompressedEvents = 23,
+    kPlayerMovementsPacked = 24,
     PAYLOAD_NOT_SET = 0,
   };
   static constexpr int kIndexInFileMessages = 0;
@@ -3366,6 +4051,8 @@ class HostToPlugin final : public ::google::protobuf::Message
     kEventFieldNumber = 20,
     kActionResultFieldNumber = 21,
     kEventsFieldNumber = 22,
+    kCompressedEventsFieldNumber = 23,
+    kPlayerMovementsPackedFieldNumber = 24,
   };
   // string plugin_id = 1 [json_name = "pluginId"];
   void clear_plugin_id() ;
@@ -3496,6 +4183,44 @@ class HostToPlugin final : public ::google::protobuf::Message
   ::df::plugin::EventBatch* PROTOBUF_NONNULL _internal_mutable_events();
 
   public:
+  // .df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];
+  bool has_compressed_events() const;
+  private:
+  bool _internal_has_compressed_events() const;
+
+  public:
+  void clear_compressed_events() ;
+  const ::df::plugin::CompressedEventBatch& compressed_events() const;
+  [[nodiscard]] ::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE release_compressed_events();
+  ::df::plugin::CompressedEventBatch* PROTOBUF_NONNULL mutable_compressed_events();
+  void set_allocated_compressed_events(::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_compressed_events(::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE value);
+  ::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE unsafe_arena_release_compressed_events();
+
+  private:
+  const ::df::plugin::CompressedEventBatch& _internal_compressed_events() const;
+  ::df::plugin::CompressedEventBatch* PROTOBUF_NONNULL _internal_mutable_compressed_events();
+
+  public:
+  // .df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];
+  bool has_player_movements_packed() const;
+  private:
+  bool _internal_has_player_movements_packed() const;
+
+  public:
+  void clear_player_movements_packed() ;
+  const ::df::plugin::PlayerMovementsPacked& player_movements_packed() const;
+  [[nodiscard]] ::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE release_player_movements_packed();
+  ::df::plugin::PlayerMovementsPacked* PROTOBUF_NONNULL mutable_player_movements_packed();
+  void set_allocated_player_movements_packed(::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_player_movements_packed(::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE value);
+  ::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE unsafe_arena_release_player_movements_packed();
+
+  private:
+  const ::df::plugin::PlayerMovementsPacked& _internal_player_movements_packed() const;
+  ::df::plugin::PlayerMovementsPacked* PROTOBUF_NONNULL _internal_mutable_player_movements_packed();
+
+  public:
   void clear_payload();
   PayloadCase payload_case() const;
   // @@protoc_insertion_point(class_scope:df.plugin.HostToPlugin)
@@ -3507,11 +4232,13 @@ class HostToPlugin final : public ::google::protobuf::Message
   void set_has_event();
   void set_has_action_result();
   void set_has_events();
+  void set_has_compressed_events();
+  void set_has_player_movements_packed();
   inline bool has_payload() const;
   inline void clear_has_payload();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 7,
-                                   6, 40,
+  static const ::google::protobuf::internal::TcParseTable<0, 9,
+                                   8, 48,
                                    2>
       _table_;
 
@@ -3542,6 +4269,8 @@ class HostToPlugin final : public ::google::protobuf::Message
       ::google::protobuf::Message* PROTOBUF_NULLABLE event_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE action_result_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE events_;
+      ::google::protobuf::Message* PROTOBUF_NULLABLE compressed_events_;
+      ::google::protobuf::Message* PROTOBUF_NULLABLE player_movements_packed_;
     } payload_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -3617,7 +4346,7 @@ class PluginToHost final : public ::google::protobuf::Message
     kEventResult = 40,
     PAYLOAD_NOT_SET = 0,
   };
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(PluginToHost& a, PluginToHost& b) { a.Swap(&b); }
   inline void Swap(PluginToHost* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4459,6 +5188,170 @@ inline ::df::plugin::EventBatch* PROTOBUF_NONNULL HostToPlugin::mutable_events()
   return _msg;
 }
 
+// .df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];
+inline bool HostToPlugin::has_compressed_events() const {
+  return payload_case() == kCompressedEvents;
+}
+inline bool HostToPlugin::_internal_has_compressed_events() const {
+  return payload_case() == kCompressedEvents;
+}
+inline void HostToPlugin::set_has_compressed_events() {
+  _impl_._oneof_case_[0] = kCompressedEvents;
+}
+inline void HostToPlugin::clear_compressed_events() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (payload_case() == kCompressedEvents) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.compressed_events_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.compressed_events_);
+    }
+    clear_has_payload();
+  }
+}
+inline ::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE HostToPlugin::release_compressed_events() {
+  // @@protoc_insertion_point(field_release:df.plugin.HostToPlugin.compressed_events)
+  if (payload_case() == kCompressedEvents) {
+    clear_has_payload();
+    auto* temp = reinterpret_cast<::df::plugin::CompressedEventBatch*>(_impl_.payload_.compressed_events_);
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.compressed_events_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::df::plugin::CompressedEventBatch& HostToPlugin::_internal_compressed_events() const {
+  return payload_case() == kCompressedEvents ? static_cast<const ::df::plugin::CompressedEventBatch&>(*reinterpret_cast<::df::plugin::CompressedEventBatch*>(_impl_.payload_.compressed_events_))
+                     : reinterpret_cast<const ::df::plugin::CompressedEventBatch&>(::df::plugin::_CompressedEventBatch_default_instance_);
+}
+inline const ::df::plugin::CompressedEventBatch& HostToPlugin::compressed_events() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:df.plugin.HostToPlugin.compressed_events)
+  return _internal_compressed_events();
+}
+inline ::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE HostToPlugin::unsafe_arena_release_compressed_events() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:df.plugin.HostToPlugin.compressed_events)
+  if (payload_case() == kCompressedEvents) {
+    clear_has_payload();
+    auto* temp = reinterpret_cast<::df::plugin::CompressedEventBatch*>(_impl_.payload_.compressed_events_);
+    _impl_.payload_.compressed_events_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void HostToPlugin::unsafe_arena_set_allocated_compressed_events(
+    ::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_compressed_events();
+    _impl_.payload_.compressed_events_ = reinterpret_cast<::google::protobuf::Message*>(value);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:df.plugin.HostToPlugin.compressed_events)
+}
+inline ::df::plugin::CompressedEventBatch* PROTOBUF_NONNULL HostToPlugin::_internal_mutable_compressed_events() {
+  if (payload_case() != kCompressedEvents) {
+    clear_payload();
+    set_has_compressed_events();
+    _impl_.payload_.compressed_events_ = reinterpret_cast<::google::protobuf::Message*>(
+        ::google::protobuf::Message::DefaultConstruct<::df::plugin::CompressedEventBatch>(GetArena()));
+  }
+  return reinterpret_cast<::df::plugin::CompressedEventBatch*>(_impl_.payload_.compressed_events_);
+}
+inline ::df::plugin::CompressedEventBatch* PROTOBUF_NONNULL HostToPlugin::mutable_compressed_events()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::df::plugin::CompressedEventBatch* _msg = _internal_mutable_compressed_events();
+  // @@protoc_insertion_point(field_mutable:df.plugin.HostToPlugin.compressed_events)
+  return _msg;
+}
+
+// .df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];
+inline bool HostToPlugin::has_player_movements_packed() const {
+  return payload_case() == kPlayerMovementsPacked;
+}
+inline bool HostToPlugin::_internal_has_player_movements_packed() const {
+  return payload_case() == kPlayerMovementsPacked;
+}
+inline void HostToPlugin::set_has_player_movements_packed() {
+  _impl_._oneof_case_[0] = kPlayerMovementsPacked;
+}
+inline void HostToPlugin::clear_player_movements_packed() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (payload_case() == kPlayerMovementsPacked) {
+    if (GetArena() == nullptr) {
+      delete _impl_.payload_.player_movements_packed_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.player_movements_packed_);
+    }
+    clear_has_payload();
+  }
+}
+inline ::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE HostToPlugin::release_player_movements_packed() {
+  // @@protoc_insertion_point(field_release:df.plugin.HostToPlugin.player_movements_packed)
+  if (payload_case() == kPlayerMovementsPacked) {
+    clear_has_payload();
+    auto* temp = reinterpret_cast<::df::plugin::PlayerMovementsPacked*>(_impl_.payload_.player_movements_packed_);
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.payload_.player_movements_packed_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::df::plugin::PlayerMovementsPacked& HostToPlugin::_internal_player_movements_packed() const {
+  return payload_case() == kPlayerMovementsPacked ? static_cast<const ::df::plugin::PlayerMovementsPacked&>(*reinterpret_cast<::df::plugin::PlayerMovementsPacked*>(_impl_.payload_.player_movements_packed_))
+                     : reinterpret_cast<const ::df::plugin::PlayerMovementsPacked&>(::df::plugin::_PlayerMovementsPacked_default_instance_);
+}
+inline const ::df::plugin::PlayerMovementsPacked& HostToPlugin::player_movements_packed() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:df.plugin.HostToPlugin.player_movements_packed)
+  return _internal_player_movements_packed();
+}
+inline ::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE HostToPlugin::unsafe_arena_release_player_movements_packed() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:df.plugin.HostToPlugin.player_movements_packed)
+  if (payload_case() == kPlayerMovementsPacked) {
+    clear_has_payload();
+    auto* temp = reinterpret_cast<::df::plugin::PlayerMovementsPacked*>(_impl_.payload_.player_movements_packed_);
+    _impl_.payload_.player_movements_packed_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void HostToPlugin::unsafe_arena_set_allocated_player_movements_packed(
+    ::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_payload();
+  if (value) {
+    set_has_player_movements_packed();
+    _impl_.payload_.player_movements_packed_ = reinterpret_cast<::google::protobuf::Message*>(value);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:df.plugin.HostToPlugin.player_movements_packed)
+}
+inline ::df::plugin::PlayerMovementsPacked* PROTOBUF_NONNULL HostToPlugin::_internal_mutable_player_movements_packed() {
+  if (payload_case() != kPlayerMovementsPacked) {
+    clear_payload();
+    set_has_player_movements_packed();
+    _impl_.payload_.player_movements_packed_ = reinterpret_cast<::google::protobuf::Message*>(
+        ::google::protobuf::Message::DefaultConstruct<::df::plugin::PlayerMovementsPacked>(GetArena()));
+  }
+  return reinterpret_cast<::df::plugin::PlayerMovementsPacked*>(_impl_.payload_.player_movements_packed_);
+}
+inline ::df::plugin::PlayerMovementsPacked* PROTOBUF_NONNULL HostToPlugin::mutable_player_movements_packed()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::df::plugin::PlayerMovementsPacked* _msg = _internal_mutable_player_movements_packed();
+  // @@protoc_insertion_point(field_mutable:df.plugin.HostToPlugin.player_movements_packed)
+  return _msg;
+}
+
 inline bool HostToPlugin::has_payload() const {
   return payload_case() != PAYLOAD_NOT_SET;
 }
@@ -4468,6 +5361,354 @@ inline void HostToPlugin::clear_has_payload() {
 inline HostToPlugin::PayloadCase HostToPlugin::payload_case() const {
   return HostToPlugin::PayloadCase(_impl_._oneof_case_[0]);
 }
+// -------------------------------------------------------------------
+
+// CompressedEventBatch
+
+// bytes data = 1 [json_name = "data"];
+inline void CompressedEventBatch::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline const ::std::string& CompressedEventBatch::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:df.plugin.CompressedEventBatch.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void CompressedEventBatch::set_data(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:df.plugin.CompressedEventBatch.data)
+}
+inline ::std::string* PROTOBUF_NONNULL CompressedEventBatch::mutable_data()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  ::std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:df.plugin.CompressedEventBatch.data)
+  return _s;
+}
+inline const ::std::string& CompressedEventBatch::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void CompressedEventBatch::_internal_set_data(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL CompressedEventBatch::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE CompressedEventBatch::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:df.plugin.CompressedEventBatch.data)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  auto* released = _impl_.data_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.data_.Set("", GetArena());
+  }
+  return released;
+}
+inline void CompressedEventBatch::set_allocated_data(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  }
+  _impl_.data_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.data_.IsDefault()) {
+    _impl_.data_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.CompressedEventBatch.data)
+}
+
+// int32 original_size = 2 [json_name = "originalSize"];
+inline void CompressedEventBatch::clear_original_size() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.original_size_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+inline ::int32_t CompressedEventBatch::original_size() const {
+  // @@protoc_insertion_point(field_get:df.plugin.CompressedEventBatch.original_size)
+  return _internal_original_size();
+}
+inline void CompressedEventBatch::set_original_size(::int32_t value) {
+  _internal_set_original_size(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_set:df.plugin.CompressedEventBatch.original_size)
+}
+inline ::int32_t CompressedEventBatch::_internal_original_size() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.original_size_;
+}
+inline void CompressedEventBatch::_internal_set_original_size(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.original_size_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// PlayerMovementsPacked
+
+// repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+inline int PlayerMovementsPacked::_internal_moves_size() const {
+  return _internal_moves().size();
+}
+inline int PlayerMovementsPacked::moves_size() const {
+  return _internal_moves_size();
+}
+inline void PlayerMovementsPacked::clear_moves() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.moves_.Clear();
+  ClearHasBitForRepeated(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline ::df::plugin::PackedPlayerMove* PROTOBUF_NONNULL PlayerMovementsPacked::mutable_moves(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:df.plugin.PlayerMovementsPacked.moves)
+  return _internal_mutable_moves()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>* PROTOBUF_NONNULL PlayerMovementsPacked::mutable_moves()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_mutable_list:df.plugin.PlayerMovementsPacked.moves)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_moves();
+}
+inline const ::df::plugin::PackedPlayerMove& PlayerMovementsPacked::moves(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:df.plugin.PlayerMovementsPacked.moves)
+  return _internal_moves().Get(index);
+}
+inline ::df::plugin::PackedPlayerMove* PROTOBUF_NONNULL PlayerMovementsPacked::add_moves()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::df::plugin::PackedPlayerMove* _add =
+      _internal_mutable_moves()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_add:df.plugin.PlayerMovementsPacked.moves)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>& PlayerMovementsPacked::moves() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:df.plugin.PlayerMovementsPacked.moves)
+  return _internal_moves();
+}
+inline const ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>&
+PlayerMovementsPacked::_internal_moves() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.moves_;
+}
+inline ::google::protobuf::RepeatedPtrField<::df::plugin::PackedPlayerMove>* PROTOBUF_NONNULL
+PlayerMovementsPacked::_internal_mutable_moves() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.moves_;
+}
+
+// -------------------------------------------------------------------
+
+// PackedPlayerMove
+
+// bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+inline void PackedPlayerMove::clear_player_uuid_bytes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.player_uuid_bytes_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline const ::std::string& PackedPlayerMove::player_uuid_bytes() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.player_uuid_bytes)
+  return _internal_player_uuid_bytes();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void PackedPlayerMove::set_player_uuid_bytes(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  _impl_.player_uuid_bytes_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.player_uuid_bytes)
+}
+inline ::std::string* PROTOBUF_NONNULL PackedPlayerMove::mutable_player_uuid_bytes()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  ::std::string* _s = _internal_mutable_player_uuid_bytes();
+  // @@protoc_insertion_point(field_mutable:df.plugin.PackedPlayerMove.player_uuid_bytes)
+  return _s;
+}
+inline const ::std::string& PackedPlayerMove::_internal_player_uuid_bytes() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.player_uuid_bytes_.Get();
+}
+inline void PackedPlayerMove::_internal_set_player_uuid_bytes(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.player_uuid_bytes_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL PackedPlayerMove::_internal_mutable_player_uuid_bytes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.player_uuid_bytes_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE PackedPlayerMove::release_player_uuid_bytes() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:df.plugin.PackedPlayerMove.player_uuid_bytes)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  auto* released = _impl_.player_uuid_bytes_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.player_uuid_bytes_.Set("", GetArena());
+  }
+  return released;
+}
+inline void PackedPlayerMove::set_allocated_player_uuid_bytes(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  }
+  _impl_.player_uuid_bytes_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.player_uuid_bytes_.IsDefault()) {
+    _impl_.player_uuid_bytes_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.PackedPlayerMove.player_uuid_bytes)
+}
+
+// float x = 2 [json_name = "x"];
+inline void PackedPlayerMove::clear_x() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.x_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+inline float PackedPlayerMove::x() const {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.x)
+  return _internal_x();
+}
+inline void PackedPlayerMove::set_x(float value) {
+  _internal_set_x(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.x)
+}
+inline float PackedPlayerMove::_internal_x() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.x_;
+}
+inline void PackedPlayerMove::_internal_set_x(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.x_ = value;
+}
+
+// float y = 3 [json_name = "y"];
+inline void PackedPlayerMove::clear_y() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.y_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+inline float PackedPlayerMove::y() const {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.y)
+  return _internal_y();
+}
+inline void PackedPlayerMove::set_y(float value) {
+  _internal_set_y(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.y)
+}
+inline float PackedPlayerMove::_internal_y() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.y_;
+}
+inline void PackedPlayerMove::_internal_set_y(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.y_ = value;
+}
+
+// float z = 4 [json_name = "z"];
+inline void PackedPlayerMove::clear_z() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.z_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+inline float PackedPlayerMove::z() const {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.z)
+  return _internal_z();
+}
+inline void PackedPlayerMove::set_z(float value) {
+  _internal_set_z(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.z)
+}
+inline float PackedPlayerMove::_internal_z() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.z_;
+}
+inline void PackedPlayerMove::_internal_set_z(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.z_ = value;
+}
+
+// float yaw = 5 [json_name = "yaw"];
+inline void PackedPlayerMove::clear_yaw() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.yaw_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000010U);
+}
+inline float PackedPlayerMove::yaw() const {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.yaw)
+  return _internal_yaw();
+}
+inline void PackedPlayerMove::set_yaw(float value) {
+  _internal_set_yaw(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.yaw)
+}
+inline float PackedPlayerMove::_internal_yaw() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.yaw_;
+}
+inline void PackedPlayerMove::_internal_set_yaw(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.yaw_ = value;
+}
+
+// float pitch = 6 [json_name = "pitch"];
+inline void PackedPlayerMove::clear_pitch() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.pitch_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000020U);
+}
+inline float PackedPlayerMove::pitch() const {
+  // @@protoc_insertion_point(field_get:df.plugin.PackedPlayerMove.pitch)
+  return _internal_pitch();
+}
+inline void PackedPlayerMove::set_pitch(float value) {
+  _internal_set_pitch(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  // @@protoc_insertion_point(field_set:df.plugin.PackedPlayerMove.pitch)
+}
+inline float PackedPlayerMove::_internal_pitch() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.pitch_;
+}
+inline void PackedPlayerMove::_internal_set_pitch(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.pitch_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // EventBatch
@@ -4928,6 +6169,31 @@ inline bool EventEnvelope::_internal_expects_response() const {
 inline void EventEnvelope::_internal_set_expects_response(bool value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.expects_response_ = value;
+}
+
+// bool immediate = 4 [json_name = "immediate"];
+inline void EventEnvelope::clear_immediate() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.immediate_ = false;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+inline bool EventEnvelope::immediate() const {
+  // @@protoc_insertion_point(field_get:df.plugin.EventEnvelope.immediate)
+  return _internal_immediate();
+}
+inline void EventEnvelope::set_immediate(bool value) {
+  _internal_set_immediate(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  // @@protoc_insertion_point(field_set:df.plugin.EventEnvelope.immediate)
+}
+inline bool EventEnvelope::_internal_immediate() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.immediate_;
+}
+inline void EventEnvelope::_internal_set_immediate(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.immediate_ = value;
 }
 
 // .df.plugin.PlayerJoinEvent player_join = 10 [json_name = "playerJoin"];

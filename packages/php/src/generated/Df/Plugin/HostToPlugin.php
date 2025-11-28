@@ -33,6 +33,8 @@ class HostToPlugin extends \Google\Protobuf\Internal\Message
      *     @type \Df\Plugin\EventEnvelope $event
      *     @type \Df\Plugin\ActionResult $action_result
      *     @type \Df\Plugin\EventBatch $events
+     *     @type \Df\Plugin\CompressedEventBatch $compressed_events
+     *     @type \Df\Plugin\PlayerMovementsPacked $player_movements_packed
      * }
      */
     public function __construct($data = NULL) {
@@ -220,6 +222,60 @@ class HostToPlugin extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Df\Plugin\EventBatch::class);
         $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];</code>
+     * @return \Df\Plugin\CompressedEventBatch|null
+     */
+    public function getCompressedEvents()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasCompressedEvents()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];</code>
+     * @param \Df\Plugin\CompressedEventBatch $var
+     * @return $this
+     */
+    public function setCompressedEvents($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\CompressedEventBatch::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];</code>
+     * @return \Df\Plugin\PlayerMovementsPacked|null
+     */
+    public function getPlayerMovementsPacked()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasPlayerMovementsPacked()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Generated from protobuf field <code>.df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];</code>
+     * @param \Df\Plugin\PlayerMovementsPacked $var
+     * @return $this
+     */
+    public function setPlayerMovementsPacked($var)
+    {
+        GPBUtil::checkMessage($var, \Df\Plugin\PlayerMovementsPacked::class);
+        $this->writeOneof(24, $var);
 
         return $this;
     }

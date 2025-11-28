@@ -1,0 +1,134 @@
+digraph "Dragonfly Plugin Architecture" {
+    compound=true;
+    rankdir=TB;
+    fontname="Helvetica";
+    node [fontname="Helvetica", shape=box, style=filled, fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Legend
+    subgraph cluster_legend {
+        label = "Legend";
+        fontsize=12;
+        style=dotted;
+        node [shape=plaintext, fillcolor=none];
+        key [label=<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD WIDTH="20" HEIGHT="20" BGCOLOR="#B2EBF2"></TD><TD>  Dragonfly Core (Go)</TD></TR>
+            <TR><TD WIDTH="20" HEIGHT="20" BGCOLOR="#FFF59D"></TD><TD>  Protocol / Data</TD></TR>
+            <TR><TD WIDTH="20" HEIGHT="20" BGCOLOR="#E1BEE7"></TD><TD>  External Plugins</TD></TR>
+            <TR><TD WIDTH="20" HEIGHT="20" BGCOLOR="#C8E6C9"></TD><TD>  SDKs / Libraries</TD></TR>
+        </TABLE>>];
+    }
+
+    // Core Server Cluster
+    subgraph cluster_core {
+        label = "Dragonfly Server (Host)";
+        style = filled;
+        color = "#E0F7FA";
+        node [fillcolor="#B2EBF2"];
+
+        CoreMain [label="cmd/main.go\n(Entry Point)"];
+        
+        subgraph cluster_manager {
+            label = "Plugin System";
+            style = filled;
+            color = "#B2EBF2";
+            node [fillcolor="#80DEEA"];
+            
+            PluginManager [label="Plugin Manager\n(Manages Lifecycle)"];
+            ConfigLoader [label="Config Loader\n(plugins.yaml)"];
+            GRPCServer [label="gRPC Server\n(Port 50050)"];
+        }
+
+        subgraph cluster_engine {
+            label = "Game Engine";
+            style = filled;
+            color = "#B2EBF2";
+            node [fillcolor="#80DEEA"];
+
+            EventHandlers [label="Event Hooks\n(Player/World Handlers)"];
+            ActionExecutor [label="Action Executor\n(Apply Game State Changes)"];
+        }
+
+        CoreMain -> PluginManager [label="Init"];
+        CoreMain -> ConfigLoader;
+        ConfigLoader -> PluginManager [label="Config"];
+        PluginManager -> GRPCServer [label="Starts"];
+        
+        EventHandlers -> PluginManager [label="Raw Events"];
+        PluginManager -> ActionExecutor [label="Apply Actions\n(Chat, TP, Kick)"];
+    }
+
+    // Protocol Node
+    ProtoDef [label="Protocol Buffers\n(proto/df/plugin.proto)\n\nRPC: EventStream (Bidirectional)\nMessages: HostToPlugin, PluginToHost", shape=note, fillcolor="#FFF59D"];
+
+    // SDKs and Plugins
+    subgraph cluster_ecosystem {
+        label = "Plugin Ecosystem (External Processes)";
+        style = filled;
+        color = "#F3E5F5";
+
+        // Node.js
+        subgraph cluster_node {
+            label = "Node.js Environment";
+            style = filled;
+            color = "#E1BEE7";
+            node [fillcolor="#D1C4E9"];
+            
+            NodePlugin [label="MyNodePlugin.js"];
+            NodeSDK [label="Nightshade SDK\n(packages/node)", fillcolor="#C8E6C9", shape=ellipse];
+        }
+
+        // PHP
+        subgraph cluster_php {
+            label = "PHP Environment";
+            style = filled;
+            color = "#E1BEE7";
+            node [fillcolor="#D1C4E9"];
+
+            PHPPlugin [label="MyPHPPlugin.php"];
+            PHPSDK [label="Phoenix SDK\n(packages/php)", fillcolor="#C8E6C9", shape=ellipse];
+        }
+
+        // Rust
+        subgraph cluster_rust {
+            label = "Rust Environment";
+            style = filled;
+            color = "#E1BEE7";
+            node [fillcolor="#D1C4E9"];
+
+            RustPlugin [label="MyRustPlugin\n(Binary)"];
+            RustSDK [label="Ironclad SDK\n(packages/rust)", fillcolor="#C8E6C9", shape=ellipse];
+        }
+    }
+
+    // Spawning (Dashed lines)
+    PluginManager -> NodePlugin [label="Spawns Process\n(Env: DF_PLUGIN_PORT)", style=dashed];
+    PluginManager -> PHPPlugin [label="Spawns Process", style=dashed];
+    PluginManager -> RustPlugin [label="Spawns Process", style=dashed];
+
+    // SDK Connections
+    NodePlugin -> NodeSDK [label="Uses"];
+    PHPPlugin -> PHPSDK [label="Uses"];
+    RustPlugin -> RustSDK [label="Uses"];
+
+    // gRPC Connections
+    // Using invisible nodes to route edges neatly if needed, but direct edges are clearer here
+    NodeSDK -> GRPCServer [label="gRPC Connection\n(HTTP/2)", dir=both, weight=2];
+    PHPSDK -> GRPCServer [label="gRPC Connection", dir=both];
+    RustSDK -> GRPCServer [label="gRPC Connection", dir=both];
+
+    // Data Flow Visualization
+    // Events Flow
+    edge [color="#00796B", fontcolor="#004D40"];
+    PluginManager -> GRPCServer [label="Events\n(HostToPlugin)"];
+    
+    // Actions Flow
+    edge [color="#E65100", fontcolor="#E65100"];
+    GRPCServer -> PluginManager [label="Actions/Logs\n(PluginToHost)"];
+
+    // Proto link
+    ProtoDef -> GRPCServer [style=dotted, label="Defines Contract"];
+    ProtoDef -> NodeSDK [style=dotted];
+    ProtoDef -> PHPSDK [style=dotted];
+    ProtoDef -> RustSDK [style=dotted];
+}

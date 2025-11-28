@@ -1,6 +1,7 @@
 package plugin
 
 import (
+	"context"
 	"net"
 	"strings"
 	"time"
@@ -19,8 +20,11 @@ func (m *Manager) EmitPlayerJoin(p *player.Player) {
 	if p == nil {
 		return
 	}
-	m.broadcastEvent(&pb.EventEnvelope{
-		Type: pb.EventType_PLAYER_JOIN,
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
+		Type:      pb.EventType_PLAYER_JOIN,
+		Immediate: true,
 		Payload: &pb.EventEnvelope_PlayerJoin{
 			PlayerJoin: &pb.PlayerJoinEvent{
 				PlayerUuid: p.UUID().String(),
@@ -35,8 +39,11 @@ func (m *Manager) EmitPlayerQuit(p *player.Player) {
 	if p == nil {
 		return
 	}
-	m.broadcastEvent(&pb.EventEnvelope{
-		Type: pb.EventType_PLAYER_QUIT,
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
+		Type:      pb.EventType_PLAYER_QUIT,
+		Immediate: true,
 		Payload: &pb.EventEnvelope_PlayerQuit{
 			PlayerQuit: &pb.PlayerQuitEvent{
 				PlayerUuid: p.UUID().String(),
@@ -71,7 +78,6 @@ func (m *Manager) EmitCommand(ctx *player.Context, p *player.Player, cmdName str
 	if p == nil {
 		return
 	}
-	startTime := time.Now()
 
 	// Normalize arguments: trim spaces and drop empties to avoid usage errors on trailing/multiple spaces.
 	norm := normalizeArgs(args)
@@ -91,14 +97,6 @@ func (m *Manager) EmitCommand(ctx *player.Context, p *player.Player, cmdName str
 			},
 		},
 	})
-
-	totalDuration := time.Since(startTime)
-	m.log.Debug("command execution completed",
-		"player", p.Name(),
-		"command", cmdName,
-		"total_ms", totalDuration.Milliseconds(),
-		"total_us", totalDuration.Microseconds(),
-	)
 }
 
 // normalizeArgs trims each argument and removes empty entries.
@@ -136,7 +134,9 @@ func (m *Manager) EmitPlayerMove(ctx *player.Context, p *player.Player, newPos m
 	if p == nil {
 		return
 	}
-	m.emitCancellable(ctx, &pb.EventEnvelope{
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_PLAYER_MOVE,
 		Payload: &pb.EventEnvelope_PlayerMove{
 			PlayerMove: &pb.PlayerMoveEvent{
@@ -154,7 +154,9 @@ func (m *Manager) EmitPlayerJump(p *player.Player) {
 	if p == nil {
 		return
 	}
-	m.broadcastEvent(&pb.EventEnvelope{
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_PLAYER_JUMP,
 		Payload: &pb.EventEnvelope_PlayerJump{
 			PlayerJump: &pb.PlayerJumpEvent{
@@ -188,7 +190,9 @@ func (m *Manager) EmitPlayerChangeWorld(p *player.Player, before, after *world.W
 	if p == nil {
 		return
 	}
-	m.broadcastEvent(&pb.EventEnvelope{
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
+	m.broadcastEvent(eventCtx, &pb.EventEnvelope{
 		Type: pb.EventType_PLAYER_CHANGE_WORLD,
 		Payload: &pb.EventEnvelope_PlayerChangeWorld{
 			PlayerChangeWorld: &pb.PlayerChangeWorldEvent{
@@ -346,6 +350,8 @@ func (m *Manager) EmitPlayerRespawn(p *player.Player, pos *mgl64.Vec3, w **world
 	if p == nil {
 		return
 	}
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
 	var vec *pb.Vec3
 	if pos != nil {
 		vec = protoVec3(*pos)
@@ -365,7 +371,7 @@ func (m *Manager) EmitPlayerRespawn(p *player.Player, pos *mgl64.Vec3, w **world
 			},
 		},
 	}
-	results := m.dispatchEvent(envelope, true)
+	results := m.dispatchEvent(eventCtx, envelope, true)
 	applyMutations(results,
 		func(r *pb.EventResult) *pb.PlayerRespawnMutation { return r.GetPlayerRespawn() },
 		func(mut *pb.PlayerRespawnMutation) {
@@ -820,6 +826,8 @@ func (m *Manager) EmitPlayerDiagnostics(p *player.Player, d session.Diagnostics)
 	if p == nil {
 		return
 	}
+	startTime := time.Now()
+	eventCtx := context.WithValue(m.ctx, "eventStartTime", startTime)
 	evt := &pb.EventEnvelope{
 		Type: pb.EventType_PLAYER_DIAGNOSTICS,
 		Payload: &pb.EventEnvelope_PlayerDiagnostics{
@@ -830,5 +838,5 @@ func (m *Manager) EmitPlayerDiagnostics(p *player.Player, d session.Diagnostics)
 		},
 	}
 	applyDiagnosticsFields(evt.GetPlayerDiagnostics(), d)
-	m.broadcastEvent(evt)
+	m.broadcastEvent(eventCtx, evt)
 }

@@ -25,7 +25,27 @@ message HostToPlugin {
     EventEnvelope event = 20;
     ActionResult action_result = 21;
     EventBatch events = 22;
+    CompressedEventBatch compressed_events = 23;
+    PlayerMovementsPacked player_movements_packed = 24;
   }
+}
+
+message CompressedEventBatch {
+  bytes data = 1;
+  int32 original_size = 2;
+}
+
+message PlayerMovementsPacked {
+    repeated PackedPlayerMove moves = 1;
+}
+
+message PackedPlayerMove {
+    bytes player_uuid_bytes = 1; // 16-byte UUID
+    float x = 2;
+    float y = 3;
+    float z = 4;
+    float yaw = 5;
+    float pitch = 6;
 }
 
 message EventBatch {
@@ -50,6 +70,7 @@ message EventEnvelope {
   string event_id = 1;
   EventType type = 2;
   bool expects_response = 3; // If an event can be cancelled or mutated it expects an acknowledgement.
+  bool immediate = 4; // If true, the event is sent immediately, bypassing any batching.
   oneof payload {
     PlayerJoinEvent player_join = 10;
     PlayerQuitEvent player_quit = 11;

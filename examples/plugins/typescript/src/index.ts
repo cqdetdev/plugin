@@ -1,446 +1,187 @@
-// Example Dragonfly plugin implemented in TypeScript with generated protobuf types.
-// Run: npm install && npm run dev
-
-import * as grpc from '@grpc/grpc-js';
 import {
-    HostToPlugin,
-    PluginToHost,
+    PluginBase,
+    On,
     EventType,
+    PlayerMoveEvent,
+    PlayerQuitEvent,
+    PlayerJoinEvent,
+    EventContext,
+    Player,
+    Sound,
+    RegisterCommand
 } from '@dragonfly/proto';
-import { GameMode } from '@dragonfly/proto/common';
 
-const pluginId = process.env.DF_PLUGIN_ID || 'typescript-plugin';
-const rawAddress = process.env.DF_PLUGIN_SERVER_ADDRESS || 'unix:///tmp/dragonfly_plugin.sock';
+class AreaPlugin extends PluginBase {
+    // Define a restricted area: x > 5
+    private readonly RESTRICTED_X = 5;
+    private readonly VIEW_DISTANCE = 25;
+    private readonly WALL_WIDTH = 20;  // Radius along Z
+    private readonly WALL_HEIGHT = 10; // Radius along Y
 
-// Ensure Unix socket paths have the unix: prefix for Node.js gRPC
-let serverAddress = rawAddress;
-if (rawAddress.startsWith('/') && !rawAddress.startsWith('unix:')) {
-    serverAddress = 'unix://' + rawAddress;
-}
+    // Track active wall blocks per player to minimize updates
+    // UUID -> Set<"x,y,z">
+    private activeWalls: Map<string, Set<string>> = new Map();
 
-const API_VERSION = 'v1';
+    onLoad(): void {
+        console.log('[AreaPlugin] Plugin loaded.');
+    }
 
-// Helper function to send a message to a player
-function sendMessage(
-    call: grpc.ClientDuplexStream<PluginToHost, HostToPlugin>,
-    targetUuid: string,
-    message: string,
-    correlationId?: string
-) {
-    const response: PluginToHost = {
-        pluginId,
-        actions: {
-            actions: [
-                {
-                    correlationId: correlationId || `msg-${Date.now()}`,
-                    sendChat: {
-                        targetUuid,
-                        message,
-                    },
-                },
-            ],
-        },
-    };
-    call.write(response);
-}
+    onEnable(): void {
+        console.log('[AreaPlugin] Enabled. Dynamic wall active at X = 5.');
+    }
 
-/**
- * IMPORTANT: Only send eventResult when event.expectsResponse is true.
- * Broadcast events (expectsResponse = false) must not be acknowledged.
- */
+    onDisable(): void {
+        console.log('[AreaPlugin] Disabled.');
+    }
 
-function handleEvent(
-    call: grpc.ClientDuplexStream<PluginToHost, HostToPlugin>,
-    event: NonNullable<HostToPlugin['event']>
-) {
-    switch (event.type) {
-        case EventType.PLAYER_JOIN: {
-            const player = event.playerJoin;
-            if (!player) break;
-
-            console.log(`[ts] player joined ${player.name} (${player.playerUuid})`);
-
-            // Use helper to send welcome message
-            sendMessage(
-                call,
-                player.playerUuid,
-                `§aWelcome to the server, §e${player.name}§a! (from TypeScript)`,
-                `join-${player.playerUuid}`
-            );
-
-            // Acknowledge only if a response is expected
-            if (event.expectsResponse) {
-                const ackResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: false,
-                    },
-                };
-                call.write(ackResponse);
-            }
-            break;
+    @On(EventType.PLAYER_MOVE)
+    onMove(event: PlayerMoveEvent, context: EventContext<PlayerMoveEvent>) {
+        const pos = event.position;
+        if (!pos) {
+            context.ack();
+            return;
         }
 
-        case EventType.PLAYER_QUIT: {
-            const player = event.playerQuit;
-            if (!player) break;
-            console.log(`[ts] player left ${player.name}`);
+        const player = new Player(this, event.playerUuid);
 
-            // Acknowledge only if a response is expected
-            if (event.expectsResponse) {
-                const ackResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: false,
-                    },
-                };
-                call.write(ackResponse);
-            }
-            break;
+        // 1. Enforcement: Prevent crossing X > 5
+        if (pos.x > this.RESTRICTED_X) {
+            // Cancel movement
+            //context.cancel();
+            player.sendPopup('§cRestricted Area! Turn back.');
+            //player.playSound(Sound.ITEM_BREAK);
+        } else {
         }
 
-        case EventType.COMMAND: {
-            const cmd = event.command;
-            if (!cmd) break;
+        // 2. Visuals: Dynamic Wall
+        this.updateWall(event.playerUuid, pos);
+                    context.ack();
 
-            // Now we get structured command name and args instead of parsing raw string!
-            console.log(`[ts] command: ${cmd.command}, args:`, cmd.args);
+    }
+    @On(EventType.PLAYER_QUIT)
+    onQuit(event: PlayerQuitEvent, context: EventContext<PlayerQuitEvent>) {
+        // Clean up state
+        const active = this.activeWalls.get(event.playerUuid);
+        if (active) {
+            this.activeWalls.delete(event.playerUuid);
+        }
+        context.ack();
+    }
 
-            // Handle /greet command
-            if (cmd.command === 'greet') {
-                sendMessage(
-                    call,
-                    cmd.playerUuid,
-                    `§6Hello §b${cmd.name}§6! This is a TypeScript plugin with full type safety! 🚀`
-                );
-                return;
+    @On(EventType.PLAYER_JOIN)
+    onJoin(event: PlayerJoinEvent, context: EventContext<PlayerJoinEvent>) {
+        const player = new Player(this, event.playerUuid);
+        // Teleport player near the wall area (0, -60, 0)
+        player.teleport(10, -60, 10); 
+        player.sendMessage('§aWelcome! Wall is at X = ' + this.RESTRICTED_X + '.');
+        context.ack();
+    }
+
+    @RegisterCommand({ name: 'wall', description: 'Build a glass wall at the border' })
+    onWallCommand(uuid: string, args: string[], context: EventContext<any>) {
+        const player = new Player(this, uuid);
+        player.sendMessage('§eBuilding wall...');
+
+        const actions: any[] = []; 
+        // Build a wall at x=5, from z=-5 to 5, y=-60 to -55
+        for (let z = -5; z <= 5; z++) {
+            for (let y = -60; y <= -55; y++) {
+                actions.push({
+                    worldSetBlock: {
+                        world: { name: '', dimension: 'overworld', id: '' }, 
+                        position: { x: this.RESTRICTED_X, y: y, z: z },
+                        block: { name: 'minecraft:glass' }
+                    }
+                });
             }
-
-            // Handle /tp command with optional coordinates
-            if (cmd.command === 'tp') {
-                let x = 0, y = 100, z = 0;
-
-                // Parse coordinates from args if provided: /tp <x> <y> <z>
-                if (cmd.args && cmd.args.length === 3) {
-                    x = parseFloat(cmd.args[0]) || 0;
-                    y = parseFloat(cmd.args[1]) || 100;
-                    z = parseFloat(cmd.args[2]) || 0;
-                }
-
-                const response: PluginToHost = {
-                    pluginId,
-                    actions: {
-                        actions: [
-                            {
-                                correlationId: `tp-${Date.now()}`,
-                                teleport: {
-                                    playerUuid: cmd.playerUuid,
-                                    position: { x, y, z },
-                                    rotation: { x: 0, y: 0, z: 0 },
-                                },
-                            },
-                            {
-                                correlationId: `tp-msg-${Date.now()}`,
-                                sendChat: {
-                                    targetUuid: cmd.playerUuid,
-                                    message: `§aTeleported to ${x}, ${y}, ${z}!`,
-                                },
-                            },
-                        ],
-                    },
-                };
-                call.write(response);
-                return;
-            }
-
-            // Handle /gm command to change game mode
-            if (cmd.command === 'gamemode') {
-                let gameMode: GameMode;
-                let modeName: string;
-                if (!cmd.args || cmd.args.length === 0) {
-                    gameMode = GameMode.SURVIVAL;
-                    modeName = 'Survival';
-                    // sendMessage(call, cmd.playerUuid, '§cUsage: /gm <survival|creative|adventure|spectator>');
-                    // return;
-                }
-
-                const mode = cmd.args[0].toLowerCase();
-
-                switch (mode) {
-                    case 'survival':
-                    case 's':
-                    case '0':
-                        gameMode = GameMode.SURVIVAL;
-                        modeName = 'Survival';
-                        break;
-                    case 'creative':
-                    case 'c':
-                    case '1':
-                        gameMode = GameMode.CREATIVE;
-                        modeName = 'Creative';
-                        break;
-                    case 'adventure':
-                    case 'a':
-                    case '2':
-                        gameMode = GameMode.ADVENTURE;
-                        modeName = 'Adventure';
-                        break;
-                    case 'spectator':
-                    case 'sp':
-                    case '3':
-                        gameMode = GameMode.SPECTATOR;
-                        modeName = 'Spectator';
-                        break;
-                    default:
-                        sendMessage(
-                            call,
-                            cmd.playerUuid,
-                            '§cInvalid game mode. Use: survival, creative, adventure, or spectator'
-                        );
-                        return;
-                }
-
-                // Use action batch for multiple actions
-                const response: PluginToHost = {
-                    pluginId,
-                    actions: {
-                        actions: [
-                            {
-                                correlationId: `gm-${Date.now()}`,
-                                setGameMode: {
-                                    playerUuid: cmd.playerUuid,
-                                    gameMode: gameMode,
-                                },
-                            },
-                        ],
-                    },
-                };
-                call.write(response);
-
-                // Send success message
-                sendMessage(call, cmd.playerUuid, `§aGame mode changed to §e${modeName}§a!`);
-                return;
-            }
-
-            // For commands we don't handle, acknowledge only if a response is expected
-            if (event.expectsResponse) {
-                const ackResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: false,
-                    },
-                };
-                call.write(ackResponse);
-            }
-            break;
         }
 
-        case EventType.CHAT: {
-            const chat = event.chat;
-            if (!chat) break;
-
-            // Profanity filter with event cancellation
-            const badWords = ['badword', 'spam', 'hack', 'fuck'];
-            if (badWords.some(word => chat.message.toLowerCase().includes(word))) {
-                const cancelResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: true,
-                    },
-                };
-                call.write(cancelResponse);
-
-                sendMessage(call, chat.playerUuid, '§cPlease keep the chat friendly');
-                break;
+        this.send({
+            pluginId: this.pluginId,
+            actions: {
+                actions: actions
             }
+        });
+        
+        player.sendMessage('§aWall built!');
+    }
 
-            // Chat mutation example
-            if (chat.message.startsWith('!shout ')) {
-                const updated = chat.message.substring(7).toUpperCase() + '!!!';
-                const mutateResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: false,
-                        chat: { message: updated },
-                    },
-                };
-                call.write(mutateResponse);
-                break;
-            }
+    private updateWall(uuid: string, playerPos: { x: number, y: number, z: number }) {
+        const dist = Math.abs(playerPos.x - this.RESTRICTED_X);
+        const desiredBlocks = new Set<string>();
 
-            // Rainbow text easter egg
-            if (chat.message.startsWith('!rainbow ')) {
-                const text = chat.message.substring(9);
-                const colors = ['§c', '§6', '§e', '§a', '§b', '§d'];
-                const rainbow = text.split('').map((char, i) => colors[i % colors.length] + char).join('');
+        // Only render if close to the wall
+        if (dist <= this.VIEW_DISTANCE) {
+            const centerY = Math.round(playerPos.y);
+            const centerZ = Math.round(playerPos.z);
 
-                const mutateResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        chat: { message: rainbow },
-                    },
-                };
-                call.write(mutateResponse);
-                break;
-            }
-
-            // Acknowledge regular chat messages (chat expects response)
-            if (event.expectsResponse) {
-                const ackResponse: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        cancel: false,
-                    },
-                };
-                call.write(ackResponse);
-            }
-            break;
-        }
-
-        case EventType.PLAYER_BLOCK_BREAK: {
-            const blockBreak = event.blockBreak;
-            if (!blockBreak || !blockBreak.position) break;
-
-            const { x, y, z } = blockBreak.position;
-            console.log(`[ts] ${blockBreak.name} broke block at ${x},${y},${z}`);
-
-            // Example: Double drops for diamond ore
-            if (x % 10 === 0) { // Just as an example
-                const response: PluginToHost = {
-                    pluginId,
-                    eventResult: {
-                        eventId: event.eventId,
-                        blockBreak: {
-                            drops: {
-                                items: [
-                                    { name: 'minecraft:diamond', count: 2, meta: 0 },
-                                ],
-                            },
-                            xp: 10,
-                        }
-                    },
-                };
-                call.write(response);
-            } else {
-                // Acknowledge only if a response is expected
-                if (event.expectsResponse) {
-                    const ackResponse: PluginToHost = {
-                        pluginId,
-                        eventResult: {
-                            eventId: event.eventId,
-                            cancel: false,
-                        },
-                    };
-                    call.write(ackResponse);
+            for (let y = centerY - this.WALL_HEIGHT; y <= centerY + this.WALL_HEIGHT; y++) {
+                for (let z = centerZ - this.WALL_WIDTH; z <= centerZ + this.WALL_WIDTH; z++) {
+                    // Wall is a plane at RESTRICTED_X
+                    desiredBlocks.add(`${this.RESTRICTED_X},${y},${z}`);
                 }
             }
-            break;
         }
 
-        default:
-            console.log('[ts] unhandled event type:', EventType[event.type] ?? event.type);
+        // Get current state
+        let currentBlocks = this.activeWalls.get(uuid);
+        if (!currentBlocks) {
+            currentBlocks = new Set();
+            this.activeWalls.set(uuid, currentBlocks);
+        }
+
+        // Calculate diff
+        const toAdd: string[] = [];
+        const toRemove: string[] = [];
+
+        for (const block of desiredBlocks) {
+            if (!currentBlocks.has(block)) toAdd.push(block);
+        }
+        for (const block of currentBlocks) {
+            if (!desiredBlocks.has(block)) toRemove.push(block);
+        }
+
+        // If no changes, active state is stable
+        if (toAdd.length === 0 && toRemove.length === 0) {
+            return;
+        }
+
+        const actions: any[] = [];
+
+        // Add new glass blocks
+        for (const key of toAdd) {
+            const [x, y, z] = key.split(',').map(Number);
+            actions.push({
+                worldSetBlock: {
+                    world: { name: '', dimension: 'overworld', id: '' },
+                    position: { x, y, z },
+                    block: { name: 'minecraft:glass'}
+                }
+            });
+            currentBlocks.add(key);
+        }
+
+        // Remove old blocks (restore to air - simplified)
+        for (const key of toRemove) {
+            const [x, y, z] = key.split(',').map(Number);
+            actions.push({
+                worldSetBlock: {
+                    world: { name: '', dimension: 'overworld', id: '' },
+                    position: { x, y, z },
+                    block: { name: 'minecraft:air', properties: {} }
+                }
+            });
+            currentBlocks.delete(key);
+        }
+
+        // Batch send updates
+        this.send({
+            pluginId: this.pluginId,
+            actions: {
+                actions: actions
+            }
+        });
     }
 }
 
-// Connect to Dragonfly as a gRPC client
-const client = new grpc.Client(
-    serverAddress,
-    grpc.credentials.createInsecure()
-);
-
-// Create bidirectional stream
-const call = client.makeBidiStreamRequest<PluginToHost, HostToPlugin>(
-    '/df.plugin.Plugin/EventStream',
-    (msg: PluginToHost) => {
-        const writer = PluginToHost.encode(msg);
-        return Buffer.from(writer.finish());
-    },
-    (buf: Buffer) => {
-        return HostToPlugin.decode(new Uint8Array(buf));
-    }
-) as grpc.ClientDuplexStream<PluginToHost, HostToPlugin>;
-
-console.log(`[ts] connecting to ${serverAddress}...`);
-
-// Send initial handshake
-const helloMessage: PluginToHost = {
-    pluginId,
-    hello: {
-        name: 'example-typescript',
-        version: '0.1.0',
-        apiVersion: API_VERSION,
-        commands: [
-            { name: '/greet', description: 'Send a greeting from the TypeScript plugin', aliases: [], params: [] },
-            { name: '/tp', description: 'Teleport to spawn', aliases: [], params: [] },
-            { name: '/gamemode', description: 'Change game mode (survival, creative, adventure, spectator)', aliases: ['gm'], params: [] },
-        ],
-        customItems: [],
-        customBlocks: [],
-    },
-};
-call.write(helloMessage);
-
-const initialSubscribe: PluginToHost = {
-    pluginId,
-    subscribe: {
-        events: [
-            EventType.PLAYER_JOIN,
-            EventType.PLAYER_QUIT,
-            EventType.COMMAND,
-            EventType.CHAT,
-            EventType.PLAYER_BLOCK_BREAK,
-        ],
-    },
-};
-call.write(initialSubscribe);
-
-// Handle incoming messages from server
-call.on('data', (message: HostToPlugin) => {
-    // Handle hello handshake
-    if (message.hello) {
-        console.log('[ts] host hello', message.hello);
-        if (message.hello.apiVersion !== API_VERSION) {
-            console.warn(`[ts] API version mismatch: host=${message.hello.apiVersion}, plugin=${API_VERSION}`);
-        }
-        return;
-    }
-
-    // Handle events
-    if (message.event) {
-        handleEvent(call, message.event);
-    }
-    if (message.events) {
-        for (const event of message.events.events) {
-            handleEvent(call, event);
-        }
-    }
-
-    // Handle shutdown
-    if (message.shutdown) {
-        console.log('[ts] host shutdown:', message.shutdown.reason);
-        call.end();
-    }
-});
-
-call.on('end', () => {
-    console.log('[ts] stream ended');
-    process.exit(0);
-});
-
-call.on('error', (err) => {
-    console.error('[ts] stream error:', err);
-    process.exit(1);
-});
-
-// Graceful shutdown
-process.on('SIGINT', () => {
-    console.log('[ts] shutting down...');
-    call.end();
-});
+new AreaPlugin().run();

@@ -70,6 +70,38 @@ struct ServerInformationRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerInformationRequestDefaultTypeInternal _ServerInformationRequest_default_instance_;
 
+inline constexpr PackedPlayerMove::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        player_uuid_bytes_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        x_{0},
+        y_{0},
+        z_{0},
+        yaw_{0},
+        pitch_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PackedPlayerMove::PackedPlayerMove(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(PackedPlayerMove_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PackedPlayerMoveDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PackedPlayerMoveDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PackedPlayerMoveDefaultTypeInternal() {}
+  union {
+    PackedPlayerMove _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PackedPlayerMoveDefaultTypeInternal _PackedPlayerMove_default_instance_;
+
 inline constexpr LogMessage::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -183,6 +215,59 @@ struct EventSubscribeDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EventSubscribeDefaultTypeInternal _EventSubscribe_default_instance_;
 
+inline constexpr CompressedEventBatch::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        original_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CompressedEventBatch::CompressedEventBatch(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(CompressedEventBatch_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct CompressedEventBatchDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CompressedEventBatchDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CompressedEventBatchDefaultTypeInternal() {}
+  union {
+    CompressedEventBatch _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CompressedEventBatchDefaultTypeInternal _CompressedEventBatch_default_instance_;
+
+inline constexpr PlayerMovementsPacked::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        moves_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerMovementsPacked::PlayerMovementsPacked(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(PlayerMovementsPacked_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct PlayerMovementsPackedDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerMovementsPackedDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerMovementsPackedDefaultTypeInternal() {}
+  union {
+    PlayerMovementsPacked _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerMovementsPackedDefaultTypeInternal _PlayerMovementsPacked_default_instance_;
+
 inline constexpr PluginHello::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -227,6 +312,7 @@ inline constexpr EventEnvelope::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         type_{static_cast< ::df::plugin::EventType >(0)},
         expects_response_{false},
+        immediate_{false},
         payload_{},
         _oneof_case_{} {}
 
@@ -344,8 +430,10 @@ const ::uint32_t
         0x085, // bitmap
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_._oneof_case_[0]),
-        12, // hasbit index offset
+        14, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.plugin_id_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.payload_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.payload_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.payload_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.payload_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::HostToPlugin, _impl_.payload_),
@@ -360,6 +448,35 @@ const ::uint32_t
         ~0u,
         ~0u,
         ~0u,
+        ~0u,
+        ~0u,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::CompressedEventBatch, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::CompressedEventBatch, _impl_.data_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::CompressedEventBatch, _impl_.original_size_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerMovementsPacked, _impl_._has_bits_),
+        4, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PlayerMovementsPacked, _impl_.moves_),
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_._has_bits_),
+        9, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.player_uuid_bytes_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.x_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.y_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.z_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.yaw_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::PackedPlayerMove, _impl_.pitch_),
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventBatch, _impl_._has_bits_),
         4, // hasbit index offset
@@ -386,10 +503,11 @@ const ::uint32_t
         0x085, // bitmap
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_._oneof_case_[0]),
-        57, // hasbit index offset
+        58, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.event_id_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.type_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.expects_response_),
+        PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.immediate_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.payload_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.payload_),
         PROTOBUF_FIELD_OFFSET(::df::plugin::EventEnvelope, _impl_.payload_),
@@ -443,6 +561,7 @@ const ::uint32_t
         0,
         1,
         2,
+        3,
         ~0u,
         ~0u,
         ~0u,
@@ -543,19 +662,25 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::df::plugin::HostToPlugin)},
-        {19, sizeof(::df::plugin::EventBatch)},
-        {24, sizeof(::df::plugin::ServerInformationRequest)},
-        {25, sizeof(::df::plugin::ServerInformationResponse)},
-        {30, sizeof(::df::plugin::HostHello)},
-        {37, sizeof(::df::plugin::HostShutdown)},
-        {42, sizeof(::df::plugin::EventEnvelope)},
-        {151, sizeof(::df::plugin::PluginToHost)},
-        {170, sizeof(::df::plugin::PluginHello)},
-        {185, sizeof(::df::plugin::LogMessage)},
-        {192, sizeof(::df::plugin::EventSubscribe)},
+        {23, sizeof(::df::plugin::CompressedEventBatch)},
+        {30, sizeof(::df::plugin::PlayerMovementsPacked)},
+        {35, sizeof(::df::plugin::PackedPlayerMove)},
+        {50, sizeof(::df::plugin::EventBatch)},
+        {55, sizeof(::df::plugin::ServerInformationRequest)},
+        {56, sizeof(::df::plugin::ServerInformationResponse)},
+        {61, sizeof(::df::plugin::HostHello)},
+        {68, sizeof(::df::plugin::HostShutdown)},
+        {73, sizeof(::df::plugin::EventEnvelope)},
+        {184, sizeof(::df::plugin::PluginToHost)},
+        {203, sizeof(::df::plugin::PluginHello)},
+        {218, sizeof(::df::plugin::LogMessage)},
+        {225, sizeof(::df::plugin::EventSubscribe)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::df::plugin::_HostToPlugin_default_instance_._instance,
+    &::df::plugin::_CompressedEventBatch_default_instance_._instance,
+    &::df::plugin::_PlayerMovementsPacked_default_instance_._instance,
+    &::df::plugin::_PackedPlayerMove_default_instance_._instance,
     &::df::plugin::_EventBatch_default_instance_._instance,
     &::df::plugin::_ServerInformationRequest_default_instance_._instance,
     &::df::plugin::_ServerInformationResponse_default_instance_._instance,
@@ -572,7 +697,7 @@ const char descriptor_table_protodef_plugin_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\n\014plugin.proto\022\tdf.plugin\032\023player_events"
     ".proto\032\022world_events.proto\032\rcommand.prot"
     "o\032\ractions.proto\032\017mutations.proto\032\014commo"
-    "n.proto\032\024action_results.proto\"\207\003\n\014HostTo"
+    "n.proto\032\024action_results.proto\"\263\004\n\014HostTo"
     "Plugin\022\033\n\tplugin_id\030\001 \001(\tR\010pluginId\022,\n\005h"
     "ello\030\n \001(\0132\024.df.plugin.HostHelloH\000R\005hell"
     "o\0225\n\010shutdown\030\013 \001(\0132\027.df.plugin.HostShut"
@@ -582,167 +707,180 @@ const char descriptor_table_protodef_plugin_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "ntEnvelopeH\000R\005event\022>\n\raction_result\030\025 \001"
     "(\0132\027.df.plugin.ActionResultH\000R\014actionRes"
     "ult\022/\n\006events\030\026 \001(\0132\025.df.plugin.EventBat"
-    "chH\000R\006eventsB\t\n\007payload\">\n\nEventBatch\0220\n"
-    "\006events\030\001 \003(\0132\030.df.plugin.EventEnvelopeR"
-    "\006events\"\032\n\030ServerInformationRequest\"5\n\031S"
-    "erverInformationResponse\022\030\n\007plugins\030\001 \003("
-    "\tR\007plugins\"E\n\tHostHello\022\037\n\013api_version\030\001"
-    " \001(\tR\napiVersion\022\027\n\007boot_id\030\002 \001(\tR\006bootI"
-    "d\"&\n\014HostShutdown\022\026\n\006reason\030\001 \001(\tR\006reaso"
-    "n\"\346\036\n\rEventEnvelope\022\031\n\010event_id\030\001 \001(\tR\007e"
-    "ventId\022(\n\004type\030\002 \001(\0162\024.df.plugin.EventTy"
-    "peR\004type\022)\n\020expects_response\030\003 \001(\010R\017expe"
-    "ctsResponse\022=\n\013player_join\030\n \001(\0132\032.df.pl"
-    "ugin.PlayerJoinEventH\000R\nplayerJoin\022=\n\013pl"
-    "ayer_quit\030\013 \001(\0132\032.df.plugin.PlayerQuitEv"
-    "entH\000R\nplayerQuit\022=\n\013player_move\030\014 \001(\0132\032"
-    ".df.plugin.PlayerMoveEventH\000R\nplayerMove"
-    "\022=\n\013player_jump\030\r \001(\0132\032.df.plugin.Player"
-    "JumpEventH\000R\nplayerJump\022I\n\017player_telepo"
-    "rt\030\016 \001(\0132\036.df.plugin.PlayerTeleportEvent"
-    "H\000R\016playerTeleport\022S\n\023player_change_worl"
-    "d\030\017 \001(\0132!.df.plugin.PlayerChangeWorldEve"
-    "ntH\000R\021playerChangeWorld\022V\n\024player_toggle"
-    "_sprint\030\020 \001(\0132\".df.plugin.PlayerToggleSp"
-    "rintEventH\000R\022playerToggleSprint\022S\n\023playe"
-    "r_toggle_sneak\030\021 \001(\0132!.df.plugin.PlayerT"
-    "oggleSneakEventH\000R\021playerToggleSneak\022*\n\004"
-    "chat\030\022 \001(\0132\024.df.plugin.ChatEventH\000R\004chat"
-    "\022J\n\020player_food_loss\030\023 \001(\0132\036.df.plugin.P"
-    "layerFoodLossEventH\000R\016playerFoodLoss\022=\n\013"
-    "player_heal\030\024 \001(\0132\032.df.plugin.PlayerHeal"
-    "EventH\000R\nplayerHeal\022=\n\013player_hurt\030\025 \001(\013"
-    "2\032.df.plugin.PlayerHurtEventH\000R\nplayerHu"
-    "rt\022@\n\014player_death\030\026 \001(\0132\033.df.plugin.Pla"
-    "yerDeathEventH\000R\013playerDeath\022F\n\016player_r"
-    "espawn\030\027 \001(\0132\035.df.plugin.PlayerRespawnEv"
-    "entH\000R\rplayerRespawn\022P\n\022player_skin_chan"
-    "ge\030\030 \001(\0132 .df.plugin.PlayerSkinChangeEve"
-    "ntH\000R\020playerSkinChange\022\\\n\026player_fire_ex"
-    "tinguish\030\031 \001(\0132$.df.plugin.PlayerFireExt"
-    "inguishEventH\000R\024playerFireExtinguish\022P\n\022"
-    "player_start_break\030\032 \001(\0132 .df.plugin.Pla"
-    "yerStartBreakEventH\000R\020playerStartBreak\022="
-    "\n\013block_break\030\033 \001(\0132\032.df.plugin.BlockBre"
-    "akEventH\000R\nblockBreak\022P\n\022player_block_pl"
-    "ace\030\034 \001(\0132 .df.plugin.PlayerBlockPlaceEv"
-    "entH\000R\020playerBlockPlace\022M\n\021player_block_"
-    "pick\030\035 \001(\0132\037.df.plugin.PlayerBlockPickEv"
-    "entH\000R\017playerBlockPick\022G\n\017player_item_us"
-    "e\030\036 \001(\0132\035.df.plugin.PlayerItemUseEventH\000"
-    "R\rplayerItemUse\022^\n\030player_item_use_on_bl"
-    "ock\030\037 \001(\0132$.df.plugin.PlayerItemUseOnBlo"
-    "ckEventH\000R\024playerItemUseOnBlock\022a\n\031playe"
-    "r_item_use_on_entity\030  \001(\0132%.df.plugin.P"
-    "layerItemUseOnEntityEventH\000R\025playerItemU"
-    "seOnEntity\022S\n\023player_item_release\030! \001(\0132"
-    "!.df.plugin.PlayerItemReleaseEventH\000R\021pl"
-    "ayerItemRelease\022S\n\023player_item_consume\030\""
-    " \001(\0132!.df.plugin.PlayerItemConsumeEventH"
-    "\000R\021playerItemConsume\022V\n\024player_attack_en"
-    "tity\030# \001(\0132\".df.plugin.PlayerAttackEntit"
-    "yEventH\000R\022playerAttackEntity\022\\\n\026player_e"
-    "xperience_gain\030$ \001(\0132$.df.plugin.PlayerE"
-    "xperienceGainEventH\000R\024playerExperienceGa"
-    "in\022J\n\020player_punch_air\030% \001(\0132\036.df.plugin"
-    ".PlayerPunchAirEventH\000R\016playerPunchAir\022J"
-    "\n\020player_sign_edit\030& \001(\0132\036.df.plugin.Pla"
-    "yerSignEditEventH\000R\016playerSignEdit\022`\n\030pl"
-    "ayer_lectern_page_turn\030\' \001(\0132%.df.plugin"
-    ".PlayerLecternPageTurnEventH\000R\025playerLec"
-    "ternPageTurn\022P\n\022player_item_damage\030( \001(\013"
-    "2 .df.plugin.PlayerItemDamageEventH\000R\020pl"
-    "ayerItemDamage\022P\n\022player_item_pickup\030) \001"
-    "(\0132 .df.plugin.PlayerItemPickupEventH\000R\020"
-    "playerItemPickup\022]\n\027player_held_slot_cha"
-    "nge\030* \001(\0132$.df.plugin.PlayerHeldSlotChan"
-    "geEventH\000R\024playerHeldSlotChange\022J\n\020playe"
-    "r_item_drop\030+ \001(\0132\036.df.plugin.PlayerItem"
-    "DropEventH\000R\016playerItemDrop\022I\n\017player_tr"
-    "ansfer\030, \001(\0132\036.df.plugin.PlayerTransferE"
-    "ventH\000R\016playerTransfer\0223\n\007command\030- \001(\0132"
-    "\027.df.plugin.CommandEventH\000R\007command\022R\n\022p"
-    "layer_diagnostics\030. \001(\0132!.df.plugin.Play"
-    "erDiagnosticsEventH\000R\021playerDiagnostics\022"
-    "M\n\021world_liquid_flow\030F \001(\0132\037.df.plugin.W"
-    "orldLiquidFlowEventH\000R\017worldLiquidFlow\022P"
-    "\n\022world_liquid_decay\030G \001(\0132 .df.plugin.W"
-    "orldLiquidDecayEventH\000R\020worldLiquidDecay"
-    "\022S\n\023world_liquid_harden\030H \001(\0132!.df.plugi"
-    "n.WorldLiquidHardenEventH\000R\021worldLiquidH"
-    "arden\022=\n\013world_sound\030I \001(\0132\032.df.plugin.W"
-    "orldSoundEventH\000R\nworldSound\022M\n\021world_fi"
-    "re_spread\030J \001(\0132\037.df.plugin.WorldFireSpr"
-    "eadEventH\000R\017worldFireSpread\022J\n\020world_blo"
-    "ck_burn\030K \001(\0132\036.df.plugin.WorldBlockBurn"
-    "EventH\000R\016worldBlockBurn\022P\n\022world_crop_tr"
-    "ample\030L \001(\0132 .df.plugin.WorldCropTrample"
-    "EventH\000R\020worldCropTrample\022P\n\022world_leave"
-    "s_decay\030M \001(\0132 .df.plugin.WorldLeavesDec"
-    "ayEventH\000R\020worldLeavesDecay\022P\n\022world_ent"
-    "ity_spawn\030N \001(\0132 .df.plugin.WorldEntityS"
-    "pawnEventH\000R\020worldEntitySpawn\022V\n\024world_e"
-    "ntity_despawn\030O \001(\0132\".df.plugin.WorldEnt"
-    "ityDespawnEventH\000R\022worldEntityDespawn\022I\n"
-    "\017world_explosion\030P \001(\0132\036.df.plugin.World"
-    "ExplosionEventH\000R\016worldExplosion\022=\n\013worl"
-    "d_close\030Q \001(\0132\032.df.plugin.WorldCloseEven"
-    "tH\000R\nworldCloseB\t\n\007payload\"\205\003\n\014PluginToH"
-    "ost\022\033\n\tplugin_id\030\001 \001(\tR\010pluginId\022.\n\005hell"
-    "o\030\n \001(\0132\026.df.plugin.PluginHelloH\000R\005hello"
-    "\0229\n\tsubscribe\030\013 \001(\0132\031.df.plugin.EventSub"
-    "scribeH\000R\tsubscribe\022F\n\013server_info\030\014 \001(\013"
-    "2#.df.plugin.ServerInformationRequestH\000R"
-    "\nserverInfo\0222\n\007actions\030\024 \001(\0132\026.df.plugin"
-    ".ActionBatchH\000R\007actions\022)\n\003log\030\036 \001(\0132\025.d"
-    "f.plugin.LogMessageH\000R\003log\022;\n\014event_resu"
-    "lt\030( \001(\0132\026.df.plugin.EventResultH\000R\013even"
-    "tResultB\t\n\007payload\"\233\002\n\013PluginHello\022\022\n\004na"
-    "me\030\001 \001(\tR\004name\022\030\n\007version\030\002 \001(\tR\007version"
-    "\022\037\n\013api_version\030\003 \001(\tR\napiVersion\0222\n\010com"
-    "mands\030\004 \003(\0132\026.df.plugin.CommandSpecR\010com"
-    "mands\022B\n\014custom_items\030\005 \003(\0132\037.df.plugin."
-    "CustomItemDefinitionR\013customItems\022E\n\rcus"
-    "tom_blocks\030\006 \003(\0132 .df.plugin.CustomBlock"
-    "DefinitionR\014customBlocks\"<\n\nLogMessage\022\024"
-    "\n\005level\030\001 \001(\tR\005level\022\030\n\007message\030\002 \001(\tR\007m"
-    "essage\">\n\016EventSubscribe\022,\n\006events\030\001 \003(\016"
-    "2\024.df.plugin.EventTypeR\006events*\212\t\n\tEvent"
-    "Type\022\032\n\026EVENT_TYPE_UNSPECIFIED\020\000\022\022\n\016EVEN"
-    "T_TYPE_ALL\020\001\022\017\n\013PLAYER_JOIN\020\n\022\017\n\013PLAYER_"
-    "QUIT\020\013\022\017\n\013PLAYER_MOVE\020\014\022\017\n\013PLAYER_JUMP\020\r"
-    "\022\023\n\017PLAYER_TELEPORT\020\016\022\027\n\023PLAYER_CHANGE_W"
-    "ORLD\020\017\022\030\n\024PLAYER_TOGGLE_SPRINT\020\020\022\027\n\023PLAY"
-    "ER_TOGGLE_SNEAK\020\021\022\010\n\004CHAT\020\022\022\024\n\020PLAYER_FO"
-    "OD_LOSS\020\023\022\017\n\013PLAYER_HEAL\020\024\022\017\n\013PLAYER_HUR"
-    "T\020\025\022\020\n\014PLAYER_DEATH\020\026\022\022\n\016PLAYER_RESPAWN\020"
-    "\027\022\026\n\022PLAYER_SKIN_CHANGE\020\030\022\032\n\026PLAYER_FIRE"
-    "_EXTINGUISH\020\031\022\026\n\022PLAYER_START_BREAK\020\032\022\026\n"
-    "\022PLAYER_BLOCK_BREAK\020\033\022\026\n\022PLAYER_BLOCK_PL"
-    "ACE\020\034\022\025\n\021PLAYER_BLOCK_PICK\020\035\022\023\n\017PLAYER_I"
-    "TEM_USE\020\036\022\034\n\030PLAYER_ITEM_USE_ON_BLOCK\020\037\022"
-    "\035\n\031PLAYER_ITEM_USE_ON_ENTITY\020 \022\027\n\023PLAYER"
-    "_ITEM_RELEASE\020!\022\027\n\023PLAYER_ITEM_CONSUME\020\""
-    "\022\030\n\024PLAYER_ATTACK_ENTITY\020#\022\032\n\026PLAYER_EXP"
-    "ERIENCE_GAIN\020$\022\024\n\020PLAYER_PUNCH_AIR\020%\022\024\n\020"
-    "PLAYER_SIGN_EDIT\020&\022\034\n\030PLAYER_LECTERN_PAG"
-    "E_TURN\020\'\022\026\n\022PLAYER_ITEM_DAMAGE\020(\022\026\n\022PLAY"
-    "ER_ITEM_PICKUP\020)\022\033\n\027PLAYER_HELD_SLOT_CHA"
-    "NGE\020*\022\024\n\020PLAYER_ITEM_DROP\020+\022\023\n\017PLAYER_TR"
-    "ANSFER\020,\022\013\n\007COMMAND\020-\022\026\n\022PLAYER_DIAGNOST"
-    "ICS\020.\022\025\n\021WORLD_LIQUID_FLOW\020F\022\026\n\022WORLD_LI"
-    "QUID_DECAY\020G\022\027\n\023WORLD_LIQUID_HARDEN\020H\022\017\n"
-    "\013WORLD_SOUND\020I\022\025\n\021WORLD_FIRE_SPREAD\020J\022\024\n"
-    "\020WORLD_BLOCK_BURN\020K\022\026\n\022WORLD_CROP_TRAMPL"
-    "E\020L\022\026\n\022WORLD_LEAVES_DECAY\020M\022\026\n\022WORLD_ENT"
-    "ITY_SPAWN\020N\022\030\n\024WORLD_ENTITY_DESPAWN\020O\022\023\n"
-    "\017WORLD_EXPLOSION\020P\022\017\n\013WORLD_CLOSE\020Q2M\n\006P"
-    "lugin\022C\n\013EventStream\022\027.df.plugin.PluginT"
-    "oHost\032\027.df.plugin.HostToPlugin(\0010\001B\212\001\n\rc"
-    "om.df.pluginB\013PluginProtoP\001Z\'github.com/"
-    "secmc/plugin/proto/generated\242\002\003DPX\252\002\tDf."
-    "Plugin\312\002\tDf\\Plugin\342\002\025Df\\Plugin\\GPBMetada"
-    "ta\352\002\nDf::Pluginb\006proto3"
+    "chH\000R\006events\022N\n\021compressed_events\030\027 \001(\0132"
+    "\037.df.plugin.CompressedEventBatchH\000R\020comp"
+    "ressedEvents\022Z\n\027player_movements_packed\030"
+    "\030 \001(\0132 .df.plugin.PlayerMovementsPackedH"
+    "\000R\025playerMovementsPackedB\t\n\007payload\"O\n\024C"
+    "ompressedEventBatch\022\022\n\004data\030\001 \001(\014R\004data\022"
+    "#\n\roriginal_size\030\002 \001(\005R\014originalSize\"J\n\025"
+    "PlayerMovementsPacked\0221\n\005moves\030\001 \003(\0132\033.d"
+    "f.plugin.PackedPlayerMoveR\005moves\"\220\001\n\020Pac"
+    "kedPlayerMove\022*\n\021player_uuid_bytes\030\001 \001(\014"
+    "R\017playerUuidBytes\022\014\n\001x\030\002 \001(\002R\001x\022\014\n\001y\030\003 \001"
+    "(\002R\001y\022\014\n\001z\030\004 \001(\002R\001z\022\020\n\003yaw\030\005 \001(\002R\003yaw\022\024\n"
+    "\005pitch\030\006 \001(\002R\005pitch\">\n\nEventBatch\0220\n\006eve"
+    "nts\030\001 \003(\0132\030.df.plugin.EventEnvelopeR\006eve"
+    "nts\"\032\n\030ServerInformationRequest\"5\n\031Serve"
+    "rInformationResponse\022\030\n\007plugins\030\001 \003(\tR\007p"
+    "lugins\"E\n\tHostHello\022\037\n\013api_version\030\001 \001(\t"
+    "R\napiVersion\022\027\n\007boot_id\030\002 \001(\tR\006bootId\"&\n"
+    "\014HostShutdown\022\026\n\006reason\030\001 \001(\tR\006reason\"\204\037"
+    "\n\rEventEnvelope\022\031\n\010event_id\030\001 \001(\tR\007event"
+    "Id\022(\n\004type\030\002 \001(\0162\024.df.plugin.EventTypeR\004"
+    "type\022)\n\020expects_response\030\003 \001(\010R\017expectsR"
+    "esponse\022\034\n\timmediate\030\004 \001(\010R\timmediate\022=\n"
+    "\013player_join\030\n \001(\0132\032.df.plugin.PlayerJoi"
+    "nEventH\000R\nplayerJoin\022=\n\013player_quit\030\013 \001("
+    "\0132\032.df.plugin.PlayerQuitEventH\000R\nplayerQ"
+    "uit\022=\n\013player_move\030\014 \001(\0132\032.df.plugin.Pla"
+    "yerMoveEventH\000R\nplayerMove\022=\n\013player_jum"
+    "p\030\r \001(\0132\032.df.plugin.PlayerJumpEventH\000R\np"
+    "layerJump\022I\n\017player_teleport\030\016 \001(\0132\036.df."
+    "plugin.PlayerTeleportEventH\000R\016playerTele"
+    "port\022S\n\023player_change_world\030\017 \001(\0132!.df.p"
+    "lugin.PlayerChangeWorldEventH\000R\021playerCh"
+    "angeWorld\022V\n\024player_toggle_sprint\030\020 \001(\0132"
+    "\".df.plugin.PlayerToggleSprintEventH\000R\022p"
+    "layerToggleSprint\022S\n\023player_toggle_sneak"
+    "\030\021 \001(\0132!.df.plugin.PlayerToggleSneakEven"
+    "tH\000R\021playerToggleSneak\022*\n\004chat\030\022 \001(\0132\024.d"
+    "f.plugin.ChatEventH\000R\004chat\022J\n\020player_foo"
+    "d_loss\030\023 \001(\0132\036.df.plugin.PlayerFoodLossE"
+    "ventH\000R\016playerFoodLoss\022=\n\013player_heal\030\024 "
+    "\001(\0132\032.df.plugin.PlayerHealEventH\000R\nplaye"
+    "rHeal\022=\n\013player_hurt\030\025 \001(\0132\032.df.plugin.P"
+    "layerHurtEventH\000R\nplayerHurt\022@\n\014player_d"
+    "eath\030\026 \001(\0132\033.df.plugin.PlayerDeathEventH"
+    "\000R\013playerDeath\022F\n\016player_respawn\030\027 \001(\0132\035"
+    ".df.plugin.PlayerRespawnEventH\000R\rplayerR"
+    "espawn\022P\n\022player_skin_change\030\030 \001(\0132 .df."
+    "plugin.PlayerSkinChangeEventH\000R\020playerSk"
+    "inChange\022\\\n\026player_fire_extinguish\030\031 \001(\013"
+    "2$.df.plugin.PlayerFireExtinguishEventH\000"
+    "R\024playerFireExtinguish\022P\n\022player_start_b"
+    "reak\030\032 \001(\0132 .df.plugin.PlayerStartBreakE"
+    "ventH\000R\020playerStartBreak\022=\n\013block_break\030"
+    "\033 \001(\0132\032.df.plugin.BlockBreakEventH\000R\nblo"
+    "ckBreak\022P\n\022player_block_place\030\034 \001(\0132 .df"
+    ".plugin.PlayerBlockPlaceEventH\000R\020playerB"
+    "lockPlace\022M\n\021player_block_pick\030\035 \001(\0132\037.d"
+    "f.plugin.PlayerBlockPickEventH\000R\017playerB"
+    "lockPick\022G\n\017player_item_use\030\036 \001(\0132\035.df.p"
+    "lugin.PlayerItemUseEventH\000R\rplayerItemUs"
+    "e\022^\n\030player_item_use_on_block\030\037 \001(\0132$.df"
+    ".plugin.PlayerItemUseOnBlockEventH\000R\024pla"
+    "yerItemUseOnBlock\022a\n\031player_item_use_on_"
+    "entity\030  \001(\0132%.df.plugin.PlayerItemUseOn"
+    "EntityEventH\000R\025playerItemUseOnEntity\022S\n\023"
+    "player_item_release\030! \001(\0132!.df.plugin.Pl"
+    "ayerItemReleaseEventH\000R\021playerItemReleas"
+    "e\022S\n\023player_item_consume\030\" \001(\0132!.df.plug"
+    "in.PlayerItemConsumeEventH\000R\021playerItemC"
+    "onsume\022V\n\024player_attack_entity\030# \001(\0132\".d"
+    "f.plugin.PlayerAttackEntityEventH\000R\022play"
+    "erAttackEntity\022\\\n\026player_experience_gain"
+    "\030$ \001(\0132$.df.plugin.PlayerExperienceGainE"
+    "ventH\000R\024playerExperienceGain\022J\n\020player_p"
+    "unch_air\030% \001(\0132\036.df.plugin.PlayerPunchAi"
+    "rEventH\000R\016playerPunchAir\022J\n\020player_sign_"
+    "edit\030& \001(\0132\036.df.plugin.PlayerSignEditEve"
+    "ntH\000R\016playerSignEdit\022`\n\030player_lectern_p"
+    "age_turn\030\' \001(\0132%.df.plugin.PlayerLectern"
+    "PageTurnEventH\000R\025playerLecternPageTurn\022P"
+    "\n\022player_item_damage\030( \001(\0132 .df.plugin.P"
+    "layerItemDamageEventH\000R\020playerItemDamage"
+    "\022P\n\022player_item_pickup\030) \001(\0132 .df.plugin"
+    ".PlayerItemPickupEventH\000R\020playerItemPick"
+    "up\022]\n\027player_held_slot_change\030* \001(\0132$.df"
+    ".plugin.PlayerHeldSlotChangeEventH\000R\024pla"
+    "yerHeldSlotChange\022J\n\020player_item_drop\030+ "
+    "\001(\0132\036.df.plugin.PlayerItemDropEventH\000R\016p"
+    "layerItemDrop\022I\n\017player_transfer\030, \001(\0132\036"
+    ".df.plugin.PlayerTransferEventH\000R\016player"
+    "Transfer\0223\n\007command\030- \001(\0132\027.df.plugin.Co"
+    "mmandEventH\000R\007command\022R\n\022player_diagnost"
+    "ics\030. \001(\0132!.df.plugin.PlayerDiagnosticsE"
+    "ventH\000R\021playerDiagnostics\022M\n\021world_liqui"
+    "d_flow\030F \001(\0132\037.df.plugin.WorldLiquidFlow"
+    "EventH\000R\017worldLiquidFlow\022P\n\022world_liquid"
+    "_decay\030G \001(\0132 .df.plugin.WorldLiquidDeca"
+    "yEventH\000R\020worldLiquidDecay\022S\n\023world_liqu"
+    "id_harden\030H \001(\0132!.df.plugin.WorldLiquidH"
+    "ardenEventH\000R\021worldLiquidHarden\022=\n\013world"
+    "_sound\030I \001(\0132\032.df.plugin.WorldSoundEvent"
+    "H\000R\nworldSound\022M\n\021world_fire_spread\030J \001("
+    "\0132\037.df.plugin.WorldFireSpreadEventH\000R\017wo"
+    "rldFireSpread\022J\n\020world_block_burn\030K \001(\0132"
+    "\036.df.plugin.WorldBlockBurnEventH\000R\016world"
+    "BlockBurn\022P\n\022world_crop_trample\030L \001(\0132 ."
+    "df.plugin.WorldCropTrampleEventH\000R\020world"
+    "CropTrample\022P\n\022world_leaves_decay\030M \001(\0132"
+    " .df.plugin.WorldLeavesDecayEventH\000R\020wor"
+    "ldLeavesDecay\022P\n\022world_entity_spawn\030N \001("
+    "\0132 .df.plugin.WorldEntitySpawnEventH\000R\020w"
+    "orldEntitySpawn\022V\n\024world_entity_despawn\030"
+    "O \001(\0132\".df.plugin.WorldEntityDespawnEven"
+    "tH\000R\022worldEntityDespawn\022I\n\017world_explosi"
+    "on\030P \001(\0132\036.df.plugin.WorldExplosionEvent"
+    "H\000R\016worldExplosion\022=\n\013world_close\030Q \001(\0132"
+    "\032.df.plugin.WorldCloseEventH\000R\nworldClos"
+    "eB\t\n\007payload\"\205\003\n\014PluginToHost\022\033\n\tplugin_"
+    "id\030\001 \001(\tR\010pluginId\022.\n\005hello\030\n \001(\0132\026.df.p"
+    "lugin.PluginHelloH\000R\005hello\0229\n\tsubscribe\030"
+    "\013 \001(\0132\031.df.plugin.EventSubscribeH\000R\tsubs"
+    "cribe\022F\n\013server_info\030\014 \001(\0132#.df.plugin.S"
+    "erverInformationRequestH\000R\nserverInfo\0222\n"
+    "\007actions\030\024 \001(\0132\026.df.plugin.ActionBatchH\000"
+    "R\007actions\022)\n\003log\030\036 \001(\0132\025.df.plugin.LogMe"
+    "ssageH\000R\003log\022;\n\014event_result\030( \001(\0132\026.df."
+    "plugin.EventResultH\000R\013eventResultB\t\n\007pay"
+    "load\"\233\002\n\013PluginHello\022\022\n\004name\030\001 \001(\tR\004name"
+    "\022\030\n\007version\030\002 \001(\tR\007version\022\037\n\013api_versio"
+    "n\030\003 \001(\tR\napiVersion\0222\n\010commands\030\004 \003(\0132\026."
+    "df.plugin.CommandSpecR\010commands\022B\n\014custo"
+    "m_items\030\005 \003(\0132\037.df.plugin.CustomItemDefi"
+    "nitionR\013customItems\022E\n\rcustom_blocks\030\006 \003"
+    "(\0132 .df.plugin.CustomBlockDefinitionR\014cu"
+    "stomBlocks\"<\n\nLogMessage\022\024\n\005level\030\001 \001(\tR"
+    "\005level\022\030\n\007message\030\002 \001(\tR\007message\">\n\016Even"
+    "tSubscribe\022,\n\006events\030\001 \003(\0162\024.df.plugin.E"
+    "ventTypeR\006events*\212\t\n\tEventType\022\032\n\026EVENT_"
+    "TYPE_UNSPECIFIED\020\000\022\022\n\016EVENT_TYPE_ALL\020\001\022\017"
+    "\n\013PLAYER_JOIN\020\n\022\017\n\013PLAYER_QUIT\020\013\022\017\n\013PLAY"
+    "ER_MOVE\020\014\022\017\n\013PLAYER_JUMP\020\r\022\023\n\017PLAYER_TEL"
+    "EPORT\020\016\022\027\n\023PLAYER_CHANGE_WORLD\020\017\022\030\n\024PLAY"
+    "ER_TOGGLE_SPRINT\020\020\022\027\n\023PLAYER_TOGGLE_SNEA"
+    "K\020\021\022\010\n\004CHAT\020\022\022\024\n\020PLAYER_FOOD_LOSS\020\023\022\017\n\013P"
+    "LAYER_HEAL\020\024\022\017\n\013PLAYER_HURT\020\025\022\020\n\014PLAYER_"
+    "DEATH\020\026\022\022\n\016PLAYER_RESPAWN\020\027\022\026\n\022PLAYER_SK"
+    "IN_CHANGE\020\030\022\032\n\026PLAYER_FIRE_EXTINGUISH\020\031\022"
+    "\026\n\022PLAYER_START_BREAK\020\032\022\026\n\022PLAYER_BLOCK_"
+    "BREAK\020\033\022\026\n\022PLAYER_BLOCK_PLACE\020\034\022\025\n\021PLAYE"
+    "R_BLOCK_PICK\020\035\022\023\n\017PLAYER_ITEM_USE\020\036\022\034\n\030P"
+    "LAYER_ITEM_USE_ON_BLOCK\020\037\022\035\n\031PLAYER_ITEM"
+    "_USE_ON_ENTITY\020 \022\027\n\023PLAYER_ITEM_RELEASE\020"
+    "!\022\027\n\023PLAYER_ITEM_CONSUME\020\"\022\030\n\024PLAYER_ATT"
+    "ACK_ENTITY\020#\022\032\n\026PLAYER_EXPERIENCE_GAIN\020$"
+    "\022\024\n\020PLAYER_PUNCH_AIR\020%\022\024\n\020PLAYER_SIGN_ED"
+    "IT\020&\022\034\n\030PLAYER_LECTERN_PAGE_TURN\020\'\022\026\n\022PL"
+    "AYER_ITEM_DAMAGE\020(\022\026\n\022PLAYER_ITEM_PICKUP"
+    "\020)\022\033\n\027PLAYER_HELD_SLOT_CHANGE\020*\022\024\n\020PLAYE"
+    "R_ITEM_DROP\020+\022\023\n\017PLAYER_TRANSFER\020,\022\013\n\007CO"
+    "MMAND\020-\022\026\n\022PLAYER_DIAGNOSTICS\020.\022\025\n\021WORLD"
+    "_LIQUID_FLOW\020F\022\026\n\022WORLD_LIQUID_DECAY\020G\022\027"
+    "\n\023WORLD_LIQUID_HARDEN\020H\022\017\n\013WORLD_SOUND\020I"
+    "\022\025\n\021WORLD_FIRE_SPREAD\020J\022\024\n\020WORLD_BLOCK_B"
+    "URN\020K\022\026\n\022WORLD_CROP_TRAMPLE\020L\022\026\n\022WORLD_L"
+    "EAVES_DECAY\020M\022\026\n\022WORLD_ENTITY_SPAWN\020N\022\030\n"
+    "\024WORLD_ENTITY_DESPAWN\020O\022\023\n\017WORLD_EXPLOSI"
+    "ON\020P\022\017\n\013WORLD_CLOSE\020Q2M\n\006Plugin\022C\n\013Event"
+    "Stream\022\027.df.plugin.PluginToHost\032\027.df.plu"
+    "gin.HostToPlugin(\0010\001B\212\001\n\rcom.df.pluginB\013"
+    "PluginProtoP\001Z\'github.com/secmc/plugin/p"
+    "roto/generated\242\002\003DPX\252\002\tDf.Plugin\312\002\tDf\\Pl"
+    "ugin\342\002\025Df\\Plugin\\GPBMetadata\352\002\nDf::Plugi"
+    "nb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_plugin_2eproto_deps[7] = {
@@ -758,13 +896,13 @@ static ::absl::once_flag descriptor_table_plugin_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_plugin_2eproto = {
     false,
     false,
-    6943,
+    7449,
     descriptor_table_protodef_plugin_2eproto,
     "plugin.proto",
     &descriptor_table_plugin_2eproto_once,
     descriptor_table_plugin_2eproto_deps,
     7,
-    11,
+    14,
     schemas,
     file_default_instances,
     TableStruct_plugin_2eproto::offsets,
@@ -880,6 +1018,32 @@ void HostToPlugin::set_allocated_events(::df::plugin::EventBatch* PROTOBUF_NULLA
   }
   // @@protoc_insertion_point(field_set_allocated:df.plugin.HostToPlugin.events)
 }
+void HostToPlugin::set_allocated_compressed_events(::df::plugin::CompressedEventBatch* PROTOBUF_NULLABLE compressed_events) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (compressed_events) {
+    ::google::protobuf::Arena* submessage_arena = compressed_events->GetArena();
+    if (message_arena != submessage_arena) {
+      compressed_events = ::google::protobuf::internal::GetOwnedMessage(message_arena, compressed_events, submessage_arena);
+    }
+    set_has_compressed_events();
+    _impl_.payload_.compressed_events_ = compressed_events;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.HostToPlugin.compressed_events)
+}
+void HostToPlugin::set_allocated_player_movements_packed(::df::plugin::PlayerMovementsPacked* PROTOBUF_NULLABLE player_movements_packed) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_payload();
+  if (player_movements_packed) {
+    ::google::protobuf::Arena* submessage_arena = player_movements_packed->GetArena();
+    if (message_arena != submessage_arena) {
+      player_movements_packed = ::google::protobuf::internal::GetOwnedMessage(message_arena, player_movements_packed, submessage_arena);
+    }
+    set_has_player_movements_packed();
+    _impl_.payload_.player_movements_packed_ = player_movements_packed;
+  }
+  // @@protoc_insertion_point(field_set_allocated:df.plugin.HostToPlugin.player_movements_packed)
+}
 HostToPlugin::HostToPlugin(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, HostToPlugin_class_data_.base()) {
@@ -932,6 +1096,12 @@ HostToPlugin::HostToPlugin(
         break;
       case kEvents:
         _impl_.payload_.events_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.events_);
+        break;
+      case kCompressedEvents:
+        _impl_.payload_.compressed_events_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.compressed_events_);
+        break;
+      case kPlayerMovementsPacked:
+        _impl_.payload_.player_movements_packed_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.player_movements_packed_);
         break;
   }
 
@@ -1018,6 +1188,22 @@ void HostToPlugin::clear_payload() {
       }
       break;
     }
+    case kCompressedEvents: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.compressed_events_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.compressed_events_);
+      }
+      break;
+    }
+    case kPlayerMovementsPacked: {
+      if (GetArena() == nullptr) {
+        delete _impl_.payload_.player_movements_packed_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.player_movements_packed_);
+      }
+      break;
+    }
     case PAYLOAD_NOT_SET: {
       break;
     }
@@ -1069,17 +1255,17 @@ HostToPlugin::GetClassData() const {
   return HostToPlugin_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 7, 6, 40, 2>
+const ::_pbi::TcParseTable<0, 9, 8, 48, 2>
 HostToPlugin::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(HostToPlugin, _impl_._has_bits_),
     0, // no _extensions_
-    22, 0,  // max_field_number, fast_idx_mask
+    24, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4291293694,  // skipmap
+    4278710782,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
-    6,  // num_aux_entries
+    9,  // num_field_entries
+    8,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     HostToPlugin_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1109,6 +1295,10 @@ HostToPlugin::_table_ = {
     {PROTOBUF_FIELD_OFFSET(HostToPlugin, _impl_.payload_.action_result_), _Internal::kOneofCaseOffset + 0, 4, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .df.plugin.EventBatch events = 22 [json_name = "events"];
     {PROTOBUF_FIELD_OFFSET(HostToPlugin, _impl_.payload_.events_), _Internal::kOneofCaseOffset + 0, 5, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];
+    {PROTOBUF_FIELD_OFFSET(HostToPlugin, _impl_.payload_.compressed_events_), _Internal::kOneofCaseOffset + 0, 6, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];
+    {PROTOBUF_FIELD_OFFSET(HostToPlugin, _impl_.payload_.player_movements_packed_), _Internal::kOneofCaseOffset + 0, 7, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::df::plugin::HostHello>()},
@@ -1117,9 +1307,11 @@ HostToPlugin::_table_ = {
       {::_pbi::TcParser::GetTable<::df::plugin::EventEnvelope>()},
       {::_pbi::TcParser::GetTable<::df::plugin::ActionResult>()},
       {::_pbi::TcParser::GetTable<::df::plugin::EventBatch>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::CompressedEventBatch>()},
+      {::_pbi::TcParser::GetTable<::df::plugin::PlayerMovementsPacked>()},
   }},
   {{
-    "\26\11\0\0\0\0\0\0"
+    "\26\11\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "df.plugin.HostToPlugin"
     "plugin_id"
   }},
@@ -1206,6 +1398,18 @@ PROTOBUF_NOINLINE void HostToPlugin::Clear() {
           stream);
       break;
     }
+    case kCompressedEvents: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          23, *this_._impl_.payload_.compressed_events_, this_._impl_.payload_.compressed_events_->GetCachedSize(), target,
+          stream);
+      break;
+    }
+    case kPlayerMovementsPacked: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          24, *this_._impl_.payload_.player_movements_packed_, this_._impl_.payload_.player_movements_packed_->GetCachedSize(), target,
+          stream);
+      break;
+    }
     default:
       break;
   }
@@ -1277,6 +1481,18 @@ PROTOBUF_NOINLINE void HostToPlugin::Clear() {
     case kEvents: {
       total_size += 2 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.payload_.events_);
+      break;
+    }
+    // .df.plugin.CompressedEventBatch compressed_events = 23 [json_name = "compressedEvents"];
+    case kCompressedEvents: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.payload_.compressed_events_);
+      break;
+    }
+    // .df.plugin.PlayerMovementsPacked player_movements_packed = 24 [json_name = "playerMovementsPacked"];
+    case kPlayerMovementsPacked: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.payload_.player_movements_packed_);
       break;
     }
     case PAYLOAD_NOT_SET: {
@@ -1372,6 +1588,22 @@ void HostToPlugin::MergeImpl(::google::protobuf::MessageLite& to_msg,
         }
         break;
       }
+      case kCompressedEvents: {
+        if (oneof_needs_init) {
+          _this->_impl_.payload_.compressed_events_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.compressed_events_);
+        } else {
+          _this->_impl_.payload_.compressed_events_->MergeFrom(*from._impl_.payload_.compressed_events_);
+        }
+        break;
+      }
+      case kPlayerMovementsPacked: {
+        if (oneof_needs_init) {
+          _this->_impl_.payload_.player_movements_packed_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.player_movements_packed_);
+        } else {
+          _this->_impl_.payload_.player_movements_packed_->MergeFrom(*from._impl_.payload_.player_movements_packed_);
+        }
+        break;
+      }
       case PAYLOAD_NOT_SET:
         break;
     }
@@ -1400,6 +1632,1023 @@ void HostToPlugin::InternalSwap(HostToPlugin* PROTOBUF_RESTRICT PROTOBUF_NONNULL
 }
 
 ::google::protobuf::Metadata HostToPlugin::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class CompressedEventBatch::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<CompressedEventBatch>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_._has_bits_);
+};
+
+CompressedEventBatch::CompressedEventBatch(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompressedEventBatch_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.CompressedEventBatch)
+}
+PROTOBUF_NDEBUG_INLINE CompressedEventBatch::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::CompressedEventBatch& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        data_(arena, from.data_) {}
+
+CompressedEventBatch::CompressedEventBatch(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const CompressedEventBatch& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, CompressedEventBatch_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  CompressedEventBatch* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.original_size_ = from._impl_.original_size_;
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.CompressedEventBatch)
+}
+PROTOBUF_NDEBUG_INLINE CompressedEventBatch::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        data_(arena) {}
+
+inline void CompressedEventBatch::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.original_size_ = {};
+}
+CompressedEventBatch::~CompressedEventBatch() {
+  // @@protoc_insertion_point(destructor:df.plugin.CompressedEventBatch)
+  SharedDtor(*this);
+}
+inline void CompressedEventBatch::SharedDtor(MessageLite& self) {
+  CompressedEventBatch& this_ = static_cast<CompressedEventBatch&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.data_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL CompressedEventBatch::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) CompressedEventBatch(arena);
+}
+constexpr auto CompressedEventBatch::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(CompressedEventBatch),
+                                            alignof(CompressedEventBatch));
+}
+constexpr auto CompressedEventBatch::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_CompressedEventBatch_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &CompressedEventBatch::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<CompressedEventBatch>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &CompressedEventBatch::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<CompressedEventBatch>(), &CompressedEventBatch::ByteSizeLong,
+              &CompressedEventBatch::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_._cached_size_),
+          false,
+      },
+      &CompressedEventBatch::kDescriptorMethods,
+      &descriptor_table_plugin_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull CompressedEventBatch_class_data_ =
+        CompressedEventBatch::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+CompressedEventBatch::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&CompressedEventBatch_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(CompressedEventBatch_class_data_.tc_table);
+  return CompressedEventBatch_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
+CompressedEventBatch::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    CompressedEventBatch_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::CompressedEventBatch>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 original_size = 2 [json_name = "originalSize"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CompressedEventBatch, _impl_.original_size_), 1>(),
+     {16, 1, 0,
+      PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_.original_size_)}},
+    // bytes data = 1 [json_name = "data"];
+    {::_pbi::TcParser::FastBS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_.data_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes data = 1 [json_name = "data"];
+    {PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_.data_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    // int32 original_size = 2 [json_name = "originalSize"];
+    {PROTOBUF_FIELD_OFFSET(CompressedEventBatch, _impl_.original_size_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void CompressedEventBatch::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.CompressedEventBatch)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.data_.ClearNonDefaultToEmpty();
+  }
+  _impl_.original_size_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL CompressedEventBatch::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const CompressedEventBatch& this_ = static_cast<const CompressedEventBatch&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL CompressedEventBatch::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const CompressedEventBatch& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.CompressedEventBatch)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // bytes data = 1 [json_name = "data"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_data().empty()) {
+      const ::std::string& _s = this_._internal_data();
+      target = stream->WriteBytesMaybeAliased(1, _s, target);
+    }
+  }
+
+  // int32 original_size = 2 [json_name = "originalSize"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_original_size() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<2>(
+              stream, this_._internal_original_size(), target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.CompressedEventBatch)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t CompressedEventBatch::ByteSizeLong(const MessageLite& base) {
+  const CompressedEventBatch& this_ = static_cast<const CompressedEventBatch&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t CompressedEventBatch::ByteSizeLong() const {
+  const CompressedEventBatch& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.CompressedEventBatch)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // bytes data = 1 [json_name = "data"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_data().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                        this_._internal_data());
+      }
+    }
+    // int32 original_size = 2 [json_name = "originalSize"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_original_size() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_original_size());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void CompressedEventBatch::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<CompressedEventBatch*>(&to_msg);
+  auto& from = static_cast<const CompressedEventBatch&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.CompressedEventBatch)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_data().empty()) {
+        _this->_internal_set_data(from._internal_data());
+      } else {
+        if (_this->_impl_.data_.IsDefault()) {
+          _this->_internal_set_data("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_original_size() != 0) {
+        _this->_impl_.original_size_ = from._impl_.original_size_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void CompressedEventBatch::CopyFrom(const CompressedEventBatch& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.CompressedEventBatch)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void CompressedEventBatch::InternalSwap(CompressedEventBatch* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+  swap(_impl_.original_size_, other->_impl_.original_size_);
+}
+
+::google::protobuf::Metadata CompressedEventBatch::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerMovementsPacked::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<PlayerMovementsPacked>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_._has_bits_);
+};
+
+PlayerMovementsPacked::PlayerMovementsPacked(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerMovementsPacked_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.PlayerMovementsPacked)
+}
+PROTOBUF_NDEBUG_INLINE PlayerMovementsPacked::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::PlayerMovementsPacked& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        moves_{visibility, arena, from.moves_} {}
+
+PlayerMovementsPacked::PlayerMovementsPacked(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const PlayerMovementsPacked& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PlayerMovementsPacked_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PlayerMovementsPacked* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.PlayerMovementsPacked)
+}
+PROTOBUF_NDEBUG_INLINE PlayerMovementsPacked::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        moves_{visibility, arena} {}
+
+inline void PlayerMovementsPacked::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+PlayerMovementsPacked::~PlayerMovementsPacked() {
+  // @@protoc_insertion_point(destructor:df.plugin.PlayerMovementsPacked)
+  SharedDtor(*this);
+}
+inline void PlayerMovementsPacked::SharedDtor(MessageLite& self) {
+  PlayerMovementsPacked& this_ = static_cast<PlayerMovementsPacked&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL PlayerMovementsPacked::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) PlayerMovementsPacked(arena);
+}
+constexpr auto PlayerMovementsPacked::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_.moves_) +
+          decltype(PlayerMovementsPacked::_impl_.moves_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(PlayerMovementsPacked), alignof(PlayerMovementsPacked), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&PlayerMovementsPacked::PlacementNew_,
+                                 sizeof(PlayerMovementsPacked),
+                                 alignof(PlayerMovementsPacked));
+  }
+}
+constexpr auto PlayerMovementsPacked::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_PlayerMovementsPacked_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &PlayerMovementsPacked::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<PlayerMovementsPacked>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &PlayerMovementsPacked::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<PlayerMovementsPacked>(), &PlayerMovementsPacked::ByteSizeLong,
+              &PlayerMovementsPacked::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_._cached_size_),
+          false,
+      },
+      &PlayerMovementsPacked::kDescriptorMethods,
+      &descriptor_table_plugin_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull PlayerMovementsPacked_class_data_ =
+        PlayerMovementsPacked::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+PlayerMovementsPacked::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&PlayerMovementsPacked_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(PlayerMovementsPacked_class_data_.tc_table);
+  return PlayerMovementsPacked_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2>
+PlayerMovementsPacked::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    PlayerMovementsPacked_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::PlayerMovementsPacked>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+    {::_pbi::TcParser::FastMtR1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_.moves_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+    {PROTOBUF_FIELD_OFFSET(PlayerMovementsPacked, _impl_.moves_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::df::plugin::PackedPlayerMove>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void PlayerMovementsPacked::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.PlayerMovementsPacked)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    _impl_.moves_.Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL PlayerMovementsPacked::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const PlayerMovementsPacked& this_ = static_cast<const PlayerMovementsPacked&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL PlayerMovementsPacked::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const PlayerMovementsPacked& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.PlayerMovementsPacked)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_moves_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_moves().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              1, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.PlayerMovementsPacked)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t PlayerMovementsPacked::ByteSizeLong(const MessageLite& base) {
+  const PlayerMovementsPacked& this_ = static_cast<const PlayerMovementsPacked&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t PlayerMovementsPacked::ByteSizeLong() const {
+  const PlayerMovementsPacked& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.PlayerMovementsPacked)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+   {
+    // repeated .df.plugin.PackedPlayerMove moves = 1 [json_name = "moves"];
+    cached_has_bits = this_._impl_._has_bits_[0];
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_moves_size();
+      for (const auto& msg : this_._internal_moves()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void PlayerMovementsPacked::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<PlayerMovementsPacked*>(&to_msg);
+  auto& from = static_cast<const PlayerMovementsPacked&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.PlayerMovementsPacked)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    _this->_internal_mutable_moves()->InternalMergeFromWithArena(
+        ::google::protobuf::MessageLite::internal_visibility(), arena,
+        from._internal_moves());
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void PlayerMovementsPacked::CopyFrom(const PlayerMovementsPacked& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.PlayerMovementsPacked)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerMovementsPacked::InternalSwap(PlayerMovementsPacked* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.moves_.InternalSwap(&other->_impl_.moves_);
+}
+
+::google::protobuf::Metadata PlayerMovementsPacked::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PackedPlayerMove::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<PackedPlayerMove>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_._has_bits_);
+};
+
+PackedPlayerMove::PackedPlayerMove(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PackedPlayerMove_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:df.plugin.PackedPlayerMove)
+}
+PROTOBUF_NDEBUG_INLINE PackedPlayerMove::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::df::plugin::PackedPlayerMove& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        player_uuid_bytes_(arena, from.player_uuid_bytes_) {}
+
+PackedPlayerMove::PackedPlayerMove(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const PackedPlayerMove& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, PackedPlayerMove_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  PackedPlayerMove* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, x_),
+           reinterpret_cast<const char*>(&from._impl_) +
+               offsetof(Impl_, x_),
+           offsetof(Impl_, pitch_) -
+               offsetof(Impl_, x_) +
+               sizeof(Impl_::pitch_));
+
+  // @@protoc_insertion_point(copy_constructor:df.plugin.PackedPlayerMove)
+}
+PROTOBUF_NDEBUG_INLINE PackedPlayerMove::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        player_uuid_bytes_(arena) {}
+
+inline void PackedPlayerMove::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, x_),
+           0,
+           offsetof(Impl_, pitch_) -
+               offsetof(Impl_, x_) +
+               sizeof(Impl_::pitch_));
+}
+PackedPlayerMove::~PackedPlayerMove() {
+  // @@protoc_insertion_point(destructor:df.plugin.PackedPlayerMove)
+  SharedDtor(*this);
+}
+inline void PackedPlayerMove::SharedDtor(MessageLite& self) {
+  PackedPlayerMove& this_ = static_cast<PackedPlayerMove&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.player_uuid_bytes_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL PackedPlayerMove::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) PackedPlayerMove(arena);
+}
+constexpr auto PackedPlayerMove::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(PackedPlayerMove),
+                                            alignof(PackedPlayerMove));
+}
+constexpr auto PackedPlayerMove::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_PackedPlayerMove_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &PackedPlayerMove::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<PackedPlayerMove>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &PackedPlayerMove::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<PackedPlayerMove>(), &PackedPlayerMove::ByteSizeLong,
+              &PackedPlayerMove::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_._cached_size_),
+          false,
+      },
+      &PackedPlayerMove::kDescriptorMethods,
+      &descriptor_table_plugin_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull PackedPlayerMove_class_data_ =
+        PackedPlayerMove::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+PackedPlayerMove::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&PackedPlayerMove_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(PackedPlayerMove_class_data_.tc_table);
+  return PackedPlayerMove_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 0, 2>
+PackedPlayerMove::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_._has_bits_),
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    PackedPlayerMove_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::df::plugin::PackedPlayerMove>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+    {::_pbi::TcParser::FastBS1,
+     {10, 0, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.player_uuid_bytes_)}},
+    // float x = 2 [json_name = "x"];
+    {::_pbi::TcParser::FastF32S1,
+     {21, 1, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.x_)}},
+    // float y = 3 [json_name = "y"];
+    {::_pbi::TcParser::FastF32S1,
+     {29, 2, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.y_)}},
+    // float z = 4 [json_name = "z"];
+    {::_pbi::TcParser::FastF32S1,
+     {37, 3, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.z_)}},
+    // float yaw = 5 [json_name = "yaw"];
+    {::_pbi::TcParser::FastF32S1,
+     {45, 4, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.yaw_)}},
+    // float pitch = 6 [json_name = "pitch"];
+    {::_pbi::TcParser::FastF32S1,
+     {53, 5, 0,
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.pitch_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.player_uuid_bytes_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    // float x = 2 [json_name = "x"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.x_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // float y = 3 [json_name = "y"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.y_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // float z = 4 [json_name = "z"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.z_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // float yaw = 5 [json_name = "yaw"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.yaw_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+    // float pitch = 6 [json_name = "pitch"];
+    {PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.pitch_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void PackedPlayerMove::Clear() {
+// @@protoc_insertion_point(message_clear_start:df.plugin.PackedPlayerMove)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    _impl_.player_uuid_bytes_.ClearNonDefaultToEmpty();
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x0000003eU)) {
+    ::memset(&_impl_.x_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.pitch_) -
+        reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.pitch_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL PackedPlayerMove::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const PackedPlayerMove& this_ = static_cast<const PackedPlayerMove&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL PackedPlayerMove::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const PackedPlayerMove& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:df.plugin.PackedPlayerMove)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (!this_._internal_player_uuid_bytes().empty()) {
+      const ::std::string& _s = this_._internal_player_uuid_bytes();
+      target = stream->WriteBytesMaybeAliased(1, _s, target);
+    }
+  }
+
+  // float x = 2 [json_name = "x"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFloatToArray(
+          2, this_._internal_x(), target);
+    }
+  }
+
+  // float y = 3 [json_name = "y"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFloatToArray(
+          3, this_._internal_y(), target);
+    }
+  }
+
+  // float z = 4 [json_name = "z"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (::absl::bit_cast<::uint32_t>(this_._internal_z()) != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFloatToArray(
+          4, this_._internal_z(), target);
+    }
+  }
+
+  // float yaw = 5 [json_name = "yaw"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (::absl::bit_cast<::uint32_t>(this_._internal_yaw()) != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFloatToArray(
+          5, this_._internal_yaw(), target);
+    }
+  }
+
+  // float pitch = 6 [json_name = "pitch"];
+  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+    if (::absl::bit_cast<::uint32_t>(this_._internal_pitch()) != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFloatToArray(
+          6, this_._internal_pitch(), target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:df.plugin.PackedPlayerMove)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t PackedPlayerMove::ByteSizeLong(const MessageLite& base) {
+  const PackedPlayerMove& this_ = static_cast<const PackedPlayerMove&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t PackedPlayerMove::ByteSizeLong() const {
+  const PackedPlayerMove& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:df.plugin.PackedPlayerMove)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+    // bytes player_uuid_bytes = 1 [json_name = "playerUuidBytes"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!this_._internal_player_uuid_bytes().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                        this_._internal_player_uuid_bytes());
+      }
+    }
+    // float x = 2 [json_name = "x"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (::absl::bit_cast<::uint32_t>(this_._internal_x()) != 0) {
+        total_size += 5;
+      }
+    }
+    // float y = 3 [json_name = "y"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (::absl::bit_cast<::uint32_t>(this_._internal_y()) != 0) {
+        total_size += 5;
+      }
+    }
+    // float z = 4 [json_name = "z"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (::absl::bit_cast<::uint32_t>(this_._internal_z()) != 0) {
+        total_size += 5;
+      }
+    }
+    // float yaw = 5 [json_name = "yaw"];
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      if (::absl::bit_cast<::uint32_t>(this_._internal_yaw()) != 0) {
+        total_size += 5;
+      }
+    }
+    // float pitch = 6 [json_name = "pitch"];
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      if (::absl::bit_cast<::uint32_t>(this_._internal_pitch()) != 0) {
+        total_size += 5;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void PackedPlayerMove::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<PackedPlayerMove*>(&to_msg);
+  auto& from = static_cast<const PackedPlayerMove&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:df.plugin.PackedPlayerMove)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (!from._internal_player_uuid_bytes().empty()) {
+        _this->_internal_set_player_uuid_bytes(from._internal_player_uuid_bytes());
+      } else {
+        if (_this->_impl_.player_uuid_bytes_.IsDefault()) {
+          _this->_internal_set_player_uuid_bytes("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (::absl::bit_cast<::uint32_t>(from._internal_x()) != 0) {
+        _this->_impl_.x_ = from._impl_.x_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (::absl::bit_cast<::uint32_t>(from._internal_y()) != 0) {
+        _this->_impl_.y_ = from._impl_.y_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (::absl::bit_cast<::uint32_t>(from._internal_z()) != 0) {
+        _this->_impl_.z_ = from._impl_.z_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      if (::absl::bit_cast<::uint32_t>(from._internal_yaw()) != 0) {
+        _this->_impl_.yaw_ = from._impl_.yaw_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      if (::absl::bit_cast<::uint32_t>(from._internal_pitch()) != 0) {
+        _this->_impl_.pitch_ = from._impl_.pitch_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void PackedPlayerMove::CopyFrom(const PackedPlayerMove& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:df.plugin.PackedPlayerMove)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PackedPlayerMove::InternalSwap(PackedPlayerMove* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_uuid_bytes_, &other->_impl_.player_uuid_bytes_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.pitch_)
+      + sizeof(PackedPlayerMove::_impl_.pitch_)
+      - PROTOBUF_FIELD_OFFSET(PackedPlayerMove, _impl_.x_)>(
+          reinterpret_cast<char*>(&_impl_.x_),
+          reinterpret_cast<char*>(&other->_impl_.x_));
+}
+
+::google::protobuf::Metadata PackedPlayerMove::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -3898,9 +5147,9 @@ EventEnvelope::EventEnvelope(
                offsetof(Impl_, type_),
            reinterpret_cast<const char*>(&from._impl_) +
                offsetof(Impl_, type_),
-           offsetof(Impl_, expects_response_) -
+           offsetof(Impl_, immediate_) -
                offsetof(Impl_, type_) +
-               sizeof(Impl_::expects_response_));
+               sizeof(Impl_::immediate_));
   switch (payload_case()) {
     case PAYLOAD_NOT_SET:
       break;
@@ -4068,9 +5317,9 @@ inline void EventEnvelope::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, type_),
            0,
-           offsetof(Impl_, expects_response_) -
+           offsetof(Impl_, immediate_) -
                offsetof(Impl_, type_) +
-               sizeof(Impl_::expects_response_));
+               sizeof(Impl_::immediate_));
 }
 EventEnvelope::~EventEnvelope() {
   // @@protoc_insertion_point(destructor:df.plugin.EventEnvelope)
@@ -4537,16 +5786,16 @@ EventEnvelope::GetClassData() const {
   return EventEnvelope_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 52, 49, 88, 13>
+const ::_pbi::TcParseTable<2, 53, 49, 88, 13>
 EventEnvelope::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_._has_bits_),
     0, // no _extensions_
     81, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    504,  // skipmap
+    496,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    52,  // num_field_entries
+    53,  // num_field_entries
     49,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     EventEnvelope_class_data_.base(),
@@ -4556,7 +5805,10 @@ EventEnvelope::_table_ = {
     ::_pbi::TcParser::GetTable<::df::plugin::EventEnvelope>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // bool immediate = 4 [json_name = "immediate"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(EventEnvelope, _impl_.immediate_), 3>(),
+     {32, 3, 0,
+      PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.immediate_)}},
     // string event_id = 1 [json_name = "eventId"];
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0,
@@ -4571,10 +5823,10 @@ EventEnvelope::_table_ = {
       PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.expects_response_)}},
   }}, {{
     33, 0, 4,
-    49152, 26,
-    65535, 40,
-    31, 40,
-    65534, 51,
+    49152, 27,
+    65535, 41,
+    31, 41,
+    65534, 52,
     65535, 65535
   }}, {{
     // string event_id = 1 [json_name = "eventId"];
@@ -4583,6 +5835,8 @@ EventEnvelope::_table_ = {
     {PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.type_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
     // bool expects_response = 3 [json_name = "expectsResponse"];
     {PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.expects_response_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // bool immediate = 4 [json_name = "immediate"];
+    {PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.immediate_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
     // .df.plugin.PlayerJoinEvent player_join = 10 [json_name = "playerJoin"];
     {PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.payload_.player_join_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .df.plugin.PlayerQuitEvent player_quit = 11 [json_name = "playerQuit"];
@@ -4750,10 +6004,10 @@ PROTOBUF_NOINLINE void EventEnvelope::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     _impl_.event_id_.ClearNonDefaultToEmpty();
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x00000006U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000eU)) {
     ::memset(&_impl_.type_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.expects_response_) -
-        reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.expects_response_));
+        reinterpret_cast<char*>(&_impl_.immediate_) -
+        reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.immediate_));
   }
   clear_payload();
   _impl_._has_bits_.Clear();
@@ -4804,6 +6058,15 @@ PROTOBUF_NOINLINE void EventEnvelope::Clear() {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteBoolToArray(
           3, this_._internal_expects_response(), target);
+    }
+  }
+
+  // bool immediate = 4 [json_name = "immediate"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (this_._internal_immediate() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          4, this_._internal_immediate(), target);
     }
   }
 
@@ -5130,7 +6393,7 @@ PROTOBUF_NOINLINE void EventEnvelope::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     // string event_id = 1 [json_name = "eventId"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!this_._internal_event_id().empty()) {
@@ -5148,6 +6411,12 @@ PROTOBUF_NOINLINE void EventEnvelope::Clear() {
     // bool expects_response = 3 [json_name = "expectsResponse"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       if (this_._internal_expects_response() != 0) {
+        total_size += 2;
+      }
+    }
+    // bool immediate = 4 [json_name = "immediate"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (this_._internal_immediate() != 0) {
         total_size += 2;
       }
     }
@@ -5470,7 +6739,7 @@ void EventEnvelope::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (!from._internal_event_id().empty()) {
         _this->_internal_set_event_id(from._internal_event_id());
@@ -5488,6 +6757,11 @@ void EventEnvelope::MergeImpl(::google::protobuf::MessageLite& to_msg,
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       if (from._internal_expects_response() != 0) {
         _this->_impl_.expects_response_ = from._impl_.expects_response_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (from._internal_immediate() != 0) {
+        _this->_impl_.immediate_ = from._impl_.immediate_;
       }
     }
   }
@@ -5920,8 +7194,8 @@ void EventEnvelope::InternalSwap(EventEnvelope* PROTOBUF_RESTRICT PROTOBUF_NONNU
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.event_id_, &other->_impl_.event_id_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.expects_response_)
-      + sizeof(EventEnvelope::_impl_.expects_response_)
+      PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.immediate_)
+      + sizeof(EventEnvelope::_impl_.immediate_)
       - PROTOBUF_FIELD_OFFSET(EventEnvelope, _impl_.type_)>(
           reinterpret_cast<char*>(&_impl_.type_),
           reinterpret_cast<char*>(&other->_impl_.type_));

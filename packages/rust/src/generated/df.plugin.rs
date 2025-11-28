@@ -3026,7 +3026,7 @@ pub struct WorldCloseEvent {
 pub struct HostToPlugin {
     #[prost(string, tag="1")]
     pub plugin_id: ::prost::alloc::string::String,
-    #[prost(oneof="host_to_plugin::Payload", tags="10, 11, 12, 20, 21, 22")]
+    #[prost(oneof="host_to_plugin::Payload", tags="10, 11, 12, 20, 21, 22, 23, 24")]
     pub payload: ::core::option::Option<host_to_plugin::Payload>,
 }
 /// Nested message and enum types in `HostToPlugin`.
@@ -3046,7 +3046,42 @@ pub mod host_to_plugin {
         ActionResult(super::ActionResult),
         #[prost(message, tag="22")]
         Events(super::EventBatch),
+        #[prost(message, tag="23")]
+        CompressedEvents(super::CompressedEventBatch),
+        #[prost(message, tag="24")]
+        PlayerMovementsPacked(super::PlayerMovementsPacked),
     }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CompressedEventBatch {
+    #[prost(bytes="vec", tag="1")]
+    pub data: ::prost::alloc::vec::Vec<u8>,
+    #[prost(int32, tag="2")]
+    pub original_size: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PlayerMovementsPacked {
+    #[prost(message, repeated, tag="1")]
+    pub moves: ::prost::alloc::vec::Vec<PackedPlayerMove>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PackedPlayerMove {
+    /// 16-byte UUID
+    #[prost(bytes="vec", tag="1")]
+    pub player_uuid_bytes: ::prost::alloc::vec::Vec<u8>,
+    #[prost(float, tag="2")]
+    pub x: f32,
+    #[prost(float, tag="3")]
+    pub y: f32,
+    #[prost(float, tag="4")]
+    pub z: f32,
+    #[prost(float, tag="5")]
+    pub yaw: f32,
+    #[prost(float, tag="6")]
+    pub pitch: f32,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3089,6 +3124,9 @@ pub struct EventEnvelope {
     /// If an event can be cancelled or mutated it expects an acknowledgement.
     #[prost(bool, tag="3")]
     pub expects_response: bool,
+    /// If true, the event is sent immediately, bypassing any batching.
+    #[prost(bool, tag="4")]
+    pub immediate: bool,
     #[prost(oneof="event_envelope::Payload", tags="10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81")]
     pub payload: ::core::option::Option<event_envelope::Payload>,
 }

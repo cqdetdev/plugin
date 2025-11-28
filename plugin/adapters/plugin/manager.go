@@ -54,6 +54,19 @@ type Manager struct {
 	bootID string
 }
 
+func (m *Manager) logEventLatency(eventType pb.EventType, eventID string, pluginID string, duration time.Duration, metricType string) {
+	m.log.Debug(
+		"event latency",
+		"event_type", eventType.String(),
+		"event_id", eventID,
+		"plugin_id", pluginID,
+		"duration_ms", duration.Milliseconds(),
+		"duration_us", duration.Microseconds(),
+		"duration_ns", duration.Nanoseconds(),
+		"metric_type", metricType,
+	)
+}
+
 // SetServer assigns the Dragonfly server instance after the manager has started.
 // This enables starting the plugin transport before the server is created so that
 // plugins can register custom items in their Hello message ahead of server startup.
@@ -241,7 +254,7 @@ func (m *Manager) detachPlayer(p *player.Player) {
 // This is for events which cannot be canceled or mutated.
 // broadcastEvent sends an event which does not expect a response.
 // This is for events which cannot be canceled or mutated.
-func (m *Manager) broadcastEvent(envelope *pb.EventEnvelope) {
+func (m *Manager) broadcastEvent(ctx context.Context, envelope *pb.EventEnvelope) {
 	if envelope == nil {
 		return
 	}
@@ -250,17 +263,31 @@ func (m *Manager) broadcastEvent(envelope *pb.EventEnvelope) {
 	}
 
 	eventType := envelope.Type
+	startTime := time.Now() // Default start time
+
+	if ctx != nil {
+		if val := ctx.Value("eventStartTime"); val != nil {
+			if t, ok := val.(time.Time); ok {
+				startTime = t
+			}
+		}
+	}
+
 	m.mu.RLock()
 	defer m.mu.RUnlock()
 
 	for _, proc := range m.plugins {
 		if proc.HasSubscription(eventType) {
+			dispatchStart := time.Now()
 			proc.queueEvent(envelope)
+			m.logEventLatency(eventType, envelope.EventId, proc.id, time.Since(dispatchStart), "dispatch_queue")
 		}
 	}
+	// Log overall broadcast event duration
+	m.logEventLatency(eventType, envelope.EventId, "all_plugins", time.Since(startTime), "broadcast_total")
 }
 
-func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
+func (m *Manager) dispatchEvent(ctx context.Context, envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
 	if envelope == nil {
 		return nil
 	}
@@ -269,6 +296,15 @@ func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) [
 	}
 
 	eventType := envelope.Type
+	overallStartTime := time.Now() // Default overall start time
+	if ctx != nil {
+		if val := ctx.Value("eventStartTime"); val != nil {
+			if t, ok := val.(time.Time); ok {
+				overallStartTime = t
+			}
+		}
+	}
+
 	m.mu.RLock()
 	procs := make([]*pluginProcess, 0, len(m.plugins))
 	for _, proc := range m.plugins {
@@ -280,13 +316,7 @@ func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) [
 	m.mu.RUnlock()
 
 	if len(procs) == 0 {
-		return nil
-	}
-
-	if !expectResult {
-		for _, proc := range procs {
-			proc.queueEvent(envelope)
-		}
+		m.logEventLatency(eventType, envelope.EventId, "no_plugins", time.Since(overallStartTime), "dispatch_total")
 		return nil
 	}
 
@@ -303,8 +333,10 @@ func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) [
 				Event: envelope,
 			},
 		}
+		dispatchStart := time.Now()
 		proc.log.Debug("sending event", "event_id", envelope.EventId, "type", envelope.Type.String())
 		proc.queue(msg)
+		m.logEventLatency(eventType, envelope.EventId, proc.id, time.Since(dispatchStart), "dispatch_queue")
 
 		if !expectResult {
 			continue
@@ -322,32 +354,20 @@ func (m *Manager) dispatchEvent(envelope *pb.EventEnvelope, expectResult bool) [
 					"wait_ms", pluginResponseTime.Milliseconds())
 			}
 			proc.discardEventResult(envelope.EventId)
+			m.logEventLatency(eventType, envelope.EventId, proc.id, pluginResponseTime, "plugin_response_error")
 			continue
 		}
 		if res != nil {
 			results = append(results, res)
-
-			// Log timing for command events
-			if envelope.Type == pb.EventType_COMMAND {
-				proc.log.Debug("plugin command response received",
-					"event_id", envelope.EventId,
-					"plugin_response_ms", pluginResponseTime.Milliseconds(),
-					"plugin_response_us", pluginResponseTime.Microseconds())
-			} else {
-				// General timing for non-command events
-				proc.log.Debug("plugin event response received",
-					"event_id", envelope.EventId,
-					"type", envelope.Type.String(),
-					"plugin_response_ms", pluginResponseTime.Milliseconds(),
-					"plugin_response_us", pluginResponseTime.Microseconds())
-			}
+			m.logEventLatency(eventType, envelope.EventId, proc.id, pluginResponseTime, "plugin_response")
 		}
 	}
+	m.logEventLatency(eventType, envelope.EventId, "all_plugins", time.Since(overallStartTime), "dispatch_total")
 	return results
 }
 
 // dispatchEventParallel broadcasts an event to all subscribed plugins concurrently and collects results.
-func (m *Manager) dispatchEventParallel(envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
+func (m *Manager) dispatchEventParallel(ctx context.Context, envelope *pb.EventEnvelope, expectResult bool) []*pb.EventResult {
 	if envelope == nil {
 		return nil
 	}
@@ -356,6 +376,15 @@ func (m *Manager) dispatchEventParallel(envelope *pb.EventEnvelope, expectResult
 	}
 
 	eventType := envelope.Type
+	overallStartTime := time.Now() // Default overall start time
+	if ctx != nil {
+		if val := ctx.Value("eventStartTime"); val != nil {
+			if t, ok := val.(time.Time); ok {
+				overallStartTime = t
+			}
+		}
+	}
+
 	m.mu.RLock()
 	procs := make([]*pluginProcess, 0, len(m.plugins))
 	for _, proc := range m.plugins {
@@ -367,48 +396,54 @@ func (m *Manager) dispatchEventParallel(envelope *pb.EventEnvelope, expectResult
 	m.mu.RUnlock()
 
 	if len(procs) == 0 {
+		m.logEventLatency(eventType, envelope.EventId, "no_plugins", time.Since(overallStartTime), "dispatch_total") // Log even if no plugins
 		return nil
 	}
 
 	results := make([]*pb.EventResult, len(procs))
 	var wg sync.WaitGroup
 	for idx, proc := range procs {
-		wg.Go(func() {
+		wg.Add(1)
+		go func(idx int, proc *pluginProcess) {
+			defer wg.Done()
 			var waitCh chan *pb.EventResult
 			if expectResult {
 				waitCh = proc.expectEventResult(envelope.EventId)
 			}
-			proc.log.Debug("sending event", "event_id", envelope.EventId, "type", envelope.Type.String())
-			proc.queue(&pb.HostToPlugin{
+
+			msg := &pb.HostToPlugin{
 				PluginId: proc.id,
 				Payload: &pb.HostToPlugin_Event{
 					Event: envelope,
 				},
-			})
+			}
+			dispatchStart := time.Now()
+			proc.log.Debug("sending event", "event_id", envelope.EventId, "type", envelope.Type.String())
+			proc.queue(msg)
+			m.logEventLatency(eventType, envelope.EventId, proc.id, time.Since(dispatchStart), "dispatch_queue") // Log dispatch queue time
+
 			if !expectResult {
 				return
 			}
 			waitStart := time.Now()
 			res, err := proc.waitEventResult(waitCh, eventResponseTimeout)
+			pluginResponseTime := time.Since(waitStart)
+
 			if err != nil {
 				if errors.Is(err, context.DeadlineExceeded) {
 					proc.log.Warn("plugin did not respond to event", "event_id", envelope.EventId, "type", envelope.Type.String())
 				}
 				proc.discardEventResult(envelope.EventId)
+				m.logEventLatency(eventType, envelope.EventId, proc.id, pluginResponseTime, "plugin_response_error") // Log error response
 				return
 			}
-			pluginResponseTime := time.Since(waitStart)
-			if envelope.Type != pb.EventType_COMMAND {
-				proc.log.Debug("plugin event response received",
-					"event_id", envelope.EventId,
-					"type", envelope.Type.String(),
-					"plugin_response_ms", pluginResponseTime.Milliseconds(),
-					"plugin_response_us", pluginResponseTime.Microseconds())
-			}
+			m.logEventLatency(eventType, envelope.EventId, proc.id, pluginResponseTime, "plugin_response") // Log actual plugin response time
 			results[idx] = res
-		})
+		}(idx, proc)
 	}
 	wg.Wait()
+	// Log overall parallel dispatch event duration
+	m.logEventLatency(eventType, envelope.EventId, "all_plugins", time.Since(overallStartTime), "dispatch_parallel_total")
 	return results
 }
 
@@ -419,7 +454,14 @@ type cancelContext interface {
 func (m *Manager) emitCancellable(ctx cancelContext, envelope *pb.EventEnvelope) []*pb.EventResult {
 	envelope.ExpectsResponse = true
 	// Fire all at once and wait for all responses.
-	results := m.dispatchEventParallel(envelope, true)
+	// Pass a new context with the start time for the overall event processing.
+	var eventCtx context.Context
+	if c, ok := ctx.(context.Context); ok {
+		eventCtx = context.WithValue(c, "eventStartTime", time.Now())
+	} else {
+		eventCtx = context.WithValue(context.Background(), "eventStartTime", time.Now())
+	}
+	results := m.dispatchEventParallel(eventCtx, envelope, true)
 	cancelled := false
 	for _, res := range results {
 		if res != nil && res.Cancel != nil && *res.Cancel {
@@ -704,4 +746,3 @@ func (m *Manager) WaitForPlugins(requiredIDs []string, timeout time.Duration) bo
 	}
 	return false
 }
-

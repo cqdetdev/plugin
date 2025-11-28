@@ -1,7 +1,7 @@
 # Plugin Server Configuration
 # Dragonfly runs a gRPC server that plugins connect to
 # Use Unix socket for best performance
-server_port: "unix:///tmp/dragonfly_plugin.sock"
+server_port: "127.0.0.1:50050"
 # Or use TCP for remote: "127.0.0.1:50050"
 
 # List of plugin IDs that must connect before server starts
@@ -19,51 +19,51 @@ plugins:
   #   args: ["../examples/plugins/node/hello.js"]
   #   env:
   #     NODE_ENV: development
-  # - id: example-typescript
-  #   name: Example TypeScript Plugin
-  #   #command: "node"
-  #   #args: ["../examples/plugins/typescript/dist/index.js"]
-  #   command: "npm"
-  #   args: ["run", "dev"]
+  - id: example-typescript
+    name: Example TypeScript Plugin
+    #command: "node"
+    #args: ["../examples/plugins/typescript/dist/index.js"]
+    command: "npm"
+    args: ["run", "dev"]
+    work_dir:
+      path: "../examples/plugins/typescript"
+    env:
+      NODE_ENV: production
+  # - id: example-php
+  #   name: Example PHP Plugin
+  #   command: "watchexec"
+  #   args:
+  #     - "--restart"
+  #     - "--clear"
+  #     - "--watch"
+  #     - "src"
+  #     - "--exts"
+  #     - "php"
+  #     - "--"
+  #     - "bin/php7/bin/php"
+  #     - "src/HelloPlugin.php"
   #   work_dir:
-  #     path: "../examples/plugins/typescript"
+  #     path: "../examples/plugins/php"
+  #   # command: "../examples/plugins/php/bin/php7/bin/php"
+  #   # args: ["../examples/plugins/php/src/HelloPlugin.php"]
+  #   # command: "docker"
+  #   # args:
+  #   #   - "compose"
+  #   #   - "-f"
+  #   #   - "../examples/plugins/php/docker-compose.yml"
+  #   #   - "up"
+  #   #   - "--abort-on-container-exit"
   #   env:
-  #     NODE_ENV: production
-  - id: example-php
-    name: Example PHP Plugin
-    command: "watchexec"
-    args:
-      - "--restart"
-      - "--clear"
-      - "--watch"
-      - "src"
-      - "--exts"
-      - "php"
-      - "--"
-      - "bin/php7/bin/php"
-      - "src/HelloPlugin.php"
-    work_dir:
-      path: "../examples/plugins/php"
-    # command: "../examples/plugins/php/bin/php7/bin/php"
-    # args: ["../examples/plugins/php/src/HelloPlugin.php"]
-    # command: "docker"
-    # args:
-    #   - "compose"
-    #   - "-f"
-    #   - "../examples/plugins/php/docker-compose.yml"
-    #   - "up"
-    #   - "--abort-on-container-exit"
-    env:
-      PHP_ENV: production
+  #     PHP_ENV: production
 
-  - id: example-rust
-    name: Example Rust Plugin
-    command: "cargo"
-    args: ["run"]
-    work_dir:
-      path: "../packages/rust/rust-plugin-test"
-    env:
-      RUST_LOG: info
+  # - id: example-rust
+  #   name: Example Rust Plugin
+  #   command: "cargo"
+  #   args: ["run"]
+  #   work_dir:
+  #     path: "../packages/rust/rust-plugin-test"
+  #   env:
+  #     RUST_LOG: info
 
   # - id: example-go
   #   name: Example Go Plugin
