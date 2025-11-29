@@ -261,7 +261,19 @@ abstract class PluginBase {
                 } catch (\Throwable $e) {
                     fwrite(STDERR, "[php] listener error: {$e->getMessage()}\n");
                 } finally {
-                    $ctx->ackIfUnhandled();
+                    // Avoid double-ACK for command events when a Command class handles the same command.
+                    // If a registered Command instance exists for this command name, the internal command
+                    // handler will already respond/cancel. In that case, skip the auto-ACK here.
+                    $shouldAck = true;
+                    if ($event->getType() === EventType::COMMAND && $payload !== null && method_exists($payload, 'getCommand')) {
+                        $cmdName = (string)$payload->getCommand();
+                        if ($cmdName !== '' && isset($this->commandInstances[$cmdName])) {
+                            $shouldAck = false;
+                        }
+                    }
+                    if ($shouldAck) {
+                        $ctx->ackIfUnhandled();
+                    }
                 }
             });
         }
