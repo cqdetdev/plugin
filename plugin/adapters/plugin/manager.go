@@ -375,13 +375,11 @@ func (m *Manager) dispatchEventParallel(envelope *pb.EventEnvelope, expectResult
 				return
 			}
 			pluginResponseTime := time.Since(waitStart)
-			if envelope.Type != pb.EventType_COMMAND {
-				proc.log.Debug("plugin event response received",
-					"event_id", envelope.EventId,
-					"type", envelope.Type.String(),
-					"plugin_response_ms", pluginResponseTime.Milliseconds(),
-					"plugin_response_us", pluginResponseTime.Microseconds())
-			}
+			proc.log.Debug("plugin event response received",
+				"event_id", envelope.EventId,
+				"type", envelope.Type.String(),
+				"plugin_response_ms", pluginResponseTime.Milliseconds(),
+				"plugin_response_us", pluginResponseTime.Microseconds())
 			results[idx] = res
 		})
 	}
