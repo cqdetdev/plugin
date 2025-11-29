@@ -3,7 +3,7 @@ world/
 players/
 resources/
 
-plugins.yaml
+cmd/plugins/plugins.yaml
 config.toml
 
 # IDE configuration

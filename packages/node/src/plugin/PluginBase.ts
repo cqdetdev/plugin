@@ -1,7 +1,9 @@
 import * as grpc from '@grpc/grpc-js';
 import { HostToPlugin, PluginToHost } from '../generated/plugin.js';
+import { ActionBatch, Action } from '../generated/actions.js'; // Corrected import for Action and ActionBatch
 import { CommandManager } from '../commands/CommandManager.js';
 import { EventManager } from '../events/EventManager.js';
+import { randomUUID } from 'crypto'; // Import randomUUID
 
 export abstract class PluginBase {
     private client: grpc.Client;
@@ -22,6 +24,9 @@ export abstract class PluginBase {
         this.client = new grpc.Client(this.address, grpc.credentials.createInsecure());
         this.eventManager = new EventManager(this);
         this.commandManager = new CommandManager(this);
+
+        // Auto-run the plugin on the next tick to allow subclass initialization to complete
+        setTimeout(() => this.run(), 0);
     }
 
     abstract onLoad(): void;
@@ -115,6 +120,26 @@ export abstract class PluginBase {
                 reject(error);
             }
         });
+    }
+
+    public async sendAction<T extends keyof Omit<Action, 'correlationId'>>(
+        actionType: T,
+        actionPayload: NonNullable<Action[T]>,
+        correlationId?: string
+    ): Promise<void> {
+        const action: Action = {
+            correlationId: correlationId ?? randomUUID(),
+            [actionType]: actionPayload, // Dynamically set the action payload
+        };
+
+        const msg: PluginToHost = {
+            pluginId: this.pluginId,
+            actions: {
+                actions: [action],
+            },
+        };
+
+        return this.send(msg);
     }
 
     public getStream(): grpc.ClientDuplexStream<PluginToHost, HostToPlugin> | null {

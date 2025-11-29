@@ -3,6 +3,8 @@ import { HostToPlugin, EventType } from '../generated/plugin.js';
 import { EVENT_HANDLERS } from './decorators.js';
 
 export class EventContext<T> {
+    private handled = false;
+
     constructor(
         public readonly event: NonNullable<HostToPlugin['event']>,
         public readonly data: T,
@@ -14,6 +16,9 @@ export class EventContext<T> {
     }
 
     public async cancel(): Promise<void> {
+        if (this.handled) return;
+        this.handled = true;
+
          if (this.event.expectsResponse) {
             await this.plugin.send({
                 pluginId: this.plugin.pluginId,
@@ -26,6 +31,9 @@ export class EventContext<T> {
     }
     
     public async ack(): Promise<void> {
+        if (this.handled) return;
+        this.handled = true;
+
          if (this.event.expectsResponse) {
             await this.plugin.send({
                 pluginId: this.plugin.pluginId,
@@ -34,6 +42,12 @@ export class EventContext<T> {
                     cancel: false
                 }
             });
+        }
+    }
+
+    public async ackIfUnhandled(): Promise<void> {
+        if (!this.handled) {
+            await this.ack();
         }
     }
 }
@@ -69,20 +83,24 @@ export class EventManager {
         if (!handlers) return;
 
         let data: any = event;
-        switch(event.type) {
-            case EventType.PLAYER_JOIN: data = event.playerJoin; break;
-            case EventType.PLAYER_QUIT: data = event.playerQuit; break;
-            case EventType.PLAYER_MOVE: data = event.playerMove; break;
-            case EventType.CHAT: data = event.chat; break;
-            case EventType.PLAYER_BLOCK_BREAK: data = event.blockBreak; break;
-            case EventType.COMMAND: data = event.command; break;
-            // Add other event types here as needed
+        
+        for (const key in event) {
+            if (key === 'eventId' || key === 'type' || key === 'expectsResponse' || key === 'immediate') continue;
+            const val = (event as any)[key];
+            if (val !== undefined) {
+                data = val;
+                break;
+            }
         }
 
         const context = new EventContext(event, data, this.plugin);
 
-        for (const handler of handlers) {
-            await handler(data, context);
+        try {
+            for (const handler of handlers) {
+                await handler(data, context);
+            }
+        } finally {
+            await context.ackIfUnhandled();
         }
     }
 }

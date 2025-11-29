@@ -65,17 +65,9 @@ class HCFPlugin extends PluginBase {
             timeValue = value;
         }
 
-        await this.send({
-            pluginId: this.pluginId,
-            actions: {
-                actions: [{
-                    correlationId: `time-set-${Date.now()}`,
-                    worldSetTime: {
-                        time: timeValue,
-                        world: { name: '', dimension: 'overworld', id: '' },
-                    }
-                }]
-            }
+        await this.sendAction('worldSetTime', {
+            time: timeValue,
+            world: { name: '', dimension: 'overworld', id: '' },
         });
     }
 
@@ -519,4 +511,4 @@ class HCFPlugin extends PluginBase {
     }
 }
 
-new HCFPlugin().run();
+new HCFPlugin();

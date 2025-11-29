@@ -223,17 +223,9 @@ export class WorldService {
             timeValue = value;
         }
 
-        await this.plugin.send({
-            pluginId: this.plugin.pluginId,
-            actions: {
-                actions: [{
-                    correlationId: `time-set-${Date.now()}`,
-                    worldSetTime: {
-                        time: timeValue,
-                        world: { name: '', dimension: 'overworld', id: '' },
-                    }
-                }]
-            }
+        await this.plugin.sendAction('worldSetTime', {
+            time: timeValue,
+            world: { name: '', dimension: 'overworld', id: '' },
         });
     }
 }
