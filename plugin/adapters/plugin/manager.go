@@ -407,7 +407,7 @@ func (m *Manager) emitCancellable(ctx cancelContext, envelope *pb.EventEnvelope)
 		m.log.Debug("event cancelled by plugin", "event_id", envelope.EventId, "type", envelope.Type.String())
 		return nil
 	}
-	m.log.Debug("event completed", "event_id", envelope.EventId, "type", envelope.Type.String(), "responses", len(results))
+	// m.log.Debug("event completed", "event_id", envelope.EventId, "type", envelope.Type.String(), "responses", len(results))
 	return results
 }
 
